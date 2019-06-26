@@ -4,8 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//authentication modules
+session = require("express-session"),
+bodyParser = require("body-parser"),
+User = require( './models/User' ),
+flash = require('connect-flash')
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+//*******************************************
+//***********Controller**********************
 
 // Authentication
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -14,7 +24,20 @@ const passport = require('passport')
 const configPassport = require('./config/passport')
 configPassport(passport)
 
+//connect to mongoose database
+const mongoose = require( 'mongoose' );
+mongoose.connect( 'mongodb://localhost/claster' );
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("we are connected!")
+});
+
+//start the app.js
 var app = express();
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,9 +59,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
-
-
 // here is where we check on their logged in status
 app.use((req,res,next) => {
   res.locals.title="Claster"
@@ -47,37 +67,34 @@ app.use((req,res,next) => {
     if (req.user.googleemail.endsWith("edu") ||
           req.user.googleemail.endsWith("@gmail.com"))
           {
-            console.log("user has been Authenticated")
             res.locals.user = req.user
             res.locals.loggedIn = true
+            console.log("user has been Authenticated")
           }
     else {
       res.locals.loggedIn = false
     }
+  }
   next()
 })
 
-
-
-// here are the authentication routes
-
-app.get('/loginerror', function(req,res){
-  res.render('loginerror',{})
-})
+// here are the login routes
 
 app.get('/login', function(req,res){
   res.render('login',{})
 })
 
-
+app.get('/loginerror', function(req,res){
+  res.render('loginerror',{})
+})
 
 // route for logging out
 app.get('/logout', function(req, res) {
         req.session.destroy((error)=>{console.log("Error in destroying session: "+error)});
         console.log("session has been destroyed")
         req.logout();
-        res.redirect('/');
-    });
+        res.redirect('/login');
+});
 
 
 // =====================================
@@ -87,7 +104,6 @@ app.get('/logout', function(req, res) {
 // profile gets us their basic information including their name
 // email gets their emails
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-
 
 app.get('/login/authorized',
         passport.authenticate('google', {
@@ -112,8 +128,13 @@ function isLoggedIn(req, res, next) {
     }
 }
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+//request data from index
+app.get('/', function(req, res, next) {
+  res.render('index');
+});
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
