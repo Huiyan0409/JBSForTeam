@@ -163,21 +163,12 @@ app.get('/', function(req, res, next){
 // =====================================
 
 // we require them to be logged in to see their profile
-//show my profile by using local user
 app.get('/myProfile', isLoggedIn, function(req, res) {
   res.render( 'myProfile', {
     req: req
   });
 });
 
-// we require them to be logged in to see their profile
-
-//show my profile by using local user
-app.get('/myProfile', isLoggedIn, function(req, res) {
-  res.render( 'myProfile', {
-    req: req
-  });
-});
 
 // we require them to be logged in to edit their profile
 app.get('/editMyProfile', isLoggedIn, function(req, res) {
