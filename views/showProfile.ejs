@@ -1,0 +1,70 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+<div class="container">
+
+  <div class="jumbotron">
+    <h1><i><%= profile.userName %></i>, welcome to <b>Spongebob's Expense Tracker</b></h1>
+    <br>
+    <h4>Please click <a href="/"> here</a> to start recording</h4>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Username</span>
+        <input disabled type="text" class="form-control" value="<%=profile.userName%>">
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Email</span>
+        <input disabled type="text" class="form-control" value="<%=profile.googleemail%>">
+      </div>
+    </div>
+
+    <div class="w-100"></div>
+
+    <br>
+
+    <div class="col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Zipcode</span>
+        <input disabled type="text" class="form-control" value="<%=profile.zipcode%>">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">City</span>
+        <input disabled type="text" class="form-control" value="<%=profile.city%>">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">State</span>
+        <input disabled type="text" class="form-control" value="<%=profile.state%>">
+      </div>
+    </div>
+
+    <div class="w-100"></div>
+    <br>
+
+    <div class="col-sm-4">
+      <span class="input-group-text">Profile image</span>
+      <br>
+      <img src="<%=profile.profilePicURL%>" width = "100%" alt="profile picture">
+    </div>
+
+    <div class="col-sm-8">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Last updated on</span>
+        <input disabled type="text" class="form-control" value="<%=profile.lastUpdate%>">
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<%- include('footer'); -%>

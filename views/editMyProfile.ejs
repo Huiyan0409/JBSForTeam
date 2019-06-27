@@ -1,0 +1,87 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+<!-- edit profile page -->
+<div class="container">
+
+  <div class="jumbotron">
+    <h1><i><%= user.userName %></i>, <b>Spongebob's Expense Tracker</b></h1>
+    <br>
+    <h4>Please click <a href="/"> here</a> to start recording</h4>
+  </div>
+
+  <!-- form: update personal info -->
+
+  <form action="/updateProfile" method="post">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Username</span>
+          <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
+        </div>
+      </div>
+
+      <!-- line break -->
+      <div class="w-100"></div>
+      <br>
+
+      <!-- zipcode -->
+      <div class="col-sm-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Zipcode</span>
+          <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
+        </div>
+      </div>
+
+      <!-- line break -->
+      <div class="w-100"></div>
+      <br>
+
+      <!-- profile image -->
+      <div class="col-sm-6">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Profile image path</span>
+          <input type="text" class="form-control" name="profilePicURL" value="<%=user.profilePicURL%>">
+        </div>
+      </div>
+
+      <div class="col-sm-1">
+        <input type="submit" class = "btn btn-primary" value = "Save">
+      </div>
+
+    </div>
+  </form>
+
+  <br>
+
+  <form class='md-form' action='/upload' method='post' encType="multipart/form-data">
+    <div class="row">
+      <div class="col-6">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Image upload</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="sampleFile">
+            <label class="custom-file-label">Choose file</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-1">
+        <input type='submit' class="btn btn-warning" value='Upload'>
+      </div>
+
+      <div class="w-100"></div>
+      <br>
+
+      <div class="col-sm-6">
+        <img src="<%=user.profilePicURL%>" width="100%" alt="">
+      </div>
+    </div>
+  </form>
+
+
+</div>
+
+<%- include('footer'); -%>

@@ -17,6 +17,12 @@ var usersRouter = require('./routes/users');
 //*******************************************
 //***********Controller**********************
 
+const profileController = require('./controllers/profileController');
+
+
+//*******************************************
+//***********End of controller**********************
+
 // Authentication
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // here we set up authentication with passport
@@ -129,6 +135,20 @@ function isLoggedIn(req, res, next) {
     }
 }
 
+function isAdmin(req, res, next) {
+  console.log("checking to see if they are admin!")
+  // if user is authenticated in the session, carry on
+  res.locals.isAdmin = false
+  if (res.locals.status == 'admin'){
+    console.log("user is admin")
+    res.locals.isAdmin = true
+    return next();
+  } else {
+    res.redirect('/')
+    console.log("user is not admin")
+  }
+}
+
 // END OF THE Google AUTHENTICATION ROUTES
 
 //we can use this or the index router to handle req
@@ -137,6 +157,52 @@ app.get('/', function(req, res, next){
     req: req
   })
 })
+
+// =====================================
+// Profile =======================
+// =====================================
+
+// we require them to be logged in to see their profile
+//show my profile by using local user
+app.get('/myProfile', isLoggedIn, function(req, res) {
+  res.render( 'myProfile', {
+    req: req
+  });
+});
+
+// we require them to be logged in to see their profile
+
+//show my profile by using local user
+app.get('/myProfile', isLoggedIn, function(req, res) {
+  res.render( 'myProfile', {
+    req: req
+  });
+});
+
+// we require them to be logged in to edit their profile
+app.get('/editMyProfile', isLoggedIn, function(req, res) {
+  res.render('editMyProfile')
+});
+
+//update personal profile
+app.post('/updateProfile', isLoggedIn, profileController.updateProfile)
+
+//update personal profile
+app.post('/upload', isLoggedIn, profileController.upload)
+
+//show all profiles from all users
+app.get('/showProfiles', isAdmin, isLoggedIn, profileController.getAllProfiles)
+
+//show personal profile
+app.get('/showProfile/:id', isLoggedIn, isAdmin, profileController.getOneProfile);
+
+
+
+
+
+
+
+
 
 
 //about page

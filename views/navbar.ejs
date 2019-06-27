@@ -5,6 +5,12 @@
     <%} else {%>
     <a class="nav-item nav-link" href="/logout">Logout</a>
     <% } %>
+    <% if (loggedIn) {%>
+    <a class="nav-item nav-link" href="/myProfile">My Profile</a>
+    <% } %>
+    <% if (loggedIn) {%>
+    <a class="nav-item nav-link" href="/showProfiles">All Profiles</a>
+    <% } %>
     <a class="nav-item nav-link" href="/about">About</a>
 
 </nav>
