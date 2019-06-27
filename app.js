@@ -45,7 +45,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+aaabbb
 /*************************************************************************
      HERE ARE THE AUTHENTICATION ROUTES
 **************************************************************************/
@@ -131,7 +131,7 @@ function isLoggedIn(req, res, next) {
 
 // END OF THE Google AUTHENTICATION ROUTES
 
-//we can use this or the index router to handle req 
+//we can use this or the index router to handle req
 app.get('/', function(req, res, next){
   res.render('index', {
     req: req
