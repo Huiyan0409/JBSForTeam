@@ -2,18 +2,17 @@
 <%- include('navbar'); -%>
 
 <div class="jumbotron masthead">
-  <h1 id="welcome">Welcome!</h1>
+  <h1 id="welcome">Welcome to <b>Claster!</b></h1>
   <% if (loggedIn) {%>
-  <h4 id="welcome">This is <%=req.user.googlename%>, googleId: <%=req.user._id%></h4>
-  <h4 id="welcome">You are logged in!</h4>
+  <h4 id="welcome">Hello, <%=req.user.googlename%></h4>
+  <h4 id="welcome">YOU ARE LOGGED IN!</h4>
   <% } else {%>
-  <h4 id="welcome">Call me Mountain Man</h4>
   <h4 id="welcome">PLEASE LOG IN!</h4>
   <% } %>
 </div>
 
 
-<div class="container-fluid">
+<div class="container">
 
 </div>
 <%- include('footer'); -%>
