@@ -25,6 +25,13 @@
       </div>
     </div>
 
+    <div class="col-sm-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Status</span>
+        <input disabled type="text" class="form-control" value="<%=user.status%>">
+      </div>
+    </div>
+
     <div class="w-100"></div>
 
     <br>
@@ -68,4 +75,5 @@
   <br>
   <a href="/editMyProfile"><input type="button" id='editBtn' value="Edit" class = "btn btn-primary"></input></a>
 </div>
+
 <%- include('footer'); -%>

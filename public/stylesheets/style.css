@@ -1,16 +1,28 @@
 body {
-  padding-top: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 0px;
-
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.nav{
+.navbar{
   padding-bottom: 1%;
+  font-size: 18px;
+  font-style: white;
+  background: black;
 }
 
-.jumbotron masthead {
-  background-color: #b3e0ff;
+.nav-item{
+  color: white;
+}
+
+a:hover{
+  color: #a8caff;
+}
+
+.navbar-brand{
+  padding-top: 2px;
+  font-size: 28px;
+}
+
+.jumbotron.masthead {
+  opacity: 0.8;
+  background: radial-gradient(circle, #b3e0ff, pink);
 }

@@ -9,6 +9,7 @@ var userSchema = Schema({
   googleemail:String,
   userName: String,
   profilePicURL: String,
+  status: String,
   lastUpdate: Date,
   zipcode: String,
   city: String,

@@ -1,14 +1,14 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
+
+<div class="jumbotron masthead">
+  <h1><i><%= user.userName %></i>, <b>welcome to Claster</b></h1>
+  <br>
+</div>
+
 <!-- edit profile page -->
 <div class="container-fluid">
-
-  <div class="jumbotron masthead">
-    <h1><i><%= user.userName %></i>, <b>welcome to Claster</b></h1>
-    <br>
-  </div>
-
   <!-- form: update personal info -->
 
   <form action="/updateProfile" method="post">
@@ -29,6 +29,21 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Zipcode</span>
           <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
+        </div>
+      </div>
+
+      <!-- line break -->
+      <div class="w-100"></div>
+      <br>
+
+      <div class="col-sm-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Status</span>
+          <select class="form-control" name ="status">
+              <option disabled value="Choose a role">Role</option>
+              <option value="tutor">Tutor</option>
+              <option value="student">Student</option>
+            </select>
         </div>
       </div>
 

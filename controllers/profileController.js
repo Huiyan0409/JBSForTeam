@@ -15,6 +15,7 @@ exports.updateProfile = ( req, res ) => {
     profile.userName = req.body.userName
     // profile.profilePicURL = req.body.profilePicURL
     profile.zipcode = req.body.zipcode
+    profile.status = req.body.status
 
     // Make a request for a user with a given ID
     axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/info.json/"+profile.zipcode+"/degrees")

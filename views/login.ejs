@@ -1,14 +1,17 @@
 <%- include('header') -%>
+<%- include('navbar') -%>
+
+<div class="jumbotron masthead">
+  <h1>Login to <b>Claster</b> </h1>
+  <h4> You would need a Brandeis account to login</h4>
+  <br>
+  <a class="btn btn-primary" href="/auth/google">
+    <span class="fa fa-google-plus"> Login with Google</span>
+  </a>
+</div>
 
 <div class="container-fluid">
-  <div class="jumbotron masthead">
-    <h1>Login to <b>Claster</b> </h1>
-    <h4> You would need a Brandeis account to login</h4>
-    <br>
-    <a class="btn btn-primary" href="/auth/google">
-      <span class="fa fa-google-plus"> Login with Google</span>
-    </a>
-  </div>
+
 </div>
 
 <%- include('footer'); -%>
