@@ -36,9 +36,6 @@ db.once('open', function() {
 //start the app.js
 var app = express();
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -97,6 +94,10 @@ app.get('/logout', function(req, res) {
 });
 
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+
 // =====================================
 // GOOGLE ROUTES =======================
 // =====================================
@@ -124,17 +125,20 @@ function isLoggedIn(req, res, next) {
       return next();
     } else {
       console.log("user has not been authenticated...")
-      res.redirect('/login');
+      res.redirect('/');
     }
 }
 
+// END OF THE Google AUTHENTICATION ROUTES
 
 //request data from index
-app.get('/', function(req, res, next) {
-  res.render('index');
-});
-
-
+// app.get('/', function(req, res, next) {
+//   if (req.locals.loggedIn){
+//     res.render('index')
+//   } else {
+//     res.render('login')
+//   }
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
