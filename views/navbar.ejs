@@ -8,7 +8,7 @@
       <% if (loggedIn) {%>
       <a class="nav-item nav-link" href="/myProfile">My Profile</a>
       <% } %>
-      <% if (loggedIn) {%>
+      <% if (loggedIn && status == 'admin') {%>
       <a class="nav-item nav-link" href="/showProfiles">All Profiles</a>
       <% } %>
       <a class="nav-item nav-link" href="/about">About</a>

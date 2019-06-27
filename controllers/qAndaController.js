@@ -18,7 +18,6 @@ exports.saveQuestionPost = ( req, res ) => {
    }
   )
 
-
   question.save()
     .then( () => {
       res.redirect( 'forum' );
@@ -118,8 +117,6 @@ exports.saveAnswer = (req,res) => {
       res.send( error );
     } );
 }
-
-
 
 
 // this displays all of the skills

@@ -66,6 +66,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+const approvedLogins = ["supremeethan@brandeis.edu", "kaimingwang@brandeis.edu", "yhao@brandeis.edu", "richardli@brandeis.edu", "nicolezhang@brandeis.edu"];
 // here is where we check on their logged in status
 app.use((req,res,next) => {
   res.locals.title="Claster"
@@ -80,6 +82,16 @@ app.use((req,res,next) => {
           }
     else {
       res.locals.loggedIn = false
+    }
+    if (req.user){
+      if (approvedLogins.includes(req.user.googleemail)){
+        // for permission control
+        console.log("admin has logged in")
+        res.locals.status = 'admin'
+      } else {
+        console.log('user has logged in')
+        res.locals.status = 'user'
+      }
     }
   }
   next()
@@ -139,19 +151,6 @@ function isLoggedIn(req, res, next) {
     }
 }
 
-// function isAdmin(req, res, next) {
-//   console.log("checking to see if they are admin!")
-//   // if user is authenticated in the session, carry on
-//   res.locals.isAdmin = false
-//   if (res.locals.status == 'admin'){
-//     console.log("user is admin")
-//     res.locals.isAdmin = true
-//     return next();
-//   } else {
-//     res.redirect('/')
-//     console.log("user is not admin")
-//   }
-// }
 
 // END OF THE Google AUTHENTICATION ROUTES
 
@@ -173,7 +172,6 @@ app.get('/myProfile', isLoggedIn, function(req, res) {
   });
 });
 
-
 // we require them to be logged in to edit their profile
 app.get('/editMyProfile', isLoggedIn, function(req, res) {
   res.render('editMyProfile')
@@ -193,7 +191,9 @@ app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 
 
-
+// =====================================
+// Forum ===============================
+// =====================================
 
 
 
