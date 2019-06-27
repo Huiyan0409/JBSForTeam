@@ -1,15 +1,18 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
+
 <div class="jumbotron masthead">
-  <h1>Welcome!</h1>
+  <h1 id="welcome">Welcome!</h1>
   <% if (loggedIn) {%>
-  <h4>This is <%=req.user.googlename%>, googleId: <%=req.user._id%></h4>
-  <h4>You are logged in!</h4>
+  <h4 id="welcome">This is <%=req.user.googlename%>, googleId: <%=req.user._id%></h4>
+  <h4 id="welcome">You are logged in!</h4>
   <% } else {%>
-  <h4>Call me Mountain Man</h4>
-  <h4>PLEASE LOG IN!</h4>
+  <h4 id="welcome">Call me Mountain Man</h4>
+  <h4 id="welcome">PLEASE LOG IN!</h4>
   <% } %>
 </div>
+
+
 <div class="container-fluid">
 
 </div>

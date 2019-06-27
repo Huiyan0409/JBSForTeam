@@ -2,6 +2,18 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+h1,h2,h3,h4,h5,h6{
+  color: white;
+}
+
+h1{
+  font-size: 60px;
+}
+
+#welcome{
+  padding-left: 9%;
+}
+
 .navbar{
   padding-bottom: 1%;
   font-size: 18px;
@@ -14,16 +26,25 @@ body {
 }
 
 a:hover{
-  color: #a8caff;
+  color: orange;
 }
 
 .navbar-brand{
+  /* font-family: 'Rubik'; */
+  font-weight: 400;
   padding-top: 2px;
   font-size: 28px;
-  color: #a8caff;
 }
 
 .jumbotron.masthead {
-  opacity: 0.8;
-  background: radial-gradient(circle, #b3e0ff, pink);
+  margin-left: -5px;
+  margin-right: -5px;
+  background-image: url("https://assets.wordpress.envato-static.com/uploads/2018/01/image1.png");
+
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
