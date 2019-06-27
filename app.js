@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+const fileUpload = require('express-fileupload');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -45,6 +46,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//use upload
+app.use(fileUpload());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -135,19 +139,19 @@ function isLoggedIn(req, res, next) {
     }
 }
 
-function isAdmin(req, res, next) {
-  console.log("checking to see if they are admin!")
-  // if user is authenticated in the session, carry on
-  res.locals.isAdmin = false
-  if (res.locals.status == 'admin'){
-    console.log("user is admin")
-    res.locals.isAdmin = true
-    return next();
-  } else {
-    res.redirect('/')
-    console.log("user is not admin")
-  }
-}
+// function isAdmin(req, res, next) {
+//   console.log("checking to see if they are admin!")
+//   // if user is authenticated in the session, carry on
+//   res.locals.isAdmin = false
+//   if (res.locals.status == 'admin'){
+//     console.log("user is admin")
+//     res.locals.isAdmin = true
+//     return next();
+//   } else {
+//     res.redirect('/')
+//     console.log("user is not admin")
+//   }
+// }
 
 // END OF THE Google AUTHENTICATION ROUTES
 
@@ -179,13 +183,13 @@ app.get('/editMyProfile', isLoggedIn, function(req, res) {
 app.post('/updateProfile', isLoggedIn, profileController.updateProfile)
 
 //update personal profile
-app.post('/upload', isLoggedIn, profileController.upload)
+app.post('/upload', profileController.upload)
 
 //show all profiles from all users
-app.get('/showProfiles', isAdmin, isLoggedIn, profileController.getAllProfiles)
+app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 
 //show personal profile
-app.get('/showProfile/:id', isLoggedIn, isAdmin, profileController.getOneProfile);
+app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 
 

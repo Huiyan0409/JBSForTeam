@@ -3,7 +3,6 @@ body {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 0px;
-  background-color: #b3e0ff;
 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -13,8 +12,5 @@ body {
 }
 
 .jumbotron {
-  margin-left: -5%;
-  margin-right: -5%;
-  padding-top: 5%;
   background-color: #b3e0ff;
 }

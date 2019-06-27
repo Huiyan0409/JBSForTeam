@@ -54,8 +54,11 @@ exports.upload = ( req, res ) => {
     }
     sampleFile = req.files.sampleFile;
 
+    console.log("uploadPath: " + uploadPath);
+
     let reqPath = path.join(__dirname, '../');
     uploadPath = reqPath + 'public/images/uploads/' + sampleFile.name;
+    console.log("uploadPath: " + uploadPath);
     // uploadPath = '/Users/cyan/Desktop/Cosi_152aj/Cosi_152aj_personal/public/images/uploads/' + sampleFile.name;
 
     sampleFile.mv(uploadPath, function(err) {
