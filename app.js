@@ -93,8 +93,8 @@ app.get('/logout', function(req, res) {
         res.redirect('/login');
 });
 
-
-app.use('/', indexRouter);
+//the indexRouter handles passing req to the page
+// app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
@@ -131,14 +131,12 @@ function isLoggedIn(req, res, next) {
 
 // END OF THE Google AUTHENTICATION ROUTES
 
-//request data from index
-// app.get('/', function(req, res, next) {
-//   if (req.locals.loggedIn){
-//     res.render('index')
-//   } else {
-//     res.render('login')
-//   }
-// });
+//we can use this or the index router to handle req 
+app.get('/', function(req, res, next){
+  res.render('index', {
+    req: req
+  })
+})
 
 
 //about page
