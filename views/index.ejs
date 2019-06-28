@@ -1,7 +1,7 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-<div class="jumbotron masthead">
+<div class="jumbotron masthead parallax parallax" id="superView">
   <h1 id="welcome">Welcome to <b>Claster!</b></h1>
   <% if (loggedIn) {%>
   <h4 id="welcome">Hello, <%=req.user.googlename%></h4>
@@ -11,8 +11,4 @@
   <% } %>
 </div>
 
-
-<div class="container">
-
-</div>
 <%- include('footer'); -%>

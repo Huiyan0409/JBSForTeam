@@ -33,7 +33,8 @@ configPassport(passport)
 
 //connect to mongoose database
 const mongoose = require( 'mongoose' );
-mongoose.connect( 'mongodb://localhost/claster' );
+//fix current URL string parser is deprecated
+mongoose.connect( 'mongodb://localhost/claster', {useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -60,7 +61,12 @@ app.use(express.static(path.join(__dirname, 'public')));
      HERE ARE THE AUTHENTICATION ROUTES
 **************************************************************************/
 
-app.use(session({ secret: 'zzbbyanana' }));
+//fix warnings of express-session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}))
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
