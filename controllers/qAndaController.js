@@ -12,14 +12,12 @@ exports.saveQuestionPost = ( req, res ) => {
   let newQuestion = new Question(
    {
     userId: req.user._id,
-    //questionId: req._id,
     userName:req.user.googlename,
     question: req.body.question,
     description: req.body.description,
     createdAt: new Date()
    }
   )
-  //console.log("questionId: " + req._id);
 
   newQuestion.save()
     .then( () => {
