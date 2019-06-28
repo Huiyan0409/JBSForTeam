@@ -19,6 +19,7 @@ var usersRouter = require('./routes/users');
 //***********Controller**********************
 
 const profileController = require('./controllers/profileController');
+const qAndaController = require('./controllers/qAndaController');
 
 
 //*******************************************
@@ -202,7 +203,26 @@ app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 // =====================================
 
 
+//post question page
+app.get('/postQuestion', function(req, res, next){
+  res.render('postQuestion')
+})
 
+//app.post('/forumDelete', isLoggedIn, qAndaController.deleteQuestion)
+
+app.get('/showQuestions', isLoggedIn, qAndaController.getAllQuestions)
+app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
+
+app.get('/showQuestion/:id', isLoggedIn,
+        qAndaController.attachAllAnswers,
+        qAndaController.showOneQuestion)
+
+app.get('/postAnswer', function(req, res, next){
+  res.render('postAnswer')
+})
+
+
+app.post('/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 
 

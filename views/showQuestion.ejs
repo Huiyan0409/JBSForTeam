@@ -1,0 +1,20 @@
+<%- include('header') -%>
+<%- include('navbar') -%>
+    <div class="jumbotron">
+        <h1><%= question.question %> </h1>
+    </div>
+    Description: <%= question.description %>
+    <hr>
+    <a href="/postAnswer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post Your Idea Here</a>
+    <ol>
+    <% for(i = 0; i<answers.length; i++){  %>
+            <li> <p class="text-sm-left"><%= answers[i].answer %></p>
+                  <i>
+                  <p class="text-sm-left"><%= answers[i].userName %></p>
+                 <i>
+                 <p class="text-sm-left"><%= answers[i].createdAt %></p>
+                 </\/i> </li>
+    <% } %>
+    </ol>
+
+<%- include('footer') -%>

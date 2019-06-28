@@ -7,6 +7,7 @@ var questionSchema = Schema( {
   userId: ObjectId,
   userName: String,
   question: String,
+  description: String,
   createdAt: Date
 } );
 

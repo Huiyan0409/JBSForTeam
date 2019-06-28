@@ -9,18 +9,19 @@ exports.saveQuestionPost = ( req, res ) => {
     return res.send("You must be logged in to post to a question.")
   }
 
-  let question = new Question(
+  let newQuestion = new Question(
    {
     userId: req.user._id,
     userName:req.user.googlename,
     question: req.body.question,
+    description: req.body.description,
     createdAt: new Date()
    }
   )
 
-  question.save()
+  newQuestion.save()
     .then( () => {
-      res.redirect( 'forum' );
+      res.redirect( 'showQuestions' );
     } )
     .catch( error => {
       res.send( error );
@@ -31,10 +32,10 @@ exports.saveQuestionPost = ( req, res ) => {
 // this displays all of the skills
 exports.getAllQuestions = ( req, res, next ) => {
   //gconsle.log('in getAllSkills')
-  Question.find({}).sort({createdAt: -1})
+  Question.find()
     .exec()
     .then( ( questions ) => {
-      res.render('forum',{questions:questions,title:"Forum"})
+      res.render('showQuestions',{questions:questions,title:"showQuestions"})
     } )
     .catch( ( error ) => {
       console.log( error.message );
@@ -52,16 +53,16 @@ exports.deleteQuestion = (req, res) => {
       // you are deleting just one thing ...
       Question.deleteOne({_id:deleteId})
            .exec()
-           .then(()=>{res.redirect('/forum')})
+           .then(()=>{res.redirect('/showQuestions')})
            .catch((error)=>{res.send(error)})
   } else if (typeof(deleteId)=='object'){
       Question.deleteMany({_id:{$in:deleteId}})
            .exec()
-           .then(()=>{res.redirect('/forum')})
+           .then(()=>{res.redirect('/showQuestions')})
            .catch((error)=>{res.send(error)})
   } else if (typeof(deleteId)=='undefined'){
       //console.log("This is if they didn't select a skill")
-      res.redirect('/forum')
+      res.redirect('/showQuestions')
   } else {
     //console.log("This shouldn't happen!")
     res.send(`unknown deleteId: ${deleteId} Contact the Developer!!!`)
@@ -77,9 +78,9 @@ exports.showOneQuestion = ( req, res ) => {
   console.log('the id is '+id)
   Question.findOne({_id:id})
     .exec()
-    .then( ( forumPost ) => {
-      res.render( 'postQuestion', {
-        question:questi8on, title:"Post Question"
+    .then( ( question ) => {
+      res.render( 'showQuestion', {
+        question:question, title:"showQuestion"
       } );
     } )
     .catch( ( error ) => {
@@ -90,6 +91,7 @@ exports.showOneQuestion = ( req, res ) => {
       //console.log( 'skill promise complete' );
     } );
 };
+
 
 
 exports.saveAnswer = (req,res) => {
@@ -111,7 +113,7 @@ exports.saveAnswer = (req,res) => {
 
   newAnswer.save()
     .then( () => {
-      res.redirect( 'showQuestion/'+req.body.postId );
+      res.redirect( 'showQuestion/'+req.body.questionId );
     } )
     .catch( error => {
       res.send( error );

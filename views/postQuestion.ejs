@@ -1,0 +1,19 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+  <div class="jumbotron masthead">
+    <h1>Post Your Questions Here!</h1>
+  </div>
+
+  <form method="post" action="/processQuestionPost">
+    Question: <input type="text" id="question" name="question" > <br>
+
+    <div class="form-group">
+      <label for="Description of Questions">Description of Questions:</label>
+      <textarea class="form-control" id="postQDescription" name = "description" rows="8"></textarea>
+    </div>
+    <input type="submit">
+  </form>
+
+
+<%- include('footer'); -%>
