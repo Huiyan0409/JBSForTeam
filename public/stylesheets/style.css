@@ -87,13 +87,14 @@ a:hover{
   background-image: url("../../images/north.jpg");
   /* background-color: black; */
   /* border-bottom: 5px solid #007bff; */
-  minimum height: 1000px;
+  height: 1000px;
   /* center the image */
   background-position: bottom;
   background-repeat: no-repeat;
   background-size:  100%;
   background-attachment: fixed;
 }
+
 .jumbotron.usdan {
   padding-top: 150px;
   margin-left: -5px;
@@ -109,6 +110,7 @@ a:hover{
   background-size: 100%;
   background-attachment: fixed;
 }
+
 .jumbotron.lightgrey {
   padding-top: 25px;
   margin-left: -25px;
