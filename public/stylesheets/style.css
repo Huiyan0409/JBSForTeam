@@ -87,15 +87,30 @@ a:hover{
   background-image: url("../../images/north.jpg");
   /* background-color: black; */
   /* border-bottom: 5px solid #007bff; */
-  minimum height: 600px;
+  minimum height: 1000px;
   /* center the image */
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size:  100%;
+  background-attachment: fixed;
+}
+.jumbotron.usdan {
+  padding-top: 150px;
+  margin-left: -5px;
+  margin-right: -5px;
+  background-image: url("../../images/usdan.jpg");
+  /* background-color: black; */
+  /* border-bottom: 5px solid #007bff; */
+  max-width:100%;
+    height: auto;
+  /* center the image */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
   background-attachment: fixed;
 }
 .jumbotron.lightgrey {
-  padding-top: 150px;
+  padding-top: 25px;
   margin-left: -25px;
   margin-right: -25px;
   background: rgb(255, 255, 255); /* This is for ie8 and below */
@@ -104,6 +119,6 @@ a:hover{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  padding-top: 15%;
+  padding-top: 5%;
   padding-bottom: 15%;
 }

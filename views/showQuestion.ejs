@@ -1,9 +1,9 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
-    <div class="jumbotron">
+
+    <div class="jumbotron masthead parallax parallax" id="superView">
         <h1><%= question.question %> </h1>
-    </div>
-    Description: <%= question.description %>
+        Description: <%= question.description %>
     <hr>
     <a href="/postAnswer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post Your Idea Here</a>
     <ol>
@@ -16,5 +16,6 @@
                  </\/i> </li>
     <% } %>
     </ol>
+    </div>
 
 <%- include('footer') -%>

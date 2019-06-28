@@ -1,9 +1,11 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
-    <div class="jumbotron">
-        <h1>Questions</h1>
-        <a href="/postQuestion" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post A New Question</a>
-    </div>
+    <div class="jumbotron usdan ">
+        <h1 id="welcome">Questions</h1>
+        <a id="welcome" href="/postQuestion" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post A New Question</a>
+        <br>
+        <br>
+    <div class="jumbotron lightgrey parallax parallax" id="superView">
     <ol>
     <% for(i = 0; i<questions.length; i++){  %>
             <li> <a href="/showQuestion/<%= questions[i]._id %>">
@@ -15,4 +17,6 @@
                  </\/i> </li>
     <% } %>
     </ol>
+    </div>
+  </div>
 <%- include('footer') -%>
