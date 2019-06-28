@@ -1,6 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #DBE0E4;
+  /* background-color: #DBE0E4; */
 
 }
 
@@ -8,12 +8,14 @@ h1,h2,h3,h4,h5,h6{
   color: white;
 }
 
-
 .container{
   margin-top: -32px;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: white;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 #welcome{
@@ -25,7 +27,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #superView{
-  height: 780px;
+  height: 800px;
 }
 
 .navbar{
