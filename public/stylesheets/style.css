@@ -77,3 +77,33 @@ a:hover{
   background-size: cover;
   background-attachment: fixed;
 }
+
+.jumbotron.north {
+  padding-top: 150px;
+  margin-left: -5px;
+  margin-right: -5px;
+  padding-top: 8%;
+  padding-bottom: 5%;
+  background-image: url("../../images/usdan.jpg");
+  /* background-color: black; */
+  /* border-bottom: 5px solid #007bff; */
+  minimum height: 600px;
+  /* center the image */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.jumbotron.lightgrey {
+  padding-top: 150px;
+  margin-left: -25px;
+  margin-right: -25px;
+  background: rgb(255, 255, 255); /* This is for ie8 and below */
+  background: rgba(255, 255, 255, 0.8);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-top: 15%;
+  padding-bottom: 15%;
+}
