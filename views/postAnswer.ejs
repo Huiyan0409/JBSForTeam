@@ -1,18 +1,21 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-  <div class="jumbotron masthead">
-    <h2>Share your idea with us here!</h2>
-  </div>
 
-  <form method="post" action="/processAnswerPost">
-    <div class="form-group">
-      <!--  <input type="hidden" name="questionId" value=""> -->
-      <label for="answers">Answer:</label>
-      <textarea class="form-control" id="postQDescription" name = "description" rows="8"></textarea>
-    </div>
-    <input type="submit">
-  </form>
+  <div class="jumbotron north ">
+    <h1 id="welcome">Please Type Your Answer <b>Here!</b></h1>
+      <div class="jumbotron lightgrey parallax parallax" >
+          <form method="post" action="/processAnswerPost">
+          <div class="form-group">
+            <label for="answers">Please type your responses below:</label>
+            <textarea class="form-control" id="answer" rows="10" placeholder="Enter Your Response"></textarea>
+            <small id="reminder" class="form-text text-muted">Your Response will be Public to All the Users</small>
+          </div>
+        </form>
+      </div>
+
+
+  </div>
 
 
 <%- include('footer'); -%>
