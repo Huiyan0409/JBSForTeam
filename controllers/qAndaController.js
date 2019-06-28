@@ -12,12 +12,14 @@ exports.saveQuestionPost = ( req, res ) => {
   let newQuestion = new Question(
    {
     userId: req.user._id,
+    //questionId: req._id,
     userName:req.user.googlename,
     question: req.body.question,
     description: req.body.description,
     createdAt: new Date()
    }
   )
+  //console.log("questionId: " + req._id);
 
   newQuestion.save()
     .then( () => {
@@ -95,25 +97,19 @@ exports.showOneQuestion = ( req, res ) => {
 
 
 exports.saveAnswer = (req,res) => {
-  if (!res.locals.loggedIn) {
-    return res.send("You must be logged in to post a comment to the forum.")
-  }
-
-  let newAnswer = new Answer(
-   {
+  const questionId = req.params.id
+  console.log("questionId is: " + questionId);
+  let newAnswer = new Answer({
     userId: req.user._id,
-    questionId: req.body.questionId,
+    questionId: questionId,
     userName:req.user.googlename,
     answer: req.body.answer,
     createdAt: new Date()
-   }
-  )
-
-  //console.log("skill = "+newSkill)
+   })
 
   newAnswer.save()
     .then( () => {
-      res.redirect( 'showQuestion/'+req.body.questionId );
+      res.redirect( '/showQuestion/'+questionId );
     } )
     .catch( error => {
       res.send( error );

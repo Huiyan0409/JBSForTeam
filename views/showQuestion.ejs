@@ -5,7 +5,7 @@
         <h1><%= question.question %> </h1>
         Description: <%= question.description %>
     <hr>
-    <a href="/postAnswer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post Your Idea Here</a>
+    <a href="/showQuestion/<%=question._id%>/postAnswer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post Your Idea Here</a>
     <ol>
     <% for(i = 0; i<answers.length; i++){  %>
             <li> <p class="text-sm-left"><%= answers[i].answer %></p>

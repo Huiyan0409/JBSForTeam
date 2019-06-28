@@ -212,18 +212,18 @@ app.get('/postQuestion', function(req, res, next){
 //app.post('/forumDelete', isLoggedIn, qAndaController.deleteQuestion)
 
 app.get('/showQuestions', isLoggedIn, qAndaController.getAllQuestions)
+
 app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
 
-app.get('/showQuestion/:id', isLoggedIn,
-        qAndaController.attachAllAnswers,
-        qAndaController.showOneQuestion)
+app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
-app.get('/postAnswer', function(req, res, next){
-  res.render('postAnswer')
+app.get('/showQuestion/:id/postAnswer', function(req, res, next){
+  res.render('postAnswer', {
+    req: req
+  })
 })
 
-
-app.post('/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
+app.post('/showQuestion/:id/postAnswer/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 
 
