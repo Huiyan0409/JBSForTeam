@@ -60,7 +60,7 @@ exports.upload = ( req, res ) => {
     let reqPath = path.join(__dirname, '../');
     uploadPath = reqPath + 'public/images/uploads/' + sampleFile.name;
     console.log("uploadPath: " + uploadPath);
-    
+
     sampleFile.mv(uploadPath, function(err) {
       if (err) {
         return res.status(500).send(err);
@@ -69,6 +69,7 @@ exports.upload = ( req, res ) => {
 
     readPath = '/images/uploads/' + sampleFile.name;
     profile.profilePicURL = readPath;
+    profile.profilePicName = sampleFile.name;
     profile.save();
   })
   .then(() => {

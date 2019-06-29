@@ -2,13 +2,13 @@
 <%- include('navbar') -%>
 
     <div class="jumbotron masthead" id="north">
-        <h1 id="welcome"><b>Question: </b><%= question.question %> </h1>
-        <!-- Author -->
-        <h4 id="welcome">
-          &nbsp&nbsp&nbspby
-          <a href="/showProfile/<%=user._id%>"><%=question.userName%></a>
-          posted on <%= question.createdAt %>
-        </h4>
+      <h1 id="welcome"><b>Question: </b><%= question.question %> </h1>
+      <!-- Author -->
+      <h4 id="welcome">
+        &nbsp&nbsp by
+        <a href="/showProfile/<%=user._id%>"><%=question.userName%></a>
+        posted on <%= question.createdAt %>
+      </h4>
     </div>
 
     <!-- Page Content -->

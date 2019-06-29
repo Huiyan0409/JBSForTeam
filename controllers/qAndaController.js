@@ -13,7 +13,7 @@ exports.saveQuestionPost = ( req, res ) => {
    {
     userId: req.user._id,
     //questionId: req._id,
-    userName:req.user.googlename,
+    userName:req.user.userName,
     question: req.body.question,
     description: req.body.description,
     createdAt: new Date()
@@ -104,7 +104,7 @@ exports.saveAnswer = (req,res) => {
   let newAnswer = new Answer({
     userId: req.user._id,
     questionId: questionId,
-    userName:req.user.googlename,
+    userName:req.user.userName,
     answer: req.body.answer,
     createdAt: new Date(),
     profilePicURL: req.user.profilePicURL

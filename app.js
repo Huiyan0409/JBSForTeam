@@ -164,9 +164,9 @@ function isLoggedIn(req, res, next) {
 
 //we can use this or the index router to handle req
 app.get('/', function(req, res, next){
-  res.render('index', {
-    req: req
-  })
+    res.render('index', {
+      req: req
+    })
 })
 
 // =====================================

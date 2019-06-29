@@ -8,7 +8,7 @@ h1,h4{
 
 .container{
   margin-top: -32px;
-  padding-top: 40px;
+  padding-top: 30px;
   padding-bottom: 40px;
   background-color: white;
   /* border-left: 1px solid black;
@@ -29,7 +29,7 @@ h1,h4{
 }
 
 #superView{
-  height: 800px;
+  height: 790px;
 }
 
 .navbar{

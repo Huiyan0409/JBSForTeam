@@ -1,17 +1,31 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-  <div class="jumbotron masthead">
-    <h1>Post Your Questions Here!</h1>
+  <div class="jumbotron masthead" id="north">
+    <h1 id="welcome">Post Question Here!</h1>
   </div>
-  <form method="post" action="/processQuestionPost">
-    Question: <input type="text" id="question" name="question" > <br>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card my-4">
+          <div class="card-body">
+            <form method="post" action="/processQuestionPost">
+              <div class="form-group">
+                <h5 class="card-header">Title</h5>
+                <input type="text" class="form-control" id="question" name="question"> <br>
+              </div>
+              <div class="form-group">
+                <h5 class="card-header">Description</h5>
+                <textarea class="form-control" name = "description" rows="6"></textarea>
+              </div>
+              <input class="btn btn-primary" type="submit">
+            </form>
+          </div>
 
-    <div class="form-group">
-      <label for="Description of Questions">Description of Questions:</label>
-      <textarea class="form-control" id="postQDescription" name = "description" rows="8"></textarea>
+        </div>
+      </div>
     </div>
-    <input type="submit">
-  </form>
+  </div>
+
 
 <%- include('footer'); -%>

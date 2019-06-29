@@ -3,14 +3,26 @@
 <div class="jumbotron masthead" id="north">
   <h1 id="welcome">Questions</h1>
   <br>
-  <a id="loginBtn" href="/postQuestion" class="btn btn-primary active" role="button" aria-pressed="true">Post A New Question</a>
+  <a class="btn btn-primary" id="loginBtn" href="/postQuestion">
+    <span class="fa fa-google-plus">Post A New Question</span>
+  </a>
 </div>
 <div class="container">
-  <% for (i = 0; i<questions.length; i++){  %>
-    <a href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
-    <p class="text-md">By <%=questions[i].userName%></p>
-    <p class="text-sm"><%=questions[i].createdAt%></p>
-  <% } %>
+
+  <div class="row">
+
+    <div class="col">
+      <% for (i = 0; i<questions.length; i++){  %>
+        <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
+        <br><br>
+        <h6>By <%=questions[i].userName%></h6>
+        <h6><%=questions[i].createdAt%></h6>
+        <hr>
+      <% } %>
+    </div>
+
+  </div>
+
 </div>
 
 <%- include('footer') -%>
