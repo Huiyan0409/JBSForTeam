@@ -6,6 +6,13 @@ h1,h4{
   color: white;
 }
 
+.card{
+  background-color: black;
+  opacity: 0.75;
+  width: 50%;
+}
+
+
 .container{
   margin-top: -32px;
   padding-top: 30px;
@@ -23,27 +30,40 @@ h1,h4{
   height: 40px;
 }
 
+/* welcome tags and titles */
 #welcome{
   padding-left: 9%;
 }
 
+/* forum question description */
 #description{
   padding-left: 2%;
 }
 
+/* fix btn margin problem */
 #loginBtn{
   margin-left: 9%;
 }
 
+/* draw border for btn */
 #btnBorder{
   border-top: 2px solid white;
   border-bottom: 2px solid white;
 }
 
+/* show full-page view */
 #superView{
-  height: 790px;
+
+  margin-left: 0;
+  margin-right: 0;
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
 }
 
+/* navbar position and settings */
 .navbar{
   padding-bottom: 1%;
   border-bottom: 2px solid white;
@@ -52,13 +72,20 @@ h1,h4{
   background-color: black;
 }
 
+/* change color of nav links */
 .nav-link{
+
   color: white;
 }
 
-.nav-link.d-flex.ml-1{
-  border-left: 2px solid white;
+.nav-item{
+  padding-top: 2px;
 }
+
+/* draw border lines for nav links */
+/* .nav-link.d-flex.ml-3{
+  border-left: 2px solid white;
+} */
 
 a:hover{
   color: #007bff;
@@ -97,18 +124,4 @@ a:hover{
 
 #north{
   background-image: url("../../images/north.jpg");
-}
-
-.jumbotron.lightgrey {
-  padding-top: 25px;
-  margin-left: -25px;
-  margin-right: -25px;
-  background: rgb(255, 255, 255); /* This is for ie8 and below */
-  background: rgba(255, 255, 255, 0.8);
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  padding-top: 5%;
-  padding-bottom: 15%;
 }

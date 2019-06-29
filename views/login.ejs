@@ -1,14 +1,18 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
 
-<div class="jumbotron masthead" id="superView">
+<div class="jumbotron masthead text-center text-center" id="superView">
+  <div class="card mx-auto">
+    <div class="card-body">
+      <h1>Login to <b>Claster</b> </h1>
+      <h4> You would need a Google account to login</h4>
+      <br>
+      <a class="btn btn-primary" href="/auth/google">
+        <span class="fa fa-google-plus"> Login with Google</span>
+      </a>
+    </div>
+  </div>
 
-  <h1 id="welcome">Login to <b>Claster</b> </h1>
-  <h4 id="welcome"> You would need a Google account to login</h4>
-  <br>
-  <a class="btn btn-primary" id="loginBtn" href="/auth/google">
-    <span class="fa fa-google-plus"> Login with Google</span>
-  </a>
 </div>
 
 <%- include('footer'); -%>

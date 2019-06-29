@@ -217,12 +217,6 @@ app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
 
 app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
-app.get('/showQuestion/:id/postAnswer', function(req, res, next){
-  res.render('postAnswer', {
-    req: req
-  })
-})
-
 app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 

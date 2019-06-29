@@ -1,10 +1,10 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
 
-    <div class="jumbotron masthead" id="north">
-      <h1 id="welcome"><b>Question: </b><%= question.question %> </h1>
+    <div class="jumbotron masthead text-center" id="north">
+      <h1 class="text-center"><b>Question: </b><%= question.question %> </h1>
       <!-- Author -->
-      <h4 id="welcome">
+      <h4 class="text-center">
         by
         <a href="/showProfile/<%=user._id%>"><%=question.userName%></a>
         posted on <%= question.createdAt %>
