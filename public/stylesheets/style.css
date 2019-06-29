@@ -16,6 +16,13 @@ h1,h4{
   border-bottom: 1px solid black; */
 }
 
+#profilePic{
+  object-fit: cover;
+  object-position: center;
+  width: 40px;
+  height: 40px;
+}
+
 #welcome{
   padding-left: 9%;
 }
@@ -26,6 +33,11 @@ h1,h4{
 
 #loginBtn{
   margin-left: 9%;
+}
+
+#btnBorder{
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
 }
 
 #superView{
@@ -44,6 +56,10 @@ h1,h4{
   color: white;
 }
 
+.nav-link.d-flex.ml-1{
+  border-left: 2px solid white;
+}
+
 a:hover{
   color: #007bff;
 }
@@ -53,6 +69,7 @@ a:hover{
   padding-top: 2px;
   font-size: 28px;
   color: White;
+
 }
 
 .navbar-toggler{
