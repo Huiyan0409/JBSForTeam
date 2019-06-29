@@ -1,22 +1,16 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
-    <div class="jumbotron usdan ">
-        <h1 id="welcome">Questions</h1>
-        <a id="loginBtn" href="/postQuestion" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post A New Question</a>
-        <br>
-        <br>
-    <div class="jumbotron lightgrey parallax" id="superView">
-    <ol>
-    <% for (i = 0; i<questions.length; i++){  %>
-            <li> <a href="/showQuestion/<%= questions[i]._id %>">
-                  <%= questions[i].question %></a>
-                  <i>
-                  <p class="text-sm-left"><%= questions[i].userName %></p>
-                 <i>
-                 <p class="text-sm-left"><%= questions[i].createdAt %></p>
-                 </li>
-    <% } %>
-    </ol>
-    </div>
-  </div>
+<div class="jumbotron masthead" id="north">
+  <h1 id="welcome">Questions</h1>
+  <br>
+  <a id="loginBtn" href="/postQuestion" class="btn btn-primary active" role="button" aria-pressed="true">Post A New Question</a>
+</div>
+<div class="container">
+  <% for (i = 0; i<questions.length; i++){  %>
+    <a href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
+    <p class="text-md">By <%=questions[i].userName%></p>
+    <p class="text-sm"><%=questions[i].createdAt%></p>
+  <% } %>
+</div>
+
 <%- include('footer') -%>

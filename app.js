@@ -223,7 +223,7 @@ app.get('/showQuestion/:id/postAnswer', function(req, res, next){
   })
 })
 
-app.post('/showQuestion/:id/postAnswer/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
+app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 
 

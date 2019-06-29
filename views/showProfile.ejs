@@ -1,12 +1,12 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-<div class="container">
+<div class="jumbotron masthead parallax">
+  <h1 id="welcome"><i><%= profile.userName %></i></h1>
+  <br>
+</div>
 
-  <div class="jumbotron masthead parallax">
-    <h1 id="welcome"><i><%= profile.userName %></i>, welcome to <b>Claster</b></h1>
-    <br>
-  </div>
+<div class="container">
 
   <div class="row">
 
@@ -24,30 +24,15 @@
       </div>
     </div>
 
-    <div class="w-100"></div>
-
-    <br>
-
-    <div class="col">
+    <div class="col-sm-4">
       <div class="input-group-prepend">
-        <span class="input-group-text">Zipcode</span>
-        <input disabled type="text" class="form-control" value="<%=profile.zipcode%>">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group-prepend">
-        <span class="input-group-text">City</span>
-        <input disabled type="text" class="form-control" value="<%=profile.city%>">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group-prepend">
-        <span class="input-group-text">State</span>
-        <input disabled type="text" class="form-control" value="<%=profile.state%>">
+        <span class="input-group-text">Status</span>
+        <input disabled type="text" class="form-control" value="<%=user.status%>">
       </div>
     </div>
 
     <div class="w-100"></div>
+
     <br>
 
     <div class="col-sm-4">
@@ -56,12 +41,6 @@
       <img src="<%=profile.profilePicURL%>" width = "100%" alt="profile picture">
     </div>
 
-    <div class="col-sm-8">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Last updated on</span>
-        <input disabled type="text" class="form-control" value="<%=profile.lastUpdate%>">
-      </div>
-    </div>
 
   </div>
 
