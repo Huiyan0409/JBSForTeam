@@ -1,21 +1,62 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
 
-    <div class="jumbotron masthead parallax parallax" id="superView">
-        <h1><%= question.question %> </h1>
-        Description: <%= question.description %>
-    <hr>
-    <a href="/showQuestion/<%=question._id%>/postAnswer" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post Your Idea Here</a>
-    <ol>
-    <% for(i = 0; i<answers.length; i++){  %>
-            <li> <p class="text-sm-left"><%= answers[i].answer %></p>
-                  <i>
-                  <p class="text-sm-left"><%= answers[i].userName %></p>
-                 <i>
-                 <p class="text-sm-left"><%= answers[i].createdAt %></p>
-                 </\/i> </li>
-    <% } %>
-    </ol>
+    <div class="jumbotron masthead text-center" id="north">
+      <h1 class="text-center"><b>Question: </b><%= question.question %> </h1>
+      <!-- Author -->
+      <h4 class="text-center">
+        by
+        <a href="/showProfile/<%=user._id%>"><%=question.userName%></a>
+        posted on <%= question.createdAt %>
+      </h4>
     </div>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col">
+          <h5><b>Description: </b></h5>
+          <hr>
+          <!-- Post Content -->
+          <p class="lead" id ="description"><%= question.description%></p>
+          <hr>
+
+          <h5><b>Comments: </b></h5>
+          <hr>
+
+          <% for(i = 0; i<answers.length; i++){  %>
+          <!-- Single Comment -->
+            <div class="media mb-4" id ="description">
+              <a href="/showProfile/<%=answers[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=answers[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
+              <div class="media-body">
+                <h5 class="mt-0"><%= answers[i].userName %></h5>
+                <h6 ><%= answers[i].answer %></h6>
+              </div>
+            </div>
+          <% } %>
+
+          <!-- Comments Form -->
+          <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+              <form action="/showQuestion/<%=req.params.id%>/processAnswerPost" method="post">
+                <div class="form-group">
+                  <textarea class="form-control" name="answer" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
 
 <%- include('footer') -%>

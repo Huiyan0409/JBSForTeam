@@ -12,7 +12,8 @@ exports.saveQuestionPost = ( req, res ) => {
   let newQuestion = new Question(
    {
     userId: req.user._id,
-    userName:req.user.googlename,
+    //questionId: req._id,
+    userName:req.user.userName,
     question: req.body.question,
     description: req.body.description,
     createdAt: new Date()
@@ -80,7 +81,8 @@ exports.showOneQuestion = ( req, res ) => {
     .exec()
     .then( ( question ) => {
       res.render( 'showQuestion', {
-        question:question, title:"showQuestion"
+        req: req,
+        question:question
       } );
     } )
     .catch( ( error ) => {
@@ -97,12 +99,14 @@ exports.showOneQuestion = ( req, res ) => {
 exports.saveAnswer = (req,res) => {
   const questionId = req.params.id
   console.log("questionId is: " + questionId);
+
   let newAnswer = new Answer({
     userId: req.user._id,
     questionId: questionId,
-    userName:req.user.googlename,
+    userName:req.user.userName,
     answer: req.body.answer,
-    createdAt: new Date()
+    createdAt: new Date(),
+    profilePicURL: req.user.profilePicURL
    })
 
   newAnswer.save()
@@ -114,13 +118,11 @@ exports.saveAnswer = (req,res) => {
     } );
 }
 
-
-// this displays all of the skills
+//attach all answers
 exports.attachAllAnswers = ( req, res, next ) => {
-  //gconsle.log('in getAllSkills')
   console.log("in aAFC with id= "+req.params.id)
-  var ObjectId = require('mongoose').Types.ObjectId;
-  Answer.find({questionId:ObjectId(req.params.id)}).sort({createdAt:-1})
+  const ObjectId = require('mongoose').Types.ObjectId;
+  Answer.find({questionId:ObjectId(req.params.id)})
     .exec()
     .then( ( answers ) => {
       res.locals.answers = answers
@@ -130,7 +132,4 @@ exports.attachAllAnswers = ( req, res, next ) => {
       console.log( error.message );
       return [];
     } )
-    .then( () => {
-      //console.log( 'skill promise complete' );
-    } );
 };

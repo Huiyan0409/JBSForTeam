@@ -8,7 +8,8 @@ var answerSchema = Schema( {
   questionId: ObjectId,
   userName: String,
   answer: String,
-  createdAt: Date
+  createdAt: Date,
+  profilePicURL: String
 } );
 
 module.exports = mongoose.model( 'AnswerPost', answerSchema );

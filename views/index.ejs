@@ -1,14 +1,18 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-<div class="jumbotron masthead parallax" id="superView">
-  <h1 id="welcome">Welcome to <b>Claster!</b></h1>
-  <% if (loggedIn) {%>
-  <h4 id="welcome">Hello, <%=req.user.googlename%></h4>
-  <h4 id="welcome">YOU ARE LOGGED IN!</h4>
-  <% } else {%>
-  <h4 id="welcome">PLEASE LOG IN!</h4>
-  <% } %>
+<div class="jumbotron masthead text-center parallax" id="superView">
+    <div class="card mx-auto">
+      <div class="card-body">
+        <% if (loggedIn) {%>
+        <h4 class="card-title">Hello, <%=req.user.userName%></h4>
+        <h1 class="card-text">Welcome to <b>Claster!</b></h1>
+        <% } else {%>
+        <h4 class="card-text">PLEASE LOG IN!</h4>
+        <% } %>
+        
+      </div>
+    </div>
 </div>
 
 <%- include('footer'); -%>

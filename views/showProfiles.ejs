@@ -1,9 +1,9 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
 
-<div class="jumbotron masthead parallax">
+<div class="jumbotron masthead text-center parallax">
 
-  <h1 id="welcome">All users are here</h1>
+  <h1 class="text-center">All users are here</h1>
 
 </div>
 
@@ -14,7 +14,7 @@
       <li class="list-group-item">
         <div class="row">
           <div class="col-sm">
-            User: <a href="/showProfile/<%= profiles[i]._id %>"><%= profiles[i].googlename %></a>
+            User: <a href="/showProfile/<%= profiles[i]._id %>"><%= profiles[i].userName %></a>
           </div>
           <div class="col-sm">
             User Email: <%= profiles[i].googleemail %>

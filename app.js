@@ -164,9 +164,9 @@ function isLoggedIn(req, res, next) {
 
 //we can use this or the index router to handle req
 app.get('/', function(req, res, next){
-  res.render('index', {
-    req: req
-  })
+    res.render('index', {
+      req: req
+    })
 })
 
 // =====================================
@@ -217,13 +217,7 @@ app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
 
 app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
-app.get('/showQuestion/:id/postAnswer', function(req, res, next){
-  res.render('postAnswer', {
-    req: req
-  })
-})
-
-app.post('/showQuestion/:id/postAnswer/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
+app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 
 

@@ -8,23 +8,24 @@
 
   <div class="collapse navbar-collapse w-100 " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item">
         <% if (loggedIn) {%>
-        <a class="nav-link" href="/myProfile">My Profile</a>
+        <a class="nav-link d-flex ml-3" href="/showQuestions">Forum</a>
+        <% } %>
+      </li>
+      <li class="nav-item">
+        <% if (loggedIn) {%>
+        <a class="nav-link d-flex ml-3" href="/myProfile">My Profile</a>
         <% } %>
       </li>
       <li class="nav-item">
         <% if (loggedIn && status == 'admin') {%>
-        <a class="nav-link" href="/showProfiles">All Profiles</a>
+        <a class="nav-link d-flex ml-3" href="/showProfiles">All Profiles</a>
         <% } %>
       </li>
       <li class="nav-item">
-        <% if (loggedIn) {%>
-        <a class="nav-item nav-link" href="/showQuestions">View all Questions</a>
-        <% } %>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link d-flex ml-3" href="/about">About</a>
       </li>
     </ul>
 
@@ -35,7 +36,7 @@
 
        <li class="nav-item">
          <% if (loggedIn) {%>
-         <a href="/myProfile"><img src="<%=user.profilePicURL%>" width="40px" height="40px" class="profile-image"></a>
+         <a href="/myProfile"><img class="d-flex mr-1 rounded-circle" id="profilePic" src="<%=user.profilePicURL%>"></a>
          <% } %>
        </li>
 
@@ -47,12 +48,12 @@
 
        <li class="nav-item">
          <% if (!loggedIn) {%>
-         <a class="nav-link" href="/login">Login</a>
+         <a class="nav-link d-flex ml-5" id="btnBorder" href="/login">Login</a>
          <%} else {%>
-         <a class="nav-link" href="/logout">Logout</a>
+         <a class="nav-link d-flex ml-5" id="btnBorder" href="/logout">Logout</a>
          <% } %>
        </li>
-       
+
      </ul>
    </div>
 
