@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 const fileUpload = require('express-fileupload');
 var express = require('express');
+//working with file and directory paths
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
