@@ -217,9 +217,19 @@ app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
 
 app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
+//to edit an existing question
+app.get('/showQuestion/:id/editQuestion',isLoggedIn, (req,res)=>{
+  res.render('editQuestion' ,{
+    req: req
+  })
+})
+app.post('/showQuestion/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
+
+//to save a new answer post
 app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
-
+//to delete an existing answers
+app.post('/showQuestion/:id/answerDelete',qAndaController.deleteAnswer)
 
 //about page
 app.get('/about', function(req, res, next){

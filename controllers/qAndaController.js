@@ -47,30 +47,6 @@ exports.getAllQuestions = ( req, res, next ) => {
     } );
 };
 
-exports.deleteQuestion = (req, res) => {
-  console.log("in deleteQuestion")
-  let deleteId = req.body.delete
-  if (typeof(deleteId)=='string') {
-      // you are deleting just one thing ...
-      Question.deleteOne({_id:deleteId})
-           .exec()
-           .then(()=>{res.redirect('/showQuestions')})
-           .catch((error)=>{res.send(error)})
-  } else if (typeof(deleteId)=='object'){
-      Question.deleteMany({_id:{$in:deleteId}})
-           .exec()
-           .then(()=>{res.redirect('/showQuestions')})
-           .catch((error)=>{res.send(error)})
-  } else if (typeof(deleteId)=='undefined'){
-      //console.log("This is if they didn't select a skill")
-      res.redirect('/showQuestions')
-  } else {
-    //console.log("This shouldn't happen!")
-    res.send(`unknown deleteId: ${deleteId} Contact the Developer!!!`)
-  }
-
-};
-
 
 // this displays all of the skills
 exports.showOneQuestion = ( req, res ) => {
@@ -92,6 +68,25 @@ exports.showOneQuestion = ( req, res ) => {
     .then( () => {
       //console.log( 'skill promise complete' );
     } );
+};
+
+//edit question function
+exports.editQuestion = ( req, res ) => {
+  const id = req.params.id
+  Question.findOne({_id:id})
+    .exec()
+    .then( ( question ) => {
+      question.question = req.body.question
+      question.description = req.body.description
+      question.save()
+    })
+    .then(() => {
+      res.redirect('/showQuestion/'+id)
+    })
+    .catch(function (error) {
+      console.log("update failed!")
+      console.log(error);
+    })
 };
 
 
@@ -132,4 +127,27 @@ exports.attachAllAnswers = ( req, res, next ) => {
       console.log( error.message );
       return [];
     } )
+};
+
+exports.deleteAnswer = (req, res) => {
+  let deleteId = req.body.delete
+  if (typeof(deleteId)=='string') {
+      // you are deleting just one thing ...
+      Answer.deleteOne({_id:deleteId})
+           .exec()
+           .then(()=>{res.redirect('back')})
+           .catch((error)=>{res.send(error)})
+  } else if (typeof(deleteId)=='object'){
+      Answer.deleteMany({_id:{$in:deleteId}})
+           .exec()
+           .then(()=>{res.redirect('back')})
+           .catch((error)=>{res.send(error)})
+  } else if (typeof(deleteId)=='undefined'){
+      //console.log("This is if they didn't select a skill")
+      res.redirect('back')
+  } else {
+    //console.log("This shouldn't happen!")
+    res.send(`unknown deleteId: ${deleteId} Contact the Developer!!!`)
+  }
+
 };
