@@ -6,12 +6,10 @@ h1,h4{
   color: white;
 }
 
-.card{
-  background-color: black;
-  opacity: 0.75;
+#cardStyle{
+  background-color: #0D3573;
   width: 50%;
 }
-
 
 .container{
   margin-top: -32px;
@@ -45,15 +43,8 @@ h1,h4{
   margin-left: 9%;
 }
 
-/* draw border for btn */
-#btnBorder{
-  border-top: 2px solid white;
-  border-bottom: 2px solid white;
-}
-
 /* show full-page view */
 #superView{
-
   margin-left: 0;
   margin-right: 0;
   position: absolute;
@@ -63,44 +54,46 @@ h1,h4{
   bottom: 0;
 }
 
+#showQuestions{
+  background-color: #F5F4F0;
+}
+
 /* navbar position and settings */
 .navbar{
-  padding-bottom: 1%;
   border-bottom: 2px solid white;
   font-size: 18px;
   font-style: white;
-  background-color: black;
+  background-color: #0D3573;
 }
 
 /* change color of nav links */
 .nav-link{
-
   color: white;
 }
 
-.nav-item{
-  padding-top: 2px;
-}
-
-/* draw border lines for nav links */
-/* .nav-link.d-flex.ml-3{
-  border-left: 2px solid white;
-} */
-
-a:hover{
-  color: #007bff;
+li.nav-item a:hover{
+  color: white;
+  border-bottom: 1px solid white;
 }
 
 .navbar-brand{
-  /* font-family: 'Rubik'; */
-  padding-top: 2px;
   font-size: 28px;
-  color: White;
+  color: white;
+}
 
+a.navbar-brand:hover{
+  color: white;
 }
 
 .navbar-toggler{
   color: white;
+}
+
+.page-footer{
+  color: white;
+  font-size: 16px;
+  font-style: white;
+  background-color: #0D3573;
 }
 
 .profile-image{
@@ -109,8 +102,6 @@ a:hover{
 
 .jumbotron.masthead {
   padding-top: 150px;
-  margin-left: -5px;
-  margin-right: -5px;
   background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg");
   /* background-color: black; */
   /* border-bottom: 5px solid #007bff; */

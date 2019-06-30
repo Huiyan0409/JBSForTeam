@@ -2,17 +2,29 @@
 <%- include('navbar'); -%>
 
 <div class="jumbotron masthead text-center parallax" id="superView">
-    <div class="card mx-auto">
-      <div class="card-body">
-        <% if (loggedIn) {%>
-        <h4 class="card-title">Hello, <%=req.user.userName%></h4>
-        <h1 class="card-text">Welcome to <b>Claster!</b></h1>
-        <% } else {%>
-        <h4 class="card-text">PLEASE LOG IN!</h4>
-        <% } %>
-        
-      </div>
+  <div class="card mx-auto" id="cardStyle">
+    <div class="card-body">
+      <% if (loggedIn) {%>
+      <h4 class="card-title">Hello, <%=req.user.userName%></h4>
+      <h1 class="card-text">Welcome to <b>Claster!</b></h1>
+      <br>
+      <a href="/showQuestions"><input class="btn btn-outline-light" type="button" value="Go to Forum"></a>
+      <br><br>
+      <a href="/"><input class="btn btn-outline-light" type="button" value="Find a Tutor"></a>
+      <% } else {%>
+      <h4 class="card-text">PLEASE LOG IN!</h4>
+      <% } %>
     </div>
+  </div>
 </div>
 
-<%- include('footer'); -%>
+<!-- Footer -->
+<footer class="page-footer font-small blue fixed-bottom">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Made by SuperTeam from <a href="http://www.brandeis.edu">Brandeis University</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
