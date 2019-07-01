@@ -70,8 +70,8 @@ exports.showOneQuestion = ( req, res ) => {
     } );
 };
 
-//edit question function
-exports.editQuestion = ( req, res ) => {
+//show previous question input
+exports.showPreviousQ = (req, res ) => {
   const id = req.params.id
   Question.findOne({_id:id})
     .exec()
@@ -81,6 +81,19 @@ exports.editQuestion = ( req, res ) => {
         question: question
       });
     })
+    .then(() => {
+      res.redirect('back')
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+}
+
+//edit question function
+exports.editQuestion = ( req, res ) => {
+  const id = req.params.id
+  Question.findOne({_id:id})
+    .exec()
     .then( ( question ) => {
       question.question = req.body.question
       question.description = req.body.description
@@ -94,8 +107,6 @@ exports.editQuestion = ( req, res ) => {
       console.log(error);
     })
 };
-
-
 
 exports.saveAnswer = (req,res) => {
   const questionId = req.params.id

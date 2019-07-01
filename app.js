@@ -226,7 +226,7 @@ app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAnda
 // })
 
 //to edit an existing question
-app.get('/showQuestion/:id/editQuestion',isLoggedIn, qAndaController.editQuestion)
+app.get('/showQuestion/:id/editQuestion',isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
 
 app.post('/showQuestion/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
 
