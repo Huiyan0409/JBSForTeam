@@ -19,24 +19,24 @@ exports.updateProfile = ( req, res ) => {
 
     // Make a request for a user with a given ID
     axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/info.json/"+profile.zipcode+"/degrees")
-      .then(function (response) {
-        console.log("API data success!")
-        // handle success
-        console.log(response);
-        profile.city = response.data.city
-        profile.state = response.data.state
-        profile.lastUpdate = new Date()
+    .then(function (response) {
+      console.log("API data success!")
+      // handle success
+      console.log(response);
+      profile.city = response.data.city
+      profile.state = response.data.state
+      profile.lastUpdate = new Date()
 
-        profile.save()
-      })
-      .then(() => {
-        res.redirect('/myProfile')
-      })
-      // handle error
-      .catch(function (error) {
-        console.log("update failed!")
-        console.log(error);
-      })
+      profile.save()
+    })
+    .then(() => {
+      res.redirect('/myProfile')
+    })
+    // handle error
+    .catch(function (error) {
+      console.log("update failed!")
+      console.log(error);
+    })
   })
 };
 
@@ -86,16 +86,16 @@ exports.upload = ( req, res ) => {
 exports.getAllProfiles = ( req, res ) => {
   //find all users from database
   User.find()
-    .exec()
-    .then( ( profiles ) => {
-      res.render( 'showProfiles', {
-        profiles: profiles
-      } );
-    } )
-    .catch( ( error ) => {
-      console.log( error.message );
-      return [];
-    } )
+  .exec()
+  .then( ( profiles ) => {
+    res.render( 'showProfiles', {
+      profiles: profiles
+    } );
+  } )
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
 };
 
 //get personal profile from admin permission, view them individually
@@ -104,15 +104,15 @@ exports.getOneProfile = ( req, res ) => {
   //grab id from the URL, the red id is set by app.js where the URL is formed
   const id = req.params.id
   User.findOne({_id: id})
-    .exec()
-    .then( ( profile ) => {
-      res.render( 'showProfile', {
-        profile: profile
-      } );
-    } )
-    //catch error
-    .catch( ( error ) => {
-      console.log( error.message );
-      return [];
-    } )
+  .exec()
+  .then( ( profile ) => {
+    res.render( 'showProfile', {
+      profile: profile
+    } );
+  } )
+  //catch error
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
 };
