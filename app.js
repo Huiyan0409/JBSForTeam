@@ -182,9 +182,7 @@ app.get('/myProfile', isLoggedIn, function(req, res) {
 });
 
 // we require them to be logged in to edit their profile
-app.get('/editMyProfile', isLoggedIn, function(req, res) {
-  res.render('editMyProfile')
-});
+app.get('/editMyProfile', isLoggedIn, profileController.showOldProfile, profileController.updateProfile)
 
 //update personal profile
 app.post('/updateProfile', isLoggedIn, profileController.updateProfile)

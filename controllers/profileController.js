@@ -1,9 +1,25 @@
 'use strict';
 const User = require( '../models/User' );
+const Question = require( '../models/Question' );
+
 //import axios
 const axios = require('axios');
 const apikey = require('../config/apikey');
 var path = require('path');
+
+
+exports.showOldProfile = ( req, res ) => {
+
+  User.findOne(res.locals.user._id)
+  .exec()
+  .then( ( question ) => {
+    console.log("in show old profile");
+    res.render( 'editMyProfile');
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+};
 
 //update personal profile
 exports.updateProfile = ( req, res ) => {
@@ -29,15 +45,38 @@ exports.updateProfile = ( req, res ) => {
 
       profile.save()
     })
-    .then(() => {
-      res.redirect('/myProfile')
-    })
-    // handle error
-    .catch(function (error) {
-      console.log("update failed!")
-      console.log(error);
-    })
   })
+
+
+  // .then(() => {
+  //   res.redirect('/myProfile')
+  // })
+  // handle error
+  .catch(function (error) {
+    console.log("update failed!")
+    console.log(error);
+  })
+};
+
+//update personal profile
+exports.updateProfileInQA = ( req, res ) => {
+  //in the question collection, find the questions with same user
+  Question.find(res.locals.user._id)
+  .exec()
+  .then((question) => {
+    question.userName = req.body.userName
+    question.save()
+  })
+  .then(() => {
+    console.log("update success!!");
+    res.redirect('/myProfile')
+  })
+  // handle error
+  .catch(function (error) {
+    console.log("update failed!")
+    console.log(error);
+  })
+
 };
 
 exports.upload = ( req, res ) => {
