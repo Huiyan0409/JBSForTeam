@@ -58,24 +58,24 @@ exports.updateProfile = ( req, res ) => {
   })
 };
 
-//update personal profile
-exports.updateProfileInQA = ( req, res ) => {
-  //in the question collection, find the questions with same user
-  Question.find(res.locals.user._id)
-  .exec()
-  .then((question) => {
-    question.userName = req.body.userName
-    question.save()
-  })
-  .then(() => {
-    console.log("update success!!");
-    res.redirect('/myProfile')
-  })
-  // handle error
-  .catch(function (error) {
-    console.log("update failed!")
-    console.log(error);
-  })
+// //update personal profile
+// exports.updateProfileInQA = ( req, res ) => {
+//   //in the question collection, find the questions with same user
+//   Question.find(res.locals.user._id)
+//   .exec()
+//   .then((question) => {
+//     question.userName = req.body.userName
+//     question.save()
+//   })
+//   .then(() => {
+//     console.log("update success!!");
+//     res.redirect('/myProfile')
+//   })
+//   // handle error
+//   .catch(function (error) {
+//     console.log("update failed!")
+//     console.log(error);
+//   })
 
 };
 
