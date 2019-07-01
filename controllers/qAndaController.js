@@ -76,6 +76,12 @@ exports.editQuestion = ( req, res ) => {
   Question.findOne({_id:id})
     .exec()
     .then( ( question ) => {
+      res.render( 'editQuestion', {
+        req: req,
+        question: question
+      });
+    })
+    .then( ( question ) => {
       question.question = req.body.question
       question.description = req.body.description
       question.save()
@@ -84,7 +90,7 @@ exports.editQuestion = ( req, res ) => {
       res.redirect('/showQuestion/'+id)
     })
     .catch(function (error) {
-      console.log("update failed!")
+      console.log("edit question failed!")
       console.log(error);
     })
 };
