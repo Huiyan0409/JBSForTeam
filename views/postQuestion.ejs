@@ -7,6 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
+        <% if (loggedIn) {%>
         <div class="card">
           <div class="card-body">
             <form method="post" action="/processQuestionPost">
@@ -21,8 +22,14 @@
               <input class="btn btn-primary" type="submit">
             </form>
           </div>
-
         </div>
+        <% } else {%>
+          <div class="card">
+            <div class="card-body">
+              You must login to post here
+            </div>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>
