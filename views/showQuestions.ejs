@@ -4,9 +4,13 @@
 <div class="jumbotron masthead text-center" id="north">
   <h1>Questions</h1>
   <br>
-  <a class="btn btn-primary" href="/postQuestion">
-    <span class="fa fa-google-plus">Post A New Question</span>
-  </a>
+  <% if (loggedIn) {%>
+    <a class="btn btn-primary" href="/postQuestion">
+      <span class="fa fa-google-plus">Post A New Question</span>
+    </a>
+  <% } else { %>
+    <h4>You have to login to post a new question</h4>
+  <% } %>
 </div>
 <div class="container">
 

@@ -156,10 +156,10 @@ function isLoggedIn(req, res, next) {
       return next();
     } else {
       console.log("user has not been authenticated...")
-      res.redirect('/');
+      // res.redirect('back');
+      return next();
     }
 }
-
 
 // END OF THE Google AUTHENTICATION ROUTES
 
