@@ -8,6 +8,7 @@ var questionSchema = Schema( {
   userName: String,
   question: String,
   description: String,
+  topAnswer: String,
   createdAt: Date
 } );
 

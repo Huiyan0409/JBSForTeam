@@ -46,8 +46,6 @@ exports.updateProfile = ( req, res ) => {
       profile.save()
     })
   })
-
-
   // .then(() => {
   //   res.redirect('/myProfile')
   // })

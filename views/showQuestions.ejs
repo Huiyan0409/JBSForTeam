@@ -57,7 +57,7 @@
                 <% if (1!=1){%>
                   No answer has been posted yet.
                 <% } else {%>
-                  This is the top answer for this question
+                  <%=questions[i].topAnswer%>
                 <% } %>
                 <br>
                 &nbsp&nbsp&nbsp<a href="/showQuestion/<%=questions[i]._id%>">show details</a>

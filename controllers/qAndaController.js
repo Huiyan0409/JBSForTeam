@@ -5,21 +5,23 @@ const Answer = require( '../models/Answer' );
 exports.saveQuestionPost = ( req, res ) => {
   //console.log("in saveSkill!")
   //console.dir(req)
-  if (!res.locals.loggedIn) {
-    return res.send("You must be logged in to post to a question.")
-  }
-
-  let newQuestion = new Question(
-    {
-      userId: req.user._id,
-      //questionId: req._id,
-      userName:req.user.userName,
-      question: req.body.question,
-      description: req.body.description,
-      createdAt: new Date()
-    }
-  )
-
+  let newQuestion = new Question({
+    userId: req.user._id,
+    //questionId: req._id,
+    userName: req.user.userName,
+    question: req.body.question,
+    description: req.body.description,
+    topAnswer: "NOT WORKING NOW",
+    createdAt: new Date()
+  })
+  // find the top answer from all answers, NOT WORKING NOW!
+  // const ObjectId = require('mongoose').Types.ObjectId;
+  // Answer.find({questionId:ObjectId(req.params.id)}).limit(1).sort({createdAt: -1})
+  // .exec()
+  // .then( ( topAnswer ) => {
+  //   console.log("topAnswer is: " + topAnswer);
+  //   newQuestion.topAnswer = "UPDATED TOP ANSWER";
+  // })
   newQuestion.save()
   .then( () => {
     res.redirect( 'showQuestions' );
