@@ -71,6 +71,20 @@ h1,h4{
   color: white;
 }
 
+.faqcontainer{
+  background-color: darkblue;
+}
+
+#FAQ{
+  color: grey;
+}
+
+#FAQ a:hover{
+  color: white;
+  background-color: blue;
+}
+
+
 li.nav-item a:hover{
   color: white;
   border-bottom: 1px solid white;
