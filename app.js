@@ -60,7 +60,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*************************************************************************
-     HERE ARE THE AUTHENTICATION ROUTES
+HERE ARE THE AUTHENTICATION ROUTES
 **************************************************************************/
 
 //fix warnings of express-session
@@ -83,12 +83,12 @@ app.use((req,res,next) => {
   res.locals.loggedIn = false
   if (req.isAuthenticated()){
     if (req.user.googleemail.endsWith("edu") ||
-          req.user.googleemail.endsWith("@gmail.com"))
-          {
-            res.locals.user = req.user
-            res.locals.loggedIn = true
-            console.log("user has been Authenticated")
-          }
+    req.user.googleemail.endsWith("@gmail.com"))
+    {
+      res.locals.user = req.user
+      res.locals.loggedIn = true
+      console.log("user has been Authenticated")
+    }
     else {
       res.locals.loggedIn = false
     }
@@ -118,10 +118,10 @@ app.get('/loginerror', function(req,res){
 
 // route for logging out
 app.get('/logout', function(req, res) {
-        req.session.destroy((error)=>{console.log("Error in destroying session: "+error)});
-        console.log("session has been destroyed")
-        req.logout();
-        res.redirect('/login');
+  req.session.destroy((error)=>{console.log("Error in destroying session: "+error)});
+  console.log("session has been destroyed")
+  req.logout();
+  res.redirect('/login');
 });
 
 //the indexRouter handles passing req to the page
@@ -138,36 +138,36 @@ app.use('/users', usersRouter);
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
 app.get('/login/authorized',
-        passport.authenticate('google', {
-                successRedirect : '/',
-                failureRedirect : '/loginerror'
-        })
-      );
+passport.authenticate('google', {
+  successRedirect : '/',
+  failureRedirect : '/loginerror'
+})
+);
 
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-    console.log("checking to see if they are authenticated!")
-    // if user is authenticated in the session, carry on
-    res.locals.loggedIn = false
-    if (req.isAuthenticated()){
-      console.log("user has been Authenticated")
-      res.locals.loggedIn = true
-      return next();
-    } else {
-      console.log("user has not been authenticated...")
-      // res.redirect('back');
-      return next();
-    }
+  console.log("checking to see if they are authenticated!")
+  // if user is authenticated in the session, carry on
+  res.locals.loggedIn = false
+  if (req.isAuthenticated()){
+    console.log("user has been Authenticated")
+    res.locals.loggedIn = true
+    return next();
+  } else {
+    console.log("user has not been authenticated...")
+    // res.redirect('back');
+    return next();
+  }
 }
 
 // END OF THE Google AUTHENTICATION ROUTES
 
 //we can use this or the index router to handle req
 app.get('/', function(req, res, next){
-    res.render('index', {
-      req: req
-    })
+  res.render('index', {
+    req: req
+  })
 })
 
 // =====================================

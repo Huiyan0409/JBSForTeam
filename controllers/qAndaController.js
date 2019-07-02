@@ -60,7 +60,7 @@ exports.showOneQuestion = ( req, res ) => {
   .then( ( question ) => {
     res.render( 'showQuestion', {
       req: req,
-      question:question
+      question: question
     } );
   } )
   .catch( ( error ) => {
@@ -130,7 +130,6 @@ exports.saveAnswer = (req,res) => {
 
 //attach all answers
 exports.attachAllAnswers = ( req, res, next ) => {
-  console.log("in aAFC with id= "+req.params.id)
   const ObjectId = require('mongoose').Types.ObjectId;
   Answer.find({questionId:ObjectId(req.params.id)})
   .exec()
@@ -158,7 +157,6 @@ exports.deleteAnswer = (req, res) => {
     .then(()=>{res.redirect('back')})
     .catch((error)=>{res.send(error)})
   } else if (typeof(deleteId)=='undefined'){
-    //console.log("This is if they didn't select a skill")
     res.redirect('back')
   } else {
     //console.log("This shouldn't happen!")
