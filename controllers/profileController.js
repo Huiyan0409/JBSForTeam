@@ -77,7 +77,7 @@ exports.updateProfile = ( req, res ) => {
 //     console.log(error);
 //   })
 
-};
+//};
 
 exports.upload = ( req, res ) => {
   //find the user using user_id
