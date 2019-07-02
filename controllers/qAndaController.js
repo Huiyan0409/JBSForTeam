@@ -35,7 +35,10 @@ exports.getAllQuestions = ( req, res, next ) => {
   Question.find()
   .exec()
   .then( ( questions ) => {
-    res.render('showQuestions',{questions:questions,title:"showQuestions"})
+    res.render('showQuestions',{
+      questions:questions,
+      title:"showQuestions"
+    })
   } )
   .catch( ( error ) => {
     console.log( error.message );
