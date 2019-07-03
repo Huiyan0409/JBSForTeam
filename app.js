@@ -174,12 +174,15 @@ app.get('/', function(req, res, next){
 // Profile =======================
 // =====================================
 
-// we require them to be logged in to see their profile
-app.get('/myProfile', isLoggedIn, function(req, res) {
-  res.render( 'myProfile', {
-    req: req
-  });
-});
+// // we require them to be logged in to see their profile
+// app.get('/myProfile', isLoggedIn, function(req, res) {
+//   res.render( 'myProfile', {
+//     req: req
+//   });
+// });
+
+//show all profiles from all users
+app.get('/myProfile', isLoggedIn, profileController.showMyProfile)
 
 // we require them to be logged in to edit their profile
 app.get('/editMyProfile', isLoggedIn, profileController.showOldProfile, profileController.updateProfile)

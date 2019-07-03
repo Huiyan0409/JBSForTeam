@@ -8,13 +8,34 @@ const apikey = require('../config/apikey');
 var path = require('path');
 
 
+//get personal profile from admin permission, view them individually
+exports.showMyProfile = ( req, res ) => {
+
+  //grab id from the URL, the red id is set by app.js where the URL is formed
+  User.findOne(res.locals.user._id)
+  .exec()
+  .then( ( profile ) => {
+    res.render( 'myProfile', {
+      profile: profile
+    } );
+  } )
+  //catch error
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
+
+
 exports.showOldProfile = ( req, res ) => {
 
   User.findOne(res.locals.user._id)
   .exec()
-  .then( ( question ) => {
+  .then( ( profile ) => {
     console.log("in show old profile");
-    res.render( 'editMyProfile');
+    res.render( 'editMyProfile', {
+      profile: profile
+    });
   })
   .catch(function (error) {
     console.log(error);
@@ -45,10 +66,11 @@ exports.updateProfile = ( req, res ) => {
 
       profile.save()
     })
+    profile.save()
   })
-  // .then(() => {
-  //   res.redirect('/myProfile')
-  // })
+  .then(() => {
+    res.redirect('/myProfile')
+  })
   // handle error
   .catch(function (error) {
     console.log("update failed!")
