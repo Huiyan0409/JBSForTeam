@@ -4,69 +4,28 @@
 <div class="jumbotron masthead text-center" id="north">
   <h1>Questions</h1>
   <br>
-  <% if (loggedIn) {%>
-    <a class="btn btn-primary" href="/postQuestion">
-      <span class="fa fa-google-plus">Post A New Question</span>
-    </a>
-  <% } else { %>
-    <h4>You have to login to post a new question</h4>
-  <% } %>
+  <a class="btn btn-primary" href="/postQuestion">
+    <span class="fa fa-google-plus">Post A New Question</span>
+  </a>
 </div>
 <div class="container">
 
-  <!-- <div class="row">
+  <div class="row">
 
     <div class="col">
       <% for (i = 0; i<questions.length; i++){  %>
       <div class="card"  id="showQuestions">
         <div class="card-body">
-          <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
-          <br><br>
-          <h6>By <%=questions[i].userName%></h6>
-          <h6><%=questions[i].createdAt%></h6>
+            <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
+            <br><br>
+            <h6>By <%=questions[i].userName%></h6>
+            <h6><%=questions[i].createdAt%></h6>
         </div>
       </div>
       <br>
       <% } %>
     </div>
-  </div> -->
 
-  <div class="row">
-    <div class="col">
-      <% for (i = 0; i < questions.length; i++){  %>
-        <div class="accordion" id="accordion<%=i%>">
-          <div class="card">
-
-            <div class="card-header" id="heading<%=i%>">
-              <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>">
-                  <%=questions[i].question%>
-                </button>
-              </h2>
-              <h6>
-                &nbsp&nbsp&nbspBy <a href="/showProfile/<%=questions[i].userId%>"><%=questions[i].userName%></a> on <%=questions[i].createdAt%>
-              </h6>
-            </div>
-
-            <div id="collapse<%=i%>" class="collapse" aria-labelledby="heading<%=i%>" data-parent="#accordion<%=i%>">
-              <div class="card-body">
-                &nbsp&nbsp&nbspDescription: <%=questions[i].description%><br>
-                <hr>
-                <!--need to think more about how to address the top answer-->
-                &nbsp&nbsp&nbspTop answer:
-                <% if (1!=1){%>
-                  No answer has been posted yet.
-                <% } else {%>
-                  <%=questions[i].topAnswer%>
-                <% } %>
-                <br>
-                &nbsp&nbsp&nbsp<a href="/showQuestion/<%=questions[i]._id%>">show details</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% } %>
-    </div>
   </div>
 
 </div>

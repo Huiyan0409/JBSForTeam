@@ -32,11 +32,9 @@ exports.showOldProfile = ( req, res ) => {
   const id = req.params.id
   User.findOne({_id: id})
   .exec()
-  .then( ( profile ) => {
+  .then( ( question ) => {
     console.log("in show old profile");
-    res.render( 'editMyProfile', {
-      profile: profile
-    });
+    res.render( 'editMyProfile');
   })
   .catch(function (error) {
     console.log(error);
@@ -68,6 +66,11 @@ exports.updateProfile = ( req, res ) => {
       res.redirect('/myProfile/' + id)
     })
   })
+
+
+  // .then(() => {
+  //   res.redirect('/myProfile')
+  // })
   // handle error
   .catch(function (error) {
     console.log("update failed!")

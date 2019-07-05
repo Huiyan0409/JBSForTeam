@@ -5,23 +5,21 @@ const Answer = require( '../models/Answer' );
 exports.saveQuestionPost = ( req, res ) => {
   //console.log("in saveSkill!")
   //console.dir(req)
-  let newQuestion = new Question({
-    userId: req.user._id,
-    //questionId: req._id,
-    userName: req.user.userName,
-    question: req.body.question,
-    description: req.body.description,
-    topAnswer: "NOT WORKING NOW",
-    createdAt: new Date()
-  })
-  // find the top answer from all answers, NOT WORKING NOW!
-  // const ObjectId = require('mongoose').Types.ObjectId;
-  // Answer.find({questionId:ObjectId(req.params.id)}).limit(1).sort({createdAt: -1})
-  // .exec()
-  // .then( ( topAnswer ) => {
-  //   console.log("topAnswer is: " + topAnswer);
-  //   newQuestion.topAnswer = "UPDATED TOP ANSWER";
-  // })
+  if (!res.locals.loggedIn) {
+    return res.send("You must be logged in to post to a question.")
+  }
+
+  let newQuestion = new Question(
+    {
+      userId: req.user._id,
+      //questionId: req._id,
+      userName:req.user.userName,
+      question: req.body.question,
+      description: req.body.description,
+      createdAt: new Date()
+    }
+  )
+
   newQuestion.save()
   .then( () => {
     res.redirect( 'showQuestions' );
@@ -37,10 +35,7 @@ exports.getAllQuestions = ( req, res, next ) => {
   Question.find()
   .exec()
   .then( ( questions ) => {
-    res.render('showQuestions',{
-      questions:questions,
-      title:"showQuestions"
-    })
+    res.render('showQuestions',{questions:questions,title:"showQuestions"})
   } )
   .catch( ( error ) => {
     console.log( error.message );
@@ -62,7 +57,7 @@ exports.showOneQuestion = ( req, res ) => {
   .then( ( question ) => {
     res.render( 'showQuestion', {
       req: req,
-      question: question
+      question:question
     } );
   } )
   .catch( ( error ) => {
@@ -132,6 +127,7 @@ exports.saveAnswer = (req,res) => {
 
 //attach all answers
 exports.attachAllAnswers = ( req, res, next ) => {
+  console.log("in aAFC with id= "+req.params.id)
   const ObjectId = require('mongoose').Types.ObjectId;
   Answer.find({questionId:ObjectId(req.params.id)})
   .exec()
@@ -159,6 +155,7 @@ exports.deleteAnswer = (req, res) => {
     .then(()=>{res.redirect('back')})
     .catch((error)=>{res.send(error)})
   } else if (typeof(deleteId)=='undefined'){
+    //console.log("This is if they didn't select a skill")
     res.redirect('back')
   } else {
     //console.log("This shouldn't happen!")

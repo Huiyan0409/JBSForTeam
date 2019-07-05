@@ -6,16 +6,12 @@
   <!-- Author -->
   <h4 class="text-center">
     by
-    <a href="/showProfile/<%=question.userId%>"><%=question.userName%></a>
+    <a href="/showProfile/<%=user._id%>"><%=question.userName%></a>
     posted on <%= question.createdAt %>
   </h4>
-
-  <% if (loggedIn) {%>
-    <% if (question.userId.equals(user._id)) { %>
+  <% if (question.userId.equals(user._id)) { %>
        <a class="btn btn-primary" href="/showQuestion/<%=question._id%>/editQuestion" role="button">Edit</a>
-    <% } %>
-  <% } %>
-
+   <% } %>
   <a class="btn btn-primary" href="/showQuestions" role="button">Return to Question List</a>
 </div>
 
@@ -36,26 +32,24 @@
       <hr>
         <% for(i = 0; i < answers.length; i++){  %>
 
+
         <!-- Single Comment in card-->
           <div class="media mb-3" id ="description">
             <a href="/showProfile/<%=answers[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=answers[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
             <div class="media-body">
               <h5><%= answers[i].userName %></h5>
               <h6><%= answers[i].answer %></h6>
-              <% if (loggedIn) {%>
-                <% if (answers[i].userId.equals(user._id)) { %>
-                  <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
-                    <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                    <input class="btn btn-sm btn-danger" type="submit" value="delete">
-                  </form>
-                <% } %>
+              <% if (answers[i].userId.equals(user._id)) { %>                
+                <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
+                  <input type="hidden" name="delete" value="<%=answers[i]._id%>">
+                  <input class="btn btn-sm btn-danger" type="submit" value="delete">
+                </form>
               <% } %>
             </div>
           </div>
         <% } %>
 
       <!-- Comments Form -->
-      <% if (loggedIn){%>
       <div class="card">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
@@ -67,13 +61,6 @@
           </form>
         </div>
       </div>
-      <% } else {%>
-        <div class="card">
-          <div class="card-body">
-            You have to login to post an answer here.
-          </div>
-        </div>
-      <%}%>
 
     </div>
 
