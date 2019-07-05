@@ -15,7 +15,7 @@
 
       <li class="nav-item">
         <% if (loggedIn) {%>
-        <a class="nav-link d-flex ml-3" href="/myProfile">My Profile</a>
+        <a class="nav-link d-flex ml-3" href="/myProfile/<%=user._id%>">My Profile</a>
         <% } %>
       </li>
 
@@ -42,13 +42,13 @@
 
      <li class="nav-item">
        <% if (loggedIn) {%>
-       <a href="/myProfile"><img class="d-flex mr-1 rounded-circle" id="profilePic" src="<%=user.profilePicURL%>"></a>
+       <a href="/myProfile/<%=user._id%>"><img class="d-flex mr-1 rounded-circle" id="profilePic" src="<%=user.profilePicURL%>"></a>
        <% } %>
      </li>
 
      <li class="nav-item">
        <% if (loggedIn) {%>
-       <a class="nav-link" href="/myProfile"> <%=user.userName%> </a>
+       <a class="nav-link" href="/myProfile/<%=user.id%>"> <%=user.userName%> </a>
        <% } %>
      </li>
 

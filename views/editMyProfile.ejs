@@ -15,7 +15,7 @@
 <div class="container">
 
   <!-- form: upload image -->
-  <form class='md-form' action='/upload' method='post' encType="multipart/form-data">
+  <form class='md-form' action='/upload/<%=user._id%>' method='post' encType="multipart/form-data">
     <div class="row">
       <div class="col-6">
         <div class="input-group">
@@ -47,7 +47,7 @@
 
   <!-- form: update personal info -->
 
-  <form action="/updateProfile" method="post">
+  <form action="/updateProfile/<%=user._id%>" method="post">
     <div class="row">
       <div class="col-sm-4">
         <div class="input-group-prepend">
@@ -75,7 +75,7 @@
       <div class="col-sm-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Status</span>
-          <select class="form-control" name ="status">
+          <select class="form-control" name ="status" value="<%=user.status%>">
             <option disabled value="Choose a role">Role</option>
             <option value="tutor">Tutor</option>
             <option value="student">Student</option>

@@ -27,9 +27,10 @@ exports.showMyProfile = ( req, res ) => {
 };
 
 
+//load profile of current user
 exports.showOldProfile = ( req, res ) => {
-
-  User.findOne(res.locals.user._id)
+  const id = req.params.id
+  User.findOne({_id: id})
   .exec()
   .then( ( profile ) => {
     console.log("in show old profile");
@@ -44,16 +45,14 @@ exports.showOldProfile = ( req, res ) => {
 
 //update personal profile
 exports.updateProfile = ( req, res ) => {
-
-  //find the user using user_id
-  User.findOne(res.locals.user._id)
+  const id = req.params.id
+  User.findOne({_id: id})
   .exec()
   .then((profile) => {
     profile.userName = req.body.userName
     // profile.profilePicURL = req.body.profilePicURL
     profile.zipcode = req.body.zipcode
     profile.status = req.body.status
-
     // Make a request for a user with a given ID
     axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/info.json/"+profile.zipcode+"/degrees")
     .then(function (response) {
@@ -63,13 +62,11 @@ exports.updateProfile = ( req, res ) => {
       profile.city = response.data.city
       profile.state = response.data.state
       profile.lastUpdate = new Date()
-
       profile.save()
     })
-    profile.save()
-  })
-  .then(() => {
-    res.redirect('/myProfile')
+    .then(() => {
+      res.redirect('/myProfile/' + id)
+    })
   })
   // handle error
   .catch(function (error) {
