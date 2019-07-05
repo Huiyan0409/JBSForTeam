@@ -84,10 +84,10 @@ h1,h4{
   background-color: blue;
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
     .container{
         max-width: 1500px;
-}
+} */
 
 li.nav-item a:hover{
   color: white;
