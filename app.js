@@ -24,7 +24,7 @@ const qAndaController = require('./controllers/qAndaController');
 
 
 //*******************************************
-//***********End of controller**********************
+//***********End of controller***************
 
 // Authentication
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
