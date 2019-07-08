@@ -6,9 +6,20 @@ h1,h4{
   color: white;
 }
 
+.container{
+  margin-top: -32px;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  background-color: white;
+  /* border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; */
+}
+
 #cardStyle{
   background-color: #0D3573;
   width: 50%;
+  opacity: 0.93;
 }
 
 .container{

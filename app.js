@@ -156,7 +156,7 @@ function isLoggedIn(req, res, next) {
       return next();
     } else {
       console.log("user has not been authenticated...")
-      res.redirect('/');
+      return next();
     }
 }
 

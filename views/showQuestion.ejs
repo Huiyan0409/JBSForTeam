@@ -6,12 +6,14 @@
   <!-- Author -->
   <h4 class="text-center">
     by
-    <a href="/showProfile/<%=user._id%>"><%=question.userName%></a>
+    <a href="/showProfile/<%=question.userId%>"><%=question.userName%></a>
     posted on <%= question.createdAt %>
   </h4>
-  <% if (question.userId.equals(user._id)) { %>
-       <a class="btn btn-primary" href="/showQuestion/<%=question._id%>/editQuestion" role="button">Edit</a>
-   <% } %>
+  <% if (loggedIn) { %>
+    <% if (question.userId.equals(user._id)) { %>
+      <a class="btn btn-primary" href="/showQuestion/<%=question._id%>/editQuestion" role="button">Edit</a>
+    <% } %>
+  <% } %>
   <a class="btn btn-primary" href="/showQuestions" role="button">Return to Question List</a>
 </div>
 
@@ -39,16 +41,18 @@
             <div class="media-body">
               <h5><%= answers[i].userName %></h5>
               <h6><%= answers[i].answer %></h6>
-              <% if (answers[i].userId.equals(user._id)) { %>
-                <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
-                  <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                  <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
-                  &nbsp&nbsp&nbsp
-                  <button type="button" class="btn btn-sm btn-outline-dark">
-                    <i class="fa fa-thumbs-up fa-1x"></i>
-                    <i class="glyphicon glyphicon-thumbs-up">1</i>
-                  </button>
-                </form>
+              <% if (loggedIn) {%>
+                <% if (answers[i].userId.equals(user._id)) { %>
+                  <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
+                    <input type="hidden" name="delete" value="<%=answers[i]._id%>">
+                    <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
+                    &nbsp&nbsp&nbsp
+                    <button type="button" class="btn btn-sm btn-outline-dark">
+                      <i class="fa fa-thumbs-up fa-1x"></i>
+                      <i class="glyphicon glyphicon-thumbs-up">1</i>
+                    </button>
+                  </form>
+                <% } %>
               <% } %>
             </div>
           </div>
