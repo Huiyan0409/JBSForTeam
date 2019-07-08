@@ -39,16 +39,20 @@
             <div class="media-body">
               <h5><%= answers[i].userName %></h5>
               <h6><%= answers[i].answer %></h6>
-              <% if (answers[i].userId.equals(user._id)) { %>                
+              <% if (answers[i].userId.equals(user._id)) { %>
                 <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
                   <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                  <input class="btn btn-sm btn-danger" type="submit" value="delete">
+                  <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
+                  &nbsp&nbsp&nbsp
+                  <button type="button" class="btn btn-sm btn-outline-dark">
+                    <i class="fa fa-thumbs-up fa-1x"></i>
+                    <i class="glyphicon glyphicon-thumbs-up">1</i>
+                  </button>
                 </form>
               <% } %>
             </div>
           </div>
         <% } %>
-
       <!-- Comments Form -->
       <div class="card">
         <h5 class="card-header">Leave a Comment:</h5>
@@ -57,7 +61,7 @@
             <div class="form-group">
               <textarea class="form-control" name="answer" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
           </form>
         </div>
       </div>
