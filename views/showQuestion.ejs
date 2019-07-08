@@ -39,17 +39,22 @@
             <div class="media-body">
               <h5><%= answers[i].userName %></h5>
               <h6><%= answers[i].answer %></h6>
-              <% if (answers[i].userId.equals(user._id)) { %>
-                <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
-                  <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                  <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
-                  &nbsp&nbsp&nbsp
-                  <button type="button" class="btn btn-sm btn-outline-dark">
-                    <i class="fa fa-thumbs-up fa-1x"></i>
-                    <i class="glyphicon glyphicon-thumbs-up">1</i>
-                  </button>
-                </form>
-              <% } %>
+              <div class = "container">
+                <div class = "row">
+                    <button type="button" class="btn btn-sm btn-outline-dark">
+                      <i class="fa fa-thumbs-up fa-1x"></i>
+                      <i class="glyphicon glyphicon-thumbs-up">1</i>
+                    </button>
+                    &nbsp&nbsp&nbsp
+                    <% if (answers[i].userId.equals(user._id)) { %>
+                      <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
+                        <input type="hidden" name="delete" value="<%=answers[i]._id%>">
+                        <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
+                        &nbsp&nbsp&nbsp
+                      </form>
+                    <% } %>
+                </div>
+              </div>
             </div>
           </div>
         <% } %>
