@@ -65,7 +65,11 @@
             <div class="form-group">
               <textarea class="form-control" name="answer" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-outline-primary">Submit</button>
+            <% if (loggedIn) {%>
+              <button type="submit" class="btn btn-outline-primary">Submit</button>
+            <% } else { %>
+              Please login to submit.
+            <% } %>
           </form>
         </div>
       </div>
