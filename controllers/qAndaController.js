@@ -128,11 +128,11 @@ exports.saveAnswer = (req,res) => {
 }
 
 exports.likesAdded = ( req, res ) => {
-  let id = req.body.delete
+  let id = req.body.likes
   Answer.findOne({_id:id})
   .exec()
   .then( ( answer ) => {
-    answer.likes = req.body.likes + 1
+    answer.likes = answer.likes + 1
     answer.save()
   })
   .then(() => {
