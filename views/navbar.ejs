@@ -1,68 +1,44 @@
 <!-- <script src="public/javascript/scroll.js"></script>
 <script src="public/javascript/scroll.min.js"></script> -->
 
-<nav class="navbar navbar-expand-lg fixed-top" id="welcome">
-  <!-- <div class="container"> -->
-    <a class="navbar-brand js-scroll-trigger" href="/">Claster</a>
-
-    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item">
-          <a class="nav-link d-flex ml-3" href="/showQuestions">Forum</a>
+<header class="header">
+  <div class="header__content header__content--fluid-width">
+    <a class="header__logo-title">Claster</a>
+    <nav class="header__menu">
+      <ul>
+        <li>
+          <a class="header-link" href="/">HOME</a>
         </li>
-
-        <li class="nav-item">
+        <li>
+          <a class="header-link" href="#forum" >FORUM</a>
+        </li>
+        <li>
           <% if (loggedIn) {%>
-          <a class="nav-link d-flex ml-3" href="/myProfile/<%=user._id%>">My Profile</a>
+            <a class="header-link" href="#tutor">FIND TUTOR</a>
           <% } %>
         </li>
-
-        <li class="nav-item">
-          <% if (loggedIn && status == 'admin') {%>
-          <a class="nav-link d-flex ml-3" href="/showProfiles">All Profiles</a>
+        <li>
+          <% if (loggedIn) {%>
+            <a class="header-link" href="#profile">PROFILE</a>
           <% } %>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link d-flex ml-3" href="/FAQ">FAQ</a>
+        <li>
+          <% if (loggedIn) {%>
+            <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+          <% } %>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link d-flex ml-3" href="/about">About</a>
+        <li>
+          <a href="#FAQ" class="header-link">FAQ</a>
+        </li>
+        <li class="header__btn header__btn--login">
+          <% if (!loggedIn) {%>
+          <a class="nav-link d-flex ml-5" id="btnBorder" href="/auth/google">Login with Google</a>
+          <%} else {%>
+          <a class="nav-link d-flex ml-5" id="btnBorder" href="/logout">Logout</a>
+          <% } %>
         </li>
 
       </ul>
-
-    </div>
-
-    <div class="navbar-collapse collapse w-100 order-3" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-
-       <li class="nav-item">
-         <% if (loggedIn) {%>
-         <a href="/myProfile/<%=user._id%>"><img class="d-flex mr-1 rounded-circle" id="profilePic" src="<%=user.profilePicURL%>"></a>
-         <% } %>
-       </li>
-
-       <li class="nav-item">
-         <% if (loggedIn) {%>
-         <a class="nav-link" href="/myProfile/<%=user.id%>"> <%=user.userName%> </a>
-         <% } %>
-       </li>
-
-       <li class="nav-item">
-         <% if (!loggedIn) {%>
-         <a class="nav-link d-flex ml-5" id="btnBorder" href="/login">Login</a>
-         <%} else {%>
-         <a class="nav-link d-flex ml-5" id="btnBorder" href="/logout">Logout</a>
-         <% } %>
-       </li>
-     </ul>
-   </div>
-  <!-- </div> -->
-</nav>
+    </nav>
+  </div>
+</header>

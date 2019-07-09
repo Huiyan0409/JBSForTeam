@@ -22,16 +22,6 @@ h1,h4{
   opacity: 0.93;
 }
 
-.container{
-  margin-top: -32px;
-  padding-top: 30px;
-  padding-bottom: 40px;
-  background-color: white;
-  /* border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black; */
-}
-
 #profilePic{
   object-fit: cover;
   object-position: center;
@@ -60,6 +50,14 @@ h1,h4{
 /* fix btn margin problem */
 #loginBtn{
   margin-left: 9%;
+}
+
+#height{
+  height: 32%;
+}
+
+#topPadding{
+  padding-top: 25%;
 }
 
 /* show full-page view */
@@ -140,7 +138,9 @@ a.navbar-brand:hover{
 .jumbotron.masthead {
   margin-top: -3%;
   padding-top: 11%;
-  background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg");
+  background-color: grey;
+
+  /* background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg"); */
   /* background-color: black; */
   /* border-bottom: 5px solid #007bff; */
   height: 40%;
@@ -152,7 +152,15 @@ a.navbar-brand:hover{
 }
 
 #north{
-  background-image: url("../../images/north.jpg");
+  background-color: grey;
+}
+
+.diagonal-gradient {
+  background: linear-gradient(to top right, #ff7aca, #0a52c7);
+}
+
+.card-body{
+  background-color: white;
 }
 
 /*------------------------------------------------------------------
@@ -543,7 +551,7 @@ h6{
 }
 /* BLOCK MODIFIER - section--page */
 .section--page-top{
-  padding-top:80px;
+  padding-top:25%;
 }
 .section--page-bottom{
   padding-bottom:80px;
@@ -1400,7 +1408,7 @@ svg.svg-intro-bottom {
   transition:.3s ease-in-out;
   border-radius: 20px;
   -webkit-border-radius: 20px;
-  border--radius: 20px;
+  /* border--radius: 20px; */
   -webkit-border-radius: 20px;
 }
 .switcher__button--enabled {
@@ -1447,8 +1455,7 @@ svg.svg-intro-bottom {
   -webkit-box-shadow: 10px 0 15px -10px rgba(0, 0, 0, .45), -10px 0 15px -10px rgba(0, 0, 0, .45);
   box-shadow: 10px 0 15px -10px rgba(0, 0, 0, .45), -10px 0 15px -10px rgba(0, 0, 0, .45);
 }
-.pricing__badge-bg{
-}
+
 .pricing__badge-text{
   position:absolute;
   top:25px;
@@ -1955,7 +1962,7 @@ select.select__field{
 .switch__label {
   position: relative;
   display: block;
-  vertical-align: top;
+  /* vertical-align: top; */
   width: 80px;
   height: 30px;
   padding: 0;

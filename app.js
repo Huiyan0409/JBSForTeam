@@ -108,9 +108,9 @@ app.use((req,res,next) => {
 
 // here are the login routes
 
-app.get('/login', function(req,res){
-  res.render('login',{})
-})
+// app.get('/login', function(req,res){
+//   res.render('login',{})
+// })
 
 app.get('/loginerror', function(req,res){
   res.render('loginerror',{})
@@ -121,7 +121,7 @@ app.get('/logout', function(req, res) {
         req.session.destroy((error)=>{console.log("Error in destroying session: "+error)});
         console.log("session has been destroyed")
         req.logout();
-        res.redirect('/login');
+        res.redirect('/');
 });
 
 //the indexRouter handles passing req to the page
