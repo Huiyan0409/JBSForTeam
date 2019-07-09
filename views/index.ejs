@@ -76,7 +76,7 @@
         <stop offset="100%" stop-color="#0a52c7"/>
       </linearGradient>
     </defs>
-    <path d="M30,0 L56,80 Q57.5,84.4 100,82 L100,40 100,0 Z" fill="url(#linear)" fill-opacity="1"/>
+    <path d="M30,0 L56,80 Q57.5,84.4 60,82 L100,40 100,0 Z" fill="url(#linear)" fill-opacity="1"/>
   </svg>
 
 </section>
@@ -114,10 +114,10 @@
         <p class="grid__text">Find a peer tutor that meets your need!</p>
       </div>
       <div class="grid__item grid__item--padding grid__item--centering">
-        <a href="#" class="grid__more">Find a tutor</a>
+        <a href="#" class="btn btn--blue-bg">Find a tutor</a>
       </div>
       <div class="grid__item grid__item--padding grid__item--centering">
-        <a href="#" class="grid__more">See tutor ranking</a>
+        <a href="#" class="btn btn--blue-bg">See tutor ranking</a>
       </div>
 
     </div>
@@ -133,6 +133,30 @@
       <div class="partners__content swiper-wrapper">
         <div class="partners__slide swiper-slide">
           <% if (loggedIn) {%>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Username</span>
+                    <input disabled type="text" class="form-control" value="<%=user.userName%>">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                    <input disabled type="text" class="form-control" value="<%=user.googleemail%>">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Status</span>
+                    <input disabled type="text" class="form-control" value="<%=user.status%>">
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="partners__text">
               <a href="/myProfile/<%=user._id%>"><input class="btn btn--blue-bg" type="button" value="Edit my profile"></a>
             </div>
