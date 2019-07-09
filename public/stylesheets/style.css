@@ -689,7 +689,7 @@ h6{
 .grid--4col .grid__item{
   float:left;
   margin-right:80px;
-  margin-bottom:80px;
+  margin-bottom:30px;
   /* full width - space between cols * nr of inner spaces / number of cols */
   width: calc((100% - 80px * 3) / 4);
 }
