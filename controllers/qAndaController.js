@@ -32,7 +32,7 @@ exports.saveQuestionPost = ( req, res ) => {
 // this displays all of the skills
 exports.getAllQuestions = ( req, res, next ) => {
   //gconsle.log('in getAllSkills')
-  Question.find()
+  Question.find().sort({createdAt: '-1'})
   .exec()
   .then( ( questions ) => {
     res.render('showQuestions',{questions:questions,title:"showQuestions"})
