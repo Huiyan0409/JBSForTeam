@@ -43,24 +43,25 @@
                 <h5><%= answers[i].userName %></h5>
                 <h6><%= answers[i].answer %></h6>
                 <% if (loggedIn) {%>
+                  <div class="container">
+                  <div class="row">
                   <% if (answers[i].userId.equals(user._id)) { %>
-                    <div class="container">
-                      <div class="row">
                         <div class="col-1">
                           <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
                             <input type="hidden" name="delete" value="<%=answers[i]._id%>">
                             <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
                           </form>
                         </div>
+                        <% } %>
                         <div class="col-1">
                           <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
                             <input type="hidden" name="likes" value="<%=answers[i]._id%>">
+                            <input type="hidden" name="user" value="<%=user._id%>">
                             <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
                           </form>
                         </div>
                       </div>
                     </div>
-                  <% } %>
                 <% } %>
               </div>
             </div>

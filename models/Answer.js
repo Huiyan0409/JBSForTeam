@@ -11,7 +11,7 @@ var answerSchema = Schema( {
   createdAt: Date,
   profilePicURL: String,
   likes: Number,
-  agreeList: [String]
+  agreeList: [ObjectId]
 } );
 
 module.exports = mongoose.model( 'AnswerPost', answerSchema );
