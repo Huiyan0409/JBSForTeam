@@ -1,10 +1,15 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center parallax">
+      <h1><i><%= profile.userName %>'s</i> Profile</h1>
+      <br>
+    </div>
+  </div>
+</section>
 
-<div class="jumbotron masthead diagonal-gradient text-center parallax">
-  <h1><i><%= profile.userName %>'s</i> Profile</h1>
-  <br>
-</div>
+<section class="section">
 
 <div class="container">
 
@@ -45,4 +50,7 @@
   </div>
 
 </div>
+
+</section>
+
 <%- include('footer'); -%>

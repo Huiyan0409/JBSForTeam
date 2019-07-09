@@ -1,38 +1,38 @@
 <%- include('header') -%>
 <%- include('navbar')-%>
 
-  <section class="section">
-    <div class="section__content section__content--fixed-width">
-      <div class="jumbotron masthead diagonal-gradient text-center">
-        <div class="section__title section__title--centered" id="whiteFont">
-          Forum for class ABC
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+        Forum for class ABC
+      </div>
+      <br>
+      <a class="btn btn--blue-bg" href="/postQuestion">
+        <span>Post A New Question</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <% for (i = 0; i<questions.length; i++){  %>
+        <div class="card"  id="showQuestions">
+          <div class="card-body">
+            <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
+            <br><br>
+            <h6>By <%=questions[i].userName%></h6>
+            <h6><%=questions[i].createdAt%></h6>
+          </div>
         </div>
         <br>
-        <a class="btn btn--blue-bg" href="/postQuestion">
-          <span>Post A New Question</span>
-        </a>
+        <% } %>
       </div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <% for (i = 0; i<questions.length; i++){  %>
-          <div class="card"  id="showQuestions">
-            <div class="card-body">
-              <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
-              <br><br>
-              <h6>By <%=questions[i].userName%></h6>
-              <h6><%=questions[i].createdAt%></h6>
-            </div>
-          </div>
-          <br>
-          <% } %>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
 <%- include('footer') -%>

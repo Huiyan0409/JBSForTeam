@@ -151,10 +151,6 @@ a.navbar-brand:hover{
   background-attachment: fixed;
 }
 
-#north{
-  background-color: grey;
-}
-
 .diagonal-gradient {
   background: linear-gradient(to top right, #ff7aca, #0a52c7);
 }
