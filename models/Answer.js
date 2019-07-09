@@ -9,7 +9,9 @@ var answerSchema = Schema( {
   userName: String,
   answer: String,
   createdAt: Date,
-  profilePicURL: String
+  profilePicURL: String,
+  likes: Number,
+  agreeList: [String]
 } );
 
 module.exports = mongoose.model( 'AnswerPost', answerSchema );

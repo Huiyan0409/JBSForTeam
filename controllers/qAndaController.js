@@ -113,7 +113,9 @@ exports.saveAnswer = (req,res) => {
     userName:req.user.userName,
     answer: req.body.answer,
     createdAt: new Date(),
-    profilePicURL: req.user.profilePicURL
+    profilePicURL: req.user.profilePicURL,
+    likes: 0,
+    agreeList: []
   })
 
   newAnswer.save()
@@ -124,6 +126,24 @@ exports.saveAnswer = (req,res) => {
     res.send( error );
   } );
 }
+
+exports.likesAdded = ( req, res ) => {
+  let id = req.body.delete
+  Answer.findOne({_id:id})
+  .exec()
+  .then( ( answer ) => {
+    answer.likes = req.body.likes + 1
+    answer.save()
+  })
+  .then(() => {
+    res.redirect('back')
+  })
+  .catch(function (error) {
+    console.log("Adding likes failed!")
+    console.log(error);
+  })
+
+};
 
 //attach all answers
 exports.attachAllAnswers = ( req, res, next ) => {
