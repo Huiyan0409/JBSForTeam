@@ -2,10 +2,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-h1,h4{
-  color: white;
-}
-
 .container{
   margin-top: -32px;
   padding-top: 30px;
