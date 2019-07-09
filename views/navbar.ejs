@@ -10,26 +10,30 @@
           <a class="header-link" href="/">HOME</a>
         </li>
         <li>
-          <a class="header-link" href="#forum" >FORUM</a>
+          <a class="header-link" href="/showQuestions" >FORUM</a>
         </li>
         <li>
           <% if (loggedIn) {%>
             <a class="header-link" href="#tutor">FIND TUTOR</a>
           <% } %>
         </li>
+
         <li>
           <% if (loggedIn) {%>
-            <a class="header-link" href="#profile">PROFILE</a>
+            <a class="header-link" href="/myProfile/<%=user._id%>">PROFILE</a>
           <% } %>
         </li>
+
         <li>
-          <% if (loggedIn) {%>
+          <% if (loggedIn && status == 'admin') {%>
             <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
           <% } %>
         </li>
+
         <li>
-          <a href="#FAQ" class="header-link">FAQ</a>
+          <a href="/FAQ" class="header-link">FAQ</a>
         </li>
+
         <li class="header__btn header__btn--login">
           <% if (!loggedIn) {%>
           <a class="nav-link d-flex ml-5" id="btnBorder" href="/auth/google">Login with Google</a>
