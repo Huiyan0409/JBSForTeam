@@ -55,7 +55,7 @@
                         <div class="col-1">
                           <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
                             <input type="hidden" name="likes" value="<%=answers[i]._id%>">
-                            <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> 1</button>
+                            <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
                           </form>
                         </div>
                       </div>

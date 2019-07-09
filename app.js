@@ -230,6 +230,9 @@ app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.save
 //to delete an existing answers
 app.post('/showQuestion/:id/answerDelete',qAndaController.deleteAnswer)
 
+//add thumbs up to answers
+app.post('/showQuestion/:id/answerLikes',qAndaController.likesAdded)
+
 //about page
 app.get('/about', function(req, res, next){
   res.render('about')
