@@ -115,7 +115,7 @@ exports.saveAnswer = (req,res) => {
     createdAt: new Date(),
     profilePicURL: req.user.profilePicURL,
     likes: 0,
-    agreeList: []
+    agreeList: [req.user._id]
   })
 
   newAnswer.save()
@@ -128,12 +128,19 @@ exports.saveAnswer = (req,res) => {
 }
 
 exports.likesAdded = ( req, res ) => {
-  let id = req.body.likes
-  Answer.findOne({_id:id})
+  let answerId = req.body.likes
+  let userId = req.body.user
+  console.log("userId: " + userId);
+  Answer.findOne({_id:answerId})
   .exec()
   .then( ( answer ) => {
-    answer.likes = answer.likes + 1
-    answer.save()
+    if (answer.agreeList.includes(userId)){
+      answer.save()
+    } else{
+      answer.agreeList.push(userId)
+      answer.likes = answer.likes + 1
+      answer.save()
+    }
   })
   .then(() => {
     res.redirect('back')
@@ -142,7 +149,6 @@ exports.likesAdded = ( req, res ) => {
     console.log("Adding likes failed!")
     console.log(error);
   })
-
 };
 
 //attach all answers
