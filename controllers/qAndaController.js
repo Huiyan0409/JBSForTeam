@@ -155,7 +155,7 @@ exports.likesAdded = ( req, res ) => {
 exports.attachAllAnswers = ( req, res, next ) => {
   console.log("in aAFC with id= "+req.params.id)
   const ObjectId = require('mongoose').Types.ObjectId;
-  Answer.find({questionId:ObjectId(req.params.id)})
+  Answer.find({questionId:ObjectId(req.params.id)}).sort({likes: -1})
   .exec()
   .then( ( answers ) => {
     res.locals.answers = answers
