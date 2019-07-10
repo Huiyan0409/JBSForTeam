@@ -59,10 +59,12 @@
         <div class="intro__subtitle">Welcome to Claster</div>
         <div class="intro__title">LALALA HAHAHA JIJIJI BUBUBU HUHUHU</div>
         <div class="intro__form form-demo">
-          <form action="" method="post">
-            <input type="text" class="form-demo__input" name="demourl" value="" placeholder="Class code" />
-            <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
-          </form>
+          <% if (loggedIn) {%>
+            <form action="/<%=user._id%>/saveClass" method="post">
+              <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
+              <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
+            </form>
+          <% } %>
         </div>
       </div>
     </div>
@@ -93,24 +95,20 @@
       <div class="grid__item grid__item--featured">
         <h3 class="grid__title"><span>Responsive</span> Layout</h3>
         <p class="grid__text">Responsive code that makes your landing page look good on all devices (desktops, tablets, and phones). Created with mobile specialists.</p>
-        <div class="grid__icon"><img src="images/icons/icons/responsive.png" alt="" title=""/></div>
       </div>
       <div class="grid__item">
         <h3 class="grid__title">SaaS <span>Analysis</span></h3>
         <p class="grid__text">A perfect structure created after we analized trends in SaaS landing page designs. Analysis made to the most popular SaaS businesses.</p>
-        <div class="grid__icon"><img src="images/icons/icons/analysis.png" alt="" title=""/></div>
       </div>
 
       <div class="grid__item">
         <h3 class="grid__title">Smart <span>BEM</span> Grid</h3>
         <p class="grid__text">Blocks, Elements and Modifiers. A smart HTML/CSS structure that can easely be reused. Layout driven by the purpose of modularity.</p>
-        <div class="grid__icon"><img src="images/icons/icons/grid.png" alt="" title=""/></div>
       </div>
 
       <div class="grid__item">
         <h3 class="grid__title">Target <span>audience</span></h3>
         <p class="grid__text">Blocks, Elements and Modifiers. A smart HTML/CSS structure that can easely be reused. Layout driven by the purpose of modularity.</p>
-        <div class="grid__icon"><img src="images/icons/icons/target.png" alt="" title=""/></div>
       </div>
 
     </div>
@@ -191,6 +189,16 @@
                     <input disabled type="text" class="form-control" value="<%=user.status%>">
                   </div>
                 </div>
+                <% if (loggedIn){
+                  for (i = 0; i < user.classCodes.length; i++){ %>
+                    <div class="col-sm-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">ClassCodes</span>
+                        <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
+                      </div>
+                    </div>
+                <% }
+                } %>
               </div>
             </div>
             <div class="partners__text">

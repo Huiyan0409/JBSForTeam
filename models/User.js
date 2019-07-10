@@ -14,7 +14,9 @@ var userSchema = Schema({
   lastUpdate: Date,
   zipcode: String,
   city: String,
-  state: String
+  state: String,
+  classCodes: [String],
+  classIds: [Schema.Types.ObjectId]
 });
 
 module.exports = mongoose.model( 'User', userSchema );

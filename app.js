@@ -21,6 +21,8 @@ var usersRouter = require('./routes/users');
 
 const profileController = require('./controllers/profileController');
 const qAndaController = require('./controllers/qAndaController');
+const classController = require('./controllers/classController');
+
 
 
 //*******************************************
@@ -168,10 +170,12 @@ app.get('/', function(req, res, next){
     res.render('index', {
       req: req
     })
-}, profileController.showMyProfile)
+}, classController.getAllClasses)
+
+app.post('/:userId/saveClass', isLoggedIn, classController.saveClass);
 
 // =====================================
-// Profile =======================
+// Profile =============================
 // =====================================
 
 //show all profiles from all users
@@ -191,6 +195,7 @@ app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 
 //show personal profile
 app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
+
 
 
 
