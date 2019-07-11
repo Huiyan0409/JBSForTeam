@@ -12,6 +12,10 @@ body {
   border-bottom: 1px solid black; */
 }
 
+#center{
+  float: center;
+}
+
 .input-group-text{
   background-color: white;
 }
@@ -572,7 +576,6 @@ h6{
   clear:both;
 }
 .section__content--full-width{
-  width:98%;
   margin:auto;
   clear:both;
 }
@@ -1293,14 +1296,9 @@ svg.svg-intro-bottom {
   -webkit-box-shadow: 0 0 20px 0px rgba(0,0,0,0.02);
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 10px;
 }
-.partners__slide:hover{
-  cursor: move; /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
+
 .partners__thumb{
   padding:0 0 20px 0;
 }
