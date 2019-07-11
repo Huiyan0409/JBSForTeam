@@ -16,9 +16,9 @@
   <div class="container">
 
     <form action="/createClass" method="post">
-      <div class="row">
+      <div class="row text-center">
 
-        <div class="col-sm-3">
+        <div class="col">
           <div class="input-group-prepend">
             <span class="input-group-text">Semester</span>
             <select class="form-control" name ="semester">
@@ -27,27 +27,17 @@
               <option value="spring2020">Spring 2020</option>
             </select>
           </div>
-
         </div>
 
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-
-        <!-- zipcode -->
-        <div class="col-sm-3">
+        <div class="col">
           <div class="input-group-prepend">
             <span class="input-group-text">Class Code</span>
             <input type="text" class="form-control" name="classCode">
           </div>
         </div>
 
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-
-        <div class="col-sm-1">
-          <input type="submit" class = "btn btn--blue-bg" value = "Save">
+        <div class="col-2">
+          <input type="submit" class = "btn btn--blue-bg" value = "CREATE">
         </div>
 
       </div>
