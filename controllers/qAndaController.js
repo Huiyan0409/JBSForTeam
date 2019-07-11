@@ -36,7 +36,11 @@ exports.getAllQuestions = ( req, res, next ) => {
   Question.find({}).sort({createdAt: '-1'})
   .exec()
   .then( ( questions ) => {
-    res.render('showQuestions',{questions:questions,title:"showQuestions"})
+    res.render('showQuestions',{
+      req: req,
+      questions:questions,
+      title:"showQuestions"
+    })
   } )
   .catch( ( error ) => {
     console.log( error.message );

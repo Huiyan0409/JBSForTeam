@@ -15,7 +15,7 @@
 
         <li>
           <% if (loggedIn) {%>
-            <a class="header-link" href="/classes">ADD CLASSES</a>
+            <a class="header-link" href="/classes">CLASSES</a>
           <% } %>
         </li>
 
@@ -35,10 +35,6 @@
           <% if (loggedIn && status == 'admin') {%>
             <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
           <% } %>
-        </li>
-
-        <li>
-          <a href="/FAQ" class="header-link">FAQ</a>
         </li>
 
         <li class="header__btn header__btn--login">

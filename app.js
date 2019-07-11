@@ -183,7 +183,7 @@ app.get('/classNotFound', isLoggedIn, function(req, res, next){
 })
 
 //create new classes
-app.get('/classes', isLoggedIn, classController.attachClasses)
+app.get('/classes', isLoggedIn, classController.getAllClasses)
 
 app.post('/createClass', isLoggedIn, classController.checkUnique, classController.saveClass);
 
@@ -226,7 +226,7 @@ app.get('/postQuestion', function(req, res, next){
 
 // app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions)
 
-app.get('/showQuestions', isLoggedIn, qAndaController.getAllQuestions)
+app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions)
 
 app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
 

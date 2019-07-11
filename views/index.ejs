@@ -38,10 +38,6 @@
           <% } %>
         </li>
 
-        <li>
-          <a href="/FAQ" class="header-link">FAQ</a>
-        </li>
-
         <li class="header__btn header__btn--login">
           <% if (!loggedIn) {%>
           <a class="nav-link d-flex ml-5" id="btnBorder" href="/auth/google">Login with Google</a>
@@ -71,6 +67,8 @@
               <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
               <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
             </form>
+          <% } else { %>
+            <input disabled type="text" class="form-demo__input" name="classCode" placeholder="Please login to enroll" />
           <% } %>
         </div>
       </div>
@@ -125,9 +123,12 @@
       <div class="partners__content swiper-wrapper">
         <div class="partners__slide swiper-slide">
           <% if (loggedIn) {%>
-            <div class="partners__text">
-              <a href="/showQuestions/<%=user.classCodes[0]%>"><input class="btn btn--blue-bg" type="button" value="Go to Forum for <%=user.classCodes[0]%>"></a>
-            </div>
+            <% for (i = 0; i < user.classCodes.length; i++){%>
+              <div class="partners__text">
+                <br>
+                <a href="/showQuestions/<%=user.classCodes[i]%>"><input class="btn btn--blue-bg" type="button" value="Go to Forum for <%=user.classCodes[i]%>"></a>
+              </div>
+            <% } %>
           <% } else { %>
             <div class="partners__text">
               You must login to view the forum

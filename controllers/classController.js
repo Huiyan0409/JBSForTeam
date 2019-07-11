@@ -1,30 +1,26 @@
 'use strict';
 const mongoose = require( 'mongoose' );
 const Class = require( '../models/Class' );
-const User = require( '../models/User' );
-
-// this displays all of the classes
-exports.getAllClasses = ( req, res ) => {
-  console.log('in getAllClasses')
-  User.find( {_id:userId} )
-  .exec()
-  .then( ( user ) => {
-    res.render( 'index', {
-      user: user
-    } );
-  } )
-  .catch( ( error ) => {
-    console.log( error.message );
-    return [];
-  } )
-  .then( () => {
-    console.log( 'getAllClasses promise complete' );
-  } );
-};
-
 /*
    this looks up the class with the specified pin, or sends an error message
 */
+
+//get all profiles for all users, visible only when admin is logged in
+exports.getAllClasses = ( req, res ) => {
+  //find all users from database
+  Class.find()
+  .exec()
+  .then( ( classes ) => {
+    res.render( 'classes', {
+      classes: classes
+    });
+  })
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  })
+};
+
 exports.lookupClass = (req,res,next) => {
   const classCode = req.body.classCode
   Class.findOne({classCode:classCode})
@@ -71,10 +67,6 @@ exports.addClass = (req,res) => {
       res.send( error );
     } );
   }
-  // else {
-  //   console.log("\n\n"+req.session.classV.code + " is already enrolled")
-  //   res.render('class',{classV:req.session.classV})
-  // }
 }
 
 function containsString(list,elt){
@@ -114,30 +106,27 @@ exports.saveClass = ( req, res ) => {
   } );
 };
 
-exports.attachClasses = ( req, res, next ) => {
-  console.log('in attachClasses')
-  if (req.user) {
-    Class.find({classCode: req.user.classCodes})
-    .exec()
-    .then( ( classes ) => {
-      res.render( 'classes', {
-        classes: classes
-      });
-    })
-    .catch( ( error ) => {
-      console.log("Error in attachClasses")
-      console.log( error.message );
-      return [];
-      res.error(error.message)
-    })
-    //.then( () => {
-    //  console.log( 'attachClasses promise complete' );
-    //} );
-  } else {
-    next()
-  }
-
-};
+// //attach classes that you enrolled in
+// exports.attachClasses = ( req, res, next ) => {
+//   console.log('in attachClasses')
+//   if (req.user) {
+//     Class.find({classCode: req.user.classCodes})
+//     .exec()
+//     .then( ( classes ) => {
+//       res.render( 'classes', {
+//         classes: classes
+//       });
+//     })
+//     .catch( ( error ) => {
+//       console.log("Error in attachClasses")
+//       console.log( error.message );
+//       return [];
+//       res.error(error.message)
+//     })
+//   } else {
+//     next()
+//   }
+// };
 
 exports.checkUnique = (req,res,next) => {
   Class.find({classCode:req.body.classCode})
