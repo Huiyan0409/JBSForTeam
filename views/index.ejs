@@ -195,11 +195,18 @@
                     <input disabled type="text" class="form-control" value="<%=user.status%>">
                   </div>
                 </div>
+
+                <div class="w-100">
+                  <hr>
+                </div>
+
                 <% if (loggedIn){
                   for (i = 0; i < user.classCodes.length; i++){ %>
+                    <div class="w-100"></div>
+                    <br>
                     <div class="col-sm-4">
                       <div class="input-group-prepend">
-                        <span class="input-group-text">ClassCodes</span>
+                        <span class="input-group-text">Class</span>
                         <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
                       </div>
                     </div>

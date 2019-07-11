@@ -12,6 +12,14 @@ body {
   border-bottom: 1px solid black; */
 }
 
+.input-group-text{
+  background-color: white;
+}
+
+.form-control:disabled{
+  background-color: white;
+}
+
 #cardStyle{
   background-color: #0D3573;
   width: 50%;
