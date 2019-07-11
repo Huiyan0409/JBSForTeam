@@ -5,12 +5,19 @@
     <a class="header__logo-title header-link" href="#home">Claster</a>
     <nav class="header__menu">
       <ul>
+
         <li>
           <a class="header-link" href="#home">HOME</a>
         </li>
 
         <li>
           <a class="header-link" href="#forum">FORUM</a>
+        </li>
+
+        <li>
+          <% if (loggedIn) {%>
+            <a class="header-link" href="/classes">CLASSES</a>
+          <% } %>
         </li>
 
         <li>
@@ -60,7 +67,7 @@
         <div class="intro__title">LALALA HAHAHA JIJIJI BUBUBU HUHUHU</div>
         <div class="intro__form form-demo">
           <% if (loggedIn) {%>
-            <form action="/<%=user._id%>/saveClass" method="post">
+            <form action="/<%=user._id%>/enroll" method="post">
               <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
               <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
             </form>
@@ -90,27 +97,21 @@
 <!-- Section features -->
 <section class="section section--features" id="features">
   <div class="section__content section__content--fluid-width">
-    <div class="grid grid--4col grid--features">
+    <div class="grid grid--3col">
 
-      <div class="grid__item grid__item--featured">
-        <h3 class="grid__title"><span>Responsive</span> Layout</h3>
-        <p class="grid__text">Responsive code that makes your landing page look good on all devices (desktops, tablets, and phones). Created with mobile specialists.</p>
-      </div>
       <div class="grid__item">
-        <h3 class="grid__title">SaaS <span>Analysis</span></h3>
-        <p class="grid__text">A perfect structure created after we analized trends in SaaS landing page designs. Analysis made to the most popular SaaS businesses.</p>
+        <h3 class="grid__title"><span>FORUM INTRO</span></h3>
+        <p class="grid__text">Something great about forum. Something great about forum.Something great about forum.Something great about forum.</p>
       </div>
 
       <div class="grid__item">
-        <h3 class="grid__title">Smart <span>BEM</span> Grid</h3>
-        <p class="grid__text">Blocks, Elements and Modifiers. A smart HTML/CSS structure that can easely be reused. Layout driven by the purpose of modularity.</p>
+        <h3 class="grid__title"><span>TUTOR INTRO</span></h3>
+        <p class="grid__text">Something great about forum. Something great about forum. Something great about forum. Something great about forum. </p>
       </div>
-
       <div class="grid__item">
-        <h3 class="grid__title">Target <span>audience</span></h3>
-        <p class="grid__text">Blocks, Elements and Modifiers. A smart HTML/CSS structure that can easely be reused. Layout driven by the purpose of modularity.</p>
+        <h3 class="grid__title"><span>LOCATION SHARING</span></h3>
+        <p class="grid__text">Something great about forum. Something great about forum. Something great about forum. Something great about forum. </p>
       </div>
-
     </div>
   </div>
 </section>
@@ -123,11 +124,15 @@
     <div class="partners">
       <div class="partners__content swiper-wrapper">
         <div class="partners__slide swiper-slide">
-
-          <div class="partners__text">
-            <a href="/showQuestions"><input class="btn btn--blue-bg" type="button" value="Go to Forum"></a>
-          </div>
-
+          <% if (loggedIn) {%>
+            <div class="partners__text">
+              <a href="/showQuestions/<%=user.classCodes[0]%>"><input class="btn btn--blue-bg" type="button" value="Go to Forum for <%=user.classCodes[0]%>"></a>
+            </div>
+          <% } else { %>
+            <div class="partners__text">
+              You must login to view the forum
+            </div>
+          <% } %>
         </div>
       </div>
 

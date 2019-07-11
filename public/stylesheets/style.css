@@ -1182,7 +1182,7 @@ svg.svg-intro-bottom {
 .grid--features .grid__item{
   margin-right:60px;
   margin-bottom:0px;
-  width: calc((100% - 60px * 3 - 30px * 8) / 4);
+  width: 21%;
   padding:30px;
   text-align:left;
   background-color:#fff;

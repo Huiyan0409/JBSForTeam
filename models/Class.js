@@ -5,9 +5,8 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 var classSchema = Schema({
   semester: String,
-  code: String,
-  pin: String,
-  userEmail: String
+  classCode: String,
+  pin: String
 } );
 
 module.exports = mongoose.model( 'Class', classSchema );

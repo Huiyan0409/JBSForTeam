@@ -3,26 +3,6 @@ const mongoose = require( 'mongoose' );
 const Class = require( '../models/Class' );
 const User = require( '../models/User' );
 
-exports.saveClass = ( req, res ) => {
-  const userId = req.params.userId;
-  const classCode = req.body.classCode;
-  console.log("classcode is: " + classCode);
-  console.log("userId: " + userId);
-  User.findOne({_id:userId})
-  .exec()
-  .then( ( user ) => {
-    user.classCodes.push(classCode)
-    user.save()
-  })
-  .then(() => {
-    res.redirect('back')
-  })
-  .catch(function (error) {
-    console.log("Adding class failed!")
-    console.log(error);
-  })
-};
-
 // this displays all of the classes
 exports.getAllClasses = ( req, res ) => {
   console.log('in getAllClasses')
@@ -41,3 +21,134 @@ exports.getAllClasses = ( req, res ) => {
     console.log( 'getAllClasses promise complete' );
   } );
 };
+
+/*
+   this looks up the class with the specified pin, or sends an error message
+*/
+exports.lookupClass = (req,res,next) => {
+  const classCode = req.body.classCode
+  Class.findOne({classCode:classCode})
+    .exec()
+    .then((classV)=> {
+      if (classV){
+	      console.log('found a class:'+classV.classCode+" "+classV)
+        req.session.classV = classV
+        next()
+        //res.render('class',{classV:classV})
+      }
+      else {
+        console.log("class not found");
+        res.redirect("/classNotFound")
+      }
+    })
+    .catch((error)=>{
+      console.log("Error in lookupClass")
+      console.log(error.message)
+      return []
+    })
+    .then( ()=>{
+      console.log('lookupClass promise complete')
+    })
+}
+
+exports.addClass = (req,res) => {
+  /* We have a class req.classV and need to add it to the user's classes ...
+  then return the class page for this class...
+  */
+  req.user.classCodes = req.user.classCodes || []
+  console.log("in addclass");
+  // console.log("req.session.classV._id = "+req.session.classV._id)
+  console.log("req.user.classIds="+req.user.classIds)
+  console.log("req.user.classCodes="+req.user.classCodes)
+
+  if (!containsString(req.user.classCodes, req.session.classV.classCode)) {
+    req.user.classCodes.push(req.session.classV.classCode)
+    req.user.save()
+    .then( () => {
+      res.redirect('back')
+    })
+    .catch( error => {
+      res.send( error );
+    } );
+  }
+  // else {
+  //   console.log("\n\n"+req.session.classV.code + " is already enrolled")
+  //   res.render('class',{classV:req.session.classV})
+  // }
+}
+
+function containsString(list,elt){
+  let found=false
+  list.forEach(function(e){
+
+    if (JSON.stringify(e)==JSON.stringify(elt)){
+      console.log(JSON.stringify(e)+ "=="+ JSON.stringify(elt))
+      found=true}
+    else {
+      console.log(JSON.stringify(e)+ "!="+ JSON.stringify(elt))
+    }
+  })
+  return found
+}
+
+exports.saveClass = ( req, res ) => {
+  console.log("in saveClass!")
+  console.dir(req.user)
+  console.log("req.user._id is ")
+  console.dir(req.user._id)
+  //console.dir(req)
+  let newcode = 1000000+Math.floor(8999999*Math.random())
+  let newClass = new Class({
+    semester: req.body.semester,
+    classCode: req.body.classCode,
+    pin: newcode,
+  })
+
+  console.dir("class = "+newClass)
+  newClass.save()
+  .then( () => {
+    res.redirect( '/classes' );
+  } )
+  .catch( error => {
+    res.send( error );
+  } );
+};
+
+exports.attachClasses = ( req, res, next ) => {
+  console.log('in attachClasses')
+  if (req.user) {
+    Class.find({classCode: req.user.classCodes})
+    .exec()
+    .then( ( classes ) => {
+      res.render( 'classes', {
+        classes: classes
+      });
+    })
+    .catch( ( error ) => {
+      console.log("Error in attachClasses")
+      console.log( error.message );
+      return [];
+      res.error(error.message)
+    })
+    //.then( () => {
+    //  console.log( 'attachClasses promise complete' );
+    //} );
+  } else {
+    next()
+  }
+
+};
+
+exports.checkUnique = (req,res,next) => {
+  Class.find({classCode:req.body.classCode})
+  .exec()
+  .then((classes) => {
+    if (classes.length==0) {
+      next()
+    } else {
+      res.send(req.body.classCode+" is used!")
+    }
+  })
+  .catch((error)=> {res.send(error)})
+  .then(() => console.log('checkunique promise is complete!'))
+}

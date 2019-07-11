@@ -12,6 +12,13 @@
         <li>
           <a class="header-link" href="/showQuestions" >FORUM</a>
         </li>
+
+        <li>
+          <% if (loggedIn) {%>
+            <a class="header-link" href="/classes">ADD CLASSES</a>
+          <% } %>
+        </li>
+
         <li>
           <% if (loggedIn) {%>
             <a class="header-link" href="#tutor">FIND TUTOR</a>

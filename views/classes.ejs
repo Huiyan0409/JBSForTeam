@@ -1,0 +1,76 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+        <h1>Add a new Class</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <form action="/createClass" method="post">
+      <div class="row">
+
+        <div class="col-sm-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Semester</span>
+            <select class="form-control" name ="semester">
+              <option disabled value="Choose a role">Choose semester</option>
+              <option value="fall2019">Fall 2019</option>
+              <option value="spring2020">Spring 2020</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- line break -->
+        <div class="w-100"></div>
+        <br>
+
+        <!-- zipcode -->
+        <div class="col-sm-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Class Code</span>
+            <input type="text" class="form-control" name="classCode">
+          </div>
+        </div>
+
+        <!-- line break -->
+        <div class="w-100"></div>
+        <br>
+
+        <div class="col-sm-1">
+          <input type="submit" class = "btn btn--blue-bg" value = "Save">
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <% for (i = 0; i < classes.length; i++){%>
+          <br><br>
+          Class code for enrolled classes: <%=classes[i].classCode%>
+          <br><br>
+          The pin is: <%=classes[i].pin%>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- edit profile page -->
+
+
+<%- include('footer'); -%>
