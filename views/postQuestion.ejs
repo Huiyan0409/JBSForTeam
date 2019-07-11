@@ -17,7 +17,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <form method="post" action="/processQuestionPost">
+            <form method="post" action="/processQuestionPost/<%=req.params.classCode%>">
               <div class="form-group">
                 <h5 class="card-header">Title</h5>
                 <input type="text" class="form-control" id="question" name="question"> <br>

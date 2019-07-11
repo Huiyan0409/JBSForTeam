@@ -15,10 +15,10 @@
       </div>
       <% if (loggedIn) { %>
         <% if (question.userId.equals(user._id)) { %>
-          <a class="btn btn--blue-bg" href="/showQuestion/<%=question._id%>/editQuestion" role="button">Edit</a>
+          <a class="btn btn--blue-bg" href="/showQuestion/<%=req.params.classCode%>/<%=question._id%>/editQuestion" role="button">Edit</a>
         <% } %>
       <% } %>
-      <a class="btn btn--blue-bg" href="/showQuestions" role="button">Return to Question List</a>
+      <a class="btn btn--blue-bg" href="/showQuestions/<%=req.params.classCode%>" role="button">Return to Question List</a>
     </div>
   </div>
 </section>
@@ -35,6 +35,8 @@
 
         <h5><b>Comments: </b></h5>
         <hr>
+        <div class="container">
+
         <% for(i = 0; i < answers.length; i++){  %>
           <!-- Single Comment in card-->
             <div class="media mb-3" id ="description">
@@ -42,30 +44,29 @@
               <div class="media-body">
                 <h5><%= answers[i].userName %></h5>
                 <h6><%= answers[i].answer %></h6>
-                <% if (loggedIn) {%>
-                  <div class="container">
-                  <div class="row">
-                  <% if (answers[i].userId.equals(user._id)) { %>
-                        <div class="col-1">
-                          <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
-                            <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                            <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
-                          </form>
-                        </div>
-                        <% } %>
-                        <div class="col-1">
-                          <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
-                            <input type="hidden" name="likes" value="<%=answers[i]._id%>">
-                            <input type="hidden" name="user" value="<%=user._id%>">
-                            <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
-                          </form>
-                        </div>
+                <% if (loggedIn) { %>
+                    <div class="row">
+                    <% if (answers[i].userId.equals(user._id)) { %>
+                      <div class="col-1">
+                        <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
+                          <input type="hidden" name="delete" value="<%=answers[i]._id%>">
+                          <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
+                        </form>
+                      </div>
+                      <% } %>
+                      <div class="col-1">
+                        <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
+                          <input type="hidden" name="likes" value="<%=answers[i]._id%>">
+                          <input type="hidden" name="user" value="<%=user._id%>">
+                          <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
+                        </form>
                       </div>
                     </div>
                 <% } %>
               </div>
             </div>
           <% } %>
+        </div>
       </div>
     </div>
   </div>
@@ -79,7 +80,7 @@
         <div class="card">
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
-            <form action="/showQuestion/<%=req.params.id%>/processAnswerPost" method="post">
+            <form action="/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/processAnswerPost" method="post">
               <div class="form-group">
                 <textarea class="form-control" name="answer" rows="3"></textarea>
               </div>

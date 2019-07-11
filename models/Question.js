@@ -9,7 +9,7 @@ var questionSchema = Schema( {
   question: String,
   description: String,
   createdAt: Date,
-  // classCode: String
+  classCode: String
 } );
 
 module.exports = mongoose.model( 'QuestionPost', questionSchema );

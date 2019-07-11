@@ -7,7 +7,7 @@
       <div class="section__title section__title--centered" id="whiteFont">
         Forum for class <%=req.params.classCode%>
       </div>
-      <a class="btn btn--blue-bg" href="/postQuestion">
+      <a class="btn btn--blue-bg" href="/postQuestion/<%=req.params.classCode%>">
         <span>Post A New Question</span>
       </a>
     </div>
@@ -21,7 +21,7 @@
         <% for (i = 0; i<questions.length; i++){  %>
         <div class="card"  id="showQuestions">
           <div class="card-body">
-            <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
+            <a class = "lead" href="/showQuestion/<%=req.params.classCode%>/<%=questions[i]._id%>"><%= questions[i].question %></a>
             <br><br>
             <h6>By <%=questions[i].userName%></h6>
             <h6><%=questions[i].createdAt%></h6>

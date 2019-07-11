@@ -5,6 +5,8 @@ const Answer = require( '../models/Answer' );
 exports.saveQuestionPost = ( req, res ) => {
   //console.log("in saveSkill!")
   //console.dir(req)
+  const classCode = req.params.classCode
+  console.log("classcodecode is " + classCode);
   if (!res.locals.loggedIn) {
     return res.send("You must be logged in to post to a question.")
   }
@@ -12,28 +14,26 @@ exports.saveQuestionPost = ( req, res ) => {
   let newQuestion = new Question(
     {
       userId: req.user._id,
-      //questionId: req._id,
       userName:req.user.userName,
       question: req.body.question,
       description: req.body.description,
-      createdAt: new Date()
+      createdAt: new Date(),
+      classCode: classCode
     }
   )
-
   newQuestion.save()
   .then( () => {
-    res.redirect( 'showQuestions' );
+    console.log("CLASSCODE IS: " + req.params.classCode);
+    res.redirect( '/showQuestions/' + classCode);
   } )
   .catch( error => {
     res.send( error );
   } );
 };
 
-// this displays all of the skills
 exports.getAllQuestions = ( req, res, next ) => {
-  //gconsle.log('in getAllSkills')
-  // const classCode = req.params.classCode
-  Question.find({}).sort({createdAt: '-1'})
+  const classCode = req.params.classCode
+  Question.find({classCode: classCode}).sort({createdAt: '-1'})
   .exec()
   .then( ( questions ) => {
     res.render('showQuestions',{
@@ -91,6 +91,7 @@ exports.showPreviousQ = (req, res ) => {
 
 //edit question function
 exports.editQuestion = ( req, res ) => {
+  const classCode = req.params.classCode
   const id = req.params.id
   Question.findOne({_id:id})
   .exec()
@@ -100,7 +101,7 @@ exports.editQuestion = ( req, res ) => {
     question.save()
   })
   .then(() => {
-    res.redirect('/showQuestion/'+id)
+    res.redirect('/showQuestion/'+classCode + '/' + id)
   })
   .catch(function (error) {
     console.log("edit question failed!")
@@ -110,6 +111,7 @@ exports.editQuestion = ( req, res ) => {
 
 exports.saveAnswer = (req,res) => {
   const questionId = req.params.id
+  const classCode = req.params.classCode
   console.log("questionId is: " + questionId);
 
   let newAnswer = new Answer({
@@ -120,12 +122,13 @@ exports.saveAnswer = (req,res) => {
     createdAt: new Date(),
     profilePicURL: req.user.profilePicURL,
     likes: 0,
-    agreeList: [req.user._id]
+    agreeList: [req.user._id],
+    classCode: classCode
   })
 
   newAnswer.save()
   .then( () => {
-    res.redirect( '/showQuestion/'+questionId );
+    res.redirect( '/showQuestion/'+ classCode + '/' + questionId );
   } )
   .catch( error => {
     res.send( error );

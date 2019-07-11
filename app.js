@@ -218,8 +218,10 @@ app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 
 //post question page
-app.get('/postQuestion', function(req, res, next){
-  res.render('postQuestion')
+app.get('/postQuestion/:classCode', function(req, res, next){
+  res.render('postQuestion', {
+    req: req
+  })
 })
 
 //app.post('/forumDelete', isLoggedIn, qAndaController.deleteQuestion)
@@ -228,24 +230,17 @@ app.get('/postQuestion', function(req, res, next){
 
 app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions)
 
-app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
+app.post('/processQuestionPost/:classCode', isLoggedIn, qAndaController.saveQuestionPost)
 
-app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
-
-// //to edit an existing question
-// app.get('/showQuestion/:id/editQuestion',isLoggedIn, (req,res)=>{
-//   res.render('editQuestion' ,{
-//     req: req
-//   })
-// })
+app.get('/showQuestion/:classCode/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
 //to edit an existing question
-app.get('/showQuestion/:id/editQuestion',isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
+app.get('/showQuestion/:classCode/:id/editQuestion',isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
 
-app.post('/showQuestion/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
+app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
 
 //to save a new answer post
-app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
+app.post('/showQuestion/:classCode/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 //to delete an existing answers
 app.post('/showQuestion/:id/answerDelete',qAndaController.deleteAnswer)
