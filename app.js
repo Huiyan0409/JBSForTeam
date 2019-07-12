@@ -254,6 +254,11 @@ app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
 })
 
+//find tutor page(temp)
+app.get('/findTutor', function(req, res, next){
+  res.render('findTutor')
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
