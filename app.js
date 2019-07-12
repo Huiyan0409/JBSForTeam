@@ -224,10 +224,6 @@ app.get('/postQuestion/:classCode', function(req, res, next){
   })
 })
 
-//app.post('/forumDelete', isLoggedIn, qAndaController.deleteQuestion)
-
-// app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions)
-
 app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions)
 
 app.post('/processQuestionPost/:classCode', isLoggedIn, qAndaController.saveQuestionPost)
