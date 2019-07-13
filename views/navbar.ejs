@@ -1,6 +1,3 @@
-<!-- <script src="public/javascript/scroll.js"></script>
-<script src="public/javascript/scroll.min.js"></script> -->
-
 <header class="header">
   <div class="header__content header__content--fluid-width">
     <a class="header__logo-title">Claster</a>
@@ -9,9 +6,14 @@
         <li>
           <a class="header-link" href="/">HOME</a>
         </li>
-        
+
         <li>
           <a class="header-link" href="#" >FORUM</a>
+          <ul class="sub-menu">
+            <% for (i = 0; i < user.classCodes.length; i++) {%>
+              <li><a href="/showQuestions/<%=user.classCodes[i]%>" class="header-link"><%=user.classCodes[i]%></a></li>
+            <% } %>
+          </ul>
         </li>
 
         <li>
