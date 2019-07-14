@@ -81,14 +81,19 @@ function containsString(list,elt){
 }
 
 exports.saveClass = ( req, res ) => {
-  console.log("in saveClass!")
-  console.dir(req.user)
-  console.log("req.user._id is ")
-  console.dir(req.user._id)
+  if (req.body.subject.length==0){
+    console.log("subject is empty");
+    res.redirect('/emptyError')
+    return
+  } else if (req.body.courseNum.length==0){
+    console.log("course number is empty");
+    res.redirect('/emptyError')
+
+    return
+  }
   var classCode = req.body.subject.concat(req.body.courseNum)
   classCode = classCode.toUpperCase()
   console.log("class code in upper case " + classCode);
-  //console.dir(req)
   // let newcode = 1000000+Math.floor(8999999*Math.random())
   let newClass = new Class({
     // semester: req.body.semester,
@@ -97,8 +102,7 @@ exports.saveClass = ( req, res ) => {
     classCode: classCode
     // pin: newcode,
   })
-
-  console.dir("class = "+newClass)
+  // console.dir("class = "+newClass)
   newClass.save()
   .then( () => {
     res.redirect( '/classes' );

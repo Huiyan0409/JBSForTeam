@@ -47,14 +47,14 @@
                 <% if (loggedIn) { %>
                     <div class="row">
                     <% if (answers[i].userId.equals(user._id)) { %>
-                      <div class="col-1">
+                      <div class="col-md-1 col-sm-6">
                         <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
                           <input type="hidden" name="delete" value="<%=answers[i]._id%>">
                           <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
                         </form>
                       </div>
                       <% } %>
-                      <div class="col-1">
+                      <div class="col-md-1 col-6">
                         <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
                           <input type="hidden" name="likes" value="<%=answers[i]._id%>">
                           <input type="hidden" name="user" value="<%=user._id%>">

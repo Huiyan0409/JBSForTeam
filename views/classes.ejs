@@ -20,21 +20,21 @@
     <form action="/createClass" method="post">
       <div class="row text-center">
 
-        <div class="col">
+        <div class="col-md-3 col-sm-12">
           <div class="input-group-prepend">
             <span class="input-group-text">Subject</span>
-            <input type="text" class="form-control" name="subject">
+            <input type="text" class="form-control" name="subject" placeholder="Example: COSI">
           </div>
         </div>
 
-        <div class="col">
+        <div class="col-md-3 col-sm-12">
           <div class="input-group-prepend">
             <span class="input-group-text">Course number</span>
-            <input type="text" class="form-control" name="courseNum">
+            <input type="text" class="form-control" name="courseNum" placeholder="Example: 12B">
           </div>
         </div>
 
-        <div class="col-1">
+        <div class="col-md-1">
           <input type="submit" class = "btn btn--blue-bg" value = "CREATE">
         </div>
 
@@ -45,18 +45,36 @@
 </section>
 
 <section class="section">
-  <div class="container text-center" style="width:50%;">
+  <div class="container">
+    <form action="/<%=user._id%>/enroll" method="post">
+      <div class="row text-center">
+        <div class="col-md-6 col-sm-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Course code</span>
+            <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B">
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-12">
+          <input type="submit" name="submit" class="btn btn--blue-bg" id="submit" value="ENROLL">
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container text-center">
     <div class="row">
       <% for (i = 0; i < classes.length; i++){%>
-        <div class="col">
+        <div class="col-6">
           <div class="card">
             <div class="card-body">
               <h4>Class code: <%=classes[i].classCode%></h4>
             </div>
           </div>
+          <br>
         </div>
-        <div class="w-100"></div>
-        <br>
       <% } %>
     </div>
   </div>

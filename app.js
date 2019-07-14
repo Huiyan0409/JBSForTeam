@@ -249,6 +249,11 @@ app.get('/about', function(req, res, next){
   res.render('about')
 })
 
+//about page
+app.get('/emptyError', function(req, res, next){
+  res.render('emptyError')
+})
+
 //FAQ page
 app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
