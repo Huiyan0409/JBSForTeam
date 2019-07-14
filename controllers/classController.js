@@ -34,7 +34,7 @@ exports.lookupClass = (req,res,next) => {
     }
     else {
       console.log("class not found");
-      res.redirect("/classNotFound")
+      // res.redirect("/classNotFound")
     }
   })
   .catch((error)=>{
@@ -64,6 +64,12 @@ exports.addClass = (req,res) => {
       res.send( error );
     } );
   }
+  else {
+    var message = "You have already enrolled in this class"
+    res.render("classNotFound", {
+      errorMessage: message
+    })
+  }
 }
 
 function containsString(list,elt){
@@ -73,7 +79,7 @@ function containsString(list,elt){
   // console.log(JSON.stringify(e)+ "=="+ JSON.stringify(elt))
     found=true}
     else {
-      // console.log(JSON.stringify(e)+ "!="+ JSON.stringify(elt))
+      console.log(JSON.stringify(e)+ "!="+ JSON.stringify(elt))
       console.log("Class not found!");
     }
   })
@@ -81,14 +87,12 @@ function containsString(list,elt){
 }
 
 exports.saveClass = ( req, res ) => {
-  if (req.body.subject.length==0){
-    console.log("subject is empty");
-    res.redirect('/emptyError')
-    return
-  } else if (req.body.courseNum.length==0){
-    console.log("course number is empty");
-    res.redirect('/emptyError')
-
+  const goBackURL = '/classes'
+  if (req.body.subject.length==0 || req.body.courseNum.length==0){
+    console.log("empty params detected in add class!");
+    res.render('emptyError', {
+      goBackURL: goBackURL
+    })
     return
   }
   var classCode = req.body.subject.concat(req.body.courseNum)

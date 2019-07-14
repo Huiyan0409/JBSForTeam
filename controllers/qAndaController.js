@@ -3,8 +3,14 @@ const Question = require( '../models/Question' );
 const Answer = require( '../models/Answer' );
 
 exports.saveQuestionPost = ( req, res ) => {
-  //console.log("in saveSkill!")
-  //console.dir(req)
+  const goBackURL = '/postQuestion/' + req.params.classCode
+  if (req.body.question.length==0 || req.body.description.length==0){
+    console.log("empty params detected in post question");
+    res.render('emptyError', {
+      goBackURL: goBackURL
+    })
+    return
+  }
   const classCode = req.params.classCode
   console.log("classcodecode is " + classCode);
   if (!res.locals.loggedIn) {
@@ -91,6 +97,14 @@ exports.showPreviousQ = (req, res ) => {
 
 //edit question function
 exports.editQuestion = ( req, res ) => {
+  const goBackURL = '/postQuestion/' + req.params.classCode
+  if (req.body.question.length==0 || req.body.description.length==0){
+    console.log("empty params detected in post question");
+    res.render('emptyError', {
+      goBackURL: goBackURL
+    })
+    return
+  }
   const classCode = req.params.classCode
   const id = req.params.id
   Question.findOne({_id:id})
@@ -110,6 +124,16 @@ exports.editQuestion = ( req, res ) => {
 };
 
 exports.saveAnswer = (req,res) => {
+
+  const goBackURL = '/showQuestion/' + req.params.classCode + '/' + req.params.id
+  if (req.body.answer.length==0){
+    console.log("empty params detected in save answer");
+    res.render('emptyError', {
+      goBackURL: goBackURL
+    })
+    return
+  }
+
   const questionId = req.params.id
   const classCode = req.params.classCode
   console.log("questionId is: " + questionId);
@@ -143,7 +167,7 @@ exports.likesAdded = ( req, res ) => {
   .exec()
   .then( ( answer ) => {
     if (answer.agreeList.includes(userId)){
-      answer.save()
+      return;
     } else{
       answer.agreeList.push(userId)
       answer.likes = answer.likes + 1
