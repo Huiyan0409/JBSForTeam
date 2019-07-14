@@ -467,8 +467,8 @@ h6{
 }
 .header--sticky .header__menu ul li.header__btn--login > a:hover{
   background-color:#fff;
-  border:1px #82c064 solid;
-  color:#82c064;
+  border:1px #ff8d12 solid;
+  color:#ff8d12;
 }
 .header__menu ul li  a:hover, .header__menu ul li a.selected , .header__menu ul li a.active{
   color: #272b26;
@@ -931,11 +931,11 @@ h6{
   background-position:92% 50%;
 }
 .btn--blue-border{
-  color:#82c064;
-  border:1px #82c064 solid;
+  color:#ff8d12;
+  border:1px #ff8d12 solid;
 }
 .btn--blue-border:hover{
-  background-color:#82c064;
+  background-color:#ff8d12;
   color:#fff;
 }
 .btn--green-bg{
@@ -1447,7 +1447,7 @@ svg.svg-intro-bottom {
   padding:50px 0 70px 0;
   border-radius: 15px;
   -webkit-border-radius: 15px;
-  background-color: #82c064;
+  background-color: #ff8d12;
   background: -webkit-linear-gradient(60deg, #64b13d, #088957);
   background: linear-gradient(60deg, #64b13d, #088957);
   color:#fff;
@@ -1626,13 +1626,13 @@ svg.svg-intro-bottom {
   -moz-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
   background:none;
-  color:#82c064;
-  border:2px #82c064 solid;
+  color:#ff8d12;
+  border:2px #ff8d12 solid;
 }
 .pricing__signup:hover{
   color:#fff;
-  background-color:#82c064;
-  border:2px #82c064 solid;
+  background-color:#ff8d12;
+  border:2px #ff8d12 solid;
 }
 .pricing__plan--popular .pricing__signup{
   color:#fff;
@@ -1752,7 +1752,7 @@ svg.svg-intro-bottom {
 /*  7.10 CUSTOM SECTION - CONTACT	 			 */
 /*===============================================*/
 .grid--contact{
-  background-color:#82c064;
+  background-color:#ff8d12;
   color:#fff;
   display: flex;
 }
@@ -2160,7 +2160,7 @@ select.select__field{
 }
 .modal__header{
   width:96%;
-  background-color:#82c064;
+  background-color:#ff8d12;
   color:#fff;
   font-size:20px;
   font-weight:300;
@@ -2293,7 +2293,7 @@ select.select__field{
 }
 .modal__switch--login:hover{
   background-color:#fff;
-  color:#82c064;
+  color:#ff8d12;
   border: 2px #fff solid;
 }
 .modal__form{
@@ -2333,7 +2333,7 @@ select.select__field{
   border:none;
   background-color:#f7f8f9;
 }
-.modal__checkbox input[type="checkbox"]:checked + label:before {color: #fff;content: "\2713";border:none;	text-align: center;background-color:#82c064; }
+.modal__checkbox input[type="checkbox"]:checked + label:before {color: #fff;content: "\2713";border:none;	text-align: center;background-color:#ff8d12; }
 .modal__checkbox input[type="checkbox"]:checked + label:after {font-weight: bold;}
 .modal__checkbox input[type="checkbox"] + label:before, input[type="checkbox"]:checked + label:before{background-color:#f7f8f9;}
 
@@ -2506,7 +2506,7 @@ ul.grid__list--fmenu li a::after {
   display: block;
   width: 0;
   height: 1px;
-  background: #82c064;
+  background: #ff8d12;
   transition: width .3s;
 }
 
@@ -2514,7 +2514,7 @@ ul.grid__list--fmenu li a:hover::after {
   width: 100%;
 }
 ul.grid__list--fmenu li a:hover {
-  color: #82c064;
+  color: #ff8d12;
 }
 /*===============================================*/
 /* 9. MEDIA QUERIES   			 */

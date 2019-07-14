@@ -2,10 +2,9 @@
 
 <header class="header">
   <div class="header__content header__content--fluid-width">
-    <a class="header__logo-title header-link" href="#home">Claster</a>
+    <a class="header__logo-title" href="#home">Claster</a>
     <nav class="header__menu">
       <ul>
-
         <li>
           <a class="header-link" href="#home">HOME</a>
         </li>
@@ -40,9 +39,9 @@
 
         <li class="header__btn header__btn--login">
           <% if (!loggedIn) {%>
-          <a class="nav-link d-flex ml-5" id="btnBorder" href="/auth/google">Login with Google</a>
+          <a class="nav-link" href="/auth/google">Login with Google</a>
           <%} else {%>
-          <a class="nav-link d-flex ml-5" id="btnBorder" href="/logout">Logout</a>
+          <a class="nav-link" href="/logout">Logout</a>
           <% } %>
         </li>
 
