@@ -1,33 +1,37 @@
 <%- include('header') -%>
 <%- include('navbar') -%>
 
-<div class="jumbotron masthead text-center" id="north">
-  <h1>Questions</h1>
-  <br>
-  <a class="btn btn-primary" href="/postQuestion">
-    <span>Post A New Question</span>
-  </a>
-</div>
-<div class="container">
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+        Forum for class <%=req.params.classCode%>
+      </div>
+      <a class="btn btn--blue-bg" href="/postQuestion/<%=req.params.classCode%>">
+        <span>Post A New Question</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-  <div class="row">
-
-    <div class="col">
-      <% for (i = 0; i<questions.length; i++){  %>
-      <div class="card"  id="showQuestions">
-        <div class="card-body">
-            <a class = "lead" href="/showQuestion/<%=questions[i]._id%>"><%= questions[i].question %></a>
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <% for (i = 0; i<questions.length; i++){  %>
+        <div class="card">
+          <div class="card-body">
+            <a class = "lead" href="/showQuestion/<%=req.params.classCode%>/<%=questions[i]._id%>"><%= questions[i].question %></a>
             <br><br>
             <h6>By <%=questions[i].userName%></h6>
             <h6><%=questions[i].createdAt%></h6>
+          </div>
         </div>
+        <br>
+        <% } %>
       </div>
-      <br>
-      <% } %>
     </div>
-
   </div>
-
-</div>
+</section>
 
 <%- include('footer') -%>

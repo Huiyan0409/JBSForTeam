@@ -1,0 +1,84 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+        <h1>Classes</h1>
+        <h2>Add classes and view all available classes here</h2>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    Remember: space is not allowed
+
+    <form action="/createClass" method="post">
+      <div class="row text-center">
+        <div class="col-md-3 col-sm-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Subject</span>
+            <input type="text" class="form-control" name="subject" placeholder="Example: COSI">
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Course number</span>
+            <input type="text" class="form-control" name="courseNum" placeholder="Example: 12B">
+          </div>
+        </div>
+
+        <div class="col-md-1">
+          <input type="submit" class = "btn btn--blue-bg" value = "CREATE">
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form action="/<%=user._id%>/enroll" method="post">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Course code</span>
+            <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B">
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-12">
+          <input type="submit" name="submit" class="btn btn--blue-bg" id="submit" value="ENROLL">
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container text-center">
+    <div class="row">
+      <% for (i = 0; i < classes.length; i++){%>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <h4>Class code: <%=classes[i].classCode%></h4>
+            </div>
+          </div>
+          <br>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+
+  <%- include('footer'); -%>

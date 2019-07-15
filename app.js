@@ -21,6 +21,8 @@ var usersRouter = require('./routes/users');
 
 const profileController = require('./controllers/profileController');
 const qAndaController = require('./controllers/qAndaController');
+const classController = require('./controllers/classController');
+
 
 
 //*******************************************
@@ -108,9 +110,9 @@ app.use((req,res,next) => {
 
 // here are the login routes
 
-app.get('/login', function(req,res){
-  res.render('login',{})
-})
+// app.get('/login', function(req,res){
+//   res.render('login',{})
+// })
 
 app.get('/loginerror', function(req,res){
   res.render('loginerror',{})
@@ -121,7 +123,7 @@ app.get('/logout', function(req, res) {
   req.session.destroy((error)=>{console.log("Error in destroying session: "+error)});
   console.log("session has been destroyed")
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 //the indexRouter handles passing req to the page
@@ -156,7 +158,7 @@ function isLoggedIn(req, res, next) {
     return next();
   } else {
     console.log("user has not been authenticated...")
-    res.redirect('/');
+    return next();
   }
 }
 
@@ -170,8 +172,23 @@ app.get('/', function(req, res, next){
   })
 })
 
+app.post('/:userId/enroll', isLoggedIn, classController.lookupClass, classController.addClass);
+
 // =====================================
-// Profile =======================
+// Class =============================
+// =====================================
+
+app.get('/classNotFound', isLoggedIn, function(req, res, next){
+  res.render('classNotFound')
+})
+
+//create new classes
+app.get('/classes', isLoggedIn, classController.getAllClasses)
+
+app.post('/createClass', isLoggedIn, classController.checkUnique, classController.saveClass);
+
+// =====================================
+// Profile =============================
 // =====================================
 
 //show all profiles from all users
@@ -193,6 +210,17 @@ app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 
+// =====================================
+// Location ============================
+// =====================================
+
+
+//find tutor page(temp)
+app.get('/location', function(req, res, next){
+  res.render('location')
+})
+
+
 
 // =====================================
 // Forum ===============================
@@ -200,44 +228,50 @@ app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 
 //post question page
-app.get('/postQuestion', function(req, res, next){
-  res.render('postQuestion')
+app.get('/postQuestion/:classCode', function(req, res, next){
+  res.render('postQuestion', {
+    req: req
+  })
 })
 
-//app.post('/forumDelete', isLoggedIn, qAndaController.deleteQuestion)
+app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions)
 
-app.get('/showQuestions', isLoggedIn, qAndaController.getAllQuestions)
+app.post('/processQuestionPost/:classCode', isLoggedIn, qAndaController.saveQuestionPost)
 
-app.post('/processQuestionPost', isLoggedIn, qAndaController.saveQuestionPost)
-
-app.get('/showQuestion/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
-
-// //to edit an existing question
-// app.get('/showQuestion/:id/editQuestion',isLoggedIn, (req,res)=>{
-//   res.render('editQuestion' ,{
-//     req: req
-//   })
-// })
+app.get('/showQuestion/:classCode/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
 //to edit an existing question
-app.get('/showQuestion/:id/editQuestion',isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
+app.get('/showQuestion/:classCode/:id/editQuestion',isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
 
-app.post('/showQuestion/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
+app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
 
 //to save a new answer post
-app.post('/showQuestion/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
+app.post('/showQuestion/:classCode/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 //to delete an existing answers
 app.post('/showQuestion/:id/answerDelete',qAndaController.deleteAnswer)
+
+//add thumbs up to answers
+app.post('/showQuestion/:id/answerLikes',qAndaController.likesAdded)
 
 //about page
 app.get('/about', function(req, res, next){
   res.render('about')
 })
 
+//about page
+app.get('/emptyError', function(req, res, next){
+  res.render('emptyError')
+})
+
 //FAQ page
 app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
+})
+
+//find tutor page(temp)
+app.get('/findTutor', function(req, res, next){
+  res.render('findTutor')
 })
 
 // catch 404 and forward to error handler

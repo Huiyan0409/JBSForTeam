@@ -43,6 +43,14 @@ exports.showOldProfile = ( req, res ) => {
 
 //update personal profile
 exports.updateProfile = ( req, res ) => {
+  const goBackURL = '/editMyProfile/' + req.params.id
+  if (req.body.userName.length==0 || req.body.zipcode.length==0 || req.body.status.length==0){
+    console.log("empty params detected in profile");
+    res.render('emptyError', {
+      goBackURL: goBackURL
+    })
+    return
+  }
   const id = req.params.id
   User.findOne({_id: id})
   .exec()
@@ -67,10 +75,6 @@ exports.updateProfile = ( req, res ) => {
     })
   })
 
-
-  // .then(() => {
-  //   res.redirect('/myProfile')
-  // })
   // handle error
   .catch(function (error) {
     console.log("update failed!")
@@ -96,7 +100,6 @@ exports.updateProfile = ( req, res ) => {
 //     console.log("update failed!")
 //     console.log(error);
 //   })
-
 //};
 
 exports.upload = ( req, res ) => {

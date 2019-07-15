@@ -2,102 +2,109 @@
 <%- include('navbar'); -%>
 
 
-<div class="jumbotron masthead text-center parallax">
-  <div class="card mx-auto" id="cardStyle">
-    <div class="card-body">
-      <h1><%=user.userName%>'s profile</h1>
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+  <!-- <div class="jumbotron masthead diagonal-gradient text-center parallax"> -->
+    <!-- <div class="card mx-auto" id="cardStyle">
+      <div class="card-body"> -->
+
+          <h1><%=user.userName%>'s profile</h1>
+        </div>
+      </div>
     </div>
-  </div>
+      <!-- </div> -->
+    <!-- </div>
+  </div> -->
+</section>
 
-</div>
+<section class="section">
+  <div class="container">
 
-<!-- edit profile page -->
-<div class="container">
+    <!-- form: upload image -->
+    <form class='md-form' action='/upload/<%=user._id%>' method='post' encType="multipart/form-data">
+      <div class="row">
+        <div class="col-6">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Profile image</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="sampleFile">
+              <label class="custom-file-label"><%=user.profilePicName%></label>
+            </div>
+          </div>
+        </div>
 
-  <!-- form: upload image -->
-  <form class='md-form' action='/upload/<%=user._id%>' method='post' encType="multipart/form-data">
-    <div class="row">
-      <div class="col-6">
-        <div class="input-group">
+        <div class="col-sm-1">
+          <input type='submit' class="btn btn-warning" value='Upload'>
+        </div>
+
+        <div class="w-100"></div>
+        <br>
+
+        <div class="col-sm-6">
+          <img src="<%=user.profilePicURL%>" width="100%" alt="my profile image">
+        </div>
+      </div>
+    </form>
+
+    <br>
+
+
+    <!-- form: update personal info -->
+
+    <form action="/updateProfile/<%=user._id%>" method="post">
+      <div class="row">
+        <div class="col-sm-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">Profile image</span>
-          </div>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" name="sampleFile">
-            <label class="custom-file-label"><%=user.profilePicName%></label>
+            <span class="input-group-text">Username</span>
+            <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
           </div>
         </div>
-      </div>
 
-      <div class="col-sm-1">
-        <input type='submit' class="btn btn-warning" value='Upload'>
-      </div>
+        <!-- line break -->
+        <div class="w-100"></div>
+        <br>
 
-      <div class="w-100"></div>
-      <br>
-
-      <div class="col-sm-6">
-        <img src="<%=user.profilePicURL%>" width="100%" alt="my profile image">
-      </div>
-    </div>
-  </form>
-
-  <br>
-
-
-  <!-- form: update personal info -->
-
-  <form action="/updateProfile/<%=user._id%>" method="post">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Username</span>
-          <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
+        <!-- zipcode -->
+        <div class="col-sm-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Zipcode</span>
+            <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
+          </div>
         </div>
-      </div>
 
-      <!-- line break -->
-      <div class="w-100"></div>
-      <br>
+        <!-- line break -->
+        <div class="w-100"></div>
+        <br>
 
-      <!-- zipcode -->
-      <div class="col-sm-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Zipcode</span>
-          <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
+        <div class="col-sm-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Status</span>
+            <select class="form-control" name ="status" value="<%=user.status%>">
+              <option disabled value="Choose a role">Role</option>
+              <option value="tutor">Tutor</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
         </div>
-      </div>
 
-      <!-- line break -->
-      <div class="w-100"></div>
-      <br>
+        <div class="col-sm-3"></div>
 
-      <div class="col-sm-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Status</span>
-          <select class="form-control" name ="status" value="<%=user.status%>">
-            <option disabled value="Choose a role">Role</option>
-            <option value="tutor">Tutor</option>
-            <option value="student">Student</option>
-          </select>
+        <div class="col-sm-1">
+          <input type="submit" class = "btn btn--blue-bg" value = "Save">
         </div>
+
+        <div class="w-100"></div>
+        <br>
       </div>
+    </form>
 
-      <div class="col-sm-3"></div>
+  </div>
+</section>
+<!-- edit profile page -->
 
-      <div class="col-sm-1">
-        <input type="submit" class = "btn btn-primary" value = "Save">
-      </div>
-
-      <div class="w-100"></div>
-      <br>
-
-
-
-    </div>
-  </form>
-
-
-</div>
 
 <%- include('footer'); -%>

@@ -1,30 +1,277 @@
 <%- include('header'); -%>
-<%- include('navbar'); -%>
 
-<div class="jumbotron masthead text-center parallax" id="superView">
-  <div class="card mx-auto" id="cardStyle">
-    <div class="card-body">
-      <% if (loggedIn) {%>
-      <h4 class="card-title">Hello, <%=req.user.userName%></h4>
-      <h1 class="card-text">Welcome to <b>Claster!</b></h1>
-      <br>
-      <a href="/showQuestions"><input class="btn btn-outline-light" type="button" value="Go to Forum"></a>
-      <br><br>
-      <a href="/"><input class="btn btn-outline-light" type="button" value="Find a Tutor"></a>
-      <% } else {%>
-      <h4 class="card-text">PLEASE LOG IN!</h4>
-      <% } %>
+<header class="header">
+  <div class="header__content header__content--fluid-width">
+    <a class="header__logo-title" href="#home">Claster</a>
+    <nav class="header__menu">
+      <ul>
+        <li>
+          <a class="header-link" href="#home">HOME</a>
+        </li>
+
+        <li>
+          <a class="header-link" href="#forum">FORUM</a>
+        </li>
+
+        <li>
+          <% if (loggedIn) {%>
+            <a class="header-link" href="/classes">ADD CLASS</a>
+          <% } %>
+        </li>
+
+        <li>
+          <a class="header-link" href="#tutor">FIND TUTOR</a>
+        </li>
+
+        <li>
+          <a class="header-link" href="#profile">PROFILE</a>
+        </li>
+
+        <li>
+          <% if (loggedIn) {%>
+            <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+          <% } %>
+        </li>
+
+        <li class="header__btn header__btn--login">
+          <% if (!loggedIn) {%>
+          <a class="nav-link" href="/auth/google">Login with Google</a>
+          <%} else {%>
+          <a class="nav-link" href="/logout">Logout</a>
+          <% } %>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Section intro -->
+<section class="section section--intro" id="home">
+  <div class="section__content section__content--fluid-width section__content--intro">
+    <div class="intro">
+      <div class="intro__content">
+        <% if (loggedIn) {%>
+          <div class="intro__subtitle"><%=user.userName%></div>
+        <% } %>
+        <div class="intro__subtitle">Welcome to Claster</div>
+        <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help all in one place</div>
+        <div class="intro__form form-demo">
+          <% if (loggedIn) {%>
+            <form action="/<%=user._id%>/enroll" method="post">
+              <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
+              <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
+            </form>
+          <% } else { %>
+            <input disabled type="text" class="form-demo__input" name="classCode" placeholder="Please login to enroll" />
+          <% } %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Footer -->
-<footer class="page-footer font-small blue fixed-bottom">
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2019 Made by SuperTeam from <a href="http://www.brandeis.edu">Brandeis University</a>
+  <div class="intro-animation">
+    <img src="./images/homepage.png" width="90%" alt="" title=""/>
   </div>
-  <!-- Copyright -->
 
+  <!-- background image on the intro part -->
+  <svg class="svg-intro-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="linear" x1="0" y1="0%" x2="100%" y2="50%" spreadMethod="pad">
+        <stop offset="0%" stop-color="#ff7aca"/>
+        <stop offset="100%" stop-color="#0a52c7"/>
+      </linearGradient>
+    </defs>
+    <path d="M30,0 L56,80 Q57.5,84.4 60,82 L100,40 100,0 Z" fill="url(#linear)" fill-opacity="1"/>
+  </svg>
+
+</section>
+
+<!-- Section features -->
+<section class="section section--features">
+  <br><br><br>
+  <div class="section__content section__content--fluid-width">
+    <div class="grid grid--3col">
+
+      <div class="grid__item">
+        <h3 class="grid__title"><span>DISCUSS</span></h3>
+        <p class="grid__text">Communicate with your peers using our smooth, clean, and effective platform to get response quickly without redundant email notifications and duplicate questions. More fluent communication than forum, more organized than messaging apps. </p>
+      </div>
+
+      <div class="grid__item">
+        <h3 class="grid__title"><span>MEET</span></h3>
+        <p class="grid__text">Work better in person? Check out our location sharing function to see who else from your class is near by and ready to study! You can form a study group meeting by deciding a location to meet and share the meeting with the entire class. </p>
+      </div>
+      <div class="grid__item">
+        <h3 class="grid__title"><span>TUTOR</span></h3>
+        <p class="grid__text">Get matched with a tutor today to get some extra academic help! Our tutor are verified college students who have taken your class and familiar with the specific topic you are confused about. Or Become a tutor today! </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section -->
+<section class="section section--partners diagonal-gradient" id="forum">
+
+  <div class="section__content section__content--full-width section__content--padding">
+    <h2 class="section__title section__title--centered" id="whiteFont">Forum</h2>
+    <div class="partners">
+      <div class="partners__content swiper-wrapper">
+        <div class="partners__slide swiper-slide">
+          <% if (loggedIn) {%>
+            <% for (i = 0; i < user.classCodes.length; i++){%>
+              <div class="partners__text">
+                <br>
+                <a href="/showQuestions/<%=user.classCodes[i]%>"><input class="btn btn--blue-bg" type="button" value="Go to Forum for <%=user.classCodes[i]%>"></a>
+              </div>
+            <% } %>
+          <% } else { %>
+            <div class="partners__text">
+              Please login to view the forum
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="partners__pagination swiper-pagination"></div>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+
+
+<!-- Section -->
+<section class="section section--support" id="tutor">
+  <div class="section__content section__content-fixed-width section__content--support">
+    <div class="grid grid--3col grid--support">
+      <div class="grid__item grid__item--padding">
+        <h3 class="grid__title">Ready to get started?</h3>
+        <p class="grid__text">Find a peer tutor that meets your need!</p>
+      </div>
+      <% if (loggedIn) {%>
+        <div class="grid__item grid__item--padding grid__item--centering">
+          <a href="#" class="btn btn--blue-bg">Find a tutor</a>
+        </div>
+      <% } else {%>
+        <div class="grid__item grid__item--padding grid__item--centering">
+          Please login to find tutors at your school
+        </div>
+      <% } %>
+
+      <% if (loggedIn) {%>
+        <div class="grid__item grid__item--padding grid__item--centering">
+          <a href="#" class="btn btn--blue-bg">See tutor ranking</a>
+        </div>
+      <% } else {%>
+        <div class="grid__item grid__item--padding grid__item--centering">
+          Please login to see tutor ranking
+        </div>
+      <% } %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+
+<section class="section section--partners diagonal-gradient" id="profile">
+
+  <div class="section__content section__content--full-width section__content--padding">
+    <h2 class="section__title section__title--centered" id="whiteFont">Profile</h2>
+    <div class="partners">
+      <div class="partners__content swiper-wrapper">
+        <div class="partners__slide swiper-slide">
+          <% if (loggedIn) {%>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Username</span>
+                    <input disabled type="text" class="form-control" value="<%=user.userName%>">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                    <input disabled type="text" class="form-control" value="<%=user.googleemail%>">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Status</span>
+                    <input disabled type="text" class="form-control" value="<%=user.status%>">
+                  </div>
+                </div>
+
+                <div class="w-100">
+                  <hr>
+                </div>
+
+                <% if (loggedIn){
+                  for (i = 0; i < user.classCodes.length; i++){ %>
+                    <div class="w-100"></div>
+                    <br>
+                    <div class="col-sm-4">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Class</span>
+                        <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
+                      </div>
+                    </div>
+                <% }
+                } %>
+              </div>
+            </div>
+            <div class="partners__text">
+              <a href="/editMyProfile/<%=user._id%>"><input class="btn btn--blue-bg" type="button" value="Edit my profile"></a>
+            </div>
+          <% } else {%>
+            Please log in to view and edit your profile
+          <% } %>
+        </div>
+      </div>
+
+      <div class="partners__pagination swiper-pagination"></div>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+</section>
+
+<footer class="footer" id="footer">
+  <div class="footer__content footer__content--fluid-width footer__content--svg">
+
+    <div class="grid grid--5col">
+
+      <div class="grid__item grid__item--x2">
+        <h3 class="grid__title grid__title--footer-logo">Claster</h3>
+        <p class="grid__text grid__text--copyright">Copyright &copy; 2019 Brandeis SuperTeam.  <br />All Rights Reserved.</p>
+      </div>
+      <div class="grid__item">
+        <h3 class="grid__title grid__title--footer">Development Team</h3>
+        <ul class="grid__list grid__list--fmenu">
+          <li><a href="/about">About</a></li>
+          <li><a href="#">Locations</a></li>
+        </ul>
+      </div>
+
+      <div class="grid__item">
+        <h3 class="grid__title grid__title--footer">Support</h3>
+        <ul class="grid__list grid__list--fmenu">
+          <li><a href="#">Contact</a></li>
+          <li><a href="/FAQ">FAQ</a></li>
+
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
 </footer>
-<!-- Footer -->
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/jquery.paroller.min.js"></script>
+<script src="/js/jquery.custom.js"></script>
+<script src="/js/swiper.min.js"></script>
+<script src="/js/swiper.custom.js"></script>
+<script src="/js/menu.js"></script>

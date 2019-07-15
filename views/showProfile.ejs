@@ -1,10 +1,17 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center parallax">
+      <div class="section__title section__title--centered" id="whiteFont">
+        <br>
+        <h1><%= profile.userName %>'s Profile</h1>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="jumbotron masthead text-center parallax">
-  <h1><i><%= profile.userName %>'s</i> Profile</h1>
-  <br>
-</div>
+<section class="section">
 
 <div class="container">
 
@@ -27,7 +34,7 @@
     <div class="col-sm-4">
       <div class="input-group-prepend">
         <span class="input-group-text">Status</span>
-        <input disabled type="text" class="form-control" value="<%=user.status%>">
+        <input disabled type="text" class="form-control" value="<%=profile.status%>">
       </div>
     </div>
 
@@ -45,4 +52,7 @@
   </div>
 
 </div>
+
+</section>
+
 <%- include('footer'); -%>

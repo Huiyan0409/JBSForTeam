@@ -1,19 +1,23 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-  <div class="jumbotron masthead text-center" id="north">
-    <div class="card mx-auto" id="cardStyle">
-      <div class="card-body">
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
         <h1>Edit Your Question Here!</h1>
       </div>
     </div>
   </div>
+</section>
+
+<section class="section">
   <div class="container">
     <div class="row">
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <form method="post" action="/showQuestion/<%=req.params.id%>/editQuestion/processQuestionPost">
+            <form method="post" action="/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/editQuestion/processQuestionPost">
               <div class="form-group">
                 <h5 class="card-header">Title</h5>
                 <input type="text" class="form-control" id="question" name="question" value="<%=question.question%>"><br>
@@ -22,7 +26,7 @@
                 <h5 class="card-header">Description</h5>
                 <textarea class="form-control" name ="description" rows="6"><%=question.description%></textarea>
               </div>
-              <input class="btn btn-primary" type="submit">
+              <input class="btn btn--blue-bg" type="submit">
             </form>
           </div>
 
@@ -30,6 +34,6 @@
       </div>
     </div>
   </div>
-
+</section>
 
 <%- include('footer'); -%>

@@ -1,78 +1,87 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-<div class="jumbotron masthead text-center parallax">
-  <h1><i><%= user.userName %>'s</i> Profile</h1>
-  <br>
-</div>
-
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-sm-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Username</span>
-        <input disabled type="text" class="form-control" value="<%=user.userName%>">
-      </div>
-    </div>
-
-    <div class="col-sm-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Email</span>
-        <input disabled type="text" class="form-control" value="<%=user.googleemail%>">
-      </div>
-    </div>
-
-    <div class="col-sm-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Status</span>
-        <input disabled type="text" class="form-control" value="<%=user.status%>">
-      </div>
-    </div>
-
-    <div class="w-100"></div>
-
-    <br>
-
-    <div class="col">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Zipcode</span>
-        <input disabled type="text" class="form-control" value="<%=user.zipcode%>">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group-prepend">
-        <span class="input-group-text">City</span>
-        <input disabled type="text" class="form-control" value="<%=user.city%>">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group-prepend">
-        <span class="input-group-text">State</span>
-        <input disabled type="text" class="form-control" value="<%=user.state%>">
-      </div>
-    </div>
-    <div class="w-100"></div>
-    <br>
-
-
-    <div class="col-sm-4">
-      <span class="input-group-text">Profile image</span>
-      <br>
-      <img src="<%=user.profilePicURL%>" width="100%" alt="">
-    </div>
-
-    <div class="col-sm-8">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Last updated on</span>
-        <input disabled type="text" class="form-control" value="<%=user.lastUpdate%>">
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+        <h1><i><%= user.userName %>'s</i> Profile</h1>
+        <br>
       </div>
     </div>
   </div>
+</section>
 
-  <br>
-  <a href="/editMyProfile/<%=user._id%>"><input type="button" id='editBtn' value="Edit" class = "btn btn-outline-primary"></input></a>
-</div>
+<section class="section">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Username</span>
+          <input disabled type="text" class="form-control" value="<%=user.userName%>">
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+          <input disabled type="text" class="form-control" value="<%=user.googleemail%>">
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Status</span>
+          <input disabled type="text" class="form-control" value="<%=user.status%>">
+        </div>
+      </div>
+
+      <div class="w-100"></div>
+
+      <br>
+
+      <div class="col">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Zipcode</span>
+          <input disabled type="text" class="form-control" value="<%=user.zipcode%>">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="input-group-prepend">
+          <span class="input-group-text">City</span>
+          <input disabled type="text" class="form-control" value="<%=user.city%>">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="input-group-prepend">
+          <span class="input-group-text">State</span>
+          <input disabled type="text" class="form-control" value="<%=user.state%>">
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <br>
+
+      <div class="col-sm-4">
+        <span class="input-group-text">Profile image</span>
+        <br>
+        <img src="<%=user.profilePicURL%>" width="100%" alt="">
+      </div>
+
+      <div class="col-sm-8">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Last updated on</span>
+          <input disabled type="text" class="form-control" value="<%=user.lastUpdate%>">
+        </div>
+      </div>
+
+    </div>
+    <br>
+    <a href="/editMyProfile/<%=user._id%>"><input type="button" id='editBtn' value="Edit" class = "btn btn-outline-primary"></input></a>
+  </div>
+</section>
 
 <%- include('footer'); -%>
