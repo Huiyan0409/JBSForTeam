@@ -6,7 +6,9 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 var tutorSchema = Schema( {
   userId: ObjectId,
   userName: String,
+  introduction: String,
   classCode: String,
+  createdAt: Date,
   professor: String,
   score: Number,
   comments: [String],
