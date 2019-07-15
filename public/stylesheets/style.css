@@ -1,23 +1,15 @@
-body {
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
-  font-family: 'Source Sans Pro', sans-serif;
-
-}
+/*===============================================*/
+/* Customized CSS--BOOTSTRAP		 						 */
+/*===============================================*/
 
 .container{
   margin-top: -32px;
   padding-top: 30px;
   padding-bottom: 40px;
   background-color: white;
-  /* border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black; */
 }
 
-#center{
-  float: center;
-}
-
+/* input span and input area style */
 .input-group-text{
   background-color: white;
 }
@@ -26,12 +18,14 @@ body {
   background-color: white;
 }
 
+/* about page card style */
 #cardStyle{
   background-color: #0D3573;
   width: 50%;
   opacity: 0.93;
 }
 
+/* profile pic style */
 #profilePic{
   object-fit: cover;
   object-position: center;
@@ -39,110 +33,13 @@ body {
   height: 40px;
 }
 
-/* welcome tags and titles */
-#welcome{
-  padding-left: 9%;
-}
-
-#rightNav{
-  padding-left: 9%;
-}
-
 #whiteFont{
   color: white;
-}
-
-/* forum question description */
-#description{
-  padding-left: 2%;
-}
-
-/* fix btn margin problem */
-#loginBtn{
-  margin-left: 9%;
-}
-
-#height{
-  height: 32%;
-}
-
-#topPadding{
-  padding-top: 25%;
-}
-
-/* show full-page view */
-#superView{
-  margin-left: 0;
-  margin-right: 0;
-  position: absolute;
-  height: 96%;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-}
-
-#showQuestions{
-  background-color: #F5F4F0;
-}
-
-/* navbar position and settings */
-.navbar{
-  border-bottom: 2px solid white;
-  font-size: 18px;
-  font-style: white;
-  background-color: #0D3573;
 }
 
 /* change color of nav links */
 .nav-link{
   color: white;
-}
-
-#customize{
-  background-color: #0D3573;
-}
-
-#FAQ{
-  color: grey;
-}
-
-#FAQ a:hover{
-  color: white;
-  background-color: blue;
-}
-
-/* @media (min-width: 1200px) {
-.container{
-max-width: 1500px;
-} */
-
-li.nav-item a:hover{
-  color: white;
-  border-bottom: 1px solid white;
-}
-
-.navbar-brand{
-  font-size: 28px;
-  color: white;
-}
-
-a.navbar-brand:hover{
-  color: white;
-}
-
-.navbar-toggler{
-  color: white;
-}
-
-.page-footer{
-  color: white;
-  font-size: 16px;
-  font-style: white;
-  background-color: #0D3573;
-}
-
-.profile-image{
-  border: 2px solid white;
 }
 
 .jumbotron.masthead {
@@ -223,7 +120,8 @@ body{
   margin:0 auto;
   color:#1d1d1d;
   background-color:#fff;
-  /* font-weight:300; */
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight:330;
 }
 .clear{
   clear:both;

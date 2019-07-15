@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col">
         <% for (i = 0; i<questions.length; i++){  %>
-        <div class="card"  id="showQuestions">
+        <div class="card">
           <div class="card-body">
             <a class = "lead" href="/showQuestion/<%=req.params.classCode%>/<%=questions[i]._id%>"><%= questions[i].question %></a>
             <br><br>
