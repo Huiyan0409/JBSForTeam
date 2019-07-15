@@ -146,7 +146,7 @@ exports.saveAnswer = (req,res) => {
     createdAt: new Date(),
     profilePicURL: req.user.profilePicURL,
     likes: 0,
-    agreeList: [req.user._id],
+    agreeList: [],
     classCode: classCode
   })
 
@@ -167,8 +167,11 @@ exports.likesAdded = ( req, res ) => {
   .exec()
   .then( ( answer ) => {
     if (answer.agreeList.includes(userId)){
-      return;
-    } else{
+      answer.agreeList.pull(userId)
+      answer.likes = answer.likes - 1
+      answer.save()
+    }
+     else{
       answer.agreeList.push(userId)
       answer.likes = answer.likes + 1
       answer.save()
