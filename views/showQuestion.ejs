@@ -30,7 +30,7 @@
         <h5><b>Description: </b></h5>
         <hr>
         <!-- Post Content -->
-        <p class="lead" id ="description"><%= question.description%></p>
+        <p class="lead"><%= question.description%></p>
         <hr>
 
         <h5><b>Comments: </b></h5>
@@ -58,7 +58,11 @@
                         <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
                           <input type="hidden" name="likes" value="<%=answers[i]._id%>">
                           <input type="hidden" name="user" value="<%=user._id%>">
-                          <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
+                          <% if (!answers[i].userId.equals(user._id)) { %>
+                            <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
+                          <% } else { %>
+                            <button disabled class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
+                          <% } %>
                         </form>
                       </div>
                     </div>
@@ -87,7 +91,7 @@
               <% if (loggedIn) {%>
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
                 <br><br>
-                Hint: Include your <a href="http://tug.ctan.org/info/short-math-guide/short-math-guide.pdf">LaTeX</a> or code between two $.
+                <b>Hint: Include your <a href="http://tug.ctan.org/info/short-math-guide/short-math-guide.pdf">LaTeX</a> or code between two $.</b>
                 <pre>e.g. $ your_LaTeX_here $</pre>
 
               <% } else { %>
