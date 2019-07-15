@@ -210,6 +210,16 @@ app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 
+// =====================================
+// Location ============================
+// =====================================
+
+
+//find tutor page(temp)
+app.get('/location', function(req, res, next){
+  res.render('location')
+})
+
 
 
 // =====================================

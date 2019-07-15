@@ -2,6 +2,10 @@
 /* Customized CSS--BOOTSTRAP		 						 */
 /*===============================================*/
 
+#map {
+height: 90%;
+}
+
 .container{
   margin-top: -32px;
   padding-top: 30px;
