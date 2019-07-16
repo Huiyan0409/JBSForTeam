@@ -22,7 +22,7 @@ var usersRouter = require('./routes/users');
 const profileController = require('./controllers/profileController');
 const qAndaController = require('./controllers/qAndaController');
 const classController = require('./controllers/classController');
-
+const tutorController = require('./controllers/tutorController');
 
 
 //*******************************************
@@ -35,10 +35,15 @@ const passport = require('passport')
 const configPassport = require('./config/passport')
 configPassport(passport)
 
+// Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
+const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
+// const MONGODB_URI = 'mongodb://localhost/personalApp';
 const mongoose = require( 'mongoose' );
-//fix current URL string parser is deprecated
-mongoose.connect( 'mongodb://localhost/claster', {useNewUrlParser: true });
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -209,6 +214,13 @@ app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 //show personal profile
 app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
+//tutor profile related
+// we require them to be logged in to edit their profile
+app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfile)
+
+//update personal profile
+app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
+
 
 // =====================================
 // Location ============================
@@ -269,10 +281,8 @@ app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
 })
 
-//find tutor page(temp)
-app.get('/findTutor', function(req, res, next){
-  res.render('findTutor')
-})
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

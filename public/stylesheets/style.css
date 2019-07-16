@@ -3,14 +3,28 @@
 /*===============================================*/
 
 #map {
-height: 90%;
+  height: 90%;
 }
 
 .container{
+  max-width: 1300px;
   margin-top: -32px;
   padding-top: 30px;
   padding-bottom: 40px;
+  /* background-color: white; */
+}
+
+@media (min-width: 1200px) {
+  .container{
+    max-width: 1300px;
+  }
+}
+
+.card-header{
   background-color: white;
+
+
+
 }
 
 /* input span and input area style */
@@ -170,10 +184,10 @@ img.responsive_image{
 /* 2-1. HEADINGS             */
 /*---------------------------*/
 /* h1, h2, h3, h4, h5, h6{
-  font-weight:700;
-  letter-spacing:-0.5px;
-  padding:0 0 40px 0;
-  margin:0;
+font-weight:700;
+letter-spacing:-0.5px;
+padding:0 0 40px 0;
+margin:0;
 } */
 h1{
   font-size:40px;
@@ -3000,8 +3014,8 @@ ul.grid__list--fmenu li a:hover {
       padding:0 0 40px 0;
     }
     /* .btn{
-      padding:8px 15px;
-      margin:0 5px;
+    padding:8px 15px;
+    margin:0 5px;
     } */
     .btn--play{
       padding-right:40px;

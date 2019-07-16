@@ -10,7 +10,7 @@
     <!-- <div class="card mx-auto" id="cardStyle">
       <div class="card-body"> -->
 
-          <h1><%=user.userName%>'s profile</h1>
+          <h1><%=tutor.userName%>'s profile</h1>
         </div>
       </div>
     </div>
@@ -22,45 +22,14 @@
 <section class="section">
   <div class="container">
 
-    <!-- form: upload image -->
-    <form class='md-form' action='/upload/<%=user._id%>' method='post' encType="multipart/form-data">
-      <div class="row">
-        <div class="col-6">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Profile image</span>
-            </div>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" name="sampleFile">
-              <label class="custom-file-label"><%=user.profilePicName%></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-1">
-          <input type='submit' class="btn btn-warning" value='Upload'>
-        </div>
-
-        <div class="w-100"></div>
-        <br>
-
-        <div class="col-sm-6">
-          <img src="<%=user.profilePicURL%>" width="100%" height="100%" alt="my profile image">
-        </div>
-      </div>
-    </form>
-
-    <br>
-
-
     <!-- form: update personal info -->
 
-    <form action="/updateProfile/<%=user._id%>" method="post">
+    <form action="/updateTutorProfile/<%=user._id%>" method="post">
       <div class="row">
         <div class="col-sm-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">Username</span>
-            <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
+            <span class="input-group-text">Introduction</span>
+            <input type="text" class="form-control" name="introduction" value="<%=tutor.introduction%>">
           </div>
         </div>
 
@@ -69,15 +38,15 @@
         <br>
 
         <!-- zipcode -->
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Zipcode</span>
-            <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
-          </div>
-        </div>
+            <!-- <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>"> -->
+           <!-- </div>
+         </div>  -->
 
         <!-- line break -->
-        <div class="w-100"></div>
+        <!-- <div class="w-100"></div>
         <br>
 
         <div class="col-sm-3">
@@ -89,7 +58,7 @@
               <option value="student">Student</option>
             </select>
           </div>
-        </div>
+        </div>  -->
 
         <div class="col-sm-3"></div>
 

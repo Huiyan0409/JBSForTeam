@@ -142,34 +142,31 @@
 
 
 <!-- Section -->
-<section class="section section--support" id="tutor">
-  <div class="section__content section__content-fixed-width section__content--support">
-    <div class="grid grid--3col grid--support">
-      <div class="grid__item grid__item--padding">
-        <h3 class="grid__title">Ready to get started?</h3>
-        <p class="grid__text">Find a peer tutor that meets your need!</p>
+<section class="section" id="tutor">
+  <div class="section__content section__content--full-width section__content--padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-12 mx-auto">
+          <h1><b>Ready to get started?</b></h1>
+          <h2>Find a peer tutor that meets your need!</h2>
+        </div>
+        <div class="col-md-4 col-sm-12 mx-auto text-center align-self-center">
+          <% if (loggedIn) { %>
+            <a href="#" class="btn btn--blue-bg">Find a tutor</a>
+          <% } else { %>
+            Please login to find tutors at your school
+          <% } %>
+        </div>
+        <div class="col-md-4 col-sm-12 mx-auto text-center align-self-center">
+          <% if (loggedIn) { %>
+            <a href="#" class="btn btn--blue-bg">See tutor ranking</a>
+          <% } else { %>
+            Please login to see tutor ranking
+          <% } %>
+        </div>
       </div>
-      <% if (loggedIn) {%>
-        <div class="grid__item grid__item--padding grid__item--centering">
-          <a href="#" class="btn btn--blue-bg">Find a tutor</a>
-        </div>
-      <% } else {%>
-        <div class="grid__item grid__item--padding grid__item--centering">
-          Please login to find tutors at your school
-        </div>
-      <% } %>
-
-      <% if (loggedIn) {%>
-        <div class="grid__item grid__item--padding grid__item--centering">
-          <a href="#" class="btn btn--blue-bg">See tutor ranking</a>
-        </div>
-      <% } else {%>
-        <div class="grid__item grid__item--padding grid__item--centering">
-          Please login to see tutor ranking
-        </div>
-      <% } %>
     </div>
-    <div class="clear"></div>
+  <div class="clear"></div>
   </div>
 </section>
 
@@ -238,40 +235,4 @@
   </div>
 </section>
 
-<footer class="footer" id="footer">
-  <div class="footer__content footer__content--fluid-width footer__content--svg">
-
-    <div class="grid grid--5col">
-
-      <div class="grid__item grid__item--x2">
-        <h3 class="grid__title grid__title--footer-logo">Claster</h3>
-        <p class="grid__text grid__text--copyright">Copyright &copy; 2019 Brandeis SuperTeam.  <br />All Rights Reserved.</p>
-      </div>
-      <div class="grid__item">
-        <h3 class="grid__title grid__title--footer">Development Team</h3>
-        <ul class="grid__list grid__list--fmenu">
-          <li><a href="/about">About</a></li>
-          <li><a href="#">Locations</a></li>
-        </ul>
-      </div>
-
-      <div class="grid__item">
-        <h3 class="grid__title grid__title--footer">Support</h3>
-        <ul class="grid__list grid__list--fmenu">
-          <li><a href="#">Contact</a></li>
-          <li><a href="/FAQ">FAQ</a></li>
-
-        </ul>
-      </div>
-
-    </div>
-
-  </div>
-</footer>
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/js/jquery.paroller.min.js"></script>
-<script src="/js/jquery.custom.js"></script>
-<script src="/js/swiper.min.js"></script>
-<script src="/js/swiper.custom.js"></script>
-<script src="/js/menu.js"></script>
+<%- include('footer'); -%>

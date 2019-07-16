@@ -1,89 +1,32 @@
 'use strict';
+const mongoose = require( 'mongoose' );
 const Tutor = require( '../models/Tutor' );
 
-exports.saveTutor = ( req, res ) => {
-  if (!res.locals.loggedIn) {
-    return res.send("You must be logged in to become a tutor.")
-  }
-  let newTutor = new Tutor(
-    {
-      userId: req.user._id,
-      userName:req.user.userName,
-      introduction: req.body.introduction,
-      classCode: req.body.classCode,
-      createdAt: new Date(),
-      professor: req.body.professor,
-      score: 0,
-      comments: [],
-      patient: false,
-      excellentG: false,
-      askGood: false,
-      encouraging: false,
-      helpful: false,
-      abilityT: false,
-      gEnergy: false,
-      humility: false,
-      passionate: false,
-      onTime: false,
-      gPaced: false,
-      impatient: false,
-      notgTeaching: false,
-      late: false,
-      notPrepared: false,
-      notHelpful: false
-    }
-  )
-  newTutor.save()
-  .then( () => {
-    res.redirect( '/showTutors');
-  } )
-  .catch( error => {
-    res.send( error );
-  } );
-};
+exports.showMyTutorProfile = ( req, res ) => {
 
-exports.getAllTutors = ( req, res, next ) => {
-  Tutor.find({}).sort({score: '-1'})
+  //grab id from the URL, the red id is set by app.js where the URL is formed
+  Tutor.findOne(res.locals.user._id)
   .exec()
-  .then( ( tutors ) => {
-    res.render('showTutors',{
-    })
+  .then( ( tutor ) => {
+    res.render( 'myTutorProfile', {
+      tutor: tutor
+    } );
   } )
+  //catch error
   .catch( ( error ) => {
     console.log( error.message );
     return [];
   } )
-  .then( () => {
-    //console.log( 'skill promise complete' );
-  } );
 };
 
-
-// this displays all of the skills
-exports.showOneTutor = ( req, res ) => {
-  //gconsle.log('in getAllSkills')
-  const id = req.params.id
-  console.log('the id is '+id)
-  Tutor.findOne({_id:id})
-  .exec()
-  .then( ( tutor ) => {
-    res.render( 'showTutor', {
-      req: req,
-      question:question
-    } );
-  } )
-  .catch( ( error ) => {
-    console.log( error.message );
-  } )
-};
 
 //load profile of current user
-exports.showOldTutor = ( req, res ) => {
+exports.showOldTutorProfile = ( req, res ) => {
   const id = req.params.id
   Tutor.findOne({_id: id})
   .exec()
-  .then( ( tutor ) => {
-    console.log("in show old tutor profile");
+  .then( ( question ) => {
+    console.log("in show old profile");
     res.render( 'editMyTutorProfile');
   })
   .catch(function (error) {
@@ -94,7 +37,7 @@ exports.showOldTutor = ( req, res ) => {
 //update personal profile
 exports.updateTutorProfile = ( req, res ) => {
   const goBackURL = '/editMyTutorProfile/' + req.params.id
-  if (req.body.userName.length==0 || req.body.zipcode.length==0 || req.body.status.length==0){
+  if (req.body.userName.length==0){
     console.log("empty params detected in profile");
     res.render('emptyError', {
       goBackURL: goBackURL
@@ -105,15 +48,11 @@ exports.updateTutorProfile = ( req, res ) => {
   Tutor.findOne({_id: id})
   .exec()
   .then((tutor) => {
-
-    tutor.introduction = req.body.introduction,
-    tutor.classCode = req.body.classCode,
-    tutor.professor = req.body.professor,
-    .then(() => {
-      res.redirect('/myTutorProfile/' + id)
-    })
+    tutor.introduction = req.body.introduction
   })
-
+  .then(() => {
+      res.redirect('/myProfile/' + id)
+  })
   // handle error
   .catch(function (error) {
     console.log("update failed!")

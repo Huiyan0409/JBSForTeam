@@ -3,15 +3,12 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-var tutorSchema = Schema( {
-  userId: ObjectId,
+var tutorSchema = Schema({
   userName: String,
   introduction: String,
-  classCode: String,
-  createdAt: Date,
-  professor: String,
   score: Number,
   comments: [String],
+  //characteristic
   patient: Boolean,
   excellentG: Boolean,
   askGood: Boolean,
@@ -27,7 +24,11 @@ var tutorSchema = Schema( {
   notgTeaching: Boolean,
   late: Boolean,
   notPrepared: Boolean,
-  notHelpful: Boolean
-} );
+  notHelpful: Boolean,
+  tutorClassProfessor: {
+    type: Map,
+    of: String
+  }
+});
 
 module.exports = mongoose.model( 'Tutor', tutorSchema );
