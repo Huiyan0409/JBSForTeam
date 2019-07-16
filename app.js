@@ -202,6 +202,9 @@ app.get('/myProfile/:id', isLoggedIn, profileController.showMyProfile)
 // we require them to be logged in to edit their profile
 app.get('/editMyProfile/:id', isLoggedIn, profileController.showOldProfile)
 
+// we require them to be logged in to register their tutor profile
+app.get('/tutorRegister/:id', isLoggedIn, profileController.showOldProfile)
+
 //update personal profile
 app.post('/updateProfile/:id', isLoggedIn, profileController.updateProfile)
 
