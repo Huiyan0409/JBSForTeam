@@ -22,7 +22,7 @@ var usersRouter = require('./routes/users');
 const profileController = require('./controllers/profileController');
 const qAndaController = require('./controllers/qAndaController');
 const classController = require('./controllers/classController');
-
+const tutorController = require('./controllers/tutorController');
 
 
 //*******************************************
@@ -208,6 +208,13 @@ app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 
 //show personal profile
 app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
+
+//tutor profile related
+// we require them to be logged in to edit their profile
+app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfile)
+
+//update personal profile
+app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 
 // =====================================
