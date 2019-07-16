@@ -81,6 +81,9 @@
     </div>
     <br>
     <a href="/editMyProfile/<%=user._id%>"><input type="button" id='editBtn' value="Edit" class = "btn btn-outline-primary"></input></a>
+    <% if (user.status == "tutor") { %>
+      <a href="#"><input type="button" id='editBtn' value="Edit Tutor Profile" class = "btn btn-outline-primary"></input></a>
+    <% } %>
   </div>
 </section>
 
