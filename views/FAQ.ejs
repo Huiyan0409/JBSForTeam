@@ -17,6 +17,7 @@
     <div class="section__content section__content--fixed-width">
       <div class="row">
         <div class="col-md-4 col-sm-4">
+          <section class="section">
           <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
               <!-- <a href="#tab1" class="nav-link active" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="false">
                 <i class="mdi mdi-help-circle"></i> Frequently Asked Questions
@@ -46,9 +47,12 @@
           <button type="button" class=" btn-light btn-link btn-lg btn-block" aria-selected="false" role="tab" data-toggle="pill" aria-controls="tab5" href="#tab5">Study Group</button>
           <button type="button" class=" btn-light btn-link btn-lg btn-block" aria-selected="false" role="tab" data-toggle="pill" aria-controls="tab6" href="#tab6">Transactions</button>
           </div>
+
+          </section>
         </div>
         <div class="col-md-8 col-sm-8">
-          <div class="tab-content" id="faq-tab-content">
+          <section class="section">
+          <div class="list-group" id="faq-tab-content">
             <div class="tab-pane show active" id="tab1" role="tabpanel" aria-labelledby="tab1">
               <div class="accordion" id="accordion-tab-1">
                 <div class="card">
@@ -384,11 +388,11 @@
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+        </div>
         </div>
       </div>
     </div>
-  </div>
 
 </section>
 <%- include('footer'); -%>
