@@ -117,11 +117,11 @@ exports.upload = ( req, res ) => {
     }
     sampleFile = req.files.sampleFile;
 
-    console.log("uploadPath: " + uploadPath);
+    // console.log("uploadPath: " + uploadPath);
 
     let reqPath = path.join(__dirname, '../');
     uploadPath = reqPath + 'public/images/uploads/' + sampleFile.name;
-    console.log("uploadPath: " + uploadPath);
+    // console.log("uploadPath: " + uploadPath);
 
     sampleFile.mv(uploadPath, function(err) {
       if (err) {
@@ -139,7 +139,7 @@ exports.upload = ( req, res ) => {
   })
   // handle error
   .catch(function (error) {
-    console.log("upload file failed!")
+    console.log("upload image failed!")
     console.log(error);
   })
 };

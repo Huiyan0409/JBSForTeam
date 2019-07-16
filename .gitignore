@@ -6,11 +6,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+apikey.js
+auth.js
+passport.js
+
 # Runtime data
 pids
 *.pid
 *.seed
 *.pid.lock
+.env
+config
 
 public/images/uploads
 
