@@ -35,10 +35,15 @@ const passport = require('passport')
 const configPassport = require('./config/passport')
 configPassport(passport)
 
+// Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
+const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
+// const MONGODB_URI = 'mongodb://localhost/personalApp';
 const mongoose = require( 'mongoose' );
-//fix current URL string parser is deprecated
-mongoose.connect( 'mongodb://localhost/claster', {useNewUrlParser: true });
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
