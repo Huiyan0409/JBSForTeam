@@ -3,7 +3,7 @@
 /*===============================================*/
 
 #map {
-  height: 90%;
+  height: 100%;
 }
 
 .container{
@@ -22,9 +22,6 @@
 
 .card-header{
   background-color: white;
-
-
-
 }
 
 /* input span and input area style */
