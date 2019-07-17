@@ -30,6 +30,12 @@
 
         <li>
           <% if (loggedIn) {%>
+            <a class="header-link" href="/tutorRegister">BECOME A TUTOR</a>
+          <% } %>
+        </li>
+
+        <li>
+          <% if (loggedIn) {%>
             <a class="header-link" href="/myProfile/<%=user._id%>">PROFILE</a>
           <% } %>
         </li>

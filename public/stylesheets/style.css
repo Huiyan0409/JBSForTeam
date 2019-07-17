@@ -2,15 +2,113 @@
 /* Customized CSS--BOOTSTRAP		 						 */
 /*===============================================*/
 
-#map {
-  height: 100%;
-  padding-top: 5%;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 5%;
 
+
+
+#map {
+  height: 90%;
+}
+/*
+P.S: if you like my content maybe you will become a donator and donate some money? That helps me to create new awesome materials. https://www.paypal.me/melnik909
+*/
+.center {
+  margin: auto;
+  width: 13.5%;
+  padding: 10px;
 }
 
+/*
+=====
+LEVEL 1. CORE STYLES OF MODIFIERS
+=====
+*/
+
+.rating{
+	--uiRatingSize: var(--ratingSize, 20px);
+	--uiRatingColor: var(--ratingColor, #ff7aca);
+	--uiRatingColorActive: var(--ratingColorActive, #ff7aca);
+	--uiRatingStroke: var(--ratingStroke, #222);
+	--uiRatingStrokeWidth: var(--ratingStrokeWidth, 1px);
+
+	display: flex;
+  font-size: var(--uiRatingSize);
+	color: var(--uiRatingColor);
+  position: relative;
+}
+
+
+.rating__control{
+	position: absolute;
+	left: -9999px;
+}
+
+.rating__control:nth-of-type(1):focus ~ .rating__item:nth-of-type(1):before,
+.rating__control:nth-of-type(2):focus ~ .rating__item:nth-of-type(2):before,
+.rating__control:nth-of-type(3):focus ~ .rating__item:nth-of-type(3):before,
+.rating__control:nth-of-type(4):focus ~ .rating__item:nth-of-type(4):before,
+.rating__control:nth-of-type(5):focus ~ .rating__item:nth-of-type(5):before{
+  content: "";
+  box-shadow: 0 0 0 4px var(--uiRatingColorActive);
+
+  position: absolute;
+  top: -.15em;
+  right: 0;
+  bottom: -.15em;
+  left: 0;
+  z-index: -1;
+}
+
+.rating__item{
+	-webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.rating__item{
+	padding-left: .25em;
+  padding-right: .25em;
+}
+
+.rating__star{
+	display: block;
+	width: 1em;
+	height: 1em;
+
+	fill: currentColor;
+	stroke: var(--uiRatingStroke);
+	stroke-width: var(--uiRatingStrokeWidth);
+}
+
+.rating__label{
+	position: absolute;
+	top: 0;
+	left: -9999px;
+}
+
+.rating:hover,
+.rating__control:nth-of-type(1):checked ~ .rating__item:nth-of-type(1),
+.rating__control:nth-of-type(2):checked ~ .rating__item:nth-of-type(-n+2),
+.rating__control:nth-of-type(3):checked ~ .rating__item:nth-of-type(-n+3),
+.rating__control:nth-of-type(4):checked ~ .rating__item:nth-of-type(-n+4),
+.rating__control:nth-of-type(5):checked ~ .rating__item:nth-of-type(-n+5){
+	color: var(--uiRatingColorActive);
+}
+
+.rating__item:hover ~ .rating__item{
+  color: var(--uiRatingColor);
+}
+
+/*
+=====
+LEVEL 2. SETTINGS
+=====
+*/
+
+.rating{
+  --ratingSize: 30px;
+  --ratingColor: #eee;
+	--ratingColorActive: #ffcc00;
+}
 .container{
   max-width: 1300px;
   margin-top: -32px;
@@ -27,6 +125,9 @@
 
 .card-header{
   background-color: white;
+
+
+
 }
 
 /* input span and input area style */
@@ -88,7 +189,6 @@
 
 /*------------------------------------------------------------------
 [Main Stylesheet]
-
 Author:	SmartTemplates
 Version:	1.0
 Created:	05 June 2018
@@ -98,7 +198,6 @@ Template:	LATERAL | Landing page templates for SAAS companies
 
 /*-----------------------------------------------------------------
 [Table of Contents]
-
 1. RESET
 2. GENERAL
 2-1 HEADINGS

@@ -24,6 +24,10 @@
         </li>
 
         <li>
+          <a class="header-link" href="/tutorRegister">BECOME A TUTOR</a>
+        </li>
+
+        <li>
           <a class="header-link" href="#profile">PROFILE</a>
         </li>
 
@@ -146,18 +150,25 @@
   <div class="section__content section__content--full-width section__content--padding">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-12 mx-auto">
+        <div class="col-md-3 col-sm-12 mx-auto">
           <h1><b>Ready to get started?</b></h1>
           <h2>Find a peer tutor that meets your need!</h2>
         </div>
-        <div class="col-md-4 col-sm-12 mx-auto text-center align-self-center">
+        <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
+          <% if (loggedIn) { %>
+            <a href="/tutorRegister" class="btn btn--blue-bg">Become a tutor</a>
+          <% } else { %>
+            Please login to become a tutor
+          <% } %>
+        </div>
+        <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
           <% if (loggedIn) { %>
             <a href="#" class="btn btn--blue-bg">Find a tutor</a>
           <% } else { %>
             Please login to find tutors at your school
           <% } %>
         </div>
-        <div class="col-md-4 col-sm-12 mx-auto text-center align-self-center">
+        <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
           <% if (loggedIn) { %>
             <a href="#" class="btn btn--blue-bg">See tutor ranking</a>
           <% } else { %>

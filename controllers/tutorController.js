@@ -2,13 +2,54 @@
 const mongoose = require( 'mongoose' );
 const Tutor = require( '../models/Tutor' );
 
+exports.saveTutor = ( req, res ) => {
+  const goBackURL = '/tutorRegister'
+  if (!res.locals.loggedIn) {
+    return res.send("You must be logged in to become a tutorRegister.")
+  }
+
+  let newTutor = new Tutor(
+    {
+      userName: req.user.userName,
+      introduction: req.body.introduction,
+      score: 0,
+      comments: [],
+      classCodes: req.body.chosen,
+      //characteristic
+      patient: false,
+      excellentG: false,
+      askGood: false,
+      encouraging: false,
+      helpful: false,
+      abilityT: false,
+      gEnergy: false,
+      humility: false,
+      passionate: false,
+      onTime: false,
+      gPaced: false,
+      impatient: false,
+      notgTeaching: false,
+      late: false,
+      notPrepared: false,
+      notHelpful: false
+    }
+  )
+  newTutor.save()
+  .then( () => {
+    res.redirect( '/tutorRegister');
+  } )
+  .catch( error => {
+    res.send( error );
+  } );
+};
+
 exports.showMyTutorProfile = ( req, res ) => {
 
   //grab id from the URL, the red id is set by app.js where the URL is formed
   Tutor.findOne(res.locals.user._id)
   .exec()
   .then( ( tutor ) => {
-    res.render( 'myTutorProfile', {
+    res.render( 'myProfile', {
       tutor: tutor
     } );
   } )
@@ -25,7 +66,7 @@ exports.showOldTutorProfile = ( req, res ) => {
   const id = req.params.id
   Tutor.findOne({_id: id})
   .exec()
-  .then( ( question ) => {
+  .then( ( tutor ) => {
     console.log("in show old profile");
     res.render( 'editMyTutorProfile');
   })

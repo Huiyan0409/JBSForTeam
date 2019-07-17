@@ -8,6 +8,7 @@ var tutorSchema = Schema({
   introduction: String,
   score: Number,
   comments: [String],
+  classCodes: [String],
   //characteristic
   patient: Boolean,
   excellentG: Boolean,
@@ -24,11 +25,7 @@ var tutorSchema = Schema({
   notgTeaching: Boolean,
   late: Boolean,
   notPrepared: Boolean,
-  notHelpful: Boolean,
-  tutorClassProfessor: {
-    type: Map,
-    of: String
-  }
+  notHelpful: Boolean
 });
 
 module.exports = mongoose.model( 'Tutor', tutorSchema );
