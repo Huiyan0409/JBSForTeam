@@ -1,0 +1,145 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title" id="whiteFont">
+          <h3>Please Rate Your Tutor: <br><br></h3>
+          <hr><br>
+            <h1><i><%= user.userName %></i> </h1>
+            <img src="<%=user.profilePicURL%>" width="50%" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__content section__content--fixed-width text-center">
+        <i><h4><label id="rate">How was it?</label><h4><i>
+        <div class="container .grid__item--centering center">
+            <div class="rating">
+
+              <input type="radio" name="rating-star" class="rating__control" id="rc1">
+              <input type="radio" name="rating-star" class="rating__control" id="rc2">
+              <input type="radio" name="rating-star" class="rating__control" id="rc3">
+              <input type="radio" name="rating-star" class="rating__control" id="rc4">
+              <input type="radio" name="rating-star" class="rating__control" id="rc5">
+              <label for="rc1" class="rating__item">
+                <svg class="rating__star">
+                  <use xlink:href="#star" onClick="rate1()">
+                  </use>
+                </svg>
+                <span class="rating__label">1</span>
+              </label>
+              <label for="rc2" class="rating__item">
+                <svg class="rating__star" onClick="rate2()">
+                  <use xlink:href="#star"></use>
+                </svg>
+                <span class="rating__label">2</span>
+              </label>
+              <label for="rc3" class="rating__item">
+                <svg class="rating__star" onClick="rate3()">
+                  <use xlink:href="#star"></use>
+                </svg>
+                <span class="rating__label">3</span>
+              </label>
+              <label for="rc4" class="rating__item">
+                <svg class="rating__star" onClick="rate4()">
+                  <use xlink:href="#star"></use>
+                </svg>
+                <span class="rating__label">4</span>
+              </label>
+              <label for="rc5" class="rating__item">
+                <svg class="rating__star" onClick="rate5()">
+                  <use xlink:href="#star"></use>
+                </svg>
+                <span class="rating__label">5</span>
+              </label>
+              <script>
+                function rate1(){
+                var rate = document.getElementById('rate')
+                rate.innerText = "Poor."
+                }
+                function rate2(){
+                var rate = document.getElementById('rate')
+                rate.innerText = "Acceptable.."
+                }
+                function rate3(){
+                var rate = document.getElementById('rate')
+                rate.innerText = "Just Okay..."
+                }
+                function rate4(){
+                var rate = document.getElementById('rate')
+                rate.innerText = "Great Tutoring!"
+                }
+                function rate5(){
+                var rate = document.getElementById('rate')
+                rate.innerText = "That's CLASTER BABE!"
+                }
+              </script>
+            </div>
+        </div>
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+        <symbol id="star" viewBox="0 0 26 28">
+          <path d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z"/>
+        </symbol>
+      </svg>
+    </div>
+</section>
+
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="container text-center">
+      <hr><br><h4>Leave a compliment below? Click your favorite tab!</h4><br><br>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+          <button type="button" class="btn btn-outline-info btn-block btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fa fa-mortar-board" style="font-size:48px;color:black"></i> <h1>Professional</h1></button>
+          </div>
+          <div class="carousel-item">
+          <button type="button" class="btn btn-outline-success btn-outline-primary btn-block btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fa fa-clock-o" style="font-size:48px;color:green"></i> <h1>On Time</h1></button>
+          </div>
+          <div class="carousel-item">
+      <button type="button" class="btn btn-outline-dark btn-block btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fa fa-handshake-o" style="font-size:48px;color:black"></i> <h1>Encouraging</h1></button>
+          </div>
+          <div class="carousel-item">
+      <button type="button" class="btn btn-outline-warning btn-block btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fa fa-heartbeat" style="font-size:48px;color:yellow"></i> <h1>Passionate</h1></button>
+          </div>
+          <div class="carousel-item">
+      <button type="button" class="btn btn-outline-secondary btn-block btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fa fa-coffee" style="font-size:48px;color:black"></i> <h1>Energetic</h1></button>
+          </div>
+          <div class="carousel-item">
+      <button type="button" class="btn btn-outline-success btn-block btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fa fa-hourglass-half" style="font-size:48px;color:green"></i> <h1>Well Prepared</h1></button>
+          </div>
+        </div>
+        <a class="carousel-control-prev  btn-outline-light btn-sm" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next btn-outline-light btn-sm" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+        </div>
+      </div>
+
+</section>
+
+<section class="section">
+  <div class="section__content section__content--fixed-width">
+    <div class="container text-center">
+      <div class="form-group">
+        <br><br><br><br>
+        <textarea class="form-control col-xs-12" rows="1" cols="40" placeholder="Please leave some comments to this session here"></textarea>
+        <hr>
+      <button type="button" class=" btn-dark btn-block">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<%- include('footer'); -%>
