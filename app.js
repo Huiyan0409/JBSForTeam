@@ -55,14 +55,14 @@ var app = express();
 const aws = require('aws-sdk');
 
 /*
- * Configure the AWS region of the target bucket.
- * Remember to change this to the relevant region.
- */
+* Configure the AWS region of the target bucket.
+* Remember to change this to the relevant region.
+*/
 aws.config.region = 'us-east-2';
 
 /*
- * Load the S3 information from the environment variables.
- */
+* Load the S3 information from the environment variables.
+*/
 const S3_BUCKET = process.env.S3_BUCKET;
 
 
@@ -225,18 +225,18 @@ app.post('/updateProfile/:id', isLoggedIn, profileController.updateProfile)
 app.post('/upload/:id', profileController.upload)
 
 /*
- * Respond to GET requests to /account.
- * Upon request, render the 'account.html' web page in views/ directory.
- */
+* Respond to GET requests to /account.
+* Upon request, render the 'account.html' web page in views/ directory.
+*/
 app.get('/account', isLoggedIn, function(req, res, next){
   res.render('account')
 })
 
 /*
- * Respond to GET requests to /sign-s3.
- * Upon request, return JSON containing the temporarily-signed S3 request and
- * the anticipated URL of the image.
- */
+* Respond to GET requests to /sign-s3.
+* Upon request, return JSON containing the temporarily-signed S3 request and
+* the anticipated URL of the image.
+*/
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
@@ -264,12 +264,46 @@ app.get('/sign-s3', (req, res) => {
 });
 
 /*
- * Respond to POST requests to /submit_form.
- * This function needs to be completed to handle the information in
- * a way that suits your application.
- */
+* Respond to POST requests to /submit_form.
+* This function needs to be completed to handle the information in
+* a way that suits your application.
+*/
 app.post('/save-details', (req, res) => {
-  // TODO: Read POSTed form data and do something useful
+  const fileName = req.query['file-name'];
+  const url = `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+
+  //find the user using user_id
+  User.findOne(res.locals.user._id)
+  .exec()
+  .then((profile) => {
+    profile.profilePicURL = url;
+    profile.save();
+  })
+  .then(() => {
+    res.redirect('back')
+  })
+  // handle error
+  .catch(function (error) {
+    console.log("upload image failed!")
+    console.log(error);
+  })
+};
+
+//get all profiles for all users, visible only when admin is logged in
+exports.getAllProfiles = ( req, res ) => {
+  //find all users from database
+  User.find()
+  .exec()
+  .then( ( profiles ) => {
+    res.render( 'showProfiles', {
+      profiles: profiles
+    } );
+  } )
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+
 });
 
 //show all profiles from all users
@@ -344,9 +378,6 @@ app.get('/emptyError', function(req, res, next){
 app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
 })
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
