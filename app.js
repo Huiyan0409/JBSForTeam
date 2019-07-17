@@ -289,23 +289,6 @@ app.post('/save-details', (req, res) => {
   })
 };
 
-//get all profiles for all users, visible only when admin is logged in
-exports.getAllProfiles = ( req, res ) => {
-  //find all users from database
-  User.find()
-  .exec()
-  .then( ( profiles ) => {
-    res.render( 'showProfiles', {
-      profiles: profiles
-    } );
-  } )
-  .catch( ( error ) => {
-    console.log( error.message );
-    return [];
-  } )
-
-});
-
 //show all profiles from all users
 app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 
