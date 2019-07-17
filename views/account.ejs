@@ -4,22 +4,19 @@
 
 <h2>Your avatar</h2>
 
-
 <h2>Your information</h2>
 <input type="file" id="file-input">
 <p id="status">Please select a file</p>
 <img style="border:1px solid gray;width:300px;" id="preview">
 
 <form method="POST" action="/save-details">
-
-  <input type="hidden" id="avatar-url" name="avatar-url">
+  <input type="hidden" id="imageURL" name="imageURL">
   <hr>
   <h2>Save changes</h2>
   <input type="submit" value="Update profile">
 </form>
 
-<hr><hr><hr>lalala
-<img src="<%=user.profilePicURL%>" alt="">
+<img src="<%=user.profilePicURL%>">
 
 
 <script>
@@ -34,7 +31,7 @@
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           document.getElementById('preview').src = url;
-          document.getElementById('avatar-url').value = url;
+          document.getElementById('imageURL').value = url;
         }
         else{
           alert('Could not upload file.');

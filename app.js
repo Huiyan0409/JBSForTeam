@@ -38,7 +38,7 @@ configPassport(passport)
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
 const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
-// const MONGODB_URI = 'mongodb://localhost/personalApp';
+// const MONGODB_URI = 'mongodb://localhost/iclaster';
 const mongoose = require( 'mongoose' );
 
 // Makes connection asynchronously.  Mongoose will queue up database
@@ -269,14 +269,12 @@ app.get('/sign-s3', (req, res) => {
 * a way that suits your application.
 */
 app.post('/save-details', (req, res) => {
-  const fileName = req.query['file-name'];
-  const url = `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-
+  const imageURL = req.body.imageURL
   //find the user using user_id
   User.findOne(res.locals.user._id)
   .exec()
   .then((profile) => {
-    profile.profilePicURL = url;
+    profile.profilePicURL = imageURL
     profile.save();
   })
   .then(() => {
@@ -284,7 +282,7 @@ app.post('/save-details', (req, res) => {
   })
   // handle error
   .catch(function (error) {
-    console.log("upload image failed!")
+    console.log("read file failed")
     console.log(error);
   })
 });
