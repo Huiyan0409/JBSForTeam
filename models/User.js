@@ -12,9 +12,9 @@ var userSchema = Schema({
   profilePicName: String,
   status: String,
   lastUpdate: Date,
-  zipcode: String,
-  city: String,
-  state: String,
+  // zipcode: String,
+  // city: String,
+  // state: String,
   classCodes: [String],
   classIds: [Schema.Types.ObjectId],
   //For tutor

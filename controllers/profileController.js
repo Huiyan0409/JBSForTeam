@@ -44,7 +44,7 @@ exports.showOldProfile = ( req, res ) => {
 //update personal profile
 exports.updateProfile = ( req, res ) => {
   const goBackURL = '/editMyProfile/' + req.params.id
-  if (req.body.userName.length==0 || req.body.zipcode.length==0 || req.body.status.length==0){
+  if (req.body.userName.length==0 || req.body.status.length==0){
     console.log("empty params detected in profile");
     res.render('emptyError', {
       goBackURL: goBackURL
@@ -57,22 +57,22 @@ exports.updateProfile = ( req, res ) => {
   .then((profile) => {
     profile.userName = req.body.userName
     // profile.profilePicURL = req.body.profilePicURL
-    profile.zipcode = req.body.zipcode
+    // profile.zipcode = req.body.zipcode
     profile.status = req.body.status
     // Make a request for a user with a given ID
-    axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/info.json/"+profile.zipcode+"/degrees")
-    .then(function (response) {
-      console.log("API data success!")
-      // handle success
-      console.log(response);
-      profile.city = response.data.city
-      profile.state = response.data.state
-      profile.lastUpdate = new Date()
-      profile.save()
-    })
-    .then(() => {
-      res.redirect('/myProfile/' + id)
-    })
+    // axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/info.json/"+profile.zipcode+"/degrees")
+    // .then(function (response) {
+    //   console.log("API data success!")
+    //   // handle success
+    //   console.log(response);
+    //   profile.city = response.data.city
+    //   profile.state = response.data.state
+    //   profile.lastUpdate = new Date()
+    // })
+    profile.save()
+  })
+  .then(() => {
+    res.redirect('/myProfile/' + id)
   })
 
   // handle error
