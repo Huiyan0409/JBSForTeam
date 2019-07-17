@@ -37,8 +37,8 @@ configPassport(passport)
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
-// const MONGODB_URI = 'mongodb://localhost/personalApp';
+//const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
+const MONGODB_URI = 'mongodb://localhost/personalApp';
 const mongoose = require( 'mongoose' );
 
 // Makes connection asynchronously.  Mongoose will queue up database
@@ -284,8 +284,16 @@ app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
 })
 
+//tutor rating
+app.get('/tutorRating', function(req, res, next){
+  res.render('tutorRating')
+})
 
-
+//tutor tutorRegister
+app.get('/tutorRegister', function(req, res, next){
+  res.render('tutorRegister')
+})
+app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

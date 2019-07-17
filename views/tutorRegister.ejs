@@ -10,8 +10,9 @@
         <!-- <div class="card mx-auto" id="cardStyle">
         <div class="card-body"> -->
 
-          <h1><%=user.userName%>'s profile</h1>
+          <h1>Tutor Registration</h1>
         </div>
+        <h2>Please choose the class you want to tutor and then submit.</h2>
       </div>
     </div>
       <!-- </div> -->
@@ -19,92 +20,79 @@
   </div> -->
 </section>
 
+
+
 <section class="section">
   <div class="container">
+    <br><br>
+    <div class="row">
+        <h3>Enter your class that you did not enroll the forum:</h3>
 
-    <!-- form: upload image -->
-    <form class='md-form' action='/upload/<%=user._id%>' method='post' encType="multipart/form-data">
-      <div class="row">
-        <div class="col-6">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Profile image</span>
-            </div>
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" name="sampleFile">
-              <label class="custom-file-label"><%=user.profilePicName%></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-1">
-          <input type='submit' class="btn btn-warning" value='Upload'>
-        </div>
-
+        <!-- line break -->
         <div class="w-100"></div>
         <br>
 
-        <div class="col-sm-6">
-          <img src="<%=user.profilePicURL%>" width="100%" height="100%" alt="my profile image">
-        </div>
-      </div>
-    </form>
-
-    <br>
-
-
-    <!-- form: update personal info -->
-
-    <form action="/updateProfile/<%=user._id%>" method="post">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Username</span>
-            <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
-          </div>
+        <div class="intro__form form-demo">
+          <% if (loggedIn) {%>
+            <form action="/<%=user._id%>/enroll" method="post">
+              <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
+              <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ADD" />
+            </form>
+          <% } else { %>
+            <input disabled type="text" class="form-demo__input" name="classCode" placeholder="Please login to enroll" />
+          <% } %>
         </div>
 
         <!-- line break -->
         <div class="w-100"></div>
         <br>
 
-        <!-- zipcode -->
-        <div class="col-sm-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Zipcode</span>
-            <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
-          </div>
-        </div>
+        <h5>(This will automatically enroll you to the forum of this class)</h5>
 
         <!-- line break -->
         <div class="w-100"></div>
         <br>
 
-        <div class="col-sm-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Status</span>
-            <select class="form-control" name ="status" value="<%=user.status%>">
-              <option disabled value="Choose a role">Role</option>
-              <option value="tutor">Tutor</option>
-              <option value="student">Student</option>
-            </select>
-          </div>
-        </div>
+        <h3>Choose the class from your enrolled forum:</h3>
 
-        <div class="col-sm-3"></div>
-
-        <div class="col-sm-1">
-          <input type="submit" class = "btn btn--blue-bg" value = "Save">
-        </div>
-
+        <!-- line break -->
         <div class="w-100"></div>
         <br>
-      </div>
-    </form>
+    <form method="post" action="/processTutorRegister">
+        <% if (loggedIn) {%>
+          <ul class="list-group">
+            <% for (i = 0; i < user.classCodes.length; i++){%>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" name="chosen" value="<%=user.classCodes[i]%>">
+                  </div>
+                </div>
+                  <li class="list-group-item"><%=user.classCodes[i]%></li>
+              </div>
+          </ul>
+        <% } %>
+        <% } else { %>
+            <div class="partners__text">
+              Please login to view this page
+            </div>
+        <% } %>
 
+    </div>
   </div>
+
+
+  <div class="container">
+    <h3> Introduction of yourself:</h3>
+    <br>
+    <div class="form-group">
+      <textarea class="form-control" name = "SelfIntro" rows="6"></textarea>
+    </div>
+    <br>
+    <input class="btn btn--blue-bg" type="submit">
+  </div>
+</form>
 </section>
-<!-- edit profile page -->
 
 
 <%- include('footer'); -%>
