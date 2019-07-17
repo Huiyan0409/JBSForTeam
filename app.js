@@ -287,7 +287,7 @@ app.post('/save-details', (req, res) => {
     console.log("upload image failed!")
     console.log(error);
   })
-};
+});
 
 //show all profiles from all users
 app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
