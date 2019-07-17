@@ -38,7 +38,7 @@ configPassport(passport)
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
 const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
-// const MONGODB_URI = 'mongodb://localhost/personalApp';
+// const MONGODB_URI = 'mongodb://localhost/iclaster';
 const mongoose = require( 'mongoose' );
 
 // Makes connection asynchronously.  Mongoose will queue up database
@@ -52,6 +52,19 @@ db.once('open', function() {
 
 //start the app.js
 var app = express();
+const aws = require('aws-sdk');
+
+/*
+* Configure the AWS region of the target bucket.
+* Remember to change this to the relevant region.
+*/
+aws.config.region = 'us-east-2';
+
+/*
+* Load the S3 information from the environment variables.
+*/
+const S3_BUCKET = process.env.S3_BUCKET;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -211,6 +224,69 @@ app.post('/updateProfile/:id', isLoggedIn, profileController.updateProfile)
 //update personal profile
 app.post('/upload/:id', profileController.upload)
 
+/*
+* Respond to GET requests to /account.
+* Upon request, render the 'account.html' web page in views/ directory.
+*/
+app.get('/account', isLoggedIn, function(req, res, next){
+  res.render('account')
+})
+
+/*
+* Respond to GET requests to /sign-s3.
+* Upon request, return JSON containing the temporarily-signed S3 request and
+* the anticipated URL of the image.
+*/
+app.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
+
+/*
+* Respond to POST requests to /submit_form.
+* This function needs to be completed to handle the information in
+* a way that suits your application.
+*/
+app.post('/save-details', (req, res) => {
+  const imageURL = req.body.imageURL
+  //find the user using user_id
+  User.findOne(res.locals.user._id)
+  .exec()
+  .then((profile) => {
+    profile.profilePicURL = imageURL
+    profile.save();
+  })
+  .then(() => {
+    res.redirect('back')
+  })
+  // handle error
+  .catch(function (error) {
+    console.log("read file failed")
+    console.log(error);
+  })
+});
+
 //show all profiles from all users
 app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
 
@@ -283,9 +359,6 @@ app.get('/emptyError', function(req, res, next){
 app.get('/FAQ', function(req, res, next){
   res.render('FAQ')
 })
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
