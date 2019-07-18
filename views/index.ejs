@@ -126,7 +126,7 @@
             <% for (i = 0; i < user.classCodes.length; i++){%>
               <div class="partners__text">
                 <br>
-                <a href="/showQuestions/<%=user.classCodes[i]%>"><input class="btn btn--blue-bg" type="button" value="Go to Forum for <%=user.classCodes[i]%>"></a>
+                <a href="/showQuestions/<%=user.classCodes[i]%>"><input class="btn btn-outline-primary" type="button" value="Go to Forum for <%=user.classCodes[i]%>"></a>
               </div>
             <% } %>
           <% } else { %>
@@ -156,21 +156,21 @@
         </div>
         <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
           <% if (loggedIn) { %>
-            <a href="/tutorRegister" class="btn btn--blue-bg">Become a tutor</a>
+            <a href="/tutorRegister" class="btn btn-outline-primary">Become a tutor</a>
           <% } else { %>
             Please login to become a tutor
           <% } %>
         </div>
         <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
           <% if (loggedIn) { %>
-            <a href="#" class="btn btn--blue-bg">Find a tutor</a>
+            <a href="#" class="btn btn-outline-primary">Find a tutor</a>
           <% } else { %>
             Please login to find tutors at your school
           <% } %>
         </div>
         <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
           <% if (loggedIn) { %>
-            <a href="#" class="btn btn--blue-bg">See tutor ranking</a>
+            <a href="#" class="btn btn-outline-primary">See tutor ranking</a>
           <% } else { %>
             Please login to see tutor ranking
           <% } %>
@@ -231,7 +231,7 @@
               </div>
             </div>
             <div class="partners__text">
-              <a href="/editMyProfile/<%=user._id%>"><input class="btn btn--blue-bg" type="button" value="Edit my profile"></a>
+              <a href="/editMyProfile/<%=user._id%>"><input class="btn btn-outline-primary" type="button" value="Edit my profile"></a>
             </div>
           <% } else {%>
             Please log in to view and edit your profile

@@ -87,7 +87,8 @@ function containsString(list,elt){
 }
 
 exports.saveClass = ( req, res ) => {
-  const goBackURL = '/classes'
+  const goBackURL = '/classes';
+  const response = "success!";
   if (req.body.subject.length==0 || req.body.courseNum.length==0){
     console.log("empty params detected in add class!");
     res.render('emptyError', {
