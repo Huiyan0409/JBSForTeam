@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 var tutorSchema = Schema({
+  //User pic
+  profilePicURL: String,
+  profilePicName: String,
+  
   userName: String,
   introduction: String,
   score: Number,
