@@ -16,22 +16,22 @@ exports.saveTutor = ( req, res ) => {
       comments: [],
       classCodes: req.body.chosen,
       //characteristic
-      patient: false,
-      excellentG: false,
-      askGood: false,
-      encouraging: false,
-      helpful: false,
-      abilityT: false,
-      gEnergy: false,
-      humility: false,
-      passionate: false,
-      onTime: false,
-      gPaced: false,
-      impatient: false,
-      notgTeaching: false,
-      late: false,
-      notPrepared: false,
-      notHelpful: false
+      patient: 0,
+      excellentG: 0,
+      askGood: 0,
+      encouraging: 0,
+      helpful: 0,
+      abilityT: 0,
+      gEnergy: 0,
+      humility: 0,
+      passionate: 0,
+      onTime: 0,
+      gPaced: 0,
+      impatient: 0,
+      notgTeaching: 0,
+      late: 0,
+      notPrepared: 0,
+      notHelpful: 0
     }
   )
   newTutor.save()
