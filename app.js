@@ -358,6 +358,7 @@ app.get('/tutorRegister', function(req, res, next){
 
 app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
 
+app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
 
 // =====================================
 // STATIC PAGES ========================

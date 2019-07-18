@@ -100,3 +100,18 @@ exports.updateTutorProfile = ( req, res ) => {
     console.log(error);
   })
 };
+
+exports.getAllTutorProfile = ( req, res ) => {
+  //find all users from database
+  User.find()
+  .exec()
+  .then( ( tutors ) => {
+    res.render( 'showTutors', {
+      tutors: tutors
+    } );
+  } )
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
