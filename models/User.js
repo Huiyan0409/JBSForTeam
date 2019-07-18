@@ -17,6 +17,28 @@ var userSchema = Schema({
   // state: String,
   classCodes: [String],
   classIds: [Schema.Types.ObjectId],
+  //tutor related
+  introduction: String,
+  score: Number,
+  comments: [String],
+  tutorClassCodes: [String],
+  //characteristic
+  patient: Number,
+  excellentG: Number,
+  askGood: Number,
+  encouraging: Number,
+  helpful: Number,
+  abilityT: Number,
+  gEnergy: Number,
+  humility: Number,
+  passionate: Number,
+  onTime: Number,
+  gPaced: Number,
+  impatient: Number,
+  notgTeaching: Number,
+  late: Number,
+  notPrepared: Number,
+  notHelpful: Number
 });
 
 module.exports = mongoose.model( 'User', userSchema );
