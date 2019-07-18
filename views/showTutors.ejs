@@ -43,72 +43,73 @@
 
               <hr>
               <ul class="list-group" id="myList">
-                <% for(i = 0; i < tutors.length; i++){  %>
-                  <li class="list-group-item">
-                        <div class="row">
-                          <div class="col-md-2 col-sm-2">
-                            <img src="<%=tutors[i].profilePicURL%>" width = "100%" alt="profile picture">
-                            <br><br>
-                            <a href="/showTutorProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
-                          </div>
-                          <div class="col-md-3 col-sm-3">
-                            User Email: <%= tutors[i].googleemail %>
-                            <br>
-                            introduction: <%= tutors[i].introduction %>
-                          </div>
-                          <div class="col-md-7 col-sm-7">
-                            <% if(tutors[i].patient){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Patient <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].excellentG){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Excellent Grade <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].askGood){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Ask Good Questions <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].encouraging){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Encouraging <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].helpful){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Helpful <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].abilityT){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Great Teaching <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].gEnergy){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Energetic <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].humility){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Humility <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].passionate){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Passionate <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].onTime){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> On Time <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].gPaced){  %>
-                              <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Good Paced <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
-                            <% } %>
-                            <% if(tutors[i].impatient){  %>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Impatient <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
-                            <% } %>
-                            <% if(!tutors[i].notgTeaching){  %>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Bad Teaching <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
-                            <% } %>
-                            <% if(!tutors[i].late){  %>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Late <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
-                            <% } %>
-                            <% if(!tutors[i].notPrepared){  %>
-                              <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Not Prepared <span class="badge badge-danger"><i class="fa fa-close"></i></span></button>
-                            <% } %>
-                            <% if(!tutors[i].notHelpful){  %>
-                                <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Not Helpful <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
+                  <% for(i = 0; i < tutors.length; i++){  %>
+                    <li class="list-group-item">
+                          <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                              <img src="<%=tutors[i].profilePicURL%>" width = "100%" alt="profile picture">
+                              <br><br>
+                              <a href="/showTutorProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                              User Email: <%= tutors[i].googleemail %>
+                              <br>
+                              introduction: <%= tutors[i].introduction %>
+                            </div>
+                            <div class="col-md-7 col-sm-7">
+                              <% if(tutors[i].patient){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Patient <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
                               <% } %>
-                          </div>
-                  </li>
-                  <% } %>
-                </ul>
+                              <% if(tutors[i].excellentG){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Excellent Grade <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].askGood){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Ask Good Questions <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(!tutors[i].encouraging){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Encouraging <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].helpful){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Helpful <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].abilityT){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Great Teaching <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(!tutors[i].gEnergy){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Energetic <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].humility){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Humility <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].passionate){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Passionate <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].onTime){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> On Time <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].gPaced){  %>
+                                <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Good Paced <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].impatient){  %>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Impatient <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
+                              <% } %>
+                              <% if(!tutors[i].notgTeaching){  %>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Bad Teaching <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
+                              <% } %>
+                              <% if(!tutors[i].late){  %>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Late <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
+                              <% } %>
+                              <% if(tutors[i].notPrepared){  %>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Not Prepared <span class="badge badge-danger"><i class="fa fa-close"></i></span></button>
+                              <% } %>
+
+                              <% if(tutors[i].notHelpful){  %>
+                                  <button type="button" class="btn btn-dark btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Not Helpful <span class="badge badge-dark"><i class="fa fa-close"></i></span></button>
+                                <% } %>
+                            </div>
+                    </li>
+                    <% } %>
+                  </ul>
             </div>
 
             <script>
