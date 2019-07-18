@@ -25,22 +25,10 @@
         </div>
     </div>
     <div class="col-md-9 col-sm-9">
-      <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <title>Bootstrap Example</title>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        </head>
-          <body>
-            <div class="container">
+      <div class="container">
               <h2>Claster Tutor Search</h2>
                   <p>Find your dream tutor below</p>
                   <input class="form-control" id="myInput" type="text" placeholder="Feel Free to Search Majors, Tags, Anything!">
-
               <hr>
               <ul class="list-group" id="myList">
                   <% for(i = 0; i < tutors.length; i++){  %>
@@ -110,26 +98,20 @@
                     </li>
                     <% } %>
                   </ul>
-            </div>
+      </div>
 
-            <script>
-              $(document).ready(function(){
-                $("#myInput").on("keyup", function() {
+      <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
                   var value = $(this).val().toLowerCase();
                   $("#myList li").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                   });
                 });
               });
-            </script>
-          </body>
-        </html>
-      </div>
+      </script>
     </div>
-
-
-
-
+  </div>
 </section>
 
-  <%- include('footer') -%>
+<%- include('footer') -%>
