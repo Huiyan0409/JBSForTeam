@@ -103,7 +103,7 @@ exports.updateTutorProfile = ( req, res ) => {
 
 exports.getAllTutorProfile = ( req, res ) => {
   //find all users from database
-  User.find()
+  Tutor.find()
   .exec()
   .then( ( tutors ) => {
     res.render( 'showTutors', {
