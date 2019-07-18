@@ -3,10 +3,8 @@
 /*===============================================*/
 
 
-
-
 #map {
-  height: 90%;
+  height: 95%;
 }
 /*
 P.S: if you like my content maybe you will become a donator and donate some money? That helps me to create new awesome materials. https://www.paypal.me/melnik909
@@ -16,6 +14,85 @@ P.S: if you like my content maybe you will become a donator and donate some mone
   width: 13.5%;
   padding: 10px;
 }
+
+.container{
+  max-width: 1300px;
+  margin-top: -32px;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  /* background-color: white; */
+}
+
+@media (min-width: 1200px) {
+  .container{
+    max-width: 1300px;
+  }
+}
+
+.card-header{
+  background-color: white;
+}
+
+/* input span and input area style */
+.input-group-text{
+  background-color: white;
+}
+
+.form-control:disabled{
+  background-color: white;
+}
+
+/* about page card style */
+#cardStyle{
+  background-color: #0D3573;
+  width: 50%;
+  opacity: 0.93;
+}
+
+/* profile pic style */
+#profilePic{
+  object-fit: cover;
+  object-position: center;
+  width: 40px;
+  height: 40px;
+}
+
+#whiteFont{
+  color: white;
+}
+
+.header__menu ul li > a.header-link:hover{
+  color: #ff8d12;
+}
+/*
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #8064A2 !important;
+} */
+
+.jumbotron.masthead {
+  margin-top: -3%;
+  padding-top: 11%;
+  background-color: grey;
+
+  /* background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg"); */
+  /* background-color: black; */
+  /* border-bottom: 5px solid #007bff; */
+  height: 40%;
+  /* center the image */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.diagonal-gradient {
+  background: linear-gradient(to top left, black, #0a52c7);
+}
+
+.card-body{
+  background-color: white;
+}
+
 
 /*
 =====
@@ -109,83 +186,6 @@ LEVEL 2. SETTINGS
   --ratingColor: #eee;
 	--ratingColorActive: #ffcc00;
 }
-.container{
-  max-width: 1300px;
-  margin-top: -32px;
-  padding-top: 30px;
-  padding-bottom: 40px;
-  /* background-color: white; */
-}
-
-@media (min-width: 1200px) {
-  .container{
-    max-width: 1300px;
-  }
-}
-
-.card-header{
-  background-color: white;
-
-
-
-}
-
-/* input span and input area style */
-.input-group-text{
-  background-color: white;
-}
-
-.form-control:disabled{
-  background-color: white;
-}
-
-/* about page card style */
-#cardStyle{
-  background-color: #0D3573;
-  width: 50%;
-  opacity: 0.93;
-}
-
-/* profile pic style */
-#profilePic{
-  object-fit: cover;
-  object-position: center;
-  width: 40px;
-  height: 40px;
-}
-
-#whiteFont{
-  color: white;
-}
-
-/* change color of nav links */
-.nav-link{
-  color: white;
-}
-
-.jumbotron.masthead {
-  margin-top: -3%;
-  padding-top: 11%;
-  background-color: grey;
-
-  /* background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg"); */
-  /* background-color: black; */
-  /* border-bottom: 5px solid #007bff; */
-  height: 40%;
-  /* center the image */
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.diagonal-gradient {
-  background: linear-gradient(to top right, #ff7aca, #0a52c7);
-}
-
-.card-body{
-  background-color: white;
-}
 
 /*------------------------------------------------------------------
 [Main Stylesheet]
@@ -274,7 +274,7 @@ a img{
 }
 a:hover{
   text-decoration:none;
-  color:#212121;
+  color:#ff8d12;
 }
 img.responsive_image{
   max-width:100%;
@@ -2110,338 +2110,6 @@ select.select__field{
   margin:40px 0 0 0;
   cursor:pointer;
 }
-/*===============================================*/
-/*  7.11 CUSTOM SECTION - LOGIN/SIGNUP MODAL			 */
-/*===============================================*/
-.modal {
-  position: absolute;
-  z-index: 10000; /* 1 */
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  width: 100%;
-  height: 100%;
-}
-.modal.modal--visible {
-  visibility: visible;
-}
-.modal__overlay {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: hsla(0, 0%, 0%, 0.2);
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s linear 0.3s, opacity 0.3s;
-}
-
-.modal.modal--visible .modal__overlay {
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0s;
-}
-.modal__wrapper {
-  position: fixed;
-  z-index: 9999;
-  top: 20%;
-  left: 50%;
-  width: 50%;
-  margin-left: -25%;
-  background-color: #fff;
-}
-.modal__wrapper--image {
-  top: 10%;
-  left: 30%;
-  width: 70%;
-  bottom:10%;
-  margin-left: -15%;
-}
-.modal-transition {
-  -webkit-transition:all 0.3s 0.12s;
-  -moz-transition: all 0.3s 0.12s;
-  transition: all 0.3s 0.12s;
-  transform: translateY(-10%);
-  opacity: 0;
-}
-
-.modal.modal--visible .modal-transition {
-  transform: translateY(0);
-  opacity: 1;
-}
-.modal__body{
-  width:100%;
-  height:100%;
-}
-.modal__header{
-  width:96%;
-  background-color:#ff8d12;
-  color:#fff;
-  font-size:20px;
-  font-weight:300;
-  padding: 15px 2%;
-}
-.modal__content{
-  width:100%;
-  height:0;
-  visibility: hidden;
-  position:relative;
-  transform: translate(-100%);
-  overflow:hidden;
-}
-.modal__content.modal__content--visible{
-  visibility: visible;
-  transform: translate(0);
-  width:100%;
-  height:100%;
-  float:left;
-  clear:both;
-  display: table;
-}
-.modal__image{
-  width:96%;
-  padding:0 2%;
-  height:89%;
-  margin:1% auto auto auto;
-}
-.modal__image img{
-  display:block;
-  height:100%;
-  margin:auto;
-}
-.modal__content--login{
-  background-color: #a66bff;
-  background: -webkit-linear-gradient(60deg, #655afe, #a66bff);
-  background: linear-gradient(60deg, #666afe, #a66bff);
-}
-.modal__content--forgot{
-  background-color: #a66bff;
-  background: -webkit-linear-gradient(60deg, #655afe, #a66bff);
-  background: linear-gradient(60deg, #655afe, #a66bff);
-}
-.modal__content--signup{
-  background-color:#ff8d12;
-}
-.modal__info{
-  width:34%;
-  display: table-cell;
-  height:100%;
-  padding:40px 3%;
-  color:#fff;
-  -webkit-transition:all 0.3s 0.12s;
-  -moz-transition: all 0.3s 0.12s;
-  transition: all 0.3s 0.12s;
-  opacity: 0;
-  transform: translateX(-10%);
-}
-.modal__content.modal__content--visible .modal__info{
-  transform: translateX(0);
-  opacity: 1;
-}
-.modal__title{
-  font-size:24px;
-  font-weight:700;
-  padding:0 0 20px 0;
-  margin:0px;
-}
-.modal__descr{
-  font-size:38px;
-  font-weight:300;
-  padding:20px 0 20px 0;
-  margin:0px;
-  line-height:44px;
-}
-.modal__descr span{
-  font-weight:700;
-}
-.modal__list{
-  padding:0px;
-  margin:0px;
-  list-style:none;
-}
-.modal__list li{
-  background:url(images/checked-pricing-white.png) no-repeat 0% 70%;
-  padding:0 0 0 25px;
-  margin:4px 0;
-  line-height:22px;
-}
-.modal__switch--signup{
-  padding: 10px 30px;
-  margin:40px 0 0 0;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  font-weight: 400;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  color: #fff;
-  background-color:transparent;
-  border: 2px #fff solid;
-  cursor:pointer;
-  font-weight:700;
-}
-.modal__switch--signup:hover{
-  background-color:#fff;
-  color:#ff8d12;
-  border: 2px #fff solid;
-}
-.modal__switch--login{
-  padding: 10px 30px;
-  margin:40px 0 0 0;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  font-weight: 400;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  color: #fff;
-  background-color:transparent;
-  border: 2px #fff solid;
-  cursor:pointer;
-  font-weight:700;
-}
-.modal__switch--login:hover{
-  background-color:#fff;
-  color:#ff8d12;
-  border: 2px #fff solid;
-}
-.modal__form{
-  width:50%;
-  height:100%;
-  display: table-cell;
-  padding:40px 5%;
-  background-color:#fff;
-  opacity: 0;
-  transition: all 0.3s 0.12s;
-}
-.modal__content.modal__content--visible .modal__form{
-  opacity: 1;
-}
-.modal__checkbox{
-  float:left;
-  width:50%;
-  padding:10px 0 0 0;
-}
-.modal__checkbox{text-align:left;line-height:14px; clear:both;}
-.modal__checkbox label {	cursor: pointer;}
-.modal__checkbox input[type="checkbox"] {display: none;}
-.modal__checkbox input[type="checkbox"] + label:before{
-  border:none;
-  content: "\00a0";
-  display: inline-block;
-  font-size: 18px;
-  font-weight:900;
-  width:18px;
-  height:18px;
-  border-radius:2px;
-  -webkit-border-radius:2px;
-  -khtml-border-radius:2px;
-  margin:0 10px 0 0;
-  line-height:18px;
-  vertical-align: center;
-  border:none;
-  background-color:#f7f8f9;
-}
-.modal__checkbox input[type="checkbox"]:checked + label:before {color: #fff;content: "\2713";border:none;	text-align: center;background-color:#ff8d12; }
-.modal__checkbox input[type="checkbox"]:checked + label:after {font-weight: bold;}
-.modal__checkbox input[type="checkbox"] + label:before, input[type="checkbox"]:checked + label:before{background-color:#f7f8f9;}
-
-.modal__switch--forgot{
-  float:right;
-  padding:10px 0 0 0;
-  color:#a66bff;
-  font-weight:700;
-  cursor:pointer;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-.modal__switch--forgot:hover{
-  color:#a66bff;
-}
-
-.modal__close {
-  background: #000;
-  border: none;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  color: #FFFFFF;
-  cursor: pointer;
-  outline: none;
-  width: 44px;
-  height: 44px;
-  position: absolute;
-  right: -22px;
-  top: -22px;
-  -webkit-transition: -webkit-transform 600ms;
-  -moz-transition: -moz-transform 600ms;
-  -ms-transition: -ms-transform 600ms;
-  -o-transition: -o-transform 600ms;
-  transition: transform 600ms;
-}
-
-.modal__close:hover {
-  background: #000;
-  -webkit-transform: rotate(360deg) scale(1.10);
-  -moz-transform: rotate(360deg) scale(1.10);
-  -ms-transform: rotate(360deg) scale(1.10);
-  -o-transform: rotate(360deg) scale(1.10);
-  transform: rotate(360deg) scale(1.10);
-  -webkit-transition: -webkit-transform 600ms;
-  -moz-transition: -moz-transform 600ms;
-  -ms-transition: -ms-transform 600ms;
-  -o-transition: -o-transform 600ms;
-  transition: transform 600ms;
-}
-
-.modal__close span, .modal__close span:before, .modal__close span:after {
-  background: #FFFFFF;
-  content: '';
-  cursor: pointer;
-  display: block;
-  height: 2px;
-  position: absolute;
-  width: 20px;
-}
-
-.modal__close span:first-child {
-  background: none;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.modal__close span:before {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.modal__close span:after {
-  -webkit-transform: translateY(-2px) rotate(-45deg);
-  -moz-transform: translateY(-2px) rotate(-45deg);
-  -ms-transform: translateY(-2px) rotate(-45deg);
-  -o-transform: translateY(-2px) rotate(-45deg);
-  transform: translateY(-2px) rotate(-45deg);
-  top: 2px;
-}
-
 
 
 /*===============================================*/
@@ -2554,18 +2222,7 @@ ul.grid__list--fmenu li a:hover {
   svg.svg-intro-bottom {
     height: 70%;
   }
-  .modal__wrapper {
-    top: 18%;
-    width: 70%;
-    margin-left: -35%;
-  }
-  .modal__wrapper--image {
-    top: 5%;
-    left: 20%;
-    width: 80%;
-    bottom:5%;
-    margin-left: -10%;
-  }
+
   .pricing{
     width:90%;
   }
@@ -2950,40 +2607,7 @@ ul.grid__list--fmenu li a:hover {
     }
     /*  Modal	 */
     /*---------------*/
-    .modal__wrapper {
-      top: 5%;
-      width: 90%;
-      margin-left: -45%;
-    }
-    .modal__wrapper--image {
-      top: 10%;
-      left: 14%;
-      width: 86%;
-      bottom:auto;
-      margin-left: -7%;
-    }
-    .modal__content.modal__content--visible{
-      display: block;
-    }
-    .modal__info{
-      display:none;
-    }
-    .modal__form{
-      width:90%;
-      height:100%;
-      display:block;
-      padding:20px 5%;
-    }
-    .modal__content--login, .modal__content--forgot, .modal__content--signup{
-      background-color:#fff;
-    }
-    .modal__image{
-      height:auto;
-    }
-    .modal__image img{
-      max-width:100%;
-      max-height:auto;
-    }
+
     .section__content--support{
       background:none;
       box-shadow:none;

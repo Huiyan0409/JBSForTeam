@@ -1,6 +1,8 @@
 'use strict';
 const User = require( '../models/User' );
 const Question = require( '../models/Question' );
+const Answer = require( '../models/Answer' );
+
 
 //import axios
 const axios = require('axios');
@@ -42,7 +44,7 @@ exports.showOldProfile = ( req, res ) => {
 };
 
 //update personal profile
-exports.updateProfile = ( req, res ) => {
+exports.updateProfile = ( req, res, next) => {
   const goBackURL = '/editMyProfile/' + req.params.id
   if (req.body.userName.length==0 || req.body.status.length==0){
     console.log("empty params detected in profile");
@@ -56,91 +58,21 @@ exports.updateProfile = ( req, res ) => {
   .exec()
   .then((profile) => {
     profile.userName = req.body.userName
-    // profile.profilePicURL = req.body.profilePicURL
-    // profile.zipcode = req.body.zipcode
     profile.status = req.body.status
-    // Make a request for a user with a given ID
-    // axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/info.json/"+profile.zipcode+"/degrees")
-    // .then(function (response) {
-    //   console.log("API data success!")
-    //   // handle success
-    //   console.log(response);
-    //   profile.city = response.data.city
-    //   profile.state = response.data.state
-    //   profile.lastUpdate = new Date()
-    // })
     profile.save()
   })
-  .then(() => {
-    res.redirect('/myProfile/' + id)
-  })
 
-  // handle error
-  .catch(function (error) {
-    console.log("update failed!")
-    console.log(error);
-  })
-};
-
-// //update personal profile
-// exports.updateProfileInQA = ( req, res ) => {
-//   //in the question collection, find the questions with same user
-//   Question.find(res.locals.user._id)
-//   .exec()
-//   .then((question) => {
-//     question.userName = req.body.userName
-//     question.save()
-//   })
-//   .then(() => {
-//     console.log("update success!!");
-//     res.redirect('/myProfile')
-//   })
-//   // handle error
-//   .catch(function (error) {
-//     console.log("update failed!")
-//     console.log(error);
-//   })
-//};
-
-exports.upload = ( req, res ) => {
-  //find the user using user_id
-  User.findOne(res.locals.user._id)
+  // console.log("in update question")
+  console.log("req.body.imageURL: " + req.body.imageURL);
+  Question.updateMany({userId:req.user._id},{userName:req.body.userName},{multi:true})
   .exec()
-  .then((profile) => {
-    let readPath;
-    let sampleFile;
-    let uploadPath;
-
-    if (Object.keys(req.files).length == 0) {
-      res.status(400).send('No files were uploaded.');
-      return;
-    }
-    sampleFile = req.files.sampleFile;
-
-    // console.log("uploadPath: " + uploadPath);
-
-    let reqPath = path.join(__dirname, '../');
-    uploadPath = reqPath + 'public/images/uploads/' + sampleFile.name;
-    // console.log("uploadPath: " + uploadPath);
-
-    sampleFile.mv(uploadPath, function(err) {
-      if (err) {
-        return res.status(500).send(err);
-      }
-    });
-
-    readPath = '/images/uploads/' + sampleFile.name;
-    profile.profilePicURL = readPath;
-    profile.profilePicName = sampleFile.name;
-    profile.save();
-  })
-  .then(() => {
+  Answer.updateMany({userId:req.user._id},{userName:req.body.userName},{multi:true})
+  .exec()
+  .then(()=>{
     res.redirect('back')
   })
-  // handle error
-  .catch(function (error) {
-    console.log("upload image failed!")
-    console.log(error);
+  .catch((error)=>{
+    res.send(error)
   })
 };
 

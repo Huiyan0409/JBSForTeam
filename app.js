@@ -10,6 +10,7 @@ var logger = require('morgan');
 session = require("express-session"),
 bodyParser = require("body-parser"),
 User = require( './models/User' ),
+Answer = require( './models/Answer' ),
 flash = require('connect-flash')
 
 
@@ -52,6 +53,8 @@ db.once('open', function() {
 
 //start the app.js
 var app = express();
+
+//set up AWS S3
 const aws = require('aws-sdk');
 
 /*
@@ -64,7 +67,6 @@ aws.config.region = 'us-east-2';
 * Load the S3 information from the environment variables.
 */
 const S3_BUCKET = process.env.S3_BUCKET;
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -183,6 +185,11 @@ function isLoggedIn(req, res, next) {
 
 // END OF THE Google AUTHENTICATION ROUTES
 
+
+// =====================================
+// INDEX ===============================
+// =====================================
+
 //we can use this or the index router to handle req
 app.get('/', function(req, res, next){
   res.render('index', {
@@ -193,17 +200,19 @@ app.get('/', function(req, res, next){
 app.post('/:userId/enroll', isLoggedIn, classController.lookupClass, classController.addClass);
 
 // =====================================
-// Class =============================
+// Class ===============================
 // =====================================
-
-app.get('/classNotFound', isLoggedIn, function(req, res, next){
-  res.render('classNotFound')
-})
 
 //create new classes
 app.get('/classes', isLoggedIn, classController.getAllClasses)
 
+//process the form
 app.post('/createClass', isLoggedIn, classController.checkUnique, classController.saveClass);
+
+//error handle
+app.get('/classNotFound', isLoggedIn, function(req, res, next){
+  res.render('classNotFound')
+})
 
 // =====================================
 // Profile =============================
@@ -215,29 +224,21 @@ app.get('/myProfile/:id', isLoggedIn, profileController.showMyProfile)
 // we require them to be logged in to edit their profile
 app.get('/editMyProfile/:id', isLoggedIn, profileController.showOldProfile)
 
-// we require them to be logged in to register their tutor profile
-app.get('/tutorRegister/:id', isLoggedIn, profileController.showOldProfile)
-
 //update personal profile
 app.post('/updateProfile/:id', isLoggedIn, profileController.updateProfile)
 
-//update personal profile
-app.post('/upload/:id', profileController.upload)
+//show all profiles from all users
+app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
+
+//show personal profile
+app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 
 /*
-* Respond to GET requests to /account.
-* Upon request, render the 'account.html' web page in views/ directory.
-*/
-app.get('/account', isLoggedIn, function(req, res, next){
-  res.render('account')
-})
-
-/*
-* Respond to GET requests to /sign-s3.
+* Respond to GET requests to /signAWS.
 * Upon request, return JSON containing the temporarily-signed S3 request and
 * the anticipated URL of the image.
 */
-app.get('/sign-s3', (req, res) => {
+app.get('/signAWS', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
@@ -268,7 +269,7 @@ app.get('/sign-s3', (req, res) => {
 * This function needs to be completed to handle the information in
 * a way that suits your application.
 */
-app.post('/save-details', (req, res) => {
+app.post('/saveProfileImage', (req, res) => {
   const imageURL = req.body.imageURL
   //find the user using user_id
   User.findOne(res.locals.user._id)
@@ -277,6 +278,8 @@ app.post('/save-details', (req, res) => {
     profile.profilePicURL = imageURL
     profile.save();
   })
+  Answer.updateMany({userId:req.user._id},{profilePicURL:req.body.imageURL},{multi:true})
+  .exec()
   .then(() => {
     res.redirect('back')
   })
@@ -287,20 +290,6 @@ app.post('/save-details', (req, res) => {
   })
 });
 
-//show all profiles from all users
-app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
-
-//show personal profile
-app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
-
-//tutor profile related
-// we require them to be logged in to edit their profile
-app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfile)
-
-//update personal profile
-app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
-
-
 // =====================================
 // Location ============================
 // =====================================
@@ -310,7 +299,6 @@ app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfi
 app.get('/location', function(req, res, next){
   res.render('location')
 })
-
 
 
 // =====================================
@@ -345,20 +333,18 @@ app.post('/showQuestion/:id/answerDelete',qAndaController.deleteAnswer)
 //add thumbs up to answers
 app.post('/showQuestion/:id/answerLikes',qAndaController.likesAdded)
 
-//about page
-app.get('/about', function(req, res, next){
-  res.render('about')
-})
 
-//about page
-app.get('/emptyError', function(req, res, next){
-  res.render('emptyError')
-})
+// =====================================
+// TUTOR ===============================
+// =====================================
 
-//FAQ page
-app.get('/FAQ', function(req, res, next){
-  res.render('FAQ')
-})
+
+//tutor profile related
+// we require them to be logged in to edit their profile
+app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfile)
+
+//update personal profile
+app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor rating
 app.get('/tutorRating', function(req, res, next){
@@ -369,8 +355,29 @@ app.get('/tutorRating', function(req, res, next){
 app.get('/tutorRegister', function(req, res, next){
   res.render('tutorRegister')
 })
+
 app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
 
+
+// =====================================
+// STATIC PAGES ========================
+// =====================================
+
+
+//about page
+app.get('/about', function(req, res){
+  res.render('about')
+})
+
+//empty error page
+app.get('/emptyError', function(req, res){
+  res.render('emptyError')
+})
+
+//FAQ page
+app.get('/FAQ', function(req, res){
+  res.render('FAQ')
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
