@@ -34,7 +34,7 @@ exports.lookupClass = (req,res,next) => {
     }
     else {
       console.log("class not found");
-      // res.redirect("/classNotFound")
+      res.redirect("/classNotFound");
     }
   })
   .catch((error)=>{
