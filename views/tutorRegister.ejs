@@ -6,90 +6,87 @@
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
-        <!-- <div class="jumbotron masthead diagonal-gradient text-center parallax"> -->
-        <!-- <div class="card mx-auto" id="cardStyle">
-        <div class="card-body"> -->
-
-          <h1>Tutor Registration</h1>
-        </div>
-        <h2>Please choose the class you want to tutor and then submit.</h2>
+        Tutor Registration
       </div>
+      <h2 id="whiteFont">Please choose the class you want to tutor and then submit.</h2>
     </div>
-      <!-- </div> -->
-    <!-- </div>
-  </div> -->
+  </div>
 </section>
 
 
 
 <section class="section">
   <div class="container">
-    <br><br>
-    <div class="row">
-        <h3>Enter your class that you did not enroll the forum:</h3>
+    <br>
+    <h4>Enter your class that you did not enroll the forum:</h4>
+    <br>
 
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-
-        <div class="intro__form form-demo">
+    <div class="row text-center">
+      <div class="col-md-4">
           <% if (loggedIn) {%>
             <form action="/<%=user._id%>/enroll" method="post">
-              <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
-              <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ADD" />
+              <div class="input-group-prepend">
+                <span class="input-group-text">Course code</span>
+                <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B" />
+                &nbsp&nbsp&nbsp
+                <input type="submit" name="submit" class="btn btn-outline-primary" id="submit" value="ENROLL" />
+              </div>
             </form>
           <% } else { %>
             <input disabled type="text" class="form-demo__input" name="classCode" placeholder="Please login to enroll" />
           <% } %>
         </div>
-
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-
-        <h5>(This will automatically enroll you to the forum of this class)</h5>
-
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-
-        <h3>Choose the class from your enrolled forum:</h3>
-
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-    <form method="post" action="/processTutorRegister">
-        <% if (loggedIn) {%>
-          <ul class="list-group">
-            <% for (i = 0; i < user.classCodes.length; i++){%>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" name="chosen" value="<%=user.classCodes[i]%>">
-                  </div>
-                </div>
-                  <li class="list-group-item"><%=user.classCodes[i]%></li>
-              </div>
-          </ul>
-        <% } %>
-        <% } else { %>
-            <div class="partners__text">
-              Please login to view this page
-            </div>
-        <% } %>
-
-
-
-    <h3> Introduction of yourself:</h3>
-    <br>
-    <div class="form-group">
-      <textarea class="form-control" name = "SelfIntro" rows="6" cols = "100"></textarea>
     </div>
-    <br>
-    <input class="btn btn-outline-primary" type="submit" />
 
-</form>
-</div>
+
+
+
+    <br>
+    <h7>(This will automatically enroll you to the forum of this class)</h7>
+    <br><br>
+    <h4>Choose the class from your enrolled forum:</h4>
+    <br>
+
+    <div class="row text-center">
+      <div class="col-md-12">
+        <form method="post" action="/processTutorRegister">
+            <% if (loggedIn) {%>
+              <ul class="list-group">
+                <% for (i = 0; i < user.classCodes.length; i++){%>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                    <input type="checkbox" aria-label="Checkbox for following text input" name="chosen" value="<%=user.classCodes[i]%>">
+                      </div>
+                    </div>
+                      <li class="list-group-item"><%=user.classCodes[i]%></li>
+                  </div>
+              </ul>
+            <% } %>
+            <% } else { %>
+                <div class="partners__text">
+                  Please login to view this page
+                </div>
+            <% } %>
+          </form>
+      </div>
+    </div>
+
+    <br>
+    <h4> Introduction of yourself:</h4>
+    <br>
+
+    <div class="row text-center">
+      <div class="col-md-12">
+        <div class="form-group">
+          <textarea class="form-control" name = "SelfIntro" rows="6" cols = "100"></textarea>
+        </div>
+        <br>
+      </div>
+      <div class="col-md-12">
+        <input class="btn btn-outline-primary" type="submit" />
+      </div>
+    </div>
 </div>
 </section>
 

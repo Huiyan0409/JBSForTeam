@@ -64,10 +64,6 @@ P.S: if you like my content maybe you will become a donator and donate some mone
 .header__menu ul li > a.header-link:hover{
   color: #ff8d12;
 }
-/*
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-  background-color: #8064A2 !important;
-} */
 
 .jumbotron.masthead {
   margin-top: -3%;
@@ -488,7 +484,7 @@ h6{
   color:#ff8d12;
 }
 .header__menu ul li  a:hover, .header__menu ul li a.selected , .header__menu ul li a.active{
-  color: #272b26;
+  color: #ff8d12;
 }
 .header--sticky .header__menu ul li  a:hover, .header--sticky .header__menu ul li a.selected , .header--sticky .header__menu ul li a.active{
   color: #ff8d12;
