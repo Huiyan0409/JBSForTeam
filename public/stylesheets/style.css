@@ -3,8 +3,6 @@
 /*===============================================*/
 
 
-
-
 #map {
   height: 90%;
 }
@@ -125,9 +123,6 @@ LEVEL 2. SETTINGS
 
 .card-header{
   background-color: white;
-
-
-
 }
 
 /* input span and input area style */
@@ -180,7 +175,7 @@ LEVEL 2. SETTINGS
 }
 
 .diagonal-gradient {
-  background: linear-gradient(to top right, #ff7aca, #0a52c7);
+  background: linear-gradient(to top left, black, #0a52c7);
 }
 
 .card-body{

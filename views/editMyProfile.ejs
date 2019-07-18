@@ -43,7 +43,8 @@
         <br>
         <img style="border:1px solid gray;width:300px;" id="preview">
         <br><br>
-        <form method="POST" action="/save-details">
+
+        <form method="POST" action="/saveProfileImage">
           <input type="hidden" id="imageURL" name="imageURL">
           <input type="submit" class="btn btn-primary"value="Upload">
         </form>
@@ -52,7 +53,6 @@
 
     </div>
     <br>
-
 
     <!-- form: update personal info -->
 
@@ -124,7 +124,7 @@
   */
   function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    xhr.open('GET', `/signAWS?file-name=${file.name}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
