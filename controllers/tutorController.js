@@ -1,44 +1,45 @@
 'use strict';
 const mongoose = require( 'mongoose' );
-const Tutor = require( '../models/Tutor' );
+const User = require( '../models/User' );
 
 exports.saveTutor = ( req, res ) => {
   const goBackURL = '/tutorRegister'
   if (!res.locals.loggedIn) {
     return res.send("You must be logged in to become a tutorRegister.")
   }
-
-  let newTutor = new Tutor(
-    {
-      userName: req.user.userName,
-      introduction: req.body.introduction,
-      score: 0,
-      comments: [],
-      classCodes: req.body.chosen,
-      //characteristic
-      patient: 0,
-      excellentG: 0,
-      askGood: 0,
-      encouraging: 0,
-      helpful: 0,
-      abilityT: 0,
-      gEnergy: 0,
-      humility: 0,
-      passionate: 0,
-      onTime: 0,
-      gPaced: 0,
-      impatient: 0,
-      notgTeaching: 0,
-      late: 0,
-      notPrepared: 0,
-      notHelpful: 0
-    }
-  )
-  newTutor.save()
+  User.findOne(res.locals.user._id)
+  .exec()
+  .then((profile) => {
+    console.log("user is found! " + profile);
+    profile.introduction = req.body.selfIntro
+    profile.score = 0
+    profile.comments = []
+    profile.tutorClassCodes = req.body.chosen
+    profile.patient= 0
+    profile.excellentG= 0
+    profile.askGood= 0
+    profile.encouraging= 0
+    profile.helpful= 0
+    profile.abilityT= 0
+    profile.gEnergy= 0
+    profile.humility= 0
+    profile.passionate= 0
+    profile.onTime= 0
+    profile.gPaced= 0
+    profile.impatient= 0
+    profile.notgTeaching= 0
+    profile.late= 0
+    profile.notPrepared= 0
+    profile.notHelpful= 0
+    console.log("profile: " + profile);
+    profile.save();
+  })
   .then( () => {
+    console.log("update success");
     res.redirect( '/tutorRegister');
   } )
   .catch( error => {
+    console.log("update failed");
     res.send( error );
   } );
 };
@@ -46,7 +47,7 @@ exports.saveTutor = ( req, res ) => {
 exports.showMyTutorProfile = ( req, res ) => {
 
   //grab id from the URL, the red id is set by app.js where the URL is formed
-  Tutor.findOne(res.locals.user._id)
+  User.findOne(res.locals.user._id)
   .exec()
   .then( ( tutor ) => {
     res.render( 'myProfile', {
@@ -64,7 +65,7 @@ exports.showMyTutorProfile = ( req, res ) => {
 //load profile of current user
 exports.showOldTutorProfile = ( req, res ) => {
   const id = req.params.id
-  Tutor.findOne({_id: id})
+  User.findOne({_id: id})
   .exec()
   .then( ( tutor ) => {
     console.log("in show old profile");
@@ -86,13 +87,13 @@ exports.updateTutorProfile = ( req, res ) => {
     return
   }
   const id = req.params.id
-  Tutor.findOne({_id: id})
+  User.findOne({_id: id})
   .exec()
   .then((tutor) => {
     tutor.introduction = req.body.introduction
   })
   .then(() => {
-      res.redirect('/myProfile/' + id)
+    res.redirect('/myProfile/' + id)
   })
   // handle error
   .catch(function (error) {
@@ -103,7 +104,7 @@ exports.updateTutorProfile = ( req, res ) => {
 
 exports.getAllTutorProfile = ( req, res ) => {
   //find all users from database
-  Tutor.find()
+  User.find()
   .exec()
   .then( ( tutors ) => {
     res.render( 'showTutors', {
