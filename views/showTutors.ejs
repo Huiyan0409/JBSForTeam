@@ -36,11 +36,9 @@
               <div class="row">
                 <div class="col-md-2 col-sm-2">
                   <img src="<%=tutors[i].profilePicURL%>" width = "100%" alt="profile picture">
-                  <br><br>
-                  <a href="/showTutorProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                  User Email: <%= tutors[i].googleemail %>
+                  <a href="/showTutorProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
                   <br>
                   introduction: <%= tutors[i].introduction %>
                 </div>
