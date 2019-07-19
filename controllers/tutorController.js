@@ -12,6 +12,7 @@ exports.saveTutor = ( req, res ) => {
   .then((profile) => {
     console.log("user is found! " + profile);
     profile.introduction = req.body.selfIntro
+    profile.status = "tutor"
     profile.score = 0
     profile.comments = []
     profile.tutorClassCodes = req.body.chosen
