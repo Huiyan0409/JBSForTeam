@@ -110,7 +110,7 @@
           <div class="card-body">
             <form action="/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/processAnswerPost" method="post">
               <div class="form-group">
-                <textarea class="form-control" name="answer" rows="3"></textarea>
+                <textarea class="form-control" id ="answer" name="answer" rows="3"></textarea>
               </div>
               <% if (loggedIn) {%>
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
@@ -130,6 +130,29 @@
   </div>
 
 </section>
+
+<!-- <script type="text/javascript">
+  // jQuery convention for running when the document has been fully loaded:
+  $(document).ready(() => {
+    $('#allUsersButton').click(() => {
+      var postURL = '/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/processAnswerPost'
+      $.ajax({
+        url: postURL,
+        type: 'POST',
+        dataType : 'json',
+        success: (data) => {
+          console.log($('#answer').val());
+          answer: $('#answer').val()
+        },
+      });
+    });
+    // define a generic Ajax error handler:
+    // http://api.jquery.com/ajaxerror/
+    $(document).ajaxError(() => {
+      console.log("AJAX ERROR");
+    });
+  });
+</script> -->
 
 
 <%- include('footer') -%>

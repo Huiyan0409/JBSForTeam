@@ -4,55 +4,88 @@
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center parallax">
       <div class="section__title section__title--centered" id="whiteFont">
-        <br>
-        <h1><%= profile.userName %>'s Profile</h1>
+        <%= profile.userName %>'s Profile
       </div>
     </div>
   </div>
 </section>
 
 <section class="section">
+  <div class="container">
+    <h3> User Profile:</h3>
 
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-sm-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Username</span>
-        <input disabled type="text" class="form-control" value="<%=profile.userName%>">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Username</span>
+          <input disabled type="text" class="form-control" value="<%=profile.userName%>">
+        </div>
       </div>
-    </div>
 
-    <div class="col-sm-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Email</span>
-        <input disabled type="text" class="form-control" value="<%=profile.googleemail%>">
-      </div>
-    </div>
-
-    <div class="col-sm-4">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Status</span>
-        <input disabled type="text" class="form-control" value="<%=profile.status%>">
-      </div>
-    </div>
-
-    <div class="w-100"></div>
-
-    <br>
-
-    <div class="col-sm-4">
-      <span class="input-group-text">Profile image</span>
+      <!-- Line Break -->
+      <div class="w-100"></div>
       <br>
-      <img src="<%=profile.profilePicURL%>" width = "100%" alt="profile picture">
+
+      <div class="col-sm-12 col-md-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+          <input disabled type="text" class="form-control" value="<%=profile.googleemail%>">
+        </div>
+      </div>
+      <!-- Line Break -->
+      <div class="w-100"></div>
+      <br>
+
+      <div class="col-sm-12 col-md-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Status</span>
+          <input disabled type="text" class="form-control" value="<%=profile.status%>">
+        </div>
+      </div>
+      <!-- Line Break -->
+      <div class="w-100"></div>
+      <br>
+
+      <div class="col-sm-12 col-md-4">
+        <span class="input-group-text">Profile image</span>
+        <br>
+        <img src="<%=profile.profilePicURL%>" width = "100%" alt="profile picture">
+      </div>
     </div>
 
-
+    <div class="col-md-4 col-sm-12">
+      <h5> <%= profile.userName %>'s Classes:</h5>
+      <br>
+      <% if (loggedIn) {%>
+        <ul class="list-group">
+          <% for (i = 0; i < user.classCodes.length; i++){ %>
+            <li class="list-group-item"><%=user.classCodes[i]%></li>
+          <% } %>
+        </ul>
+      <% } else { %>
+        <div class="partners__text">
+          Please login to view this page
+        </div>
+      <% } %>
+    </div>
   </div>
+</section>
 
-</div>
-
+<section class="section">
+  <div class="container">
+    <h3> Tutor Profile:</h3>
+    <div class="row">
+      <% if (profile.status==("tutor")) {%>
+        <div class="col-sm-12 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Introduction</span>
+            <input disabled type="text" value="<%=profile.introduction%>"></input>
+          </div>
+        </div>
+        <!-- some more here -->
+      <% } %>
+    </div>
+  </div>
 </section>
 
 <%- include('footer'); -%>

@@ -121,6 +121,7 @@ app.use((req,res,next) => {
       }
     }
   }
+  // console.log("not a first time user!!!");
   next()
 })
 
@@ -178,7 +179,6 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-
 // END OF THE Google AUTHENTICATION ROUTES
 
 
@@ -188,9 +188,14 @@ function isLoggedIn(req, res, next) {
 
 //we can use this or the index router to handle req
 app.get('/', function(req, res, next){
-  res.render('index', {
-    req: req
-  })
+  if (req.user && !req.user.userName){
+    console.log("first time user!");
+    res.redirect('/editMyProfile/' + req.user._id)
+  } else {
+    res.render('index', {
+      req: req
+    })
+  }
 })
 
 app.post('/:userId/enroll', isLoggedIn, classController.lookupClass, classController.addClass);
