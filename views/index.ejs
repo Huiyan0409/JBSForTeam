@@ -10,7 +10,14 @@
         </li>
 
         <li>
-          <a class="header-link" href="#forum">FORUM</a>
+          <a class="header-link" href="#forum" >FORUM</a>
+          <% if (loggedIn) {%>
+          <ul class="sub-menu">
+            <% for (i = 0; i < user.classCodes.length; i++) {%>
+              <li><a href="/showQuestions/<%=user.classCodes[i]%>" class="header-link"><%=user.classCodes[i]%></a></li>
+            <% } %>
+          </ul>
+          <% } %>
         </li>
 
         <li>
@@ -23,6 +30,7 @@
           <% if (loggedIn) {%>
             <a class="header-link" href="#tutor">TUTOR</a>
             <ul class="sub-menu">
+              <li><a href="/tutorRegister" class="header-link">BECOME A TUTOR</a></li>
               <li><a href="/showTutors" class="header-link">FINA A TUTOR</a></li>
               <li><a href="#" class="header-link">SEE TUTOR RANKING</a></li>
             </ul>
@@ -34,7 +42,7 @@
           <ul class="sub-menu">
             <li>
               <% if (loggedIn) {%>
-                <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+                <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
               <% } %>
             </li>
             <li>
@@ -42,7 +50,11 @@
                 <a href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
               <% } %>
             </li>
-
+            <li>
+              <% if (loggedIn) {%>
+                <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+              <% } %>
+            </li>
           </ul>
         </li>
 
