@@ -45,8 +45,8 @@
                   introduction: <%= tutors[i].introduction %>
                 </div>
                 <div class="col-md-7 col-sm-7">
-                  <% if(tutors[i].patient){  %>
-                    <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Patient <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
+                  <% if(!tutors[i].patient){  %>
+                    <button type="button" class="btn btn-primary btn-sm"> Patient <span class="badge badge-light">1</span></button>
                   <% } %>
                   <% if(tutors[i].excellentG){  %>
                     <button type="button" class="btn btn-light btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off"> Excellent Grade <span class="badge badge-light"><i class="fa fa-check"></i></span></button>
