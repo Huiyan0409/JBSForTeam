@@ -82,6 +82,11 @@
             <input disabled type="text" value="<%=profile.introduction%>"></input>
           </div>
         </div>
+        <ul>
+          <% for (i = 0; i < profile.tutorClassCodes.length; i++) {%>
+            <li><%=profile.tutorClassCodes[i]%></li>
+          <% } %>
+        </ul>
         <!-- some more here -->
       <% } %>
     </div>
