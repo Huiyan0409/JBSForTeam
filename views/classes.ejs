@@ -64,20 +64,35 @@
 
 
 <section class="section">
-  <div class="container text-center">
+  <div class="container">
     <div class="row">
-      <% for (i = 0; i < classes.length; i++){%>
-        <div class="col-6">
-          <div class="card">
-            <div class="card-body">
-              <h4>Class code: <%=classes[i].classCode%></h4>
-            </div>
-          </div>
-          <br>
-        </div>
-      <% } %>
+      <div class="col-6">
+        Find classes here
+        <input class="form-control" id="searchForClass" type="text" placeholder="Search for existing classes">
+      </div>
+      <div class="w-100"></div>
+      <div class="col-3">
+        <br>
+        <ul class="list-group" id="classList">
+          <% for (i = 0; i < classes.length; i++){%>
+            <li class="list-group-item">
+              Class code: <%=classes[i].classCode%>
+            </li>
+          <% } %>
+        </ul>
+      </div>
     </div>
   </div>
+  <script>
+    $(document).ready(function(){
+      $("#searchForClass").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#classList li").filter(function() {
+          $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
 </section>
 
 
