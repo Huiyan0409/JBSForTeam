@@ -1,5 +1,4 @@
 var createError = require('http-errors');
-const fileUpload = require('express-fileupload');
 var express = require('express');
 //working with file and directory paths
 var path = require('path');
@@ -38,8 +37,8 @@ configPassport(passport)
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-// const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
-const MONGODB_URI = 'mongodb://localhost/iclaster';
+const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
+// const MONGODB_URI = 'mongodb://localhost/iclaster';
 const mongoose = require( 'mongoose' );
 
 // Makes connection asynchronously.  Mongoose will queue up database
@@ -71,9 +70,6 @@ const S3_BUCKET = process.env.S3_BUCKET;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-//use upload
-app.use(fileUpload());
 
 app.use(logger('dev'));
 app.use(express.json());
