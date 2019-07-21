@@ -38,24 +38,23 @@
         </li>
 
         <li>
-          <a class="header-link" href="#profile">PROFILE</a>
-          <ul class="sub-menu">
-            <li>
-              <% if (loggedIn) {%>
-                <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
-              <% } %>
-            </li>
-            <li>
-              <% if (loggedIn) {%>
-                <a href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
-              <% } %>
-            </li>
-            <li>
-              <% if (loggedIn) {%>
-                <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
-              <% } %>
-            </li>
-          </ul>
+            <a class="header-link" href="#profile">PROFILE</a>
+            <% if (loggedIn) {%>
+
+            <ul class="sub-menu">
+              <li>
+                  <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
+              </li>
+              <li>
+                  <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
+              </li>
+              <li>
+                  <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+              </li>
+            </ul>
+            <% } %>
+
+
         </li>
 
 
