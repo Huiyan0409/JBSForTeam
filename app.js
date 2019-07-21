@@ -239,7 +239,7 @@ app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 * Upon request, return JSON containing the temporarily-signed S3 request and
 * the anticipated URL of the image.
 */
-app.get('/signAWS', (req, res) => {
+app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
@@ -270,7 +270,7 @@ app.get('/signAWS', (req, res) => {
 * This function needs to be completed to handle the information in
 * a way that suits your application.
 */
-app.post('/saveProfileImage', (req, res) => {
+app.post('/save-details', (req, res) => {
   const imageURL = req.body.imageURL
   //find the user using user_id
   User.findOne(res.locals.user._id)
