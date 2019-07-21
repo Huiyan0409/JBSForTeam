@@ -6,17 +6,10 @@
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
-        <!-- <div class="jumbotron masthead diagonal-gradient text-center parallax"> -->
-        <!-- <div class="card mx-auto" id="cardStyle">
-        <div class="card-body"> -->
-
         <%=user.userName%>'s profile
       </div>
     </div>
   </div>
-  <!-- </div> -->
-  <!-- </div>
-</div> -->
 </section>
 
 <section class="section">
@@ -24,74 +17,153 @@
 
     <div class="row">
       <div class="col">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Current profile image</span>
-        </div>
-        <br>
-        <img src="<%=user.profilePicURL%>" style="width:300px;">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Current profile image</span>
+          </div>
+          <% if (user.profilePicURL) {%>
+            <img src="<%=user.profilePicURL%>" style="width:300px;">
+          <% } else { %>
+            No profile image
+          <% } %>
+          <br><br>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+          Upload profile image
+        </button>
+
         <hr>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">Upload File</span>
-            <input type="file" class="form-control" id="file-input">
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload profile image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="row">
+
+
+                  <br><br>
+                  <div class="col-md-12 col-sm-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">Upload File</span>
+                      <input type="file" class="form-control" id="file-input">
+                    </div>
+                    <hr>
+
+                  </div>
+                  <div class="col-md-12 col-sm-12">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Preview</span>
+                    </div>
+
+                  </div>
+
+                  <br>
+                  <div class="col-md-12 col-sm-12">
+                    <img id="preview">
+                  </div>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form method="POST" action="/save-details">
+                  <input type="hidden" id="imageURL" name="imageURL">
+                  <input type="submit" class="btn btn-primary"value="Upload">
+                </form>
+
+              </div>
+
+            </div>
           </div>
         </div>
-        <div class="input-group-prepend">
-          <span class="input-group-text">Preview</span>
-        </div>
-        <br>
-        <img style="border:1px solid gray;width:300px;" id="preview">
-        <br><br>
 
-        <form method="POST" action="/saveProfileImage">
-          <input type="hidden" id="imageURL" name="imageURL">
-          <input type="submit" class="btn btn-primary"value="Upload">
-        </form>
-
+        <!-- <div class="input-group-prepend">
+        <span class="input-group-text">Current profile image</span>
       </div>
+      <br>
+      <img src="<%=user.profilePicURL%>" style="width:300px;">
+      <hr>
 
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Upload File</span>
+      <input type="file" class="form-control" id="file-input">
     </div>
+  </div> -->
+  <!-- <div class="input-group-prepend">
+  <span class="input-group-text">Preview</span>
+</div>
+<br>
+<img style="border:1px solid gray;width:300px;" id="preview">
+<br><br>
+<form method="POST" action="/save-details">
+<input type="hidden" id="imageURL" name="imageURL">
+<input type="submit" class="btn btn-primary"value="Upload">
+</form> -->
+
+</div>
+
+</div>
+<br>
+
+
+<!-- form: update personal info -->
+
+<form action="/updateProfile/<%=user._id%>" method="post">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Username</span>
+        <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
+      </div>
+    </div>
+
+    <!-- line break -->
+    <div class="w-100"></div>
     <br>
 
-    <!-- form: update personal info -->
-
-    <form action="/updateProfile/<%=user._id%>" method="post">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Username</span>
-            <input type="text" class="form-control" name="userName" value="<%=user.userName%>">
-          </div>
-        </div>
-
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
-
-        <div class="col-sm-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Status</span>
-            <select class="form-control" name ="status" value="<%=user.status%>">
-              <option disabled value="Choose a role">Role</option>
-              <option value="tutor">Tutor</option>
-              <option value="student">Student</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-sm-3"></div>
-
-        <div class="w-100"></div>
-        <br>
-        <div class="col-sm-1">
-          <input type="submit" class = "btn btn-outline-primary" value = "Save">
-        </div>
-        <br>
+    <!-- zipcode -->
+    <!-- <div class="col-sm-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Zipcode</span>
+        <input type="text" class="form-control" name="zipcode" value="<%=user.zipcode%>">
       </div>
-    </form>
+    </div> -->
 
+    <!-- line break -->
+    <!-- <div class="w-100"></div>
+    <br> -->
+
+    <div class="col-sm-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Status</span>
+        <select class="form-control" name ="status" value="<%=user.status%>">
+          <option disabled value="Choose a role">Role</option>
+          <option value="tutor">Tutor</option>
+          <option value="student">Student</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-3"></div>
+
+    <div class="w-100"></div>
+    <br>
+    <div class="col-sm-1">
+      <input type="submit" class = "btn btn-outline-primary" value = "Save">
+    </div>
+    <br>
   </div>
+</form>
+
+</div>
 </section>
 <!-- edit profile page -->
 
@@ -124,7 +196,7 @@
   */
   function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/signAWS?file-name=${file.name}&file-type=${file.type}`);
+    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){

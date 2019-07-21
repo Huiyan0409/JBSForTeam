@@ -73,7 +73,7 @@
 </header>
 
 <!-- Section intro -->
-<section class="section section--intro" id="home">
+<section class="section section--intro section--grey" id="home">
   <div class="section__content section__content--fluid-width section__content--intro">
     <div class="intro">
       <div class="intro__content">
@@ -81,17 +81,17 @@
           <div class="intro__subtitle"><%=user.userName%></div>
         <% } %>
         <div class="intro__subtitle">Welcome to Claster</div>
-        <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help all in one place</div>
+        <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help -all in one place. Discuss, tutor and meet.</div>
+        <% if (loggedIn) {%>
         <div class="intro__form form-demo">
-          <% if (loggedIn) {%>
-            <form action="/<%=user._id%>/enroll" method="post">
-              <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
-              <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
-            </form>
-          <% } else { %>
-            <input disabled type="text" class="form-demo__input" name="classCode" placeholder="Please login to enroll" />
-          <% } %>
+          <form action="/<%=user._id%>/enroll" method="post">
+            <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
+            <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
+          </form>
         </div>
+        <% } else { %>
+         <b><h3>PLEASE LOG IN TO ENROLL.</h3></b>
+        <% } %>
       </div>
     </div>
   </div>
@@ -124,23 +124,27 @@
         <p class="grid__text">Communicate with your peers using our smooth, clean, and effective platform to get response quickly without redundant email notifications and duplicate questions. More fluent communication than forum, more organized than messaging apps. </p>
       </div>
 
-      <div class="grid__item">
-        <h3 class="grid__title"><span>MEET</span></h3>
-        <p class="grid__text">Work better in person? Check out our location sharing function to see who else from your class is near by and ready to study! You can form a study group meeting by deciding a location to meet and share the meeting with the entire class. </p>
-      </div>
+
       <div class="grid__item">
         <h3 class="grid__title"><span>TUTOR</span></h3>
         <p class="grid__text">Get matched with a tutor today to get some extra academic help! Our tutor are verified college students who have taken your class and familiar with the specific topic you are confused about. Or Become a tutor today! </p>
       </div>
+
+      <div class="grid__item">
+        <h3 class="grid__title"><span>MEET</span></h3>
+        <p class="grid__text">Work better in person? Check out our location sharing function to see who else from your class is near by and ready to study! You can form a study group meeting by deciding a location to meet and share the meeting with the entire class. </p>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- Section -->
-<section class="section section--partners diagonal-gradient" id="forum">
+<section class="section section--grey" id="forum">
 
   <div class="section__content section__content--full-width section__content--padding">
-    <h2 class="section__title section__title--centered" id="whiteFont">Forum</h2>
+    <br>
+    <h2 class="section__title section__title--centered">Forum</h2>
     <div class="partners">
       <div class="partners__content swiper-wrapper">
         <div class="partners__slide swiper-slide">
@@ -148,7 +152,7 @@
             <% for (i = 0; i < user.classCodes.length; i++){%>
               <div class="partners__text">
                 <br>
-                <a href="/showQuestions/<%=user.classCodes[i]%>"><input class="btn btn-outline-primary" type="button" value="Go to Forum for <%=user.classCodes[i]%>"></a>
+                <a href="/showQuestions/<%=user.classCodes[i]%>"><input class="btn btn-outline-dark" type="button" value="Go to Forum for <%=user.classCodes[i]%>"></a>
               </div>
             <% } %>
           <% } else { %>
@@ -158,18 +162,20 @@
           <% } %>
         </div>
       </div>
-
       <div class="partners__pagination swiper-pagination"></div>
-
     </div>
+
     <div class="clear"></div>
+    <h2 class="section__title section__title--centered" style="margin-top: 2%; margin-bottom: -2.5%;">Tutor</h2>
+
   </div>
 </section>
 
-
 <!-- Section -->
 <section class="section" id="tutor">
+
   <div class="section__content section__content--full-width section__content--padding">
+
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-12 mx-auto">
@@ -177,24 +183,29 @@
           <h2>Find a peer tutor that meets your need!</h2>
         </div>
         <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
+          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
           <% if (loggedIn) { %>
-            <a href="/tutorRegister" class="btn btn-outline-primary">Become a tutor</a>
+            <a href="/tutorRegister" class="btn btn-outline-dark">Become a tutor</a>
           <% } else { %>
             Please login to become a tutor
           <% } %>
         </div>
         <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
+          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
+
           <% if (loggedIn) { %>
-            <a href="/showTutors" class="btn btn-outline-primary">Find a tutor</a>
+            <a href="/showTutors" class="btn btn-outline-dark">Find a tutor</a>
           <% } else { %>
             Please login to find tutors at your school
           <% } %>
         </div>
         <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
+          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
+
           <% if (loggedIn) { %>
-            <a href="/tutorRating" class="btn btn-outline-primary">TUTOR RATING</a>
+            <a href="/tutorRating" class="btn btn-outline-dark">Tutor rating</a>
           <% } else { %>
-            Please login to see tutor ranking
+            Please login to rate a tutor
           <% } %>
         </div>
       </div>
@@ -203,10 +214,11 @@
   </div>
 </section>
 
-<section class="section section--partners diagonal-gradient" id="profile">
+<section class="section section--grey" id="profile">
 
   <div class="section__content section__content--full-width section__content--padding">
-    <h2 class="section__title section__title--centered" id="whiteFont">Profile</h2>
+    <br>
+    <h2 class="section__title section__title--centered id="grey"">Profile</h2>
     <div class="partners">
       <div class="partners__content swiper-wrapper">
         <div class="partners__slide swiper-slide">
@@ -253,7 +265,7 @@
               </div>
             </div>
             <div class="partners__text">
-              <a href="/editMyProfile/<%=user._id%>"><input class="btn btn-outline-primary" type="button" value="Edit my profile"></a>
+              <a href="/editMyProfile/<%=user._id%>"><input class="btn btn-outline-dark" type="button" value="Edit my profile"></a>
             </div>
           <% } else {%>
             Please log in to view and edit your profile

@@ -2,6 +2,9 @@
 /* Customized CSS--BOOTSTRAP		 						 */
 /*===============================================*/
 
+#grey{
+  background-color:#f7f8f9;
+}
 
 #map {
   height: 95%;
@@ -66,17 +69,17 @@ P.S: if you like my content maybe you will become a donator and donate some mone
 }
 
 .jumbotron.masthead {
-  margin-top: -3%;
-  padding-top: 11%;
+  /* margin-top: -3%; */
+  padding-top: 6.5%;
   background-color: grey;
 
   /* background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg"); */
   /* background-color: black; */
   /* border-bottom: 5px solid #007bff; */
-  height: 40%;
+  /* height: 30%; */
   /* center the image */
-  background-position: bottom;
-  background-repeat: no-repeat;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
   background-size: cover;
   background-attachment: fixed;
 }
@@ -237,6 +240,13 @@ body{
   background-color:#fff;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight:330;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight:360;
+
+
 }
 .clear{
   clear:both;
@@ -683,7 +693,7 @@ h6{
 .grid--3col .grid__item{
   float:left;
   margin-right:80px;
-  margin-bottom:80px;
+  /* margin-bottom:20px; */
   /* full width - space between cols * nr of inner spaces / number of cols */
   width: calc((100% - 80px * 2) / 3);
 }
@@ -1288,7 +1298,7 @@ svg.svg-intro-bottom {
 /*===============================================*/
 /*  7.4 CUSTOM SECTION - partners 			 */
 /*===============================================*/
-.section--partners{
+.section--grey{
   background-color:#f7f8f9;
 }
 .partners{
