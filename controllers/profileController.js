@@ -34,9 +34,11 @@ exports.showOldProfile = ( req, res ) => {
   const id = req.params.id
   User.findOne({_id: id})
   .exec()
-  .then( ( question ) => {
+  .then( ( profile ) => {
     console.log("in show old profile");
-    res.render( 'editMyProfile');
+    res.render( 'editMyProfile', {
+      profile: profile
+    });
   })
   .catch(function (error) {
     console.log(error);
@@ -58,18 +60,19 @@ exports.updateProfile = ( req, res, next) => {
   .exec()
   .then((profile) => {
     profile.userName = req.body.userName
+    console.log("status is: " + req.body.status);
     profile.status = req.body.status
     profile.save()
   })
 
   // console.log("in update question")
-  console.log("req.body.imageURL: " + req.body.imageURL);
+  // console.log("req.body.imageURL: " + req.body.imageURL);
   Question.updateMany({userId:req.user._id},{userName:req.body.userName},{multi:true})
   .exec()
   Answer.updateMany({userId:req.user._id},{userName:req.body.userName},{multi:true})
   .exec()
   .then(()=>{
-    res.redirect('back')
+    res.redirect('/myProfile/' + id)
   })
   .catch((error)=>{
     res.send(error)
