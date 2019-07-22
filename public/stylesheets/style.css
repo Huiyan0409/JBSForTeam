@@ -587,6 +587,8 @@ h6{
 }
 /* ELEMENT - section__content */
 .section__content{
+  margin-left: -10px;
+  margin-right: -10px;
   clear:both;
 }
 /* ELEMENT MODIFIER section__content  */
