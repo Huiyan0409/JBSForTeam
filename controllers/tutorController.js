@@ -77,6 +77,20 @@ exports.showOldTutorProfile = ( req, res ) => {
   })
 };
 
+//load profile of current user
+exports.showTutorRatingProfile = ( req, res ) => {
+  const id = req.params.id
+  User.findOne({_id: id})
+  .exec()
+  .then( ( tutor ) => {
+    console.log("in show old profile");
+    res.render( 'tutorRatings');
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+};
+
 //update personal profile
 exports.updateTutorProfile = ( req, res ) => {
   const goBackURL = '/editMyTutorProfile/' + req.params.id
