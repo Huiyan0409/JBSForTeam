@@ -297,9 +297,9 @@ app.post('/save-details', (req, res) => {
 
 
 //find tutor page(temp)
-app.get('/location', function(req, res, next){
-  res.render('location')
-})
+// app.get('/location', function(req, res, next){
+//   res.render('location')
+// })
 
 
 // =====================================

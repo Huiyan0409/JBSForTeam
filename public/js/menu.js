@@ -54,11 +54,11 @@ $(document).ready(function () {
 	function onScroll(event){
 
 		var scrollPos = $(document).scrollTop();
-		$('.header__menu ul li a').each(function () {
+		$('.header-link').each(function () {
 			var currLink = $(this);
 			var refElement = $(currLink.attr("href"));
 			if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-				$('.header__menu ul li a').removeClass("selected");
+				$('.header-link').removeClass("selected");
 				currLink.addClass("active");
 			}
 			else{
