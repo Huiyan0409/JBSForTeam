@@ -13,15 +13,25 @@
 
 <section class="section">
   <div class="section__content section__content--fixed-width text-center">
-
       <label for="something">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <input id="something" input type="text" class="form-control "style="width:500px;" placeholder="Search Your Tutor"list="somethingelse"></input>
-              <a href="/tutorRatings/something" input type="button" id='editBtn' value="Edit" class = "btn btn-outline-primary">edit</a>
+
+              <input type="text" class="form-control" id="input" style="width:500px;" placeholder="Search Your Tutor by Clicking the Suggested Profile"list="tutorList">
+              <script>
+              var burl = document.getElementById('input').value;
+              </script>
+              <p><a href="" class="burl btn btn-dark btn-block" data-extra="/tutorRatings">Confirm</a></p>
+              <script>
+              (function() {
+                Array.prototype.forEach.call(document.querySelectorAll("a.burl"), function(link) {
+                link.href = link.getAttribute("data-extra")+"/"+burl;
+                });
+              })();
+              </script>
             </div>
       </div>
-      <datalist id="somethingelse">
+      <datalist id="tutorList">
           <% for(i = 0; i < tutors.length; i++){  %>
             <option value=<%=tutors[i].id%>><%=tutors[i].userName%></option>
           <% } %>
