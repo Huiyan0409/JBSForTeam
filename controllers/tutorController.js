@@ -103,12 +103,52 @@ exports.updateTutorProfile = ( req, res ) => {
   })
 };
 
+exports.updateTutorRatingProfile = ( req, res ) => {
+  const goBackURL = '/tutorRatings/' + req.params.id
+  if (req.body.userName.length==0){
+    console.log("empty params detected in profile");
+    res.render('emptyError', {
+      goBackURL: goBackURL
+    })
+    return
+  }
+  const id = req.params.id
+  User.findOne({_id: id})
+  .exec()
+  .then((tutor) => {
+    tutor.introduction = req.body.introduction
+  })
+  .then(() => {
+    res.redirect('/tutorRatings/' + id)
+  })
+  // handle error
+  .catch(function (error) {
+    console.log("update failed!")
+    console.log(error);
+  })
+};
+
 exports.getAllTutorProfile = ( req, res ) => {
   //find all users from database
   User.find()
   .exec()
   .then( ( tutors ) => {
     res.render( 'showTutors', {
+      tutors: tutors
+    } );
+  } )
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
+
+exports.getAllTutorRatingProfile = ( req, res ) => {
+  //find all users from database
+  User.find()
+  .exec()
+  .then( ( tutors ) => {
+    res.render( 'tutorRating', {
       tutors: tutors
     } );
   } )
