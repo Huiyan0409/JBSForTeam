@@ -348,9 +348,7 @@ app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfi
 app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor rating
-app.get('/tutorRating', function(req, res, next){
-  res.render('tutorRating')
-})
+app.post('/tutorRatings/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor tutorRegister
 app.get('/tutorRegister', function(req, res, next){
@@ -360,6 +358,8 @@ app.get('/tutorRegister', function(req, res, next){
 app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
 
 app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
+
+app.get('/tutorRating', isLoggedIn, tutorController.getAllTutorRatingProfile)
 
 // =====================================
 // STATIC PAGES ========================
