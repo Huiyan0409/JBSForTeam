@@ -348,7 +348,10 @@ app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfi
 app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor rating
-app.post('/tutorRatings/:id', isLoggedIn, tutorController.updateTutorRatingProfile)
+app.post('/tutorRatings/:id', isLoggedIn, tutorController.showTutorRatingProfile)
+
+//tutor rating
+app.post('/updateTutorRatings/:id', isLoggedIn, tutorController.updateTutorRatingProfile)
 
 //tutor tutorRegister
 app.get('/tutorRegister', function(req, res, next){
