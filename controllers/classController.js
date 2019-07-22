@@ -119,6 +119,8 @@ exports.saveClass = ( req, res ) => {
 
 exports.checkUnique = (req,res,next) => {
   var classCode = req.body.subject.concat(req.body.courseNum)
+  classCode = classCode.toUpperCase()
+  console.log("classcode is: " + classCode);
   Class.find({classCode:classCode})
   .exec()
   .then((classes) => {
