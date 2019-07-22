@@ -1,20 +1,23 @@
 <%- include('header'); -%>
 
+<script src="/js/menu.js"></script>
+
+
 <header class="header">
   <div class="header__content header__content--fluid-width">
     <a class="header__logo-title" href="#home">iClaster</a>
     <nav class="header__menu">
       <ul>
         <li>
-          <a class="header-link" href="#home">HOME</a>
+          <a class="header-link" id="header-link" href="#home">HOME</a>
         </li>
 
         <li>
-          <a class="header-link" href="#forum" >FORUM</a>
+          <a class="header-link" id="header-link" href="#forum" >FORUM</a>
           <% if (loggedIn) {%>
           <ul class="sub-menu">
             <% for (i = 0; i < user.classCodes.length; i++) {%>
-              <li><a href="/showQuestions/<%=user.classCodes[i]%>" class="header-link"><%=user.classCodes[i]%></a></li>
+              <li><a href="/showQuestions/<%=user.classCodes[i]%>"><%=user.classCodes[i]%></a></li>
             <% } %>
           </ul>
           <% } %>
@@ -22,38 +25,31 @@
 
         <li>
           <% if (loggedIn) {%>
-            <a class="header-link" href="/classes">CLASSES</a>
-          <% } %>
-        </li>
-
-        <li>
-          <% if (loggedIn) {%>
-            <a class="header-link" href="#tutor">TUTOR</a>
+            <a class="header-link" id="header-link" href="#tutor">TUTOR</a>
             <ul class="sub-menu">
-              <li><a href="/tutorRegister" class="header-link">BECOME A TUTOR</a></li>
-              <li><a href="/showTutors" class="header-link">FINA A TUTOR</a></li>
-              <li><a href="/tutorRating" class="header-link">TUTOR RATING</a></li>
+              <li><a href="/tutorRegister">BECOME A TUTOR</a></li>
+              <li><a href="/showTutors">FINA A TUTOR</a></li>
+              <li><a href="/tutorRating" >TUTOR RATING</a></li>
             </ul>
           <% } %>
         </li>
 
         <li>
-            <a class="header-link" href="#profile">PROFILE</a>
+            <a class="header-link" id="header-link" href="#profile">PROFILE</a>
             <% if (loggedIn) {%>
 
             <ul class="sub-menu">
               <li>
-                  <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
+                  <a href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
               </li>
               <li>
-                  <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
+                  <a href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
               </li>
               <li>
-                  <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+                  <a href="/showProfiles" >ALL PROFILES</a>
               </li>
             </ul>
             <% } %>
-
 
         </li>
 
@@ -82,12 +78,17 @@
         <div class="intro__subtitle">Welcome to iClaster</div>
         <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help -all in one place. Discuss, tutor and meet.</div>
         <% if (loggedIn) {%>
-        <div class="intro__form form-demo">
-          <form action="/<%=user._id%>/enroll" method="post">
-            <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
-            <input type="submit" name="submit" class="form-demo__submit" id="submit" value="ENROLL" />
-          </form>
-        </div>
+          <a href="/classes"><input type="submit" name="submit" class="form-demo__submit1" value="VIEW AND SEARCH CLASSES"></a>
+
+          <br><br><br>
+
+          <div class="intro__form form-demo">
+            <form action="/<%=user._id%>/enroll" method="post">
+              <input type="text" class="form-demo__input" name="classCode" placeholder="Class code" />
+              <input type="submit" name="submit" class="form-demo__submit" value="ENROLL" />
+            </form>
+          </div>
+
         <% } else { %>
          <b><h3>PLEASE LOG IN TO ENROLL.</h3></b>
         <% } %>
@@ -141,7 +142,7 @@
 <!-- Section -->
 <section class="section section--grey" id="forum">
 
-  <div class="section__content section__content--full-width section__content--padding">
+  <div class="section__content section__content--fluid-width section__content--padding">
     <br>
     <h2 class="section__title section__title--centered">Forum</h2>
     <div class="partners">
@@ -165,49 +166,60 @@
     </div>
 
     <div class="clear"></div>
-    <h2 class="section__title section__title--centered" style="margin-top: 2%; margin-bottom: -2.5%;">Tutor</h2>
 
   </div>
 </section>
 
+
 <!-- Section -->
 <section class="section" id="tutor">
+  <div class="section__content section__content--fluid-width section__content--padding">
+    <h2 class="section__title section__title--centered">Tutor</h2>
 
-  <div class="section__content section__content--full-width section__content--padding">
+    <br><br><br>
+    <div class="grid grid--4col">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-12 mx-auto">
-          <h1><b>Ready to get started?</b></h1>
-          <h2>Find a peer tutor that meets your need!</h2>
-        </div>
-        <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
+      <div class="grid__item">
+        <h2 class="grid__title"><span>Ready to get started with tutors?</span></h2>
+        <h3>Find a peer tutor that meets your need!</h3>
+      </div>
+
+      <div class="grid__item">
+        <h3 class="grid__title"><span>Find a tutor</span></h3>
+        <p class="grid__text">
+          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
+          <% if (loggedIn) { %>
+            <a href="/showTutors" class="btn btn-outline-dark">Find a tutor</a>
+          <% } else { %>
+            Please login to find tutors at your school
+          <% } %>
+        </p>
+      </div>
+
+      <div class="grid__item">
+        <h3 class="grid__title"><span>Become a tutor</span></h3>
+        <p class="grid__text">
           Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
           <% if (loggedIn) { %>
             <a href="/tutorRegister" class="btn btn-outline-dark">Become a tutor</a>
           <% } else { %>
             Please login to become a tutor
           <% } %>
-        </div>
-        <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
-          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
+        </p>
+      </div>
 
-          <% if (loggedIn) { %>
-            <a href="/showTutors" class="btn btn-outline-dark">Find a tutor</a>
-          <% } else { %>
-            Please login to find tutors at your school
-          <% } %>
-        </div>
-        <div class="col-md-3 col-sm-12 mx-auto text-center align-self-center">
+      <div class="grid__item">
+        <h3 class="grid__title"><span>See tutor ranking</span></h3>
+        <p class="grid__text">
           Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
-
           <% if (loggedIn) { %>
             <a href="/tutorRating" class="btn btn-outline-dark">Tutor rating</a>
           <% } else { %>
             Please login to rate a tutor
           <% } %>
-        </div>
+        </p>
       </div>
+
     </div>
   <div class="clear"></div>
   </div>
@@ -215,8 +227,7 @@
 
 <section class="section section--grey" id="profile">
 
-  <div class="section__content section__content--full-width section__content--padding">
-    <br>
+  <div class="section__content section__content--fluid-width section__content--padding">
     <h2 class="section__title section__title--centered id="grey"">Profile</h2>
     <div class="partners">
       <div class="partners__content swiper-wrapper">
@@ -224,43 +235,27 @@
           <% if (loggedIn) {%>
             <div class="container">
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-md-4 col-sm-12">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Username</span>
                     <input disabled type="text" class="form-control" value="<%=user.userName%>">
                   </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-md-4 col-sm-12">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Email</span>
                     <input disabled type="text" class="form-control" value="<%=user.googleemail%>">
                   </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-md-4 col-sm-12">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Status</span>
                     <input disabled type="text" class="form-control" value="<%=user.status%>">
                   </div>
                 </div>
 
-                <div class="w-100">
-                  <hr>
-                </div>
-
-                <% if (loggedIn){
-                  for (i = 0; i < user.classCodes.length; i++){ %>
-                    <div class="w-100"></div>
-                    <br>
-                    <div class="col-sm-4">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Class</span>
-                        <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
-                      </div>
-                    </div>
-                <% }
-                } %>
               </div>
             </div>
             <div class="partners__text">
@@ -275,6 +270,7 @@
       <div class="partners__pagination swiper-pagination"></div>
 
     </div>
+    <br><br><br>
     <div class="clear"></div>
   </div>
 </section>
