@@ -97,6 +97,18 @@
                   <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span class="badge badge-dark"><%=tutors[i].notHelpful%></span></button>
                 <% } %>
               </div>
+              <div class="w-100">
+
+              </div>
+
+              <form action="/contactTutor" method="post">
+                <div class="col-md-1 col-sm-1">
+                  <input type="hidden" name="studentUserId" value="<%=user._id%>">
+                  <input type="hidden" name="tutorUserId" value="<%=tutors[i]._id%>">
+                  <a href="/"><input type="submit" value="SUBMIT"></a>
+                </div>
+              </form>
+
             </div>
           </li>
         <% } %>
