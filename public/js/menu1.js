@@ -16,7 +16,7 @@ $(document).ready(function () {
 	});
 	navScroll();
 
-	$(document).on("scroll", onScroll);
+	// $(document).on("scroll", onScroll);
 
 	var delegate = function(criteria, listener) {
 		return function(e) {
@@ -31,41 +31,41 @@ $(document).ready(function () {
 	};
 	var toolbar = document.querySelector(".header__menu");
 	var buttonsFilter = function(elem) { return elem.classList && elem.classList.contains("header-link"); };
-	var buttonHandler = function(e) {
-		var button = e.delegateTarget;
-		if(!button.classList.contains("active")){
-			button.classList.add("active");
-			var target = button.hash;
-			var $target = $(target);
+	// var buttonHandler = function(e) {
+	// 	var button = e.delegateTarget;
+	// 	if(!button.classList.contains("active")){
+	// 		button.classList.add("active");
+	// 		var target = button.hash;
+	// 		var $target = $(target);
+	//
+	// 		$('html, body').stop().animate({
+	// 			'scrollTop': $target.offset().top
+	// 		}, 600, 'swing', function () {
+	// 			window.location.hash = target;
+	// 			$(document).on("scroll", onScroll);
+	// 		});
+	// 	}
+	// 	else {
+	// 		button.classList.remove("active");
+	// 	}
+	// };
+	// toolbar.addEventListener("click", delegate(buttonsFilter, buttonHandler));
 
-			$('html, body').stop().animate({
-				'scrollTop': $target.offset().top
-			}, 600, 'swing', function () {
-				window.location.hash = target;
-				$(document).on("scroll", onScroll);
-			});
-		}
-		else {
-			button.classList.remove("active");
-		}
-	};
-	toolbar.addEventListener("click", delegate(buttonsFilter, buttonHandler));
-
-	function onScroll(event){
-
-		var scrollPos = $(document).scrollTop();
-		$('.header__menu ul li a#header-link').each(function () {
-			var currLink = $(this);
-			var refElement = $(currLink.attr("href"));
-			if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-				$('.header__menu ul li a#header-link').removeClass("selected");
-				currLink.addClass("active");
-			}
-			else{
-				currLink.removeClass("active");
-			}
-		});
-	}
+	// function onScroll(event){
+	//
+	// 	var scrollPos = $(document).scrollTop();
+	// 	$('.header__menu ul li a#header-link').each(function () {
+	// 		var currLink = $(this);
+	// 		var refElement = $(currLink.attr("href"));
+	// 		if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+	// 			$('.header__menu ul li a#header-link').removeClass("selected");
+	// 			currLink.addClass("active");
+	// 		}
+	// 		else{
+	// 			currLink.removeClass("active");
+	// 		}
+	// 	});
+	// }
 
 	$.fn.menumaker = function(options) {
 

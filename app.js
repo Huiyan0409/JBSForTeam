@@ -37,8 +37,8 @@ configPassport(passport)
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
-// const MONGODB_URI = 'mongodb://localhost/iclaster';
+// const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
+const MONGODB_URI = 'mongodb://localhost/iclaster';
 const mongoose = require( 'mongoose' );
 
 // Makes connection asynchronously.  Mongoose will queue up database
@@ -348,9 +348,10 @@ app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfi
 app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor rating
-app.get('/tutorRating', function(req, res, next){
-  res.render('tutorRating')
-})
+app.get('/tutorRatings/:id', isLoggedIn, tutorController.showTutorRatingProfile)
+
+//tutor rating
+app.post('/updateTutorRatings/:id', isLoggedIn, tutorController.updateTutorRatingProfile)
 
 //tutor tutorRegister
 app.get('/tutorRegister', function(req, res, next){
@@ -360,6 +361,8 @@ app.get('/tutorRegister', function(req, res, next){
 app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
 
 app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
+
+app.get('/tutorRating', isLoggedIn, tutorController.getAllTutorRatingProfile)
 
 // =====================================
 // STATIC PAGES ========================
