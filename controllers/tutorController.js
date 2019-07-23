@@ -70,7 +70,9 @@ exports.showOldTutorProfile = ( req, res ) => {
   .exec()
   .then( ( tutor ) => {
     console.log("in show old profile");
-    res.render( 'editMyTutorProfile');
+    res.render( 'editMyTutorProfile', {
+      tutor: tutor
+    });
   })
   .catch(function (error) {
     console.log(error);
@@ -93,19 +95,13 @@ exports.showTutorRatingProfile = ( req, res ) => {
 
 //update personal profile
 exports.updateTutorProfile = ( req, res ) => {
-  const goBackURL = '/editMyTutorProfile/' + req.params.id
-  if (req.body.userName.length==0){
-    console.log("empty params detected in profile");
-    res.render('emptyError', {
-      goBackURL: goBackURL
-    })
-    return
-  }
   const id = req.params.id
   User.findOne({_id: id})
   .exec()
   .then((tutor) => {
     tutor.introduction = req.body.introduction
+    tutor.tutorClassCodes = req.body.chosen
+    tutor.save()
   })
   .then(() => {
     res.redirect('/myProfile/' + id)

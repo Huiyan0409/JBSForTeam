@@ -6,7 +6,7 @@
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
-        <h1><%=user.userName%>'s profile</h1>
+        <%=user.userName%>'s tutor profile
       </div>
     </div>
   </div>
@@ -19,31 +19,52 @@
 
     <form action="/updateTutorProfile/<%=user._id%>" method="post">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-4 col-sm-12">
           <div class="input-group-prepend">
             <span class="input-group-text">Introduction</span>
-            <input type="text" class="form-control" name="introduction" value="<%=tutor.introduction%>">
+            <textarea type="text" class="form-control" name="introduction"><%=tutor.introduction%></textarea>
           </div>
         </div>
 
-        <!-- line break -->
-        <div class="w-100"></div>
-        <br>
+        <div class="w-100">
 
-        <div class="col-sm-3"></div>
-
-        <div class="col-sm-1">
-          <input type="submit" class = "btn btn-outline-primary" value = "Save">
         </div>
 
-        <div class="w-100"></div>
+        <h4>Choose the class from your enrolled forum:</h4>
         <br>
-      </div>
-    </form>
 
-  </div>
-</section>
-<!-- edit profile page -->
+        <div class="col-md-12">
+          <% if (loggedIn) {%>
+            <ul class="list-group">
+              <% for (i = 0; i < user.classCodes.length; i++){ %>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" aria-label="Checkbox for following text input" name="chosen" value="<%=user.classCodes[i]%>">
+                    </div>
+                  </div>
+                  <li class="list-group-item"><%=user.classCodes[i]%></li>
+                </div>
+                <% } %>
+              </ul>
+              <% } else { %>
+                <div class="partners__text">
+                  Please login to view this page
+                </div>
+                <% } %>
+              </div>
+
+              <div class="col-sm-1">
+                <input type="submit" class = "btn btn-outline-primary" value = "Save">
+              </div>
+
+              <br>
+            </div>
+          </form>
+
+        </div>
+      </section>
+      <!-- edit profile page -->
 
 
-<%- include('footer'); -%>
+      <%- include('footer'); -%>

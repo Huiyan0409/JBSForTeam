@@ -17,7 +17,7 @@
           <% if (loggedIn) {%>
           <ul class="sub-menu">
             <% for (i = 0; i < user.classCodes.length; i++) {%>
-              <li><a href="/showQuestions/<%=user.classCodes[i]%>"><%=user.classCodes[i]%></a></li>
+              <li><a class="header-link" href="/showQuestions/<%=user.classCodes[i]%>"><%=user.classCodes[i]%></a></li>
             <% } %>
           </ul>
           <% } %>
@@ -27,9 +27,9 @@
           <% if (loggedIn) {%>
             <a class="header-link" id="header-link" href="#tutor">TUTOR</a>
             <ul class="sub-menu">
-              <li><a href="/tutorRegister">BECOME A TUTOR</a></li>
-              <li><a href="/showTutors">FINA A TUTOR</a></li>
-              <li><a href="/tutorRating" >TUTOR RATING</a></li>
+              <li><a class="header-link" href="/tutorRegister">BECOME A TUTOR</a></li>
+              <li><a class="header-link" href="/showTutors">FINA A TUTOR</a></li>
+              <li><a class="header-link" href="/tutorRating" >TUTOR RATING</a></li>
             </ul>
           <% } %>
         </li>
@@ -40,13 +40,13 @@
 
             <ul class="sub-menu">
               <li>
-                  <a href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
+                  <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
               </li>
               <li>
-                  <a href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
+                  <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
               </li>
               <li>
-                  <a href="/showProfiles" >ALL PROFILES</a>
+                  <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
               </li>
             </ul>
             <% } %>
@@ -101,7 +101,7 @@
   </div> -->
 
   <!-- background image on the intro part -->
-  <svg class="svg-intro-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" preserveAspectRatio="none">
+  <svg class="svg-intro-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95" preserveAspectRatio="none">
     <defs>
       <linearGradient id="linear" x1="0" y1="0%" x2="100%" y2="50%" spreadMethod="pad">
         <stop offset="0%" stop-color="#0a52c7"/>
@@ -259,7 +259,7 @@
 
               </div>
             </div>
-            
+
             <div class="partners__text">
               <a href="/editMyProfile/<%=user._id%>"><input class="btn btn-outline-dark" type="button" value="Edit my profile"></a>
             </div>

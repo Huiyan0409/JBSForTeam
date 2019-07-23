@@ -29,6 +29,7 @@
     <div class="row">
       <ul class="list-group" id="myList">
         <% for(i = 0; i < tutors.length; i++){ %>
+          <% if (tutors[i].status=="tutor") {%>
           <li class="list-group-item">
             <div class="row">
               <div class="col-md-2 col-sm-2">
@@ -47,7 +48,7 @@
                   <%=tutors[i].tutorClassCodes[j]%>
                 </div>
               <% } %>
-              <div class="col-md-7 col-sm-7">
+              <div class="col-md-5 col-sm-5">
                 <% if(tutors[i].patient > 1){  %>
                   <button type="button" class="btn btn-primary btn-sm"> Patient <span class="badge badge-light"><%=tutors[i].patient%></span></button>
                   <% } %>
@@ -97,20 +98,16 @@
                   <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span class="badge badge-dark"><%=tutors[i].notHelpful%></span></button>
                 <% } %>
               </div>
-              <div class="w-100">
 
-              </div>
-
-              <form action="/contactTutor" method="post">
-                <div class="col-md-1 col-sm-1">
-                  <input type="hidden" name="studentUserId" value="<%=user._id%>">
+              <form action="/contactTutor/<%=user._id%>/<%=tutors[i]._id%>" method="post">
+                <div class="col-md-1 col-sm-1 align-self-center">
                   <input type="hidden" name="tutorUserId" value="<%=tutors[i]._id%>">
-                  <a href="/"><input type="submit" value="SUBMIT"></a>
+                  <a href="/"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
                 </div>
               </form>
-
             </div>
           </li>
+          <% } %>
         <% } %>
       </ul>
     </div>
