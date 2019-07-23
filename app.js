@@ -348,7 +348,7 @@ app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfi
 app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor rating
-app.get('/tutorRatings', isLoggedIn, tutorController.showTutorRatingProfile)
+app.get('/tutorRatings/:id', isLoggedIn, tutorController.showTutorRatingProfile)
 
 //tutor rating
 app.post('/updateTutorRatings', isLoggedIn, tutorController.updateTutorRatingProfile)
