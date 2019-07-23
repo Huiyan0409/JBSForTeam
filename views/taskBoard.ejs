@@ -26,7 +26,7 @@
             <h5>Tutoring Time: <%=appointments[i].length%> hr </h5><br>
             <h5>Price: $ <%=appointments[i].price%></h5><br>
             <h5>Status: <%=appointments[i].status%></h5><br>
-            <a href="#"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
+            <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
             <a href="/tutorRatings"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
           </div>
         </div>
