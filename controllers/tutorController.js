@@ -193,34 +193,41 @@ exports.getOneTutorProfile = ( req, res ) => {
   } )
 };
 
-exports.updateAppointment = ( req, res ) => {
+exports.getName = (req, res, next ) => {
+  const userId = req.params.userId;
+  const tutorId = req.params.tutorId;
+  User.findOne({_id: userId})
+  .exec()
+  .then( (user) => {
+    res.locals.userName = user.userName;
+    next()
+  })
+  User.findOne({_id: tutorId})
+  .exec()
+  .then( (tutor) => {
+    res.locals.tutorName = tutor.userName;
+  })
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+}
+
+exports.updateAppointment = ( req, res, next ) => {
   const userId = req.params.userId;
   const tutorId = req.params.tutorId;
   var date = req.body.appointmentDate;
   var time = req.body.appointmentTime;
   var startAt = date.concat(time);
-  var userName;
-  var tutorName;
 
-  User.findOne({_id: userId})
-  .exec()
-  .then((user) => {
-    userName = user.userName
-    console.log("userName: " + userName);
-  })
-  User.findOne({_id: tutorId})
-  .exec()
-  .then((tutor) => {
-    tutorName = tutor.userName
-    console.log("tutorName: " + tutorName);
-  })
+  // console.log("userName is: " + userName);
 
   let newAppointment = new Appointment(
     {
       tutorId: tutorId,
       tuteeId: userId,
-      tutorName: tutorName,
-      tuteeName: userName,
+      tutorName: req.body.tutorName,
+      tuteeName: req.body.tuteeName,
       startAt: startAt,
       length: req.body.length,
       price: req.body.price,
@@ -228,7 +235,6 @@ exports.updateAppointment = ( req, res ) => {
       status: "incomplete"
     }
   )
-  console.log("new appointment: " + newAppointment);
 
   newAppointment.save()
   .then(() => {
