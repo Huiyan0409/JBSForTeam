@@ -364,9 +364,7 @@ app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
 
 
 //task board related
-app.get('/taskBoard', function(req, res, next){
-  res.render('taskBoard')
-})
+app.get('/taskBoard', isLoggedIn, tutorController.getAppointments)
 
 app.get('/communication/:userId/:tutorId', isLoggedIn, tutorController.getOneTutorProfile)
 
