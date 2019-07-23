@@ -218,7 +218,7 @@ exports.updateAppointment = ( req, res, next ) => {
   const tutorId = req.params.tutorId;
   var date = req.body.appointmentDate;
   var time = req.body.appointmentTime;
-  var startAt = date.concat(time);
+  var startAt = date.concat(" ",time);
 
   // console.log("userName is: " + userName);
 
