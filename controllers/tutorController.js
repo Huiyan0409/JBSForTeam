@@ -1,6 +1,8 @@
 'use strict';
 const mongoose = require( 'mongoose' );
 const User = require( '../models/User' );
+const Appointment = require( '../models/Appointment' );
+
 
 exports.saveTutor = ( req, res ) => {
   const goBackURL = '/tutorRegister'
@@ -166,4 +168,74 @@ exports.getAllTutorRatingProfile = ( req, res ) => {
     console.log( error.message );
     return [];
   } )
+};
+
+//get personal profile from admin permission, view them individually
+exports.getOneTutorProfile = ( req, res ) => {
+
+  //grab id from the URL, the red id is set by app.js where the URL is formed
+  const tutorId = req.params.tutorId
+  // const userId = req.params.userId
+
+  User.findOne({_id: tutorId})
+  .exec()
+  .then( ( tutor ) => {
+    res.render( 'communication', {
+      tutor: tutor,
+      req: req
+    } );
+  } )
+
+  //catch error
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
+
+exports.updateAppointment = ( req, res ) => {
+  const userId = req.params.userId;
+  const tutorId = req.params.tutorId;
+  var date = req.body.appointmentDate;
+  var time = req.body.appointmentTime;
+  var startAt = date.concat(time);
+  var userName;
+  var tutorName;
+
+  User.findOne({_id: userId})
+  .exec()
+  .then((user) => {
+    userName = user.userName
+    console.log("userName: " + userName);
+  })
+  User.findOne({_id: tutorId})
+  .exec()
+  .then((tutor) => {
+    tutorName = tutor.userName
+    console.log("tutorName: " + tutorName);
+  })
+
+  let newAppointment = new Appointment(
+    {
+      tutorId: tutorId,
+      tuteeId: userId,
+      tutorName: tutorName,
+      tuteeName: userName,
+      startAt: startAt,
+      length: req.body.length,
+      price: req.body.price,
+      classCode: req.body.classCode,
+      status: "incomplete"
+    }
+  )
+  console.log("new appointment: " + newAppointment);
+
+  newAppointment.save()
+  .then(() => {
+    //redirect to dashboard
+    res.redirect( 'back' );
+  } )
+  .catch( error => {
+    res.send( error );
+  } );
 };

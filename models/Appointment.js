@@ -2,16 +2,16 @@
 const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
-var orderSchema = Schema( {
+var appointmentSchema = Schema( {
   tutorId: ObjectId,
   tutorName: String,
   tuteeId: ObjectId,
   tuteeName: String,
-  startAt: Date,
-  endAt: Date,
+  startAt: String,
+  length: Number,
   price: Number,
   classCode: String,
   status: String
 } );
 
-module.exports = mongoose.model( 'Order', orderSchema );
+module.exports = mongoose.model( 'Appointment', appointmentSchema );
