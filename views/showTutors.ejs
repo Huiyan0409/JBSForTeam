@@ -98,13 +98,11 @@
                   <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span class="badge badge-dark"><%=tutors[i].notHelpful%></span></button>
                 <% } %>
               </div>
-
-              <form action="/contactTutor/<%=user._id%>/<%=tutors[i]._id%>" method="post">
-                <div class="col-md-1 col-sm-1 align-self-center">
-                  <input type="hidden" name="tutorUserId" value="<%=tutors[i]._id%>">
-                  <a href="/"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-                </div>
-              </form>
+              <div class="col-md-1 col-sm-1 align-self-center">
+                <% if (!user._id.equals(tutors[i]._id)) {%>
+                  <a href="/communication/<%=user._id%>/<%=tutors[i]._id%>"><input class="btn btn-sm btn-outline-primary" type="button" value="CONTACT"></a>
+                <% } %>
+              </div>
             </div>
           </li>
           <% } %>
