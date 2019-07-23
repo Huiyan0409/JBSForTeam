@@ -364,6 +364,11 @@ app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
 
 app.get('/tutorRating', isLoggedIn, tutorController.getAllTutorRatingProfile)
 
+//task board related
+app.get('/taskBoard', function(req, res, next){
+  res.render('taskBoard')
+})
+
 // =====================================
 // STATIC PAGES ========================
 // =====================================
