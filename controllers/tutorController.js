@@ -239,9 +239,27 @@ exports.updateAppointment = ( req, res, next ) => {
   newAppointment.save()
   .then(() => {
     //redirect to dashboard
-    res.redirect( 'back' );
+    res.redirect( '/taskBoard');
   } )
   .catch( error => {
     res.send( error );
   } );
+};
+
+exports.getAppointments = ( req, res ) => {
+  //find all users from database
+  const id = res.locals.user._id;
+  Appointment.find({$or:[{tutorId: id}, {tuteeId: id}]})
+  .exec()
+  .then( ( appointments ) => {
+    res.render( 'taskBoard', {
+      appointments: appointments
+    });
+    console.log("123123121" + appointments);
+  })
+
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
 };

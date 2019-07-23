@@ -15,57 +15,24 @@
 <section class="section section--grey">
   <div class="container">
     <div class="row">
+      <% for (i = 0; i<appointments.length; i++){  %>
       <div class="col-sm-12 col-md-4">
         <div class="card">
           <div class="card-body">
-            <h5>Tutor Name: Nicole</h5><br>
-            <h5>Tutee Name: Huiyan Zhang</h5><br>
-            <h5>Class Code: COSI12</h5><br>
-            <h5>Date: </h5><br>
-            <h5>Start Time: </h5><br>
-            <h5>End Time: </h5><br>
-            <h5>Price: $15</h5><br>
-            <h5>Status: Finished</h5><br>
+            <h5>Tutor Name: <%=appointments[i].tutorName%></h5><br>
+            <h5>Tutee Name: <%=appointments[i].tuteeName%></h5><br>
+            <h5>Class Code: <%=appointments[i].classCode%></h5><br>
+            <h5>Start Time: <%=appointments[i].startAt%></h5><br>
+            <h5>Tutoring Time: <%=appointments[i].length%> hr </h5><br>
+            <h5>Price: $ <%=appointments[i].price%></h5><br>
+            <h5>Status: <%=appointments[i].status%></h5><br>
             <a href="#"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
             <a href="/tutorRatings"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
           </div>
         </div>
         <br>
       </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Tutor Name: Nicole</h5><br>
-            <h5>Tutee Name: Huiyan Zhang</h5><br>
-            <h5>Class Code: COSI12</h5><br>
-            <h5>Date: </h5><br>
-            <h5>Start Time: </h5><br>
-            <h5>End Time: </h5><br>
-            <h5>Price: $15</h5><br>
-            <h5>Status: Finished</h5><br>
-            <a href="#"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-            <a href="/tutorRatings"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
-          </div>
-        </div>
-        <br>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Tutor Name: Nicole</h5><br>
-            <h5>Tutee Name: Huiyan Zhang</h5><br>
-            <h5>Class Code: COSI12</h5><br>
-            <h5>Date: </h5><br>
-            <h5>Start Time: </h5><br>
-            <h5>End Time: </h5><br>
-            <h5>Price: $15</h5><br>
-            <h5>Status: Finished</h5><br>
-            <a href="#"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-            <a href="/tutorRatings"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
-          </div>
-        </div>
-        <br>
-      </div>
+      <% } %>
     </div>
   </div>
 </section>
