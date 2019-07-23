@@ -368,7 +368,7 @@ app.get('/taskBoard', function(req, res, next){
   res.render('taskBoard')
 })
 
-app.get('/communication/:userId/:tutorId', isLoggedIn, tutorController.getOneTutorProfile)
+app.get('/communication/:userId/:tutorId', isLoggedIn, tutorController.getName, tutorController.getOneTutorProfile)
 
 // app.post('/contactTutor/:userId/:tutorId', isLoggedIn, tutorController.setupGroup)
 
