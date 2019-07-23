@@ -364,6 +364,14 @@ app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
 
 app.get('/tutorRating', isLoggedIn, tutorController.getAllTutorRatingProfile)
 
+app.get('/communication/:userId/:tutorId', isLoggedIn, tutorController.getOneTutorProfile)
+
+// app.post('/contactTutor/:userId/:tutorId', isLoggedIn, tutorController.setupGroup)
+
+app.post('/updateAppointment/:userId/:tutorId', isLoggedIn, tutorController.updateAppointment)
+
+
+
 // =====================================
 // STATIC PAGES ========================
 // =====================================
