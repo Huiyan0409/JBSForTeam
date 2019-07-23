@@ -10,10 +10,8 @@ var orderSchema = Schema( {
   startAt: Date,
   endAt: Date,
   payment: Number,
-  status: String,
-  score: Number,
-  comment: String,
-  tags: [String]
+  classCode: String,
+  status: String
 } );
 
 module.exports = mongoose.model( 'Order', orderSchema );
