@@ -31,7 +31,6 @@
           <% if (loggedIn) {%>
             <a class="header-link" id="header-link" href="/#tutor">TUTOR</a>
             <ul class="sub-menu">
-              <li><a href="/taskBoard" class="header-link">TASK BOARD</a></li>
               <li><a href="/tutorRegister" class="header-link">BECOME A TUTOR</a></li>
               <li><a href="/showTutors" class="header-link">FIND A TUTOR</a></li>
             </ul>
@@ -41,6 +40,13 @@
         <li>
           <a class="header-link" id="header-link"  href="/#profile">USER</a>
           <ul class="sub-menu">
+
+            <li>
+              <% if (loggedIn) {%>
+              <a href="/taskBoard" class="header-link">TASK BOARD</a>
+              <% } %>
+            </li>
+
             <li>
               <% if (loggedIn) {%>
                 <a class="header-link" href="/communicationBoard">MESSAGE BOARD</a>
