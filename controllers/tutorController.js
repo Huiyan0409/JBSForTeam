@@ -263,3 +263,19 @@ exports.getAppointments = ( req, res ) => {
     return [];
   } )
 };
+
+exports.saveRating = ( req, res ) => {
+  const tutorId = req.params.tutorId
+  User.findOne({_id:tutorId})
+  .exec()
+  .then( ( comments ) => {
+      
+  })
+  .then(() => {
+    res.redirect("/taskBoard")
+  })
+  .catch(function (error) {
+    console.log("Saving Ratings failed!")
+    console.log(error);
+  })
+};
