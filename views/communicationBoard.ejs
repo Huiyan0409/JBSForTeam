@@ -15,10 +15,11 @@
 <section class="section section--grey">
   <div class="container">
     <div class="row">
+      <div class="col-sm-12 col-md-4">
+
       <% for (i = 0; i < communicationBoard.length; i++){  %>
 
         <% if (!communicationBoard[i].userId.equals(communicationBoard[i].tutorId)) { %>
-          <div class="col-sm-12 col-md-4">
 
           <% if (user._id.equals(communicationBoard[i].tutorId)) {%>
             <div class="card">
@@ -35,11 +36,12 @@
               </div>
             </div>
           <% } %>
-        </div>
 
         <% } %>
         <br><br><br>
       <% } %>
+    </div>
+
     </div>
   </div>
 </section>
