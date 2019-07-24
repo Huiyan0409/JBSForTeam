@@ -11,6 +11,7 @@
   </div>
 </section>
 
+<form method="post" action="/processTutorRating/<%=appointment.tutorId%>">
 <section class="section">
   <div class="section__content section__content--fixed-width text-center">
         <i><h2><label id="rate">How was it?</label><h2><i>
@@ -89,41 +90,104 @@
   <div class="section__content section__content--fixed-width">
     <div class="container text-center">
       <hr><br><h4>Click your tag!</h4><br><br>
-      <div id="ck-button">
-        <label>
-          <input type="checkbox" name="tutoreval" value="patient" ><span>patient</span>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="patient" value="patient">
+        <label class="form-check-label" for="patient">
+          Patient
         </label>
       </div>
-
-
-        <button type="button" name="patient" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>patient</h3></button>
-
-        <button type="button" name="excellentG" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>excellentG</h3></button>
-
-        <button type="button" name="askGood" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>askGood</h3></button>
-        <button type="button" name="encouraginge" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>encouraginge</h3></button>
-        <br><br>
-        <button type="button" name="helpful" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><h3>helpful</h3></button>
-
-        <button type="button" name="abilityT" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>abilityT</h3></button>
-
-        <button type="button" name="gEnergy" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>gEnergy</h3></button>
-
-        <button type="button" name="humility" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>humility</h3></button>
-        <br><br>
-        <button type="button" name="passionate" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>passionate</h3></button>
-        <button type="button" name="gPaced" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>gPaced</h3></button>
-
-      <button type="button" name="impatient" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"><h3>impatient</h3></button>
-
-      <button type="button" name="notgTeaching" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>notgTeaching</h3></button>
-      <br><br>
-      <button type="button" name="late" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>late</h3></button>
-
-      <button type="button" name="notPrepared" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>notPrepared</h3></button>
-
-      <button type="button" name="notHelpful" class="btn btn-outline-dark btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off"> <h3>notHelpful</h3></button>
-
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="excellentG" value="excellentG">
+        <label class="form-check-label" for="excellentG">
+          Excellent Grasp of Topic
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="askGood" value="askGood">
+        <label class="form-check-label" for="askGood">
+          Ask Good Questions
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="encouraging" value="encouraging">
+        <label class="form-check-label" for="encouraging">
+          Encouraging
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="helpful" value="helpful">
+        <label class="form-check-label" for="helpful">
+          Very Helpful
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="abilityT" value="abilityT">
+        <label class="form-check-label" for="abilityT">
+          Ability to Teach
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="gEnergy" value="gEnergy">
+        <label class="form-check-label" for="gEnergy">
+          Good Energy
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="humility" value="humility">
+        <label class="form-check-label" for="humility">
+          Humility
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="passionate" value="passionate">
+        <label class="form-check-label" for="passionate">
+          Passionate
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="onTime" value="onTime">
+        <label class="form-check-label" for="onTime">
+          On Time and Prepared
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="gPaced" value="gPaced">
+        <label class="form-check-label" for="gPaced">
+          Good Paced
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="impatient" value="impatient">
+        <label class="form-check-label" for="impatient">
+          Impatient
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="notgTeaching" value="notgTeaching">
+        <label class="form-check-label" for="notgTeaching">
+          Not Good at Teaching
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="late" value="late">
+        <label class="form-check-label" for="late">
+          Late
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="notPrepared" value="notPrepared">
+        <label class="form-check-label" for="notPrepared">
+          Not Prepared
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="tags" id="notHelpful" value="notHelpful">
+        <label class="form-check-label" for="notHelpful">
+          Not Helpful
+        </label>
+      </div>
+  </div>
+  </div>
 </section>
 
 <section class="section">
@@ -138,6 +202,7 @@
     </div>
   </div>
 </section>
+</form>
 
 
 <%- include('footer'); -%>
