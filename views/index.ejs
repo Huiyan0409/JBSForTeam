@@ -35,18 +35,21 @@
         </li>
 
         <li>
-            <a class="header-link" id="header-link" href="#profile">PROFILE</a>
+            <a class="header-link" id="header-link" href="#profile">USER</a>
             <% if (loggedIn) {%>
 
             <ul class="sub-menu">
               <li>
-                  <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
+                <a class="header-link" href="/communicationBoard">MESSAGE BOARD</a>
               </li>
               <li>
-                  <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
+                <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
               </li>
               <li>
-                  <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
+                <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
+              </li>
+              <li>
+                <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
               </li>
             </ul>
             <% } %>

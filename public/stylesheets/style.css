@@ -15,10 +15,10 @@ P.S: if you like my content maybe you will become a donator and donate some mone
 
 /*for checkbox on tutorRating*/
 div label input {
-   margin-right:100px;
+  margin-right:100px;
 }
 body {
-    font-family:sans-serif;
+  font-family:sans-serif;
 }
 
 #ck-button {
@@ -634,8 +634,8 @@ h6{
 }
 /* ELEMENT - section__content */
 .section__content{
-  margin-left: -10px;
-  margin-right: -10px;
+  /* margin-left: -2px; */
+  /* margin-right: -2px; */
   clear:both;
 }
 /* ELEMENT MODIFIER section__content  */

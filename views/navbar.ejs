@@ -39,8 +39,13 @@
         </li>
 
         <li>
-          <a class="header-link" id="header-link"  href="/#profile">PROFILE</a>
+          <a class="header-link" id="header-link"  href="/#profile">USER</a>
           <ul class="sub-menu">
+            <li>
+              <% if (loggedIn) {%>
+                <a class="header-link" href="/communicationBoard">MESSAGE BOARD</a>
+              <% } %>
+            </li>
             <li>
               <% if (loggedIn) {%>
                 <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
