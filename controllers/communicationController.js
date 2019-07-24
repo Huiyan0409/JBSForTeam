@@ -5,7 +5,7 @@ const Communication = require( '../models/Communication' );
 exports.getCommunication = ( req, res, next ) => {
   const userId = req.params.userId
   const tutorId = req.params.tutorId
-  Communication.find({$or:[{userId: userId}, {userId: tutorId}]})
+  Communication.find({$and:[{userId: userId}, {tutorId: tutorId}]})
   .exec()
   .then( (communications) => {
     res.locals.communications = communications;
