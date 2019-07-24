@@ -97,7 +97,8 @@
           </div>
 
         <% } else { %>
-         <b><h3>PLEASE LOG IN TO ENROLL.</h3></b>
+         <b><h3>PLEASE LOG IN TO ENABLE ALL FEATURES.</h3></b>
+         <a href="/auth/google"><input type="submit" name="submit" class="form-demo__submit1" value="LOGIN IN" ></a>
         <% } %>
       </div>
     </div>
@@ -138,7 +139,7 @@
       </div>
 
       <div class="grid__item">
-        <h3 class="grid__title"><span>MEET</span></h3>
+        <h3 class="grid__title"><span>MEET (Coming Soon)</span></h3>
         <p class="grid__text">Work better in person? Check out our location sharing function to see who else from your class is near by and ready to study! You can form a study group meeting by deciding a location to meet and share the meeting with the entire class. </p>
       </div>
 
@@ -184,7 +185,7 @@
     <h2 class="section__title section__title--centered">Tutor</h2>
 
     <br><br><br>
-    <div class="grid grid--4col">
+    <div class="grid grid--3col">
 
       <div class="grid__item">
         <h2 class="grid__title"><span>Ready to get started with tutors?</span></h2>
@@ -194,7 +195,7 @@
       <div class="grid__item">
         <h3 class="grid__title"><span>Find a tutor</span></h3>
         <p class="grid__text">
-          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
+          Our tutors are students who have taken the same class before. They have been trained online by Claster to ensure not only understanding of material, but also tutoring abilities. You can search by subject, class, or topic to find the tutor you are looking for! <br><br>
           <% if (loggedIn) { %>
             <a href="/showTutors" class="btn btn-outline-dark">Find a tutor</a>
           <% } else { %>
@@ -206,7 +207,7 @@
       <div class="grid__item">
         <h3 class="grid__title"><span>Become a tutor</span></h3>
         <p class="grid__text">
-          Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
+          If you have gotten a grade above A- in a class, and want to make some extra money while refreshing your knowledge about a course, we strongly encourage you to become a tutor! After completing a quick training, you will be added to the forum discussion of that class. Click become a tutor to find out more! <br><br>
           <% if (loggedIn) { %>
             <a href="/tutorRegister" class="btn btn-outline-dark">Become a tutor</a>
           <% } else { %>
@@ -215,7 +216,7 @@
         </p>
       </div>
 
-      <div class="grid__item">
+      <!-- <div class="grid__item">
         <h3 class="grid__title"><span>See tutor ranking</span></h3>
         <p class="grid__text">
           Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. Some text here. <br><br>
@@ -225,7 +226,7 @@
             Please login to rate a tutor
           <% } %>
         </p>
-      </div>
+      </div> -->
 
     </div>
   <div class="clear"></div>
