@@ -12,6 +12,49 @@
 /*
 P.S: if you like my content maybe you will become a donator and donate some money? That helps me to create new awesome materials. https://www.paypal.me/melnik909
 */
+
+/*for checkbox on tutorRating*/
+div label input {
+  margin-right:100px;
+}
+body {
+  font-family:sans-serif;
+}
+
+#ck-button {
+    margin:4px;
+    background-color:white;
+    border-color: black;
+    border-radius:20px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+    float:left;
+}
+
+#ck-button:hover {
+    background:white;
+}
+
+#ck-button label {
+    float:left;
+    width:4.0em;
+}
+
+#ck-button label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+}
+
+#ck-button label input {
+    position:absolute;
+    top:-20px;
+}
+
+#ck-button input:checked + span {
+    background-color:black;
+    color:white;
+}
 .center {
   margin: auto;
   width: 13.5%;
@@ -591,8 +634,8 @@ h6{
 }
 /* ELEMENT - section__content */
 .section__content{
-  margin-left: -10px;
-  margin-right: -10px;
+  /* margin-left: -2px; */
+  /* margin-right: -2px; */
   clear:both;
 }
 /* ELEMENT MODIFIER section__content  */

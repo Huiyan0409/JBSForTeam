@@ -35,7 +35,6 @@
 
         <h5><b>Answers: </b></h5>
         <hr>
-        <div class="container">
 
         <% for(i = 0; i < answers.length; i++){  %>
           <!-- Single Comment in card-->
@@ -94,7 +93,6 @@
               </div>
             </div>
           <% } %>
-        </div>
       </div>
     </div>
   </div>
@@ -112,7 +110,8 @@
               <div class="form-group">
                 <textarea class="form-control" id ="answer" name="answer" rows="3"></textarea>
               </div>
-              <% if (loggedIn) {%>
+              <% if (loggedIn) { %>
+
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
                 <br><br>
                 <b>Hint: Include your <a href="https://www.nyu.edu/projects/beber/files/Chang_LaTeX_sheet.pdf">LaTeX</a> or code between two $.</b>
@@ -131,28 +130,6 @@
 
 </section>
 
-<!-- <script type="text/javascript">
-  // jQuery convention for running when the document has been fully loaded:
-  $(document).ready(() => {
-    $('#allUsersButton').click(() => {
-      var postURL = '/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/processAnswerPost'
-      $.ajax({
-        url: postURL,
-        type: 'POST',
-        dataType : 'json',
-        success: (data) => {
-          console.log($('#answer').val());
-          answer: $('#answer').val()
-        },
-      });
-    });
-    // define a generic Ajax error handler:
-    // http://api.jquery.com/ajaxerror/
-    $(document).ajaxError(() => {
-      console.log("AJAX ERROR");
-    });
-  });
-</script> -->
 
 
 <%- include('footer') -%>

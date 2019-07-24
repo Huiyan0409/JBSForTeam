@@ -1,0 +1,42 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+<section class="section section--grey">
+  <div class="section__content section__content--fixed-width">
+    <div class="jumbotron masthead diagonal-gradient text-center">
+      <div class="section__title section__title--centered" id="whiteFont">
+        Your Task Board
+      </div>
+      <h2 id="whiteFont">Please view your tasks and finish your tasks on time.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="section section--grey">
+  <div class="container">
+    <div class="row">
+      <% for (i = 0; i<appointments.length; i++){  %>
+      <div class="col-sm-12 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5>Tutor Name: <%=appointments[i].tutorName%></h5><br>
+            <h5>Tutee Name: <%=appointments[i].tuteeName%></h5><br>
+            <h5>Class Code: <%=appointments[i].classCode%></h5><br>
+            <h5>Start Time: <%=appointments[i].startAt%></h5><br>
+            <h5>Tutoring Time: <%=appointments[i].length%> hr </h5><br>
+            <h5>Price: $ <%=appointments[i].price%></h5><br>
+            <h5>Status: <%=appointments[i].status%></h5><br>
+            <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
+            <% if (appointments[i].tuteeId.equals(user._id)) { %>
+              <a href="/tutorRatings/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
+            <% } %>
+          </div>
+        </div>
+        <br>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<%- include('footer'); -%>

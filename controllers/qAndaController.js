@@ -44,8 +44,8 @@ exports.getAllQuestions = ( req, res, next ) => {
   .then( ( questions ) => {
     res.render('showQuestions',{
       req: req,
-      questions:questions,
-      title:"showQuestions"
+      questions: questions,
+      title: "showQuestions"
     })
   } )
   .catch( ( error ) => {
@@ -68,7 +68,7 @@ exports.showOneQuestion = ( req, res ) => {
   .then( ( question ) => {
     res.render( 'showQuestion', {
       req: req,
-      question:question
+      question: question
     } );
   } )
   .catch( ( error ) => {

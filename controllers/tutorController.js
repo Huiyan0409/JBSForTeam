@@ -1,6 +1,8 @@
 'use strict';
 const mongoose = require( 'mongoose' );
 const User = require( '../models/User' );
+const Appointment = require( '../models/Appointment' );
+
 
 exports.saveTutor = ( req, res ) => {
   const goBackURL = '/tutorRegister'
@@ -162,6 +164,100 @@ exports.getAllTutorRatingProfile = ( req, res ) => {
       tutors: tutors
     } );
   } )
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
+
+//get personal profile from admin permission, view them individually
+exports.getOneTutorProfile = ( req, res ) => {
+
+  //grab id from the URL, the red id is set by app.js where the URL is formed
+  const tutorId = req.params.tutorId
+  // const userId = req.params.userId
+
+  User.findOne({_id: tutorId})
+  .exec()
+  .then( ( tutor ) => {
+    res.render( 'communication', {
+      tutor: tutor,
+      req: req
+    } );
+  } )
+
+  //catch error
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
+
+exports.getName = (req, res, next ) => {
+  const userId = req.params.userId;
+  const tutorId = req.params.tutorId;
+  User.findOne({_id: userId})
+  .exec()
+  .then( (user) => {
+    res.locals.userName = user.userName;
+    next()
+  })
+  User.findOne({_id: tutorId})
+  .exec()
+  .then( (tutor) => {
+    res.locals.tutorName = tutor.userName;
+  })
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+}
+
+exports.updateAppointment = ( req, res, next ) => {
+  const userId = req.params.userId;
+  const tutorId = req.params.tutorId;
+  var date = req.body.appointmentDate;
+  var time = req.body.appointmentTime;
+  var startAt = date.concat("  ",time);
+
+  // console.log("userName is: " + userName);
+
+  let newAppointment = new Appointment(
+    {
+      tutorId: tutorId,
+      tuteeId: userId,
+      tutorName: req.body.tutorName,
+      tuteeName: req.body.tuteeName,
+      startAt: startAt,
+      length: req.body.length,
+      price: req.body.price,
+      classCode: req.body.classCode,
+      status: "incomplete"
+    }
+  )
+
+  newAppointment.save()
+  .then(() => {
+    //redirect to dashboard
+    res.redirect( '/taskBoard');
+  } )
+  .catch( error => {
+    res.send( error );
+  } );
+};
+
+exports.getAppointments = ( req, res ) => {
+  //find all users from database
+  const id = res.locals.user._id;
+  Appointment.find({$or:[{tutorId: id}, {tuteeId: id}]})
+  .exec()
+  .then( ( appointments ) => {
+    res.render( 'taskBoard', {
+      appointments: appointments
+    });
+    // console.log("123123121" + appointments);
+  })
+
   .catch( ( error ) => {
     console.log( error.message );
     return [];
