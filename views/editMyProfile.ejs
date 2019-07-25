@@ -107,17 +107,30 @@
             <div class="w-100"></div>
             <br>
 
-            <div class="col-md-12 col-sm-12">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Status</span>
-                <select class="form-control" name ="status" value="<%=user.status%>">
-                  <option disabled value="Choose a role">Role</option>
-                  <option value="tutor">Tutor</option>
-                  <option value="student">Student</option>
-                </select>
+            <% if (user.status=="tutor") { %>
+              <div class="col-md-12 col-sm-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Status</span>
+                  <select class="form-control" name ="status">
+                    <option disabled value="Choose a role">Role</option>
+                    <option value="tutor">Tutor</option>
+                    <option value="student">Student</option>
+                  </select>
+                </div>
               </div>
-            </div>
-
+            <% } else { %>
+              <div class="col-md-12 col-sm-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Status</span>
+                  <select class="form-control" name ="status">
+                    <option disabled value="Choose a role">Role</option>
+                    <option value="student">Student</option>
+                    <option value="tutor">Tutor</option>
+                    
+                  </select>
+                </div>
+              </div>
+            <% } %>
             <br>
 
             <div class="col-sm-1">

@@ -289,7 +289,8 @@ exports.getOneAppointment = ( req, res ) => {
 };
 
 exports.saveRating = ( req, res ) => {
-  const appointmentId = req.params.id
+  const appointmentId = req.params.appointmentId
+  console.log("appointmentId: " + appointmentId);
   const tutorId = req.params.tutorId
   console.log("p:" + req.body.patient);
   User.findOne({_id:tutorId})
@@ -300,24 +301,24 @@ exports.saveRating = ( req, res ) => {
     console.log("body=")
     console.dir(req.body)
     user.comments.push(req.body.comment)
-    user.score = Number(user.score) + Number(req.body.star)
+    user.score = Number(user.score||0) + Number(req.body.star)
     user.score = Number(user.score) / Number(user.comments.length)
-    user.patient= Number(user.patient) + Number(req.body.patient||0)
-    user.excellentG= Number(user.excellentG) + Number(req.body.excellentG||0)
-    user.askGood= Number(user.askGood) + Number(req.body.askGood||0)
-    user.encouraging= Number(user.encouraging) + Number(req.body.encouraging||0)
-    user.helpful= Number(user.helpful) + Number(req.body.helpful||0)
-    user.abilityT= Number(user.abilityT) + Number(req.body.abilityT||0)
-    user.gEnergy= Number(user.gEnergy) + Number(req.body.gEnergy||0)
-    user.humility= Number(user.humility) + Number(req.body.humility||0)
-    user.passionate= Number(user.passionate) + Number(req.body.passionate||0)
-    user.onTime= Number(user.onTime) + Number(req.body.onTime||0)
-    user.gPaced= Number(user.gPaced) + Number(req.body.gPaced||0)
-    user.impatient= Number(user.impatient) + Number(req.body.impatient||0)
-    user.notgTeaching= Number(user.notgTeaching) + Number(req.body.notgTeaching||0)
-    user.late= Number(user.late) + Number(req.body.late||0)
-    user.notPrepared= Number(user.notPrepared) + Number(req.body.notPrepared||0)
-    user.notHelpful= Number(user.notHelpful) + Number(req.body.notPrepared||0)
+    user.patient= Number(user.patient||0) + Number(req.body.patient||0)
+    user.excellentG= Number(user.excellentG||0) + Number(req.body.excellentG||0)
+    user.askGood= Number(user.askGood||0) + Number(req.body.askGood||0)
+    user.encouraging= Number(user.encouraging||0) + Number(req.body.encouraging||0)
+    user.helpful= Number(user.helpful||0) + Number(req.body.helpful||0)
+    user.abilityT= Number(user.abilityT||0) + Number(req.body.abilityT||0)
+    user.gEnergy= Number(user.gEnergy||0) + Number(req.body.gEnergy||0)
+    user.humility= Number(user.humility||0) + Number(req.body.humility||0)
+    user.passionate= Number(user.passionate||0) + Number(req.body.passionate||0)
+    user.onTime= Number(user.onTime||0) + Number(req.body.onTime||0)
+    user.gPaced= Number(user.gPaced||0) + Number(req.body.gPaced||0)
+    user.impatient= Number(user.impatient||0) + Number(req.body.impatient||0)
+    user.notgTeaching= Number(user.notgTeaching||0) + Number(req.body.notgTeaching||0)
+    user.late= Number(user.late||0) + Number(req.body.late||0)
+    user.notPrepared= Number(user.notPrepared||0) + Number(req.body.notPrepared||0)
+    user.notHelpful= Number(user.notHelpful||0) + Number(req.body.notPrepared||0)
     console.log("data saved")
     console.dir(user)
     user.save()
