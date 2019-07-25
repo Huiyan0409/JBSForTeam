@@ -36,7 +36,7 @@
         <h5><b>Answers: </b></h5>
         <hr>
 
-        <% for(i = 0; i < answers.length; i++){  %>
+        <% for(i = 0; i < answers.length; i++){ %>
           <!-- Single Comment in card-->
             <div class="media mb-3" id ="description">
               <a href="/showProfile/<%=answers[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=answers[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
@@ -48,12 +48,12 @@
                     <% if (answers[i].userId.equals(user._id)) { %>
                       <div class="col-md-1 col-sm-6">
 
-                        <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#myModal<%=i%>">
                           Delete
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="myModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -64,12 +64,14 @@
                               </div>
                               <div class="modal-body">
                                 Are you sure you want to delete this answer?
+                                <%=answers[i]._id%>
+                                <%=answers[i].answer%>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
                                   <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                                  <input class="btn btn-sm btn-outline-danger" type="submit" value="delete" >
+                                  <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
                                 </form>
                               </div>
                             </div>
