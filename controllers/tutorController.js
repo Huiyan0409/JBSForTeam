@@ -249,7 +249,7 @@ exports.updateAppointment = ( req, res, next ) => {
 exports.getAppointments = ( req, res ) => {
   //find all users from database
   const id = res.locals.user._id;
-  Appointment.find({$or:[{tutorId: id}, {tuteeId: id}]})
+  Appointment.find({$or:[{tutorId: id}, {tuteeId: id}]}).sort({status: -1})
   .exec()
   .then( ( appointments ) => {
     res.render( 'taskBoard', {
@@ -274,11 +274,15 @@ exports.getOneAppointment = ( req, res ) => {
   Appointment.findOne({_id: appointmentId})
   .exec()
   .then( ( appointment ) => {
+    appointment.status = "complete"
+    console.log("status changed")
+    console.log(appointment.status)
     res.render( 'tutorRatings', {
       appointment: appointment
     } );
     console.log("information find")
     console.log(appointment.tutorName);
+    appointment.save()
   } )
 
   //catch error
