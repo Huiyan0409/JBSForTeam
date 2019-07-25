@@ -142,7 +142,7 @@ exports.updateTutorRatingProfile = ( req, res ) => {
 
 exports.getAllTutorProfile = ( req, res ) => {
   //find all users from database
-  User.find()
+  User.find().sort({score: -1})
   .exec()
   .then( ( tutors ) => {
     res.render( 'showTutors', {
