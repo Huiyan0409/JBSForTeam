@@ -350,7 +350,9 @@ app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfi
 app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
 
 //tutor rating
-app.get('/tutorRatings/:id', isLoggedIn, tutorController.showTutorRatingProfile)
+app.get('/tutorRatings/:appointmentId/:tutorId', isLoggedIn, tutorController.getOneAppointment)
+
+app.post('/processTutorRating/:appointmentId/:tutorId', isLoggedIn, tutorController.saveRating)
 
 //tutor rating
 app.post('/updateTutorRatings', isLoggedIn, tutorController.updateTutorRatingProfile)

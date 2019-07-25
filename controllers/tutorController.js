@@ -264,12 +264,63 @@ exports.getAppointments = ( req, res ) => {
   } )
 };
 
-exports.saveRating = ( req, res ) => {
+exports.getOneAppointment = ( req, res ) => {
+
+  //grab id from the URL, the red id is set by app.js where the URL is formed
+  const appointmentId = req.params.appointmentId
   const tutorId = req.params.tutorId
+  // const userId = req.params.userId
+
+  Appointment.findOne({_id: appointmentId})
+  .exec()
+  .then( ( appointment ) => {
+    res.render( 'tutorRatings', {
+      appointment: appointment
+    } );
+    console.log("information find")
+    console.log(appointment.tutorName);
+  } )
+
+  //catch error
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  } )
+};
+
+exports.saveRating = ( req, res ) => {
+  const appointmentId = req.params.id
+  const tutorId = req.params.tutorId
+  console.log("p:" + req.body.patient);
   User.findOne({_id:tutorId})
   .exec()
-  .then( ( comments ) => {
-
+  .then( ( user ) => {
+    console.log('about to update user ...')
+    console.dir(user)
+    console.log("body=")
+    console.dir(req.body)
+    user.comments.push(req.body.comment)
+    user.score = Number(user.score) + Number(req.body.star)
+    user.score = Number(user.score) / Number(user.comments.length)
+    user.patient= Number(user.patient) + Number(req.body.patient||0)
+    user.excellentG= Number(user.excellentG) + Number(req.body.excellentG||0)
+    user.askGood= Number(user.askGood) + Number(req.body.askGood||0)
+    user.encouraging= Number(user.encouraging) + Number(req.body.encouraging||0)
+    user.helpful= Number(user.helpful) + Number(req.body.helpful||0)
+    user.abilityT= Number(user.abilityT) + Number(req.body.abilityT||0)
+    user.gEnergy= Number(user.gEnergy) + Number(req.body.gEnergy||0)
+    user.humility= Number(user.humility) + Number(req.body.humility||0)
+    user.passionate= Number(user.passionate) + Number(req.body.passionate||0)
+    user.onTime= Number(user.onTime) + Number(req.body.onTime||0)
+    user.gPaced= Number(user.gPaced) + Number(req.body.gPaced||0)
+    user.impatient= Number(user.impatient) + Number(req.body.impatient||0)
+    user.notgTeaching= Number(user.notgTeaching) + Number(req.body.notgTeaching||0)
+    user.late= Number(user.late) + Number(req.body.late||0)
+    user.notPrepared= Number(user.notPrepared) + Number(req.body.notPrepared||0)
+    user.notHelpful= Number(user.notHelpful) + Number(req.body.notPrepared||0)
+    console.log("data saved")
+    console.dir(user)
+    user.save()
   })
   .then(() => {
     res.redirect("/taskBoard")
