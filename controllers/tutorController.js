@@ -194,12 +194,12 @@ exports.getOneTutorProfile = ( req, res ) => {
 };
 
 exports.getName = (req, res, next ) => {
-  const userId = req.params.userId;
+  const tuteeId = req.params.tuteeId;
   const tutorId = req.params.tutorId;
-  User.findOne({_id: userId})
+  User.findOne({_id: tuteeId})
   .exec()
-  .then( (user) => {
-    res.locals.userName = user.userName;
+  .then( (tutee) => {
+    res.locals.tuteeName = tutee.userName;
     next()
   })
   User.findOne({_id: tutorId})
@@ -214,7 +214,7 @@ exports.getName = (req, res, next ) => {
 }
 
 exports.updateAppointment = ( req, res, next ) => {
-  const userId = req.params.userId;
+  const tuteeId = req.params.tuteeId;
   const tutorId = req.params.tutorId;
   var date = req.body.appointmentDate;
   var time = req.body.appointmentTime;
@@ -225,7 +225,7 @@ exports.updateAppointment = ( req, res, next ) => {
   let newAppointment = new Appointment(
     {
       tutorId: tutorId,
-      tuteeId: userId,
+      tuteeId: tuteeId,
       tutorName: req.body.tutorName,
       tuteeName: req.body.tuteeName,
       startAt: startAt,
@@ -269,7 +269,7 @@ exports.saveRating = ( req, res ) => {
   User.findOne({_id:tutorId})
   .exec()
   .then( ( comments ) => {
-      
+
   })
   .then(() => {
     res.redirect("/taskBoard")

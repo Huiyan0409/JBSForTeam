@@ -3,13 +3,12 @@ const Communication = require( '../models/Communication' );
 
 
 exports.getCommunication = ( req, res, next ) => {
-  const userId = req.params.userId
+  const tuteeId = req.params.tuteeId
   const tutorId = req.params.tutorId
   Communication.find({
     $or:[
-      { $and: [{userId: userId}, {tutorId: tutorId}]},
-      { $and: [{userId: tutorId}, {tutorId: tutorId}]}
-      // { $and: [{userId: userId}, {tutorId: userId}]},
+      { $and: [{userId: tuteeId}, {tuteeId: tuteeId}, {tutorId: tutorId}]},
+      { $and: [{userId: tutorId}, {tuteeId: tuteeId}, {tutorId: tutorId}]}
     ]
   })
   .exec()
@@ -29,6 +28,8 @@ exports.saveCommunication = ( req, res ) => {
     {
       userId: req.user._id,
       userName: req.user.userName,
+      tuteeId: req.params.tuteeId,
+      tuteeName: req.body.tuteeName,
       tutorId: req.params.tutorId,
       tutorName: req.body.tutorName,
       comment: req.body.comment,
@@ -47,7 +48,7 @@ exports.saveCommunication = ( req, res ) => {
 exports.getCommunicationBoard = ( req, res ) => {
   //find all users from database
   const id = res.locals.user._id;
-  Communication.find({$or:[{tutorId: id}, {userId: id}]})
+  Communication.find({$or:[{tutorId: id}, {tuteeId: id}]})
   .exec()
   .then( ( communicationBoard ) => {
     res.render( 'communicationBoard', {

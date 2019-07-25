@@ -26,9 +26,9 @@
           <a href="/showProfile/<%=communications[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=communications[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
           <div class="media-body">
             <% if (communications[i].userId.equals(req.params.tutorId)){%>
-              <h5><%= communications[i].userName %>(tutor)</h5>
+              <h5><%= communications[i].tutorName %>(tutor) tutorId: <%= communications[i].tutorId %></h5>
             <% } else { %>
-              <h5><%= communications[i].userName %>(tutee)</h5>
+              <h5><%= communications[i].tuteeName %>(tutee) tuteeId: <%= communications[i].tuteeId %></h5>
             <% } %>
             <h6><%= communications[i].comment %></h6>
           </div>
@@ -50,8 +50,9 @@
         <div class="card">
           <h5 class="card-header">Leave a message here:</h5>
           <div class="card-body">
-            <form action="/saveCommunication/<%=req.params.tutorId%>" method="post">
+            <form action="/saveCommunication/<%=req.params.tuteeId%>/<%=req.params.tutorId%>" method="post">
               <input type="hidden" name="tutorName" value="<%=tutorName%>">
+              <input type="hidden" name="tuteeName" value="<%=tuteeName%>">
               <div class="form-group">
                 <textarea class="form-control" name="comment" rows="3"></textarea>
               </div>
@@ -90,7 +91,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <form action="/updateAppointment/<%=req.params.userId%>/<%=req.params.tutorId%>" method="post">
+              <form action="/updateAppointment/<%=req.params.tuteeId%>/<%=req.params.tutorId%>" method="post">
                 <div class="modal-body">
 
                   <div class="row text-center">
@@ -145,7 +146,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <input type="hidden" name="tuteeName" value="<%=userName%>">
+                  <input type="hidden" name="tuteeName" value="<%=tuteeName%>">
                   <input type="hidden" name="tutorName" value="<%=tutorName%>">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <input type="submit" class = "btn btn-outline-primary" value = "CREATE">
