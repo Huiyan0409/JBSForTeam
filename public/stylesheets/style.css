@@ -55,6 +55,9 @@ body {
     background-color:black;
     color:white;
 }
+.checkedStar {
+  color: orange;
+}
 .center {
   margin: auto;
   width: 13.5%;
