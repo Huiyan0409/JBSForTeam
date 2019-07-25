@@ -367,13 +367,13 @@ app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
 //task board related
 app.get('/taskBoard', isLoggedIn, tutorController.getAppointments)
 
-app.get('/communication/:userId/:tutorId', isLoggedIn, tutorController.getName, communicationController.getCommunication, tutorController.getOneTutorProfile)
+app.get('/communication/:tuteeId/:tutorId', isLoggedIn, tutorController.getName, communicationController.getCommunication, tutorController.getOneTutorProfile)
 
 // app.post('/contactTutor/:userId/:tutorId', isLoggedIn, tutorController.setupGroup)
 
-app.post('/updateAppointment/:userId/:tutorId', isLoggedIn, tutorController.updateAppointment)
+app.post('/updateAppointment/:tuteeId/:tutorId', isLoggedIn, tutorController.updateAppointment)
 
-app.post('/saveCommunication/:tutorId', isLoggedIn, communicationController.saveCommunication)
+app.post('/saveCommunication/:tuteeId/:tutorId', isLoggedIn, communicationController.saveCommunication)
 
 app.get('/communicationBoard', isLoggedIn, communicationController.getCommunicationBoard)
 

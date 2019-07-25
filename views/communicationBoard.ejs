@@ -16,31 +16,36 @@
   <div class="container">
     <div class="row">
 
-      <% for (i = 0; i < communicationBoard.length; i++){  %>
-        <div class="col-sm-12 col-md-4">
-
-        <% if (i > 0 && communicationBoard[i].userId.equals(communicationBoard[i-1].userId)) {%>
-          <% continue } %>
-        <% if (!communicationBoard[i].userId.equals(communicationBoard[i].tutorId)) { %>
+      <% loop1: for (i = 0; i < communicationBoard.length; i++){  %>
+        <% for (j = 0; j < i; j++) { %>
+          <% if (communicationBoard[i].tuteeId.equals(communicationBoard[j].tuteeId) && communicationBoard[i].tutorId.equals(communicationBoard[j].tutorId)) { continue loop1; } %>
+        <% } %>
+        <% if (!communicationBoard[i].tuteeId.equals(communicationBoard[i].tutorId)) { %>
           <% if (user._id.equals(communicationBoard[i].tutorId)) {%>
-            <div class="card">
-              <div class="card-body">
-                <h5>Tutee Name: <%=communicationBoard[i].userName%></h5><br>
-                  <a href="/communication/<%=communicationBoard[i].userId%>/<%=communicationBoard[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTINUE"></a>
+            <div class="col-sm-12 col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5>Tutee Name: <%=communicationBoard[i].userName%></h5><br>
+                    <a href="/communication/<%=communicationBoard[i].tuteeId%>/<%=communicationBoard[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTINUE"></a>
+                </div>
               </div>
             </div>
+
           <% } else { %>
-            <div class="card">
-              <div class="card-body">
-                <h5>Tutor Name: <%=communicationBoard[i].tutorName%></h5><br>
-                  <a href="/communication/<%=communicationBoard[i].userId%>/<%=communicationBoard[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTINUE"></a>
+            <div class="col-sm-12 col-md-4">
+
+              <div class="card">
+                <div class="card-body">
+                  <h5>Tutor Name: <%=communicationBoard[i].tutorName%></h5><br>
+                    <a href="/communication/<%=communicationBoard[i].tuteeId%>/<%=communicationBoard[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTINUE"></a>
+                </div>
               </div>
             </div>
+
           <% } %>
 
         <% } %>
         <br><br><br>
-      </div>
 
       <% } %>
     </div>

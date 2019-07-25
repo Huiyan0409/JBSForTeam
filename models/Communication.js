@@ -6,6 +6,8 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 var communicationSchema = Schema( {
   userId: ObjectId,
   userName: String,
+  tuteeId: ObjectId,
+  tuteeName: String,
   tutorId: ObjectId,
   tutorName: String,
   comment: String,
