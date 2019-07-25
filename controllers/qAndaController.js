@@ -4,7 +4,7 @@ const Answer = require( '../models/Answer' );
 
 exports.saveQuestionPost = ( req, res ) => {
   const goBackURL = '/postQuestion/' + req.params.classCode
-  if (req.body.question.length==0 || req.body.description.length==0){
+  if (req.body.question.length==0 || req.body.haveDone.length==0 || req.body.helpWith.length==0){
     console.log("empty params detected in post question");
     res.render('emptyError', {
       goBackURL: goBackURL
@@ -22,7 +22,8 @@ exports.saveQuestionPost = ( req, res ) => {
       userId: req.user._id,
       userName:req.user.userName,
       question: req.body.question,
-      description: req.body.description,
+      haveDone: req.body.haveDone,
+      helpWith: req.body.helpWith,
       createdAt: new Date(),
       classCode: classCode
     }
@@ -98,7 +99,7 @@ exports.showPreviousQ = (req, res ) => {
 //edit question function
 exports.editQuestion = ( req, res ) => {
   const goBackURL = '/postQuestion/' + req.params.classCode
-  if (req.body.question.length==0 || req.body.description.length==0){
+  if (req.body.question.length==0 || req.body.haveDone.length==0 || req.body.helpWith.length==0){
     console.log("empty params detected in post question");
     res.render('emptyError', {
       goBackURL: goBackURL
@@ -111,7 +112,7 @@ exports.editQuestion = ( req, res ) => {
   .exec()
   .then( ( question ) => {
     question.question = req.body.question
-    question.description = req.body.description
+    question.haveDone = req.body.haveDone
     question.save()
   })
   .then(() => {

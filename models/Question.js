@@ -7,7 +7,8 @@ var questionSchema = Schema( {
   userId: ObjectId,
   userName: String,
   question: String,
-  description: String,
+  haveDone: String,
+  helpWith: String,
   createdAt: Date,
   classCode: String
 } );

@@ -23,8 +23,12 @@
                 <input type="text" class="form-control" id="question" name="question" value="<%=question.question%>"><br>
               </div>
               <div class="form-group">
-                <h5 class="card-header">Description</h5>
-                <textarea class="form-control" name ="description" rows="6"><%=question.description%></textarea>
+                <h5 class="card-header">What you have done</h5>
+                <textarea class="form-control" name ="haveDone" rows="5"><%=question.haveDone%></textarea>
+              </div>
+              <div class="form-group">
+                <h5 class="card-header">What do you need help with</h5>
+                <textarea class="form-control" name ="helpWith" rows="5"><%=question.helpWith%></textarea>
               </div>
               <input class="btn btn-outline-primary" type="submit">
             </form>

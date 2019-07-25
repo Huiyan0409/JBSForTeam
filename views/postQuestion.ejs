@@ -20,11 +20,15 @@
             <form method="post" action="/processQuestionPost/<%=req.params.classCode%>">
               <div class="form-group">
                 <h5 class="card-header">Title</h5>
-                <input type="text" class="form-control" id="question" name="question"> <br>
+                <input type="text" class="form-control" name="question"> <br>
               </div>
               <div class="form-group">
-                <h5 class="card-header">Description</h5>
-                <textarea class="form-control" name = "description" rows="6"></textarea>
+                <h5 class="card-header">What you have done? </h5>
+                <textarea class="form-control" name = "haveDone" rows="5"></textarea>
+              </div>
+              <div class="form-group">
+                <h5 class="card-header">What do you need help with? </h5>
+                <textarea class="form-control" name = "helpWith" rows="5"></textarea>
               </div>
               <input class="btn btn-outline-primary" type="submit">
             </form>
