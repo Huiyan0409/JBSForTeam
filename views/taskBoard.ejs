@@ -29,9 +29,9 @@
             <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
             <% if (appointments[i].tuteeId.equals(user._id)) { %>
               <% if (appointments[i].status == "incomplete") { %>
-                <a href="/tutorRatings/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
+                <a href="/tutorRatings/<%=appointments[i]._id%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
               <% } else { %>
-                <a href="/tutorRatings/<%=appointments[i].tutorId%>"><input disabled class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
+                <a href="/tutorRatings/<%=appointments[i]._id%>/<%=appointments[i].tutorId%>"><input disabled class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
               <% } %>
            <% } %>
            <% if (appointments[i].tutorId.equals(user._id)) { %>

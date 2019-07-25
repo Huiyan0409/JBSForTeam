@@ -5,7 +5,7 @@
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
-          Please Rate Your Tutor:
+          Please Rate Your Tutor: <%=appointment.tutorName%>
       </div>
     </div>
   </div>
@@ -18,11 +18,11 @@
         <div class="container .grid__item--centering center">
             <div class="rating">
 
-              <input type="radio" name="rating-star" class="rating__control" id="rc1">
-              <input type="radio" name="rating-star" class="rating__control" id="rc2">
-              <input type="radio" name="rating-star" class="rating__control" id="rc3">
-              <input type="radio" name="rating-star" class="rating__control" id="rc4">
-              <input type="radio" name="rating-star" class="rating__control" id="rc5">
+              <input type="radio" name="star" class="rating__control" id="rc1" value="1">
+              <input type="radio" name="star" class="rating__control" id="rc2" value="2">
+              <input type="radio" name="star" class="rating__control" id="rc3" value="3">
+              <input type="radio" name="star" class="rating__control" id="rc4" value="4">
+              <input type="radio" name="star" class="rating__control" id="rc5" value="5">
               <label for="rc1" class="rating__item">
                 <svg class="rating__star">
                   <use xlink:href="#star" onClick="rate1()">
@@ -91,97 +91,97 @@
     <div class="container text-center">
       <hr><br><h4>Click your tag!</h4><br><br>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="patient" value="patient">
+        <input class="form-check-input" type="checkbox" name="patient" id="patient" value="1">
         <label class="form-check-label" for="patient">
           Patient
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="excellentG" value="excellentG">
+        <input class="form-check-input" type="checkbox" name="excellentG" id="excellentG" value="1">
         <label class="form-check-label" for="excellentG">
           Excellent Grasp of Topic
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="askGood" value="askGood">
+        <input class="form-check-input" type="checkbox" name="askGood" id="askGood" value="1">
         <label class="form-check-label" for="askGood">
           Ask Good Questions
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="encouraging" value="encouraging">
+        <input class="form-check-input" type="checkbox" name="encouraging" id="encouraging" value="1">
         <label class="form-check-label" for="encouraging">
           Encouraging
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="helpful" value="helpful">
+        <input class="form-check-input" type="checkbox" name="helpful" id="helpful" value="1">
         <label class="form-check-label" for="helpful">
           Very Helpful
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="abilityT" value="abilityT">
+        <input class="form-check-input" type="checkbox" name="abilityT" id="abilityT" value="1">
         <label class="form-check-label" for="abilityT">
           Ability to Teach
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="gEnergy" value="gEnergy">
+        <input class="form-check-input" type="checkbox" name="gEnergy" id="gEnergy" value="1">
         <label class="form-check-label" for="gEnergy">
           Good Energy
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="humility" value="humility">
+        <input class="form-check-input" type="checkbox" name="humility" id="humility" value="1">
         <label class="form-check-label" for="humility">
           Humility
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="passionate" value="passionate">
+        <input class="form-check-input" type="checkbox" name="passionate" id="passionate" value="1">
         <label class="form-check-label" for="passionate">
           Passionate
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="onTime" value="onTime">
+        <input class="form-check-input" type="checkbox" name="onTime" id="onTime" value="1">
         <label class="form-check-label" for="onTime">
           On Time and Prepared
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="gPaced" value="gPaced">
+        <input class="form-check-input" type="checkbox" name="gPaced" id="gPaced" value="1">
         <label class="form-check-label" for="gPaced">
           Good Paced
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="impatient" value="impatient">
+        <input class="form-check-input" type="checkbox" name="impatient" id="impatient" value="1">
         <label class="form-check-label" for="impatient">
           Impatient
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="notgTeaching" value="notgTeaching">
+        <input class="form-check-input" type="checkbox" name="notgTeaching" id="notgTeaching" value="1">
         <label class="form-check-label" for="notgTeaching">
           Not Good at Teaching
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="late" value="late">
+        <input class="form-check-input" type="checkbox" name="late" id="late" value="1">
         <label class="form-check-label" for="late">
           Late
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="notPrepared" value="notPrepared">
+        <input class="form-check-input" type="checkbox" name="notPrepared" id="notPrepared" value="1">
         <label class="form-check-label" for="notPrepared">
           Not Prepared
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="tags" id="notHelpful" value="notHelpful">
+        <input class="form-check-input" type="checkbox" name="notHelpful" id="notHelpful" value="1">
         <label class="form-check-label" for="notHelpful">
           Not Helpful
         </label>
@@ -195,7 +195,7 @@
     <div class="container text-center">
       <div class="form-group">
         <br><br><br><br>
-        <textarea class="form-control col-xs-12" rows="5" cols="40" placeholder="Please leave some comments to this session here"></textarea>
+        <textarea class="form-control col-xs-12" name = "comment" rows="5" cols="40" placeholder="Please leave some comments to this session here"></textarea>
         <hr>
       <button type="button" class="btn btn-dark btn-lag btn-block"><h3>Submit<h3></button>
       </div>
