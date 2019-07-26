@@ -7,11 +7,13 @@
       <div class="section__title section__title--centered">
         Welcome, <%=user.userName%>!
       </div>
-      <% if (user._id.equals(req.params.tutorId)){%>
-        Negotiate with your tutee here
-      <% } else { %>
-        Negotiate with your tutor here
-      <% } %>
+      <h3>
+        <% if (user._id.equals(req.params.tutorId)){%>
+          Negotiate with your tutee here
+        <% } else { %>
+          Negotiate with your tutor here
+        <% } %>
+      </h3>
     </div>
   </div>
 </section>
@@ -26,9 +28,9 @@
           <a href="/showProfile/<%=communications[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=communications[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
           <div class="media-body">
             <% if (communications[i].userId.equals(req.params.tutorId)){%>
-              <h5><%= communications[i].tutorName %>(tutor) tutorId: <%= communications[i].tutorId %></h5>
+              <h5><%= communications[i].tutorName %>(tutor)</h5>
             <% } else { %>
-              <h5><%= communications[i].tuteeName %>(tutee) tuteeId: <%= communications[i].tuteeId %></h5>
+              <h5><%= communications[i].tuteeName %>(tutee)</h5>
             <% } %>
             <h6><%= communications[i].comment %></h6>
           </div>

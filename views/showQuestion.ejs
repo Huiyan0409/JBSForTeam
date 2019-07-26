@@ -2,17 +2,17 @@
 <%- include('navbar') -%>
 
 <section class="section">
-  <div class="section__content section__content--fixed-width">
+  <div class="section__content section__content--fixed-width" id="whiteFont">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
         Question: <%= question.question %>
       </div>
       <!-- Author -->
-      <div class="section__description section__description--centered" id="whiteFont">
-        by
+      <h3>by
         <a href="/showProfile/<%=question.userId%>"><%=question.userName%></a>
         posted on <%= question.createdAt %>
-      </div>
+      </h3>
+      <br><br>
       <% if (loggedIn) { %>
         <% if (question.userId.equals(user._id)) { %>
           <a class="btn btn-primary" href="/showQuestion/<%=req.params.classCode%>/<%=question._id%>/editQuestion" role="button">Edit</a>
