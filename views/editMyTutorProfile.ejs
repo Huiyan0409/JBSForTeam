@@ -12,10 +12,14 @@
   </div>
 </section>
 
-<div class="section section--grey">
+<section class="section section--grey">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-12">
+        <div class="lead">
+          Enroll in class that you want to tutor in
+        </div>
+        <br>
         <form action="/<%=user._id%>/enroll" method="post">
           <div class="input-group-prepend">
             <span class="input-group-text">Course code</span>
@@ -26,8 +30,9 @@
         </form>
       </div>
     </div>
+    <hr>
   </div>
-</div>
+</section>
 
 
 <section class="section section--grey">
@@ -36,20 +41,12 @@
 
     <form action="/updateTutorProfile/<%=user._id%>" method="post">
       <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Introduction</span>
-            <textarea type="text" class="form-control" name="introduction"><%=tutor.introduction%></textarea>
-          </div>
-        </div>
-
-        <div class="w-100"></div>
-        <br>
-
-        <h4>Choose the class from your enrolled forum:</h4>
-        <br>
 
         <div class="col-md-12">
+          <div class="lead">
+            Choose the class from your enrolled forum:
+          </div>
+          <br>
           <% if (loggedIn) {%>
             <ul class="list-group">
               <% for (i = 0; i < user.classCodes.length; i++){ %>
@@ -68,7 +65,24 @@
                   Please login to view this page
                 </div>
                 <% } %>
+                <hr>
+
               </div>
+
+              <div class="col-md-6 col-sm-12">
+                <div class="lead">
+                  Enter your introduction here
+                </div>
+                <br>
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Introduction</span>
+                  <textarea type="text" class="form-control" name="introduction"><%=tutor.introduction%></textarea>
+                </div>
+              </div>
+
+
+              <div class="w-100"></div>
+              <br>
 
               <div class="col-sm-1">
                 <input type="submit" class = "btn btn-outline-primary" value = "Save">

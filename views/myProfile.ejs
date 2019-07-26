@@ -2,7 +2,7 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-<section class="section">
+<section class="section section--grey">
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center"  id="whiteFont">
       <div class="section__title section__title--centered">
@@ -13,7 +13,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section section--grey">
   <div class="container">
     <h3> User Profile:</h3>
     <br>
@@ -77,7 +77,7 @@
 </section>
 <% if (profile.status==("tutor")) {%>
 
-<section class="section">
+<section class="section section--grey">
   <div class="container">
     <h3> Tutor Profile:</h3>
     <br>
@@ -130,7 +130,7 @@
 <% } %>
 
 
-<section class="section">
+<section class="section section--grey">
   <div class="container">
     <a href="/editMyProfile/<%=user._id%>"><input type="button" id='editBtn' value="Edit" class = "btn btn-outline-primary"></input></a>
     <% if (user.status == "tutor") { %>

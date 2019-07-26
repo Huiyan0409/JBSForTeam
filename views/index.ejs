@@ -88,11 +88,12 @@
           <div class="intro__subtitle"><%=user.userName%></div>
         <% } %>
         <div class="intro__subtitle">Welcome to iClaster</div>
-        <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help -all in one place. Discuss, tutor and meet.</div>
+        <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help -all in one place.<br><br></div>
         <% if (loggedIn) {%>
-          <a href="/classes"><input type="submit" name="submit" class="form-demo__submit1" value="VIEW AND SEARCH CLASSES"></a>
-
-          <br><br><br>
+          <div class="form-demo">
+            <a href="/classes"><input type="submit" name="submit" class="form-demo__submit1" value="VIEW AND SEARCH CLASSES"></a>
+            <br><br><br>
+          </div>
 
           <div class="intro__form form-demo">
             <form action="/<%=user._id%>/enroll" method="post">
@@ -185,7 +186,7 @@
 
 
 <!-- Section -->
-<section class="section" id="tutor">
+<section class="section section--grey" id="tutor">
   <div class="section__content section__content--fluid-width section__content--padding">
     <h2 class="section__title section__title--centered">Tutor</h3>
 

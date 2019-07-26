@@ -1,7 +1,7 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 
-<section class="section">
+<section class="section section--grey">
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
@@ -11,7 +11,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section section--grey">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -19,7 +19,7 @@
           <div class="card-body">
             <form method="post" action="/processQuestionPost/<%=req.params.classCode%>">
               <div class="form-group">
-                <h5 class="card-header">Title</h5>
+                <h5 class="card-header">Title (required)</h5>
                 <input type="text" class="form-control" name="question"> <br>
               </div>
               <div class="form-group">
@@ -27,10 +27,15 @@
                 <textarea class="form-control" name = "haveDone" rows="5"></textarea>
               </div>
               <div class="form-group">
-                <h5 class="card-header">What do you need help with? </h5>
+                <h5 class="card-header">What do you need help with? (required)</h5>
                 <textarea class="form-control" name = "helpWith" rows="5"></textarea>
               </div>
               <input class="btn btn-outline-primary" type="submit">
+
+              <br><br>
+              <b>Hint: Include your <a href="https://www.nyu.edu/projects/beber/files/Chang_LaTeX_sheet.pdf">LaTeX</a> or code between two $.</b>
+              <pre>e.g. $ your_LaTeX_here $</pre>
+
             </form>
           </div>
 

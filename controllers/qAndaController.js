@@ -4,7 +4,7 @@ const Answer = require( '../models/Answer' );
 
 exports.saveQuestionPost = ( req, res ) => {
   const goBackURL = '/postQuestion/' + req.params.classCode
-  if (req.body.question.length==0 || req.body.haveDone.length==0 || req.body.helpWith.length==0){
+  if (req.body.question.length==0 || req.body.helpWith.length==0){
     console.log("empty params detected in post question");
     res.render('emptyError', {
       goBackURL: goBackURL
