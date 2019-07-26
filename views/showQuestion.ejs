@@ -116,13 +116,12 @@
           <div class="card-body">
             <form action="/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/processAnswerPost" method="post">
               <div class="form-group">
-                <textarea class="form-control" id ="answer" name="answer" rows="3"></textarea>
+                <textarea class="form-control" id ="answer" name="answer" rows="3" placeholder="Please do not directly post answer here."></textarea>
               </div>
               <% if (loggedIn) { %>
 
                 <button type="submit" class="btn btn-outline-primary">Submit</button>
                 <br><br>
-                <b>Please do not directly post answer here</b><br>
                 <b>Hint: Include your <a href="http://tug.ctan.org/info/undergradmath/undergradmath.pdf">LaTeX</a> or code between two $.</b>
                 <pre>e.g. $ your_LaTeX_here $</pre>
 
