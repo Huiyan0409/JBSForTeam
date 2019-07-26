@@ -38,7 +38,18 @@
               <div class="col-md-3 col-sm-3 text-center">
                 <a href="/showProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
                     <div class="rating text-center">
+<<<<<<< HEAD
                           <%if(tutors[i].score>=0&&tutors[i].score<=1){%>
+=======
+                          <%if(tutors[i].score==0){%>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                            <span class="fa fa-star "></span>
+                          <%}%>
+                          <%if(tutors[i].score>0&&tutors[i].score<=1){%>
+>>>>>>> version1.4
                             <span class="fa fa-star checkedStar"></span>
                             <span class="fa fa-star "></span>
                             <span class="fa fa-star "></span>
@@ -80,7 +91,6 @@
                         <path d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z"/>
                       </symbol>
                     </svg>
-
 
                 introduction: <%= tutors[i].introduction %>
               </div>
@@ -142,6 +152,8 @@
                   <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span class="badge badge-dark"><%=tutors[i].notHelpful%></span></button>
                 <% } %>
               </div>
+              <div class="w-100"></div>
+              <br>
               <div class="col-md-1 col-sm-1 align-self-center">
                 <% if (!user._id.equals(tutors[i]._id)) {%>
                   <a href="/communication/<%=user._id%>/<%=tutors[i]._id%>"><input class="btn btn-sm btn-outline-primary" type="button" value="CONTACT"></a>

@@ -2200,10 +2200,10 @@ select.select__field{
 /* BLOCK - footer */
 .footer{
   width:100%;
-  height:auto;
+  height:10%;
   float:left;
   clear:both;
-  background-color: #f7f8f9;
+  background-color: 	#FFFFFF;
   position:relative;
 }
 /* ELEMENT - footer__content */
@@ -2264,7 +2264,7 @@ ul.grid__list--sicons li a:hover{
 
 ul.grid__list--fmenu li a {
   display: inline-block;
-  color:#838383;
+  color:#000000;
   text-decoration: none;
 }
 
