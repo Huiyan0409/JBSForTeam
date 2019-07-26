@@ -88,7 +88,6 @@
                       </symbol>
                     </svg>
 
-
                 introduction: <%= tutors[i].introduction %>
               </div>
               <div class="col-md-1 col-sm-1 align-self-center">
@@ -149,6 +148,8 @@
                   <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span class="badge badge-dark"><%=tutors[i].notHelpful%></span></button>
                 <% } %>
               </div>
+              <div class="w-100"></div>
+              <br>
               <div class="col-md-1 col-sm-1 align-self-center">
                 <% if (!user._id.equals(tutors[i]._id)) {%>
                   <a href="/communication/<%=user._id%>/<%=tutors[i]._id%>"><input class="btn btn-sm btn-outline-primary" type="button" value="CONTACT"></a>
