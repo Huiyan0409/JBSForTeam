@@ -2,6 +2,10 @@
 /* Customized CSS--BOOTSTRAP		 						 */
 /*===============================================*/
 
+.rating.text-center:hover{
+  color: #EEEEEE !important;
+}
+
 #grey{
   background-color:#f7f8f9;
 }

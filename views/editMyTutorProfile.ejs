@@ -2,7 +2,7 @@
 <%- include('navbar'); -%>
 
 
-<section class="section">
+<section class="section section--grey">
   <div class="section__content section__content--fixed-width">
     <div class="jumbotron masthead diagonal-gradient text-center">
       <div class="section__title section__title--centered" id="whiteFont">
@@ -12,9 +12,26 @@
   </div>
 </section>
 
-<section class="section">
+<div class="section section--grey">
   <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <form action="/<%=user._id%>/enroll" method="post">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Course code</span>
+            <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B" />
+            &nbsp&nbsp&nbsp
+            <input type="submit" name="submit" class="btn btn-outline-primary" id="submit" value="ENROLL" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<section class="section section--grey">
+  <div class="container">
     <!-- form: update personal info -->
 
     <form action="/updateTutorProfile/<%=user._id%>" method="post">
@@ -26,9 +43,8 @@
           </div>
         </div>
 
-        <div class="w-100">
-
-        </div>
+        <div class="w-100"></div>
+        <br>
 
         <h4>Choose the class from your enrolled forum:</h4>
         <br>

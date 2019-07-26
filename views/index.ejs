@@ -52,6 +52,11 @@
               <li>
                 <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
               </li>
+              <% if (user.status=="tutor") {%>
+                <li>
+                    <a class="header-link" href="/editMyTutorProfile/<%=user._id%>">EDIT TUTOR PROFILE</a>
+                </li>
+              <% } %>
               <li>
                 <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
               </li>
@@ -207,7 +212,7 @@
       <div class="grid__item">
         <h3 class="grid__title"><span>Become a tutor</span></h3>
         <p class="grid__text">
-          If you have gotten a grade above A- in a class, and want to make some extra money while refreshing your knowledge about a course, we strongly encourage you to become a tutor! After completing a quick training, you will be added to the forum discussion of that class. Click become a tutor to find out more! <br><br>
+          If you have gotten at least an A- grade in a class, and want to make some extra money while refreshing your knowledge about a course, we strongly encourage you to become a tutor! After completing a quick training, you will be added to the forum discussion of that class. Click become a tutor to find out more! <br><br>
           <% if (loggedIn) { %>
             <a href="/tutorRegister" class="btn btn-outline-dark">Become a tutor</a>
           <% } else { %>

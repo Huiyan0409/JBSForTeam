@@ -26,15 +26,14 @@
       <div class="w-100"></div>
       <br>
 
-      <div class="col-sm-12 col-md-4">
+      <!-- <div class="col-sm-12 col-md-4">
         <div class="input-group-prepend">
           <span class="input-group-text">Email</span>
           <input disabled type="text" class="form-control" value="<%=profile.googleemail%>">
         </div>
       </div>
-      <!-- Line Break -->
       <div class="w-100"></div>
-      <br>
+      <br> -->
 
       <div class="col-sm-12 col-md-4">
         <div class="input-group-prepend">
@@ -81,7 +80,7 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">Introduction</span>
             <textarea disabled type="text" class="form-control"><%=profile.introduction%></textarea>
@@ -93,8 +92,8 @@
 
         <div class="col-sm-12 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text"><%= profile.userName %>'s score'</span>
-            <input disabled type="text" class="form-control" value="<%=profile.score%>">
+            <span class="input-group-text"><%= profile.userName%>'s score'</span>
+            <input disabled type="text" class="form-control" value="<%=profile.score.toFixed(2)%>">
           </div>
         </div>
         <!-- Line Break -->
