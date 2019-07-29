@@ -100,7 +100,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const approvedLogins = ["supremeethan@brandeis.edu", "kaimingwang@brandeis.edu", "yhao@brandeis.edu", "richardli@brandeis.edu", "nicolezhang@brandeis.edu"];
 // here is where we check on their logged in status
 app.use((req,res,next) => {
-  res.locals.title="iClaster"
+  res.locals.title="Claster"
   res.locals.loggedIn = false
   if (req.isAuthenticated()){
     if (req.user.googleemail.endsWith("edu") ||
