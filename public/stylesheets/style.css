@@ -6,6 +6,10 @@
   color: #EEEEEE !important;
 }
 
+#input{
+  white-space: pre-wrap;
+}
+
 #grey{
   background-color:#f7f8f9;
 }

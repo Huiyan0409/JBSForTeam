@@ -30,13 +30,13 @@
         <h5><b>What he/she have done: </b></h5>
         <hr>
         <!-- Post Content -->
-        <p class="lead"><%= question.haveDone%></p>
+        <p class="lead" id="input"><%= question.haveDone%></p>
         <hr>
 
         <h5><b>What does he/she need help with: </b></h5>
         <hr>
         <!-- Post Content -->
-        <p class="lead"><%= question.helpWith%></p>
+        <p class="lead" id="input"><%= question.helpWith%></p>
         <hr>
 
         <h5><b>Answers: </b></h5>
@@ -47,8 +47,8 @@
             <div class="media mb-3" id ="description">
               <a href="/showProfile/<%=answers[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=answers[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
               <div class="media-body">
-                <h5><%= answers[i].userName %></h5>
-                <h6><%= answers[i].answer %></h6>
+                <h5 id="input"><%= answers[i].userName %></h5>
+                <h6 id="input"><%= answers[i].answer %></h6>
                 <% if (loggedIn) { %>
                     <div class="row">
                     <% if (answers[i].userId.equals(user._id)) { %>
