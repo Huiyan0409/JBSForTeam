@@ -85,19 +85,19 @@
       <div class="row text-center">
         <div class="col-md-3 col-sm-12">
           <div class="input-group-prepend">
-            <span class="input-group-text" width="400px">Class code</span>
+            <span class="input-group-text">Class code</span>
             <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
           </div>
         </div>
         <div class="col-md-1 col-sm-12">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dropModal">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dropModal<%=i%>">
             DROP
           </button>
         </div>
       </div>
       <br>
     <!-- Modal -->
-    <div class="modal fade" id="dropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="dropModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -130,13 +130,13 @@
                 <input type="submit" class = "btn btn-outline-primary" value = "DROP">
               </div>
             </div>
-
           </form>
-
         </div>
       </div>
     </div>
-  <% } %>
+    <% } %>
+    
+  </div>
 </section>
 
 
