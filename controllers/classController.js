@@ -133,3 +133,19 @@ exports.checkUnique = (req,res,next) => {
   .catch((error)=> {res.send(error)})
   .then(() => console.log('checkunique promise is complete!'))
 }
+
+exports.dropClass = ( req, res ) => {
+  var classCode = req.body.classCodesDelete
+  User.findOne(res.locals.user._id)
+  .exec()
+  .then((user)=> {
+    user.classCodes.pull(req.session.classV.classCode)
+    user.tutorClassCodes.pull(req.session.classV.classCode)
+    user.save()
+    .then(() => {
+      res.redirect('back')
+    })
+  })
+  .catch((error)=> {res.send(error)})
+  .then(() => console.log('drop class complete'))
+}

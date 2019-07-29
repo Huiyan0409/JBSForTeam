@@ -200,11 +200,12 @@ app.get('/', function(req, res, next){
   }
 })
 
-app.post('/:userId/enroll', isLoggedIn, classController.lookupClass, classController.addClass);
 
 // =====================================
 // Class ===============================
 // =====================================
+
+app.post('/:userId/enroll', isLoggedIn, classController.lookupClass, classController.addClass);
 
 //create new classes
 app.get('/classes', isLoggedIn, classController.getAllClasses)
@@ -216,6 +217,8 @@ app.post('/createClass', isLoggedIn, classController.checkUnique, classControlle
 app.get('/classNotFound', isLoggedIn, function(req, res, next){
   res.render('classNotFound')
 })
+
+app.post('/dropClass', isLoggedIn, classController.lookupClass, classController.dropClass);
 
 // =====================================
 // Profile =============================

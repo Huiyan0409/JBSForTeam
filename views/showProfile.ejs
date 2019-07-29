@@ -90,12 +90,15 @@
         <div class="w-100"></div>
         <br>
 
-        <div class="col-sm-12 col-md-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><%= profile.userName%>'s score'</span>
-            <input disabled type="text" class="form-control" value="<%=profile.score.toFixed(2)%>">
+        <% if(profile.score) { %>
+          <div class="col-sm-12 col-md-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><%= profile.userName%>'s score'</span>
+              <input disabled type="text" class="form-control" value="<%=profile.score.toFixed(2)%>">
+            </div>
           </div>
-        </div>
+        <% } %>
+
         <!-- Line Break -->
         <div class="w-100"></div>
         <br>

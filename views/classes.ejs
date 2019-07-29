@@ -75,6 +75,68 @@
   </div>
 </section>
 
+<section class="section section--grey">
+  <div class="container">
+    <hr>
+    <h4>Classes you enrolled</h4>
+    <% for (i = 0; i < user.classCodes.length; i++) {%>
+      <div class="row text-center">
+        <div class="col-md-3 col-sm-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" width="400px">Class code</span>
+            <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-12">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dropModal">
+            DROP
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="dropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Drop a class</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/dropClass" method="post">
+            <div class="container text-center">
+              <div class="modal-body">
+
+                <div class="row text-center">
+                  <div class="col-md-12 col-sm-12">
+                    <h4>Are you sure you want to drop:</h4>
+
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Course code</span>
+                      <input type="text" class="form-control" name="classCode" value="<%=user.classCodes[i]%>">
+                    </div>
+                  </div>
+
+                  <br><br>
+                  Please notice that once you drop this course, you can no longer be a tutor of this course
+                </div>
+              </div>
+              <div class="modal-footer">
+                <input type="hidden" name="classCodesDelete" value="<%=user.classCodes[i]%>">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" class = "btn btn-outline-primary" value = "DROP">
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  <% } %>
+</section>
+
 
 <section class="section section--grey">
   <div class="container">
