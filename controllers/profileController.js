@@ -5,8 +5,8 @@ const Answer = require( '../models/Answer' );
 
 
 //import axios
-const axios = require('axios');
-const apikey = require('../config/apikey');
+// const axios = require('axios');
+// const apikey = require('../config/apikey');
 var path = require('path');
 
 
