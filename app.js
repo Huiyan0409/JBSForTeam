@@ -39,8 +39,8 @@ configPassport(passport)
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-const MONGODB_URI = 'mongodb://heroku_lkzgs150:mmjg4jh9nqt22r8shk8kul93hi@ds249035.mlab.com:49035/heroku_lkzgs150';
-console.log("MONGODB_URI: " + process.env.MONGODB_URI);
+const MONGODB_URI = process.env.MONGODB_URI;
+// console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 // const MONGODB_URI = 'mongodb://localhost/iclaster';
 const mongoose = require( 'mongoose' );
 
