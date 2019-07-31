@@ -22,6 +22,7 @@ var userSchema = Schema({
   score: Number,
   comments: [String],
   tutorClassCodes: [String],
+  likes: Number,
   //characteristic
   patient: Number,
   excellentG: Number,

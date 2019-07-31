@@ -10,16 +10,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User       = require('../models/User');
 
 // load the auth variables
-// var configAuth = require('./auth');
-
-var clientID = process.env.clientID;
-// var clientID = '960287962764-sfv4q5pbgngotppbedbkgsqf0u790kam.apps.googleusercontent.com';
-var clientSecret = process.env.clientSecret;
-// var clientSecret = 'grrRchAdcbf2st9eBXUgVBQO';
-var callbackURL = process.env.callbackURL;
-// var callbackURL = 'http://127.0.0.1:5500/login/authorized';
-
-// 'callbackURL'   : 'http://127.0.0.1:5500/login/authorized'
+var configAuth = require('./auth');
 
 module.exports = function(passport) {
 
@@ -47,9 +38,9 @@ module.exports = function(passport) {
   // =========================================================================
   passport.use(new GoogleStrategy({
 
-    clientID        : clientID,
-    clientSecret    : clientSecret,
-    callbackURL     : callbackURL,
+    clientID        : configAuth.googleAuth.clientID,
+    clientSecret    : configAuth.googleAuth.clientSecret,
+    callbackURL     : configAuth.googleAuth.callbackURL,
 
   },
   function(token, refreshToken, profile, done) {
