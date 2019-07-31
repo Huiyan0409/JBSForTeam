@@ -44,6 +44,9 @@ exports.getAllQuestions = ( req, res, next ) => {
   Question.find({classCode: classCode}).sort({createdAt: '-1'})
   .exec()
   .then( ( questions ) => {
+    if (questions.length==0) {
+      next()
+    }
     let asyncKiller = 0;
     for (let i = 0; i < questions.length; i++) {
       console.log("question length: " + questions.length)
@@ -64,7 +67,7 @@ exports.getAllQuestions = ( req, res, next ) => {
         questions[i].save()
         asyncKiller++;
         console.log("asyncKiller: " + asyncKiller);
-        if (asyncKiller==questions.length || questions.length==0){
+        if (asyncKiller==questions.length){
           console.log("TIME TO GO TO NEXT");
           next()
         }
