@@ -13,14 +13,13 @@ var User       = require('../models/User');
 // var configAuth = require('./auth');
 
 
- // load the auth variables	// load the auth variables
+// load the auth variables	// load the auth variables
 // var configAuth = require('./auth');
 var clientID = process.env.clientID;
 var clientSecret = process.env.clientSecret;
 var callbackURL = process.env.callbackURL;
 
 
- module.exports = function(passport) {	module.exports = function(passport) {
 
 module.exports = function(passport) {
 
@@ -53,6 +52,7 @@ module.exports = function(passport) {
     callbackURL     : callbackURL
 
   },
+  
   function(token, refreshToken, profile, done) {
 
     // make the code asynchronous
