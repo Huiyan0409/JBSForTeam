@@ -64,7 +64,7 @@ exports.getAllQuestions = ( req, res, next ) => {
         questions[i].save()
         asyncKiller++;
         console.log("asyncKiller: " + asyncKiller);
-        if (asyncKiller==questions.length){
+        if (asyncKiller==questions.length || questions.length==0){
           console.log("TIME TO GO TO NEXT");
           next()
         }
