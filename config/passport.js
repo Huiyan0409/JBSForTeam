@@ -52,7 +52,7 @@ module.exports = function(passport) {
     callbackURL     : callbackURL
 
   },
-  
+
   function(token, refreshToken, profile, done) {
 
     // make the code asynchronous
