@@ -39,10 +39,10 @@ configPassport(passport)
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-// const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 console.log("MONGODB_URI: " + process.env.MONGODB_URI);
-const MONGODB_URI = 'mongodb://localhost/iclaster';
-const mongoose = require( 'mongoose' );
+// const MONGODB_URI = 'mongodb://localhost/iclaster';
+// const mongoose = require( 'mongoose' );
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
