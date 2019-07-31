@@ -25,6 +25,7 @@ exports.saveQuestionPost = ( req, res ) => {
       haveDone: req.body.haveDone,
       helpWith: req.body.helpWith,
       createdAt: new Date(),
+      answerNum: 0,
       classCode: classCode
     }
   )
@@ -43,21 +44,58 @@ exports.getAllQuestions = ( req, res, next ) => {
   Question.find({classCode: classCode}).sort({createdAt: '-1'})
   .exec()
   .then( ( questions ) => {
-    res.render('showQuestions',{
-      req: req,
-      questions: questions,
-      title: "showQuestions"
-    })
-  } )
+    let asyncKiller = 0;
+    for (let i = 0; i < questions.length; i++) {
+      console.log("question length: " + questions.length)
+      console.log("i before is:  " + i)
+      console.log("questions[i].answerNum is: " + questions[i].answerNum)
+      let counts = 0
+      Answer.find({questionId: questions[i]._id}).countDocuments()
+      .exec()
+      .then( (count) => {
+        console.log("count before is:  " + count)
+        if (count > 0){
+          count = 1;
+        }
+        console.log("count now is:  " + count)
+        counts = count;
+        console.log("countsssssss: " + counts)
+        questions[i].answerNum = counts
+        questions[i].save()
+        asyncKiller++;
+        console.log("asyncKiller: " + asyncKiller);
+        if (asyncKiller==questions.length){
+          console.log("TIME TO GO TO NEXT");
+          next()
+        }
+      } )
+      .catch( ( error ) => {
+        console.log( error.message )
+        return []
+      } )
+    }
+  })
   .catch( ( error ) => {
     console.log( error.message );
     return [];
   } )
-  .then( () => {
-    //console.log( 'skill promise complete' );
-  } );
 };
 
+exports.displayAllQuestions = ( req, res, next ) => {
+  const classCode = req.params.classCode;
+  Question.find({classCode: classCode}).sort({createdAt: '-1'})
+  .exec()
+  .then( (questions) => {
+    res.render('showQuestions', {
+      req: req,
+      questions: questions
+    })
+  })
+  .catch( ( error ) => {
+    console.log( error.message );
+    return [];
+  })
+}
 
 // this displays all of the skills
 exports.showOneQuestion = ( req, res ) => {
@@ -99,7 +137,7 @@ exports.showPreviousQ = (req, res ) => {
 //edit question function
 exports.editQuestion = ( req, res ) => {
   const goBackURL = '/postQuestion/' + req.params.classCode
-  if (req.body.question.length==0 || req.body.haveDone.length==0 || req.body.helpWith.length==0){
+  if (req.body.question.length==0 || req.body.helpWith.length==0){
     console.log("empty params detected in post question");
     res.render('emptyError', {
       goBackURL: goBackURL
@@ -125,7 +163,6 @@ exports.editQuestion = ( req, res ) => {
 };
 
 exports.saveAnswer = (req,res) => {
-
   const goBackURL = '/showQuestion/' + req.params.classCode + '/' + req.params.id
   if (req.body.answer.length==0){
     console.log("empty params detected in save answer");
@@ -172,7 +209,7 @@ exports.likesAdded = ( req, res ) => {
       answer.likes = answer.likes - 1
       answer.save()
     }
-     else{
+    else{
       answer.agreeList.push(userId)
       answer.likes = answer.likes + 1
       answer.save()

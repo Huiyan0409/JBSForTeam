@@ -10,7 +10,8 @@ var questionSchema = Schema( {
   haveDone: String,
   helpWith: String,
   createdAt: Date,
-  classCode: String
+  classCode: String,
+  answerNum: Number
 } );
 
 module.exports = mongoose.model( 'QuestionPost', questionSchema );

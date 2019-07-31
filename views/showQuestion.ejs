@@ -27,7 +27,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h5><b>What he/she have done: </b></h5>
+        <h5><b>What he/she are working on: </b></h5>
         <hr>
         <!-- Post Content -->
         <p class="lead" id="input"><%= question.haveDone%></p>
@@ -41,6 +41,10 @@
 
         <h5><b>Answers: </b></h5>
         <hr>
+
+        <% if (answers.length==0) {%>
+          <p class="lead" id="input">No answer yet.</p>
+        <% } %>
 
         <% for(i = 0; i < answers.length; i++){ %>
           <!-- Single Comment in card-->
@@ -70,8 +74,8 @@
                               </div>
                               <div class="modal-body">
                                 Are you sure you want to delete this answer?
-                                <%=answers[i]._id%>
-                                <%=answers[i].answer%>
+                                <br>
+                                <b><%=answers[i].answer%></b>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
