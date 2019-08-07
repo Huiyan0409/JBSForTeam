@@ -2,33 +2,33 @@
 <%- include('navbar') -%>
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered" id="whiteFont">
-        All users are here
-      </div>
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered" id="whiteFont">
+                All users are here
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
 
-  <div class="container">
-    <ul class="list-group">
-      <% for(i = 0; i < profiles.length; i++){  %>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm">
-              User: <a href="/showProfile/<%= profiles[i]._id %>"><%= profiles[i].userName %></a>
-            </div>
-            <div class="col-sm">
-              User Email: <%= profiles[i].googleemail %>
-            </div>
-          </div>
-        </li>
-      <% } %>
-    </ul>
-  </div>
+    <div class="container">
+        <ul class="list-group">
+            <% for(i = 0; i < profiles.length; i++){ %>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm">
+                            User: <a href="/showProfile/<%= profiles[i]._id %>"><%= profiles[i].userName %></a>
+                        </div>
+                        <div class="col-sm">
+                            User Email: <%= profiles[i].googleemail %>
+                        </div>
+                    </div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 
 </section>
 

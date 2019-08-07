@@ -7,10 +7,10 @@ var logger = require('morgan');
 
 //authentication modules
 session = require("express-session"),
-bodyParser = require("body-parser"),
-User = require( './models/User' ),
-Answer = require( './models/Answer' ),
-flash = require('connect-flash')
+    bodyParser = require("body-parser"),
+    User = require('./models/User'),
+    Answer = require('./models/Answer'),
+    flash = require('connect-flash')
 
 
 var indexRouter = require('./routes/index');
@@ -24,7 +24,6 @@ const qAndaController = require('./controllers/qAndaController');
 const classController = require('./controllers/classController');
 const tutorController = require('./controllers/tutorController');
 const communicationController = require('./controllers/communicationController');
-
 
 
 //*******************************************
@@ -42,15 +41,15 @@ configPassport(passport)
 const MONGODB_URI = process.env.MONGODB_URI;
 console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 // const MONGODB_URI = 'mongodb://localhost/iclaster';
-const mongoose = require( 'mongoose' );
+const mongoose = require('mongoose');
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log("we are connected!")
+db.once('open', function () {
+    console.log("we are connected!")
 });
 
 //start the app.js
@@ -76,56 +75,54 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*************************************************************************
-HERE ARE THE AUTHENTICATION ROUTES
-**************************************************************************/
+ HERE ARE THE AUTHENTICATION ROUTES
+ **************************************************************************/
 
 //fix warnings of express-session
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
 }))
 
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 
 const approvedLogins = ["supremeethan@brandeis.edu", "kaimingwang@brandeis.edu", "yhao@brandeis.edu", "richardli@brandeis.edu", "nicolezhang@brandeis.edu"];
 // here is where we check on their logged in status
-app.use((req,res,next) => {
-  res.locals.title="Claster"
-  res.locals.loggedIn = false
-  if (req.isAuthenticated()){
-    if (req.user.googleemail.endsWith("edu") ||
-    req.user.googleemail.endsWith("@gmail.com"))
-    {
-      res.locals.user = req.user
-      res.locals.loggedIn = true
-      console.log("user has been Authenticated")
+app.use((req, res, next) => {
+    res.locals.title = "Claster"
+    res.locals.loggedIn = false
+    if (req.isAuthenticated()) {
+        if (req.user.googleemail.endsWith("edu") ||
+            req.user.googleemail.endsWith("@gmail.com")) {
+            res.locals.user = req.user
+            res.locals.loggedIn = true
+            console.log("user has been Authenticated")
+        } else {
+            res.locals.loggedIn = false
+        }
+        if (req.user) {
+            if (approvedLogins.includes(req.user.googleemail)) {
+                // for permission control
+                console.log("admin has logged in")
+                res.locals.status = 'admin'
+            } else {
+                console.log('user has logged in')
+                res.locals.status = 'user'
+            }
+        }
     }
-    else {
-      res.locals.loggedIn = false
-    }
-    if (req.user){
-      if (approvedLogins.includes(req.user.googleemail)){
-        // for permission control
-        console.log("admin has logged in")
-        res.locals.status = 'admin'
-      } else {
-        console.log('user has logged in')
-        res.locals.status = 'user'
-      }
-    }
-  }
-  // console.log("not a first time user!!!");
-  next()
+    // console.log("not a first time user!!!");
+    next()
 })
 
 // here are the login routes
@@ -134,16 +131,18 @@ app.use((req,res,next) => {
 //   res.render('login',{})
 // })
 
-app.get('/loginerror', function(req,res){
-  res.render('loginerror',{})
+app.get('/loginerror', function (req, res) {
+    res.render('loginerror', {})
 })
 
 // route for logging out
-app.get('/logout', function(req, res) {
-  req.session.destroy((error)=>{console.log("Error in destroying session: "+error)});
-  console.log("session has been destroyed")
-  req.logout();
-  res.redirect('/');
+app.get('/logout', function (req, res) {
+    req.session.destroy((error) => {
+        console.log("Error in destroying session: " + error)
+    });
+    console.log("session has been destroyed")
+    req.logout();
+    res.redirect('/');
 });
 
 //the indexRouter handles passing req to the page
@@ -157,29 +156,29 @@ app.use('/users', usersRouter);
 // send to google to do the authentication
 // profile gets us their basic information including their name
 // email gets their emails
-app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
 app.get('/login/authorized',
-passport.authenticate('google', {
-  successRedirect : '/',
-  failureRedirect : '/loginerror'
-})
+    passport.authenticate('google', {
+        successRedirect: '/',
+        failureRedirect: '/loginerror'
+    })
 );
 
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-  console.log("checking to see if they are authenticated!")
-  // if user is authenticated in the session, carry on
-  res.locals.loggedIn = false
-  if (req.isAuthenticated()){
-    console.log("user has been Authenticated")
-    res.locals.loggedIn = true
-    return next();
-  } else {
-    console.log("user has not been authenticated...")
-    return next();
-  }
+    console.log("checking to see if they are authenticated!")
+    // if user is authenticated in the session, carry on
+    res.locals.loggedIn = false
+    if (req.isAuthenticated()) {
+        console.log("user has been Authenticated")
+        res.locals.loggedIn = true
+        return next();
+    } else {
+        console.log("user has not been authenticated...")
+        return next();
+    }
 }
 
 // END OF THE Google AUTHENTICATION ROUTES
@@ -190,15 +189,15 @@ function isLoggedIn(req, res, next) {
 // =====================================
 
 //we can use this or the index router to handle req
-app.get('/', function(req, res, next){
-  if (req.user && !req.user.userName){
-    console.log("first time user!");
-    res.redirect('/editMyProfile/' + req.user._id)
-  } else {
-    res.render('index', {
-      req: req
-    })
-  }
+app.get('/', function (req, res, next) {
+    if (req.user && !req.user.userName) {
+        console.log("first time user!");
+        res.redirect('/editMyProfile/' + req.user._id)
+    } else {
+        res.render('index', {
+            req: req
+        })
+    }
 })
 
 
@@ -215,8 +214,8 @@ app.get('/classes', isLoggedIn, classController.getAllClasses)
 app.post('/createClass', isLoggedIn, classController.checkUnique, classController.saveClass);
 
 //error handle
-app.get('/classNotFound', isLoggedIn, function(req, res, next){
-  res.render('classNotFound')
+app.get('/classNotFound', isLoggedIn, function (req, res, next) {
+    res.render('classNotFound')
 })
 
 app.post('/dropClass', isLoggedIn, classController.lookupClass, classController.dropClass);
@@ -246,29 +245,29 @@ app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
 * the anticipated URL of the image.
 */
 app.get('/sign-s3', (req, res) => {
-  const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
-  const fileType = req.query['file-type'];
-  const s3Params = {
-    Bucket: S3_BUCKET,
-    Key: fileName,
-    Expires: 60,
-    ContentType: fileType,
-    ACL: 'public-read'
-  };
-
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
-    const returnData = {
-      signedRequest: data,
-      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    const s3 = new aws.S3();
+    const fileName = req.query['file-name'];
+    const fileType = req.query['file-type'];
+    const s3Params = {
+        Bucket: S3_BUCKET,
+        Key: fileName,
+        Expires: 60,
+        ContentType: fileType,
+        ACL: 'public-read'
     };
-    res.write(JSON.stringify(returnData));
-    res.end();
-  });
+
+    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.end();
+        }
+        const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+        };
+        res.write(JSON.stringify(returnData));
+        res.end();
+    });
 });
 
 /*
@@ -277,24 +276,24 @@ app.get('/sign-s3', (req, res) => {
 * a way that suits your application.
 */
 app.post('/save-details', (req, res) => {
-  const imageURL = req.body.imageURL
-  //find the user using user_id
-  User.findOne(res.locals.user._id)
-  .exec()
-  .then((profile) => {
-    profile.profilePicURL = imageURL
-    profile.save();
-  })
-  Answer.updateMany({userId:req.user._id},{profilePicURL:req.body.imageURL},{multi:true})
-  .exec()
-  .then(() => {
-    res.redirect('back')
-  })
-  // handle error
-  .catch(function (error) {
-    console.log("read file failed")
-    console.log(error);
-  })
+    const imageURL = req.body.imageURL
+    //find the user using user_id
+    User.findOne(res.locals.user._id)
+        .exec()
+        .then((profile) => {
+            profile.profilePicURL = imageURL
+            profile.save();
+        })
+    Answer.updateMany({userId: req.user._id}, {profilePicURL: req.body.imageURL}, {multi: true})
+        .exec()
+        .then(() => {
+            res.redirect('back')
+        })
+        // handle error
+        .catch(function (error) {
+            console.log("read file failed")
+            console.log(error);
+        })
 });
 
 // =====================================
@@ -314,10 +313,10 @@ app.post('/save-details', (req, res) => {
 
 
 //post question page
-app.get('/postQuestion/:classCode', function(req, res, next){
-  res.render('postQuestion', {
-    req: req
-  })
+app.get('/postQuestion/:classCode', function (req, res, next) {
+    res.render('postQuestion', {
+        req: req
+    })
 })
 
 app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions, qAndaController.displayAllQuestions)
@@ -327,18 +326,18 @@ app.post('/processQuestionPost/:classCode', isLoggedIn, qAndaController.saveQues
 app.get('/showQuestion/:classCode/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
 
 //to edit an existing question
-app.get('/showQuestion/:classCode/:id/editQuestion',isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
+app.get('/showQuestion/:classCode/:id/editQuestion', isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
 
-app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost',isLoggedIn, qAndaController.editQuestion)
+app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost', isLoggedIn, qAndaController.editQuestion)
 
 //to save a new answer post
 app.post('/showQuestion/:classCode/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
 
 //to delete an existing answers
-app.post('/showQuestion/:id/answerDelete',qAndaController.deleteAnswer)
+app.post('/showQuestion/:id/answerDelete', qAndaController.deleteAnswer)
 
 //add thumbs up to answers
-app.post('/showQuestion/:id/answerLikes',qAndaController.likesAdded)
+app.post('/showQuestion/:id/answerLikes', qAndaController.likesAdded)
 
 
 // =====================================
@@ -362,8 +361,8 @@ app.post('/processTutorRating/:appointmentId/:tutorId', isLoggedIn, tutorControl
 app.post('/updateTutorRatings', isLoggedIn, tutorController.updateTutorRatingProfile)
 
 //tutor tutorRegister
-app.get('/tutorRegister', function(req, res, next){
-  res.render('tutorRegister')
+app.get('/tutorRegister', function (req, res, next) {
+    res.render('tutorRegister')
 })
 
 app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
@@ -390,34 +389,34 @@ app.get('/communicationBoard', isLoggedIn, communicationController.getCommunicat
 
 
 //about page
-app.get('/about', function(req, res){
-  res.render('about')
+app.get('/about', function (req, res) {
+    res.render('about')
 })
 
 //empty error page
-app.get('/emptyError', function(req, res){
-  res.render('emptyError')
+app.get('/emptyError', function (req, res) {
+    res.render('emptyError')
 })
 
 //FAQ page
-app.get('/FAQ', function(req, res){
-  res.render('FAQ')
+app.get('/FAQ', function (req, res) {
+    res.render('FAQ')
 })
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

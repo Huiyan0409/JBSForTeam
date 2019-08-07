@@ -2,146 +2,167 @@
 <%- include('navbar') -%>
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width" id="whiteFont">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered" id="whiteFont">
-        Question: <%= question.question %>
-      </div>
-      <!-- Author -->
-      <h3>by
-        <a href="/showProfile/<%=question.userId%>"><%=question.userName%></a>
-        posted on <%= question.createdAt %>
-      </h3>
-      <br><br>
-      <% if (loggedIn) { %>
-        <% if (question.userId.equals(user._id)) { %>
-          <a class="btn btn-primary" href="/showQuestion/<%=req.params.classCode%>/<%=question._id%>/editQuestion" role="button">Edit</a>
-        <% } %>
-      <% } %>
-      <a class="btn btn-primary" href="/showQuestions/<%=req.params.classCode%>" role="button">Return to Question List</a>
-    </div>
-  </div>
-</section>
-
-<section class="section section--grey">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h5><b>What he/she are working on: </b></h5>
-        <hr>
-        <!-- Post Content -->
-        <p class="lead" id="input"><%= question.haveDone%></p>
-        <hr>
-
-        <h5><b>What does he/she need help with: </b></h5>
-        <hr>
-        <!-- Post Content -->
-        <p class="lead" id="input"><%= question.helpWith%></p>
-        <hr>
-
-        <h5><b>Answers: </b></h5>
-        <hr>
-
-        <% if (answers.length==0) {%>
-          <p class="lead" id="input">No answer yet.</p>
-        <% } %>
-
-        <% for(i = 0; i < answers.length; i++){ %>
-          <!-- Single Comment in card-->
-            <div class="media mb-3" id ="description">
-              <a href="/showProfile/<%=answers[i].userId%>"><img class="d-flex mr-3 rounded-circle" id="profilePic" src="<%=answers[i].profilePicURL%>" width="40px" height="40px" alt="user profile pic"></a>
-              <div class="media-body">
-                <h5 id="input"><%= answers[i].userName %></h5>
-                <h6 id="input"><%= answers[i].answer %></h6>
-                <% if (loggedIn) { %>
-                    <div class="row">
-                    <% if (answers[i].userId.equals(user._id)) { %>
-                      <div class="col-md-1 col-sm-6">
-
-                        <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#myModal<%=i%>">
-                          Delete
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Delete this comment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                Are you sure you want to delete this answer?
-                                <br>
-                                <b><%=answers[i].answer%></b>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <form method="post" action="/showQuestion/<%=question._id%>/answerDelete">
-                                  <input type="hidden" name="delete" value="<%=answers[i]._id%>">
-                                  <input class="btn btn-sm btn-outline-danger" type="submit" value="delete">
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <% } %>
-                      <div class="col-md-1 col-6">
-                        <form method="post" action="/showQuestion/<%=question._id%>/answerLikes">
-                          <input type="hidden" name="likes" value="<%=answers[i]._id%>">
-                          <input type="hidden" name="user" value="<%=user._id%>">
-                          <% if (!answers[i].userId.equals(user._id)) { %>
-                            <button class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
-                          <% } else { %>
-                            <button disabled class="btn btn-sm btn-outline-dark"><i class="fa fa-thumbs-up fa-1x"></i> <%=answers[i].likes%></button>
-                          <% } %>
-                        </form>
-                      </div>
-                    </div>
-                <% } %>
-              </div>
+    <div class="section__content section__content--fixed-width" id="whiteFont">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered" id="whiteFont">
+                Question: <%= question.question %>
             </div>
-          <% } %>
-      </div>
+            <!-- Author -->
+            <h3>by
+                <a href="/showProfile/<%= question.userId %>"><%= question.userName %></a>
+                posted on <%= question.createdAt %>
+            </h3>
+            <br><br>
+            <% if (loggedIn) { %>
+                <% if (question.userId.equals(user._id)) { %>
+                <a class="btn btn-primary"
+                   href="/showQuestion/<%= req.params.classCode %>/<%= question._id %>/editQuestion"
+                   role="button">Edit</a>
+                <% } %>
+            <% } %>
+            <a class="btn btn-primary" href="/showQuestions/<%= req.params.classCode %>" role="button">Return to
+                Question List</a>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <!-- Comments Form -->
-        <div class="card">
-          <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form action="/showQuestion/<%=req.params.classCode%>/<%=req.params.id%>/processAnswerPost" method="post">
-              <div class="form-group">
-                <textarea class="form-control" id ="answer" name="answer" rows="3" placeholder="Please do not directly post answer here."></textarea>
-              </div>
-              <% if (loggedIn) { %>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5><b>What he/she are working on: </b></h5>
+                <hr>
+                <!-- Post Content -->
+                <p class="lead" id="input"><%= question.haveDone %></p>
+                <hr>
 
-                <button type="submit" class="btn btn-outline-primary">Submit</button>
-                <br><br>
-                <b>Hint: Include your <a href="http://tug.ctan.org/info/undergradmath/undergradmath.pdf">LaTeX</a> or code between two $.</b>
-                <pre>e.g. $ your_LaTeX_here $</pre>
+                <h5><b>What does he/she need help with: </b></h5>
+                <hr>
+                <!-- Post Content -->
+                <p class="lead" id="input"><%= question.helpWith %></p>
+                <hr>
 
-              <% } else { %>
-                Please login to submit.
-              <% } %>
-            </form>
-          </div>
+                <h5><b>Answers: </b></h5>
+                <hr>
+
+                <% if (answers.length == 0) { %>
+                    <p class="lead" id="input">No answer yet.</p>
+                <% } %>
+
+                <% for(i = 0; i < answers.length; i++){ %>
+                <!-- Single Comment in card-->
+                <div class="media mb-3" id="description">
+                    <a href="/showProfile/<%= answers[i].userId %>"><img class="d-flex mr-3 rounded-circle"
+                                                                         id="profilePic"
+                                                                         src="<%= answers[i].profilePicURL %>"
+                                                                         width="40px" height="40px"
+                                                                         alt="user profile pic"></a>
+                    <div class="media-body">
+                        <h5 id="input"><%= answers[i].userName %></h5>
+                        <h6 id="input"><%= answers[i].answer %></h6>
+                        <% if (loggedIn) { %>
+                            <div class="row">
+                                <% if (answers[i].userId.equals(user._id)) { %>
+                                <div class="col-md-1 col-sm-6">
+
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                                            data-target="#myModal<%= i %>">
+                                        Delete
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal<%= i %>" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete this
+                                                        comment</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this answer?
+                                                    <br>
+                                                    <b><%= answers[i].answer %></b>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close
+                                                    </button>
+                                                    <form method="post"
+                                                          action="/showQuestion/<%= question._id %>/answerDelete">
+                                                        <input type="hidden" name="delete"
+                                                               value="<%= answers[i]._id %>">
+                                                        <input class="btn btn-sm btn-outline-danger" type="submit"
+                                                               value="delete">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                                <div class="col-md-1 col-6">
+                                    <form method="post" action="/showQuestion/<%= question._id %>/answerLikes">
+                                        <input type="hidden" name="likes" value="<%= answers[i]._id %>">
+                                        <input type="hidden" name="user" value="<%= user._id %>">
+                                        <% if (!answers[i].userId.equals(user._id)) { %>
+                                        <button class="btn btn-sm btn-outline-dark"><i
+                                                    class="fa fa-thumbs-up fa-1x"></i> <%= answers[i].likes %></button>
+                                        <% } else { %>
+                                        <button disabled class="btn btn-sm btn-outline-dark"><i
+                                                    class="fa fa-thumbs-up fa-1x"></i> <%= answers[i].likes %></button>
+                                        <% } %>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+                <% } %>
+            </div>
         </div>
-      </div>
     </div>
-
-  </div>
-
 </section>
 
+<section class="section section--grey">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- Comments Form -->
+                <div class="card">
+                    <h5 class="card-header">Leave a Comment:</h5>
+                    <div class="card-body">
+                        <form action="/showQuestion/<%= req.params.classCode %>/<%= req.params.id %>/processAnswerPost"
+                              method="post">
+                            <div class="form-group">
+                                <textarea class="form-control" id="answer" name="answer" rows="3"
+                                          placeholder="Please do not directly post answer here."></textarea>
+                            </div>
+                            <% if (loggedIn) { %>
+
+                                <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                <br><br>
+                                <b>Hint: Include your <a
+                                            href="http://tug.ctan.org/info/undergradmath/undergradmath.pdf">LaTeX</a> or
+                                    code between two $.</b>
+                                <pre>e.g. $ your_LaTeX_here $</pre>
+
+                            <% } else { %>
+                                Please login to submit.
+                            <% } %>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
 
 <%- include('footer') -%>

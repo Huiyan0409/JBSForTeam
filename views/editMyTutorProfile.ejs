@@ -3,98 +3,100 @@
 
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered" id="whiteFont">
-        <%=user.userName%>'s tutor profile
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--grey">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-sm-12">
-        <div class="lead">
-          Enroll in class that you want to tutor in
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered" id="whiteFont">
+                <%= user.userName %>'s tutor profile
+            </div>
         </div>
-        <br>
-        <form action="/<%=user._id%>/enroll" method="post">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Course code</span>
-            <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B" />
-            &nbsp&nbsp&nbsp
-            <input type="submit" name="submit" class="btn btn-outline-primary" id="submit" value="ENROLL" />
-          </div>
-        </form>
-      </div>
     </div>
-    <hr>
-  </div>
 </section>
 
-
 <section class="section section--grey">
-  <div class="container">
-    <!-- form: update personal info -->
-
-    <form action="/updateTutorProfile/<%=user._id%>" method="post">
-      <div class="row">
-
-        <div class="col-md-12">
-          <div class="lead">
-            Choose the class from your enrolled forum:
-          </div>
-          <br>
-          <% if (loggedIn) {%>
-            <ul class="list-group">
-              <% for (i = 0; i < user.classCodes.length; i++){ %>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <input type="checkbox" aria-label="Checkbox for following text input" name="chosen" value="<%=user.classCodes[i]%>">
-                    </div>
-                  </div>
-                  <li class="list-group-item"><%=user.classCodes[i]%></li>
-                </div>
-                <% } %>
-              </ul>
-              <% } else { %>
-                <div class="partners__text">
-                  Please login to view this page
-                </div>
-                <% } %>
-                <hr>
-
-              </div>
-
-              <div class="col-md-6 col-sm-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
                 <div class="lead">
-                  Enter your introduction here
+                    Enroll in class that you want to tutor in
                 </div>
                 <br>
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Introduction</span>
-                  <textarea type="text" class="form-control" name="introduction"><%=tutor.introduction%></textarea>
-                </div>
-              </div>
-
-
-              <div class="w-100"></div>
-              <br>
-
-              <div class="col-sm-1">
-                <input type="submit" class = "btn btn-outline-primary" value = "Save">
-              </div>
-
-              <br>
+                <form action="/<%= user._id %>/enroll" method="post">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Course code</span>
+                        <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B"/>
+                        &nbsp&nbsp&nbsp
+                        <input type="submit" name="submit" class="btn btn-outline-primary" id="submit" value="ENROLL"/>
+                    </div>
+                </form>
             </div>
-          </form>
-
         </div>
-      </section>
-      <!-- edit profile page -->
+        <hr>
+    </div>
+</section>
 
 
-      <%- include('footer'); -%>
+<section class="section section--grey">
+    <div class="container">
+        <!-- form: update personal info -->
+
+        <form action="/updateTutorProfile/<%= user._id %>" method="post">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="lead">
+                        Choose the class from your enrolled forum:
+                    </div>
+                    <br>
+                    <% if (loggedIn) { %>
+                        <ul class="list-group">
+                            <% for (i = 0; i < user.classCodes.length; i++){ %>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="checkbox" aria-label="Checkbox for following text input"
+                                               name="chosen" value="<%= user.classCodes[i] %>">
+                                    </div>
+                                </div>
+                                <li class="list-group-item"><%= user.classCodes[i] %></li>
+                            </div>
+                            <% } %>
+                        </ul>
+                    <% } else { %>
+                        <div class="partners__text">
+                            Please login to view this page
+                        </div>
+                    <% } %>
+                    <hr>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="lead">
+                        Enter your introduction here
+                    </div>
+                    <br>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Introduction</span>
+                        <textarea type="text" class="form-control"
+                                  name="introduction"><%= tutor.introduction %></textarea>
+                    </div>
+                </div>
+
+
+                <div class="w-100"></div>
+                <br>
+
+                <div class="col-sm-1">
+                    <input type="submit" class="btn btn-outline-primary" value="Save">
+                </div>
+
+                <br>
+            </div>
+        </form>
+
+    </div>
+</section>
+<!-- edit profile page -->
+
+
+<%- include('footer'); -%>

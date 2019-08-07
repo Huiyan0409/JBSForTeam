@@ -1,131 +1,131 @@
 <%- include('header'); -%>
 <%- include('navbar'); -%>
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center parallax">
-      <div class="section__title section__title--centered" id="whiteFont">
-        <%= profile.userName %>'s profile
-      </div>
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center parallax">
+            <div class="section__title section__title--centered" id="whiteFont">
+                <%= profile.userName %>'s profile
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <h3> User Profile:</h3>
-    <br>
+    <div class="container">
+        <h3> User Profile:</h3>
+        <br>
 
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Username</span>
-          <input disabled type="text" class="form-control" value="<%=profile.userName%>">
-        </div>
-      </div>
-      <!-- Line Break -->
-      <div class="w-100"></div>
-      <br>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Username</span>
+                    <input disabled type="text" class="form-control" value="<%= profile.userName %>">
+                </div>
+            </div>
+            <!-- Line Break -->
+            <div class="w-100"></div>
+            <br>
 
-      <!-- <div class="col-sm-12 col-md-4">
+            <!-- <div class="col-sm-12 col-md-4">
         <div class="input-group-prepend">
           <span class="input-group-text">Email</span>
-          <input disabled type="text" class="form-control" value="<%=profile.googleemail%>">
+          <input disabled type="text" class="form-control" value="<%= profile.googleemail %>">
         </div>
       </div>
       <div class="w-100"></div>
       <br> -->
 
-      <div class="col-sm-12 col-md-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Status</span>
-          <input disabled type="text" class="form-control" value="<%=profile.status%>">
-        </div>
-      </div>
-      <!-- Line Break -->
-      <div class="w-100"></div>
-      <br>
+            <div class="col-sm-12 col-md-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Status</span>
+                    <input disabled type="text" class="form-control" value="<%= profile.status %>">
+                </div>
+            </div>
+            <!-- Line Break -->
+            <div class="w-100"></div>
+            <br>
 
-      <div class="col-sm-12 col-md-4">
-        <span class="input-group-text">Profile image</span>
-        <br>
-        <img src="<%=profile.profilePicURL%>" width = "100%" alt="profile picture">
-      </div>
-    <!-- Line Break -->
-    <div class="w-100"></div>
-    <br>
+            <div class="col-sm-12 col-md-4">
+                <span class="input-group-text">Profile image</span>
+                <br>
+                <img src="<%= profile.profilePicURL %>" width="100%" alt="profile picture">
+            </div>
+            <!-- Line Break -->
+            <div class="w-100"></div>
+            <br>
 
-    <div class="col-md-4 col-sm-12">
-      <h5> <%= profile.userName %>'s Classes:</h5>
-      <% if (loggedIn) {%>
-        <ul class="list-group">
-          <% for (i = 0; i < user.classCodes.length; i++){ %>
-            <li class="list-group-item"><%=user.classCodes[i]%></li>
-          <% } %>
-        </ul>
-      <% } else { %>
-        <div class="partners__text">
-          Please login to view this page
+            <div class="col-md-4 col-sm-12">
+                <h5> <%= profile.userName %>'s Classes:</h5>
+                <% if (loggedIn) { %>
+                    <ul class="list-group">
+                        <% for (i = 0; i < user.classCodes.length; i++){ %>
+                        <li class="list-group-item"><%= user.classCodes[i] %></li>
+                        <% } %>
+                    </ul>
+                <% } else { %>
+                    <div class="partners__text">
+                        Please login to view this page
+                    </div>
+                <% } %>
+            </div>
         </div>
-      <% } %>
     </div>
-    </div>
-  </div>
 </section>
 
-<% if (profile.status==("tutor")) {%>
+<% if (profile.status == ("tutor")) { %>
 
 <section class="section section--grey">
-  <div class="container">
-    <h3> Tutor Profile:</h3>
-    <br>
-
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Introduction</span>
-            <textarea disabled type="text" class="form-control"><%=profile.introduction%></textarea>
-          </div>
-        </div>
-        <!-- Line Break -->
-        <div class="w-100"></div>
+    <div class="container">
+        <h3> Tutor Profile:</h3>
         <br>
 
-        <% if(profile.score) { %>
-          <div class="col-sm-12 col-md-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><%= profile.userName%>'s score'</span>
-              <input disabled type="text" class="form-control" value="<%=profile.score.toFixed(2)%>">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Introduction</span>
+                    <textarea disabled type="text" class="form-control"><%= profile.introduction %></textarea>
+                </div>
             </div>
-          </div>
-        <% } %>
+            <!-- Line Break -->
+            <div class="w-100"></div>
+            <br>
 
-        <!-- Line Break -->
-        <div class="w-100"></div>
-        <br>
+            <% if(profile.score) { %>
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><%= profile.userName %>'s score'</span>
+                        <input disabled type="text" class="form-control" value="<%= profile.score.toFixed(2) %>">
+                    </div>
+                </div>
+            <% } %>
 
-        <div class="col-md-4 col-sm-12">
-          <h5> <%= profile.userName %> Tutor Classes:</h5>
-            <ul class="list-group">
-              <% for (i = 0; i < profile.tutorClassCodes.length; i++){ %>
-                <li class="list-group-item"><%=profile.tutorClassCodes[i]%></li>
-              <% } %>
-            </ul>
+            <!-- Line Break -->
+            <div class="w-100"></div>
+            <br>
+
+            <div class="col-md-4 col-sm-12">
+                <h5> <%= profile.userName %> Tutor Classes:</h5>
+                <ul class="list-group">
+                    <% for (i = 0; i < profile.tutorClassCodes.length; i++){ %>
+                    <li class="list-group-item"><%= profile.tutorClassCodes[i] %></li>
+                    <% } %>
+                </ul>
+            </div>
+            <!-- Line Break -->
+            <div class="w-100"></div>
+            <br>
+
+            <div class="col-md-4 col-sm-12">
+                <h5> Comments for <%= profile.userName %>:</h5>
+                <ul class="list-group">
+                    <% for (i = 0; i < profile.comments.length; i++){ %>
+                    <li class="list-group-item"><%= profile.comments[i] %></li>
+                    <% } %>
+                </ul>
+            </div>
+            <!-- some more here -->
         </div>
-        <!-- Line Break -->
-        <div class="w-100"></div>
-        <br>
-
-        <div class="col-md-4 col-sm-12">
-          <h5> Comments for <%= profile.userName %>:</h5>
-            <ul class="list-group">
-              <% for (i = 0; i < profile.comments.length; i++){ %>
-                <li class="list-group-item"><%=profile.comments[i]%></li>
-              <% } %>
-            </ul>
-        </div>
-        <!-- some more here -->
     </div>
-  </div>
 </section>
 <% } %>
 

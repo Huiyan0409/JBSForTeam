@@ -2,55 +2,67 @@
 <%- include('navbar'); -%>
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width" id="whiteFont">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered">
-        Your task board
-      </div>
-      <h3>Please view your tasks and finish your tasks on time.</h3>
+    <div class="section__content section__content--fixed-width" id="whiteFont">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered">
+                Your task board
+            </div>
+            <h3>Please view your tasks and finish your tasks on time.</h3>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <div class="row">
-      <% for (i = 0; i<appointments.length; i++){  %>
-      <div class="col-sm-12 col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5>Tutor Name: <%=appointments[i].tutorName%></h5><br>
-            <h5>Tutee Name: <%=appointments[i].tuteeName%></h5><br>
-            <h5>Class Code: <%=appointments[i].classCode%></h5><br>
-            <h5>Start Time: <%=appointments[i].startAt%></h5><br>
-            <h5>Tutoring Time: <%=appointments[i].length%> hr </h5><br>
-            <h5>Price: $ <%=appointments[i].price%></h5><br>
-            <h5>Status: <%=appointments[i].status%></h5><br>
-            <% if (appointments[i].tuteeId.equals(user._id)) { %>
-              <% if (appointments[i].status == "incomplete") { %>
-                  <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-                <a href="/tutorRatings/<%=appointments[i]._id%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
-              <% } else { %>
-                <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input disabled class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-                <a href="/tutorRatings/<%=appointments[i]._id%>/<%=appointments[i].tutorId%>"><input disabled class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
-              <% } %>
-           <% } %>
-           <% if (appointments[i].tutorId.equals(user._id)) { %>
-             <% if (appointments[i].status == "incomplete") { %>
-              <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-               <a href="/taskBoard"><input class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
-             <% } else { %>
-                 <a href="/communication/<%=appointments[i].tuteeId%>/<%=appointments[i].tutorId%>"><input disabled class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
-               <a href="/taskBoard"><input disabled class="btn btn-sm btn-outline-success pull-right" type="submit" value="COMPLETE"></a>
-             <% } %>
-          <% } %>
-          </div>
+    <div class="container">
+        <div class="row">
+            <% for (i = 0; i < appointments.length; i++){ %>
+            <div class="col-sm-12 col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Tutor Name: <%= appointments[i].tutorName %></h5><br>
+                        <h5>Tutee Name: <%= appointments[i].tuteeName %></h5><br>
+                        <h5>Class Code: <%= appointments[i].classCode %></h5><br>
+                        <h5>Start Time: <%= appointments[i].startAt %></h5><br>
+                        <h5>Tutoring Time: <%= appointments[i].length %> hr </h5><br>
+                        <h5>Price: $ <%= appointments[i].price %></h5><br>
+                        <h5>Status: <%= appointments[i].status %></h5><br>
+                        <% if (appointments[i].tuteeId.equals(user._id)) { %>
+                            <% if (appointments[i].status == "incomplete") { %>
+                            <a href="/communication/<%= appointments[i].tuteeId %>/<%= appointments[i].tutorId %>"><input
+                                        class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
+                            <a href="/tutorRatings/<%= appointments[i]._id %>/<%= appointments[i].tutorId %>"><input
+                                        class="btn btn-sm btn-outline-success pull-right" type="submit"
+                                        value="COMPLETE"></a>
+                            <% } else { %>
+                            <a href="/communication/<%= appointments[i].tuteeId %>/<%= appointments[i].tutorId %>"><input
+                                        disabled class="btn btn-sm btn-outline-primary" type="submit"
+                                        value="CONTACT"></a>
+                            <a href="/tutorRatings/<%= appointments[i]._id %>/<%= appointments[i].tutorId %>"><input
+                                        disabled class="btn btn-sm btn-outline-success pull-right" type="submit"
+                                        value="COMPLETE"></a>
+                            <% } %>
+                        <% } %>
+                        <% if (appointments[i].tutorId.equals(user._id)) { %>
+                            <% if (appointments[i].status == "incomplete") { %>
+                            <a href="/communication/<%= appointments[i].tuteeId %>/<%= appointments[i].tutorId %>"><input
+                                        class="btn btn-sm btn-outline-primary" type="submit" value="CONTACT"></a>
+                            <a href="/taskBoard"><input class="btn btn-sm btn-outline-success pull-right" type="submit"
+                                                        value="COMPLETE"></a>
+                            <% } else { %>
+                            <a href="/communication/<%= appointments[i].tuteeId %>/<%= appointments[i].tutorId %>"><input
+                                        disabled class="btn btn-sm btn-outline-primary" type="submit"
+                                        value="CONTACT"></a>
+                            <a href="/taskBoard"><input disabled class="btn btn-sm btn-outline-success pull-right"
+                                                        type="submit" value="COMPLETE"></a>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <% } %>
         </div>
-        <br>
-      </div>
-      <% } %>
     </div>
-  </div>
 </section>
 
 <%- include('footer'); -%>

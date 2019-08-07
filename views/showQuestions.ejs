@@ -2,39 +2,40 @@
 <%- include('navbar') -%>
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered" id="whiteFont">
-        Forum for class <%=req.params.classCode%>
-      </div>
-      <a class="btn btn-primary" href="/postQuestion/<%=req.params.classCode%>">
-        <span>Post a new question</span>
-      </a>
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered" id="whiteFont">
+                Forum for class <%= req.params.classCode %>
+            </div>
+            <a class="btn btn-primary" href="/postQuestion/<%= req.params.classCode %>">
+                <span>Post a new question</span>
+            </a>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <% for (i = 0; i < questions.length; i++){ %>
-          <div class="card">
-            <div class="card-body">
-              <a class = "lead" href="/showQuestion/<%=req.params.classCode%>/<%=questions[i]._id%>"><%= questions[i].question %></a>
-              <br><br>
-              <h6>By <%=questions[i].userName%></h6>
-              <h6><%=questions[i].createdAt%></h6>
-              <% if (questions[i].answerNum==0) { %>
-                <h3><b>Not answered yet</b></h3>
-              <% } %>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <% for (i = 0; i < questions.length; i++){ %>
+                <div class="card">
+                    <div class="card-body">
+                        <a class="lead"
+                           href="/showQuestion/<%= req.params.classCode %>/<%= questions[i]._id %>"><%= questions[i].question %></a>
+                        <br><br>
+                        <h6>By <%= questions[i].userName %></h6>
+                        <h6><%= questions[i].createdAt %></h6>
+                        <% if (questions[i].answerNum == 0) { %>
+                            <h3><b>Not answered yet</b></h3>
+                        <% } %>
+                    </div>
+                </div>
+                <br>
+                <% } %>
             </div>
-          </div>
-          <br>
-        <% } %>
-      </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <%- include('footer') -%>
