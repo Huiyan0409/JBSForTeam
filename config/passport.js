@@ -4,10 +4,10 @@
 //var LocalStrategy    = require('passport-local').Strategy;
 //var FacebookStrategy = require('passport-facebook').Strategy;
 //var TwitterStrategy  = require('passport-twitter').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
-var User       = require('../models/User');
+const User = require('../models/User');
 
 // load the auth variables
 // var configAuth = require('./auth');
@@ -15,13 +15,12 @@ var User       = require('../models/User');
 
 // load the auth variables	// load the auth variables
 // var configAuth = require('./auth');
-var clientID = process.env.clientID;
-// var clientID = "960287962764-sfv4q5pbgngotppbedbkgsqf0u790kam.apps.googleusercontent.com";
-var clientSecret = process.env.clientSecret;
-// var clientSecret = "grrRchAdcbf2st9eBXUgVBQO";
-var callbackURL = process.env.callbackURL;
-// var callbackURL = "http://127.0.0.1:5500/login/authorized";
-
+const clientID = process.env.clientID;
+// const clientID = "960287962764-sfv4q5pbgngotppbedbkgsqf0u790kam.apps.googleusercontent.com";
+const clientSecret = process.env.clientSecret;
+// const clientSecret = "grrRchAdcbf2st9eBXUgVBQO";
+const callbackURL = process.env.callbackURL;
+// const callbackURL = "http://127.0.0.1:5500/login/authorized";
 
 
 module.exports = function(passport) {
@@ -34,7 +33,7 @@ module.exports = function(passport) {
 
   // used to deserialize the user
   passport.deserializeUser(function(id, done) {
-    console.log('in deserializeUser')
+    console.log('in deserializeUser');
     User.findById(id, function(err, user) {
       done(err, user);
     });

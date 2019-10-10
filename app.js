@@ -1,20 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
+const createError = require('http-errors');
+const express = require('express');
 //working with file and directory paths
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 //authentication modules
-session = require("express-session"),
-    bodyParser = require("body-parser"),
-    User = require('./models/User'),
-    Answer = require('./models/Answer'),
-    flash = require('connect-flash')
+session = require("express-session");
+bodyParser = require("body-parser");
+User = require('./models/User');
+Answer = require('./models/Answer');
+flash = require('connect-flash');
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 //*******************************************
 //***********Controller**********************
@@ -30,11 +30,11 @@ const communicationController = require('./controllers/communicationController')
 //***********End of controller***************
 
 // Authentication
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // here we set up authentication with passport
-const passport = require('passport')
-const configPassport = require('./config/passport')
-configPassport(passport)
+const passport = require('passport');
+const configPassport = require('./config/passport');
+configPassport(passport);
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
@@ -53,7 +53,7 @@ db.once('open', function () {
 });
 
 //start the app.js
-var app = express();
+const app = express();
 
 //set up AWS S3
 const aws = require('aws-sdk');
@@ -88,7 +88,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false
-}))
+}));
 
 app.use(flash());
 app.use(passport.initialize());
