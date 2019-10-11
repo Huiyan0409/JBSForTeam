@@ -3,202 +3,209 @@
 
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center" id="whiteFont">
-      <div class="section__title section__title--centered" >
-        Classes
-      </div>
-      <h3>Search, enroll and create classes here</h3>
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center" id="whiteFont">
+            <div class="section__title section__title--centered">
+                Classes
+            </div>
+            <h3>Search, enroll and create classes here</h3>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <hr>
-    <h4>Find a class</h4>
-    <div class="row">
+    <div class="container">
+        <hr>
+        <h4>Find a class</h4>
+        <div class="row">
 
-      <div class="col-md-5 col-sm-12">
-        <input class="form-control" id="classcode" type="text" placeholder="Search for existing classes">
-      </div>
-      <div class="col-md-1 col-sm-12">
-        <input class="btn btn-outline-primary" type="button" id="search" name="button" value="SEARCH">
-      </div>
+            <div class="col-md-5 col-sm-12">
+                <input class="form-control" id="classcode" type="text" placeholder="Search for existing classes">
+            </div>
+            <div class="col-md-1 col-sm-12">
+                <input class="btn btn-outline-primary" type="button" id="search" name="button" value="SEARCH">
+            </div>
 
-      <br><br><br>
-      <div class="w-100"></div>
-      <div class="col-md-3 col-sm-12">
-        <h4>All existing classes</h4>
-      </div>
-      <div class="w-100"></div>
-      <div class="col-md-3 col-sm-12">
-        <ul class="list-group" id="classList">
-          <% for (i = 0; i < classes.length; i++){%>
-            <li class="list-group-item">
-              Class code: <%=classes[i].classCode%>
-            </li>
-          <% } %>
-        </ul>
-      </div>
+            <br><br><br>
+            <div class="w-100"></div>
+            <div class="col-md-3 col-sm-12">
+                <h4>All existing classes</h4>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-3 col-sm-12">
+                <ul class="list-group" id="classList">
+                    <% for (i = 0; i < classes.length; i++){ %>
+                    <li class="list-group-item">
+                        Class code: <%= classes[i].classCode %>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-  <script>
-    $(document).ready(function(){
-      $("#search").on("click", function() {
-        var value = $("#classcode").val().toUpperCase();
-        $("#classList li").filter(function() {
-          $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+    <script>
+        $(document).ready(function () {
+            $("#search").on("click", function () {
+                var value = $("#classcode").val().toUpperCase();
+                $("#classList li").filter(function () {
+                    $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
+                });
+            });
         });
-      });
-    });
-  </script>
+    </script>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <hr>
-    <h4>Enroll in existing classes</h4>
-    <form action="/<%=user._id%>/enroll" method="post">
-      <div class="row text-center">
-        <div class="col-md-5 col-sm-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Course code</span>
-            <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B">
-          </div>
-        </div>
-        <div class="col-md-1 col-sm-12">
-          <input type="submit" name="submit" class="btn btn-outline-primary" value="ENROLL">
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
-
-<section class="section section--grey">
-
-  <div class="container">
-    <hr>
-    <h4>Classes you enrolled</h4>
-    <% for (i = 0; i < user.classCodes.length; i++) {%>
-
-      <div class="row text-center">
-        <div class="col-md-3 col-sm-12">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Class code</span>
-            <input disabled type="text" class="form-control" value="<%=user.classCodes[i]%>">
-          </div>
-        </div>
-        <div class="col-md-1 col-sm-12">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dropModal<%=i%>">
-            DROP
-          </button>
-        </div>
-      </div>
-      <br>
-    <!-- Modal -->
-    <div class="modal fade" id="dropModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Drop a class</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="/dropClass" method="post">
-            <div class="container text-center">
-              <div class="modal-body">
-
-                <div class="row text-center">
-                  <div class="col-md-12 col-sm-12">
-                    <h4>Are you sure you want to drop:</h4>
-
+    <div class="container">
+        <hr>
+        <h4>Enroll in existing classes</h4>
+        <form action="/<%= user._id %>/enroll" method="post">
+            <div class="row text-center">
+                <div class="col-md-5 col-sm-12">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Course code</span>
-                      <input type="text" class="form-control" name="classCode" value="<%=user.classCodes[i]%>">
+                        <span class="input-group-text">Course code</span>
+                        <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B">
                     </div>
-                  </div>
-
-                  <br><br>
-                  Please notice that once you drop this course, you can no longer be a tutor of this course
                 </div>
-              </div>
-              <div class="modal-footer">
-                <input type="hidden" name="classCodesDelete" value="<%=user.classCodes[i]%>">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <input type="submit" class = "btn btn-outline-primary" value = "DROP">
-              </div>
+                <div class="col-md-1 col-sm-12">
+                    <input type="submit" name="submit" class="btn btn-outline-primary" value="ENROLL">
+                </div>
             </div>
-          </form>
-        </div>
-      </div>
+        </form>
     </div>
-    <% } %>
-    
-  </div>
+</section>
+
+<section class="section section--grey">
+
+    <div class="container">
+        <hr>
+        <h4>Classes you enrolled</h4>
+        <% for (i = 0; i < user.classCodes.length; i++) { %>
+
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Class code</span>
+                    <input disabled type="text" class="form-control" value="<%= user.classCodes[i] %>">
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-12">
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                        data-target="#dropModal<%= i %>">
+                    DROP
+                </button>
+            </div>
+        </div>
+        <br>
+        <!-- Modal -->
+        <div class="modal fade" id="dropModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Drop a class</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/dropClass" method="post">
+                        <div class="container text-center">
+                            <div class="modal-body">
+
+                                <div class="row text-center">
+                                    <div class="col-md-12 col-sm-12">
+                                        <h4>Are you sure you want to drop:</h4>
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Course code</span>
+                                            <input type="text" class="form-control" name="classCode"
+                                                   value="<%= user.classCodes[i] %>">
+                                        </div>
+                                    </div>
+
+                                    <br><br>
+                                    Please notice that once you drop this course, you can no longer be a tutor of this
+                                    course
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="hidden" name="classCodesDelete" value="<%= user.classCodes[i] %>">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-outline-primary" value="DROP">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
 </section>
 
 
 <section class="section section--grey">
-  <div class="container">
-    <hr>
-    <h4>Did not find the class you want? Don't worry, you can create one!</h4>
-    <br>
-    <div class="row">
-      <div class="col-md-3 col-sm-12">
+    <div class="container">
+        <hr>
+        <h4>Did not find the class you want? Don't worry, you can create one!</h4>
+        <br>
+        <div class="row">
+            <div class="col-md-3 col-sm-12">
 
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
-          CREATE A NEW CLASS
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create a new class</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+                    CREATE A NEW CLASS
                 </button>
-              </div>
-              <form action="/createClass" method="post">
-                <div class="modal-body">
 
-                  <div class="row text-center">
-                    <div class="col-md-12 col-sm-12">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Subject</span>
-                        <input type="text" class="form-control" name="subject" placeholder="Example: COSI">
-                      </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Create a new class</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/createClass" method="post">
+                                <div class="modal-body">
+
+                                    <div class="row text-center">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Subject</span>
+                                                <input type="text" class="form-control" name="subject"
+                                                       placeholder="Example: COSI">
+                                            </div>
+                                        </div>
+
+                                        <br><br>
+
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Course number</span>
+                                                <input type="text" class="form-control" name="courseNum"
+                                                       placeholder="Example: 12B">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-outline-primary" value="CREATE">
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
-
-                    <br><br>
-
-                    <div class="col-md-12 col-sm-12">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Course number</span>
-                        <input type="text" class="form-control" name="courseNum" placeholder="Example: 12B">
-                      </div>
-                    </div>
-
-                  </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <input type="submit" class = "btn btn-outline-primary" value = "CREATE">
-                </div>
-              </form>
-
             </div>
-          </div>
         </div>
-      </div>
+
+
     </div>
-
-
-  </div>
 </section>
 
 
-  <%- include('footer'); -%>
+<%- include('footer'); -%>

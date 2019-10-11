@@ -2,47 +2,49 @@
 <%- include('navbar'); -%>
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered" id="whiteFont">
-        Post question here!
-      </div>
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered" id="whiteFont">
+                Post question here!
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="section section--grey">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <form method="post" action="/processQuestionPost/<%=req.params.classCode%>">
-              <div class="form-group">
-                <h5 class="card-header"><b>Title (required)</b></h5>
-                <input type="text" class="form-control" id="input" name="question"> <br>
-              </div>
-              <div class="form-group">
-                <h5 class="card-header"><b>What are you working on?</b></h5>
-                <textarea class="form-control" name = "haveDone" id="input" rows="5"></textarea>
-              </div>
-              <div class="form-group">
-                <h5 class="card-header"><b>What do you need help with? (required)</b></h5>
-                <textarea class="form-control" name = "helpWith" id="input" rows="5" placeholder="Please do not directly ask for answer here."></textarea>
-              </div>
-              <input class="btn btn-outline-primary" type="submit">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="/processQuestionPost/<%= req.params.classCode %>">
+                            <div class="form-group">
+                                <h5 class="card-header"><b>Title (required)</b></h5>
+                                <input type="text" class="form-control" id="input" name="question"> <br>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="card-header"><b>What are you working on?</b></h5>
+                                <textarea class="form-control" name="haveDone" id="input" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <h5 class="card-header"><b>What do you need help with? (required)</b></h5>
+                                <textarea class="form-control" name="helpWith" id="input" rows="5"
+                                          placeholder="Please do not directly ask for answer here."></textarea>
+                            </div>
+                            <input class="btn btn-outline-primary" type="submit">
 
-              <br><br>
-              <b>Hint: Include your <a href="http://tug.ctan.org/info/undergradmath/undergradmath.pdf">LaTeX</a> or code between two $.</b>
-              <pre>e.g. $ your_LaTeX_here $</pre>
+                            <br><br>
+                            <b>Hint: Include your <a href="http://tug.ctan.org/info/undergradmath/undergradmath.pdf">LaTeX</a>
+                                or code between two $.</b>
+                            <pre>e.g. $ your_LaTeX_here $</pre>
 
-            </form>
-          </div>
+                        </form>
+                    </div>
 
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <%- include('footer'); -%>

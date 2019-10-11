@@ -2,206 +2,212 @@
 <%- include('navbar'); -%>
 
 <section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="jumbotron masthead diagonal-gradient text-center">
-      <div class="section__title section__title--centered" id="whiteFont">
-          Please rate your tutor: <%=appointment.tutorName%>
-      </div>
-    </div>
-  </div>
-</section>
-
-<form method="post" action="/processTutorRating/<%=appointment._id%>/<%=appointment.tutorId%>">
-<section class="section section--grey">
-  <div class="section__content section__content--fixed-width text-center">
-        <i><h3><label id="rate">How was it?</label><h3><i>
-        <div class="container .grid__item--centering center">
-            <div class="rating">
-
-              <input type="radio" name="star" class="rating__control" id="rc1" value=1>
-              <input type="radio" name="star" class="rating__control" id="rc2" value=2>
-              <input type="radio" name="star" class="rating__control" id="rc3" value=3>
-              <input type="radio" name="star" class="rating__control" id="rc4" value=4>
-              <input type="radio" name="star" class="rating__control" id="rc5" value=5>
-              <label for="rc1" class="rating__item">
-                <svg class="rating__star">
-                  <use xlink:href="#star" onClick="rate1()">
-                  </use>
-                </svg>
-                <span class="rating__label">1</span>
-              </label>
-              <label for="rc2" class="rating__item">
-                <svg class="rating__star" onClick="rate2()">
-                  <use xlink:href="#star"></use>
-                </svg>
-                <span class="rating__label">2</span>
-              </label>
-              <label for="rc3" class="rating__item">
-                <svg class="rating__star" onClick="rate3()">
-                  <use xlink:href="#star"></use>
-                </svg>
-                <span class="rating__label">3</span>
-              </label>
-              <label for="rc4" class="rating__item">
-                <svg class="rating__star" onClick="rate4()">
-                  <use xlink:href="#star"></use>
-                </svg>
-                <span class="rating__label">4</span>
-              </label>
-              <label for="rc5" class="rating__item">
-                <svg class="rating__star" onClick="rate5()">
-                  <use xlink:href="#star"></use>
-                </svg>
-                <span class="rating__label">5</span>
-              </label>
-              <script>
-                function rate1(){
-                var rate = document.getElementById('rate')
-                rate.innerText = "Poor."
-                }
-                function rate2(){
-                var rate = document.getElementById('rate')
-                rate.innerText = "Acceptable.."
-                }
-                function rate3(){
-                var rate = document.getElementById('rate')
-                rate.innerText = "Just Okay..."
-                }
-                function rate4(){
-                var rate = document.getElementById('rate')
-                rate.innerText = "Great Tutoring!"
-                }
-                function rate5(){
-                var rate = document.getElementById('rate')
-                rate.innerText = "That's Claster BABE!"
-                }
-              </script>
+    <div class="section__content section__content--fixed-width">
+        <div class="jumbotron masthead diagonal-gradient text-center">
+            <div class="section__title section__title--centered" id="whiteFont">
+                Please rate your tutor: <%= appointment.tutorName %>
             </div>
         </div>
-      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-        <symbol id="star" viewBox="0 0 26 28">
-          <path d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z"/>
-        </symbol>
-      </svg>
     </div>
 </section>
 
-<section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="container text-center">
-      <hr><br><h4>Click your tag!</h4><br><br>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="patient" id="patient" value=1>
-        <label class="form-check-label" for="patient">
-          Patient
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="excellentG" id="excellentG" value=1>
-        <label class="form-check-label" for="excellentG">
-          Excellent Grasp of Topic
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="askGood" id="askGood" value=1>
-        <label class="form-check-label" for="askGood">
-          Ask Good Questions
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="encouraging" id="encouraging" value=1>
-        <label class="form-check-label" for="encouraging">
-          Encouraging
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="helpful" id="helpful" value=1>
-        <label class="form-check-label" for="helpful">
-          Very Helpful
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="abilityT" id="abilityT" value=1>
-        <label class="form-check-label" for="abilityT">
-          Ability to Teach
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="gEnergy" id="gEnergy" value=1>
-        <label class="form-check-label" for="gEnergy">
-          Good Energy
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="humility" id="humility" value=1>
-        <label class="form-check-label" for="humility">
-          Humility
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="passionate" id="passionate" value=1>
-        <label class="form-check-label" for="passionate">
-          Passionate
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="onTime" id="onTime" value=1>
-        <label class="form-check-label" for="onTime">
-          On Time and Prepared
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="gPaced" id="gPaced" value=1>
-        <label class="form-check-label" for="gPaced">
-          Good Paced
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="impatient" id="impatient" value=1>
-        <label class="form-check-label" for="impatient">
-          Impatient
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="notgTeaching" id="notgTeaching" value=1>
-        <label class="form-check-label" for="notgTeaching">
-          Not Good at Teaching
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="late" id="late" value=1>
-        <label class="form-check-label" for="late">
-          Late
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="notPrepared" id="notPrepared" value=1>
-        <label class="form-check-label" for="notPrepared">
-          Not Prepared
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="notHelpful" id="notHelpful" value=1>
-        <label class="form-check-label" for="notHelpful">
-          Not Helpful
-        </label>
-      </div>
-  </div>
-  </div>
-</section>
+<form method="post" action="/processTutorRating/<%= appointment._id %>/<%= appointment.tutorId %>">
+    <section class="section section--grey">
+        <div class="section__content section__content--fixed-width text-center">
+            <h3><label id="rate">How was it?</label></h3>
+            <div class="container .grid__item--centering center">
+                <div class="rating">
 
-<section class="section section--grey">
-  <div class="section__content section__content--fixed-width">
-    <div class="container text-center">
-      <div class="form-group">
-        <br><br><br><br>
-        <textarea class="form-control col-xs-12" name="comment" rows="5" cols="40" placeholder="Please leave some comments to this session here"></textarea>
-        <hr>
-      <input class="btn btn-outline-primary" type="submit">
-      </div>
-    </div>
-  </div>
-</section>
+                    <input type="radio" name="star" class="rating__control" id="rc1" value=1>
+                    <input type="radio" name="star" class="rating__control" id="rc2" value=2>
+                    <input type="radio" name="star" class="rating__control" id="rc3" value=3>
+                    <input type="radio" name="star" class="rating__control" id="rc4" value=4>
+                    <input type="radio" name="star" class="rating__control" id="rc5" value=5>
+                    <label for="rc1" class="rating__item">
+                        <svg class="rating__star">
+                            <use xlink:href="#star" onClick="rate1()">
+                            </use>
+                        </svg>
+                        <span class="rating__label">1</span>
+                    </label>
+                    <label for="rc2" class="rating__item">
+                        <svg class="rating__star" onClick="rate2()">
+                            <use xlink:href="#star"></use>
+                        </svg>
+                        <span class="rating__label">2</span>
+                    </label>
+                    <label for="rc3" class="rating__item">
+                        <svg class="rating__star" onClick="rate3()">
+                            <use xlink:href="#star"></use>
+                        </svg>
+                        <span class="rating__label">3</span>
+                    </label>
+                    <label for="rc4" class="rating__item">
+                        <svg class="rating__star" onClick="rate4()">
+                            <use xlink:href="#star"></use>
+                        </svg>
+                        <span class="rating__label">4</span>
+                    </label>
+                    <label for="rc5" class="rating__item">
+                        <svg class="rating__star" onClick="rate5()">
+                            <use xlink:href="#star"></use>
+                        </svg>
+                        <span class="rating__label">5</span>
+                    </label>
+                    <script>
+                        function rate1() {
+                            var rate = document.getElementById('rate')
+                            rate.innerText = "Poor."
+                        }
+
+                        function rate2() {
+                            var rate = document.getElementById('rate')
+                            rate.innerText = "Acceptable.."
+                        }
+
+                        function rate3() {
+                            var rate = document.getElementById('rate')
+                            rate.innerText = "Just Okay..."
+                        }
+
+                        function rate4() {
+                            var rate = document.getElementById('rate')
+                            rate.innerText = "Great Tutoring!"
+                        }
+
+                        function rate5() {
+                            var rate = document.getElementById('rate')
+                            rate.innerText = "That's Claster BABE!"
+                        }
+                    </script>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+                <symbol id="star" viewBox="0 0 26 28">
+                    <path d="M26 10.109c0 .281-.203.547-.406.75l-5.672 5.531 1.344 7.812c.016.109.016.203.016.313 0 .406-.187.781-.641.781a1.27 1.27 0 0 1-.625-.187L13 21.422l-7.016 3.687c-.203.109-.406.187-.625.187-.453 0-.656-.375-.656-.781 0-.109.016-.203.031-.313l1.344-7.812L.39 10.859c-.187-.203-.391-.469-.391-.75 0-.469.484-.656.875-.719l7.844-1.141 3.516-7.109c.141-.297.406-.641.766-.641s.625.344.766.641l3.516 7.109 7.844 1.141c.375.063.875.25.875.719z"/>
+                </symbol>
+            </svg>
+        </div>
+    </section>
+
+    <section class="section section--grey">
+        <div class="section__content section__content--fixed-width">
+            <div class="container text-center">
+                <hr>
+                <br><h4>Click your tag!</h4><br><br>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="patient" id="patient" value=1>
+                    <label class="form-check-label" for="patient">
+                        Patient
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="excellentG" id="excellentG" value=1>
+                    <label class="form-check-label" for="excellentG">
+                        Excellent Grasp of Topic
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="askGood" id="askGood" value=1>
+                    <label class="form-check-label" for="askGood">
+                        Ask Good Questions
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="encouraging" id="encouraging" value=1>
+                    <label class="form-check-label" for="encouraging">
+                        Encouraging
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="helpful" id="helpful" value=1>
+                    <label class="form-check-label" for="helpful">
+                        Very Helpful
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="abilityT" id="abilityT" value=1>
+                    <label class="form-check-label" for="abilityT">
+                        Ability to Teach
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="gEnergy" id="gEnergy" value=1>
+                    <label class="form-check-label" for="gEnergy">
+                        Good Energy
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="humility" id="humility" value=1>
+                    <label class="form-check-label" for="humility">
+                        Humility
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="passionate" id="passionate" value=1>
+                    <label class="form-check-label" for="passionate">
+                        Passionate
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="onTime" id="onTime" value=1>
+                    <label class="form-check-label" for="onTime">
+                        On Time and Prepared
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="gPaced" id="gPaced" value=1>
+                    <label class="form-check-label" for="gPaced">
+                        Good Paced
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="impatient" id="impatient" value=1>
+                    <label class="form-check-label" for="impatient">
+                        Impatient
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="notgTeaching" id="notgTeaching" value=1>
+                    <label class="form-check-label" for="notgTeaching">
+                        Not Good at Teaching
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="late" id="late" value=1>
+                    <label class="form-check-label" for="late">
+                        Late
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="notPrepared" id="notPrepared" value=1>
+                    <label class="form-check-label" for="notPrepared">
+                        Not Prepared
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="notHelpful" id="notHelpful" value=1>
+                    <label class="form-check-label" for="notHelpful">
+                        Not Helpful
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--grey">
+        <div class="section__content section__content--fixed-width">
+            <div class="container text-center">
+                <div class="form-group">
+                    <br><br><br><br>
+                    <textarea class="form-control col-xs-12" name="comment" rows="5" cols="40"
+                              placeholder="Please leave some comments to this session here"></textarea>
+                    <hr>
+                    <input class="btn btn-outline-primary" type="submit">
+                </div>
+            </div>
+        </div>
+    </section>
 </form>
 
 

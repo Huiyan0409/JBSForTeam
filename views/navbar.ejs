@@ -1,90 +1,90 @@
 <script src="/js/menu1.js"></script>
 
 <header class="header">
-  <div class="header__content header__content--fluid-width">
-    <a class="header__logo-title" href="/">Claster</a>
-    <nav class="header__menu">
-      <ul>
-        <li>
-          <a class="header-link" href="/">HOME</a>
-        </li>
+    <div class="header__content header__content--fluid-width">
+        <a class="header__logo-title" href="/">Claster</a>
+        <nav class="header__menu">
+            <ul>
+                <li>
+                    <a class="header-link" href="/">HOME</a>
+                </li>
 
-        <% if (loggedIn) {%>
-        <li>
-          <a class="header-link" id="header-link" href="/#forum">FORUM</a>
-          <ul class="sub-menu">
-            <% for (i = 0; i < user.classCodes.length; i++) {%>
-              <li><a href="/showQuestions/<%=user.classCodes[i]%>" class="header-link"><%=user.classCodes[i]%></a></li>
-            <% } %>
-          </ul>
-        </li>
-        <% } %>
+                <% if (loggedIn) { %>
+                    <li>
+                        <a class="header-link" id="header-link" href="/#forum">FORUM</a>
+                        <ul class="sub-menu">
+                            <% for (i = 0; i < user.classCodes.length; i++) { %>
+                            <li><a href="/showQuestions/<%= user.classCodes[i] %>"
+                                   class="header-link"><%= user.classCodes[i] %></a></li>
+                            <% } %>
+                        </ul>
+                    </li>
+                <% } %>
 
+                <li>
+                    <% if (loggedIn) { %>
+                        <a class="header-link" id="header-link" href="/classes">CLASSES</a>
+                    <% } %>
+                </li>
 
-        <li>
-          <% if (loggedIn) {%>
-            <a class="header-link" id="header-link" href="/classes">CLASSES</a>
-          <% } %>
-        </li>
+                <li>
+                    <% if (loggedIn) { %>
+                        <a class="header-link" id="header-link" href="/#tutor">TUTOR</a>
+                        <ul class="sub-menu">
+                            <li><a href="/tutorRegister" class="header-link">BECOME A TUTOR</a></li>
+                            <li><a href="/showTutors" class="header-link">FIND A TUTOR</a></li>
+                        </ul>
+                    <% } %>
+                </li>
 
-        <li>
-          <% if (loggedIn) {%>
-            <a class="header-link" id="header-link" href="/#tutor">TUTOR</a>
-            <ul class="sub-menu">
-              <li><a href="/tutorRegister" class="header-link">BECOME A TUTOR</a></li>
-              <li><a href="/showTutors" class="header-link">FIND A TUTOR</a></li>
+                <li>
+                    <a class="header-link" id="header-link" href="/#profile">USER</a>
+                    <ul class="sub-menu">
+
+                        <li>
+                            <% if (loggedIn) { %>
+                                <a href="/taskBoard" class="header-link">TASK BOARD</a>
+                            <% } %>
+                        </li>
+
+                        <li>
+                            <% if (loggedIn) { %>
+                                <a class="header-link" href="/communicationBoard">MESSAGE BOARD</a>
+                            <% } %>
+                        </li>
+                        <li>
+                            <% if (loggedIn) { %>
+                            <a class="header-link" href="/myProfile/<%= user._id %>">VIEW MY PROFILE</a>
+                            <% } %>
+                        </li>
+                        <li>
+                            <% if (loggedIn) { %>
+                            <a class="header-link" href="/editMyProfile/<%= user._id %>">EDIT MY PROFILE</a>
+                            <% } %>
+                        </li>
+
+                        <% if (loggedIn && user.status == "tutor") { %>
+                        <li>
+                            <a class="header-link" href="/editMyTutorProfile/<%= user._id %>">EDIT TUTOR PROFILE</a>
+                        </li>
+                        <% } %>
+
+                        <li>
+                            <% if (loggedIn) { %>
+                                <a class="header-link" href="/showProfiles">ALL PROFILES</a>
+                            <% } %>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="header__btn header__btn--login">
+                    <% if (!loggedIn) { %>
+                        <a class="nav-link" href="/auth/google">Login with Google</a>
+                    <% } else { %>
+                        <a class="nav-link" href="/logout">Logout</a>
+                    <% } %>
+                </li>
             </ul>
-          <% } %>
-        </li>
-
-        <li>
-          <a class="header-link" id="header-link"  href="/#profile">USER</a>
-          <ul class="sub-menu">
-
-            <li>
-              <% if (loggedIn) {%>
-              <a href="/taskBoard" class="header-link">TASK BOARD</a>
-              <% } %>
-            </li>
-
-            <li>
-              <% if (loggedIn) {%>
-                <a class="header-link" href="/communicationBoard">MESSAGE BOARD</a>
-              <% } %>
-            </li>
-            <li>
-              <% if (loggedIn) {%>
-                <a class="header-link" href="/myProfile/<%=user._id%>">VIEW MY PROFILE</a>
-              <% } %>
-            </li>
-            <li>
-              <% if (loggedIn) {%>
-                <a class="header-link" href="/editMyProfile/<%=user._id%>">EDIT MY PROFILE</a>
-              <% } %>
-            </li>
-
-            <% if (loggedIn && user.status=="tutor") {%>
-              <li>
-                  <a class="header-link" href="/editMyTutorProfile/<%=user._id%>">EDIT TUTOR PROFILE</a>
-              </li>
-            <% } %>
-
-            <li>
-              <% if (loggedIn) {%>
-                <a class="header-link" href="/showProfiles" >ALL PROFILES</a>
-              <% } %>
-            </li>
-          </ul>
-        </li>
-
-        <li class="header__btn header__btn--login">
-          <% if (!loggedIn) {%>
-          <a class="nav-link" href="/auth/google">Login with Google</a>
-          <%} else {%>
-          <a class="nav-link" href="/logout">Logout</a>
-          <% } %>
-        </li>
-      </ul>
-    </nav>
-  </div>
+        </nav>
+    </div>
 </header>
