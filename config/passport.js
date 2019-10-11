@@ -14,7 +14,6 @@ const User = require('../models/User');
 
 
 // load the auth variables	// load the auth variables
-// var configAuth = require('./auth');
 const clientID = process.env.clientID;
 // const clientID = "960287962764-sfv4q5pbgngotppbedbkgsqf0u790kam.apps.googleusercontent.com";
 const clientSecret = process.env.clientSecret;

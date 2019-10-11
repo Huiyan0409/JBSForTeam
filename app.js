@@ -13,7 +13,7 @@ Answer = require('./models/Answer');
 flash = require('connect-flash');
 
 
-const indexRouter = require('./routes/index');
+// const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 //*******************************************
@@ -30,7 +30,7 @@ const communicationController = require('./controllers/communicationController')
 //***********End of controller***************
 
 // Authentication
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // here we set up authentication with passport
 const passport = require('passport');
 const configPassport = require('./config/passport');
@@ -91,12 +91,14 @@ app.use(session({
 }));
 
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize(1));
+app.use(passport.session(1));
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-const approvedLogins = ["supremeethan@brandeis.edu", "kaimingwang@brandeis.edu", "yhao@brandeis.edu", "richardli@brandeis.edu", "nicolezhang@brandeis.edu"];
+// const approvedLogins = ["supremeethan@brandeis.edu", "yhao@brandeis.edu", "nicolezhang@brandeis.edu"];
+const approvedLogins = process.env.approvedLogins;
+
 // here is where we check on their logged in status
 app.use((req, res, next) => {
     res.locals.title = "Claster"
@@ -121,9 +123,8 @@ app.use((req, res, next) => {
             }
         }
     }
-    // console.log("not a first time user!!!");
     next()
-})
+});
 
 // here are the login routes
 
@@ -168,15 +169,15 @@ app.get('/login/authorized',
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-    console.log("checking to see if they are authenticated!")
+    console.log("checking to see if they are authenticated!");
     // if user is authenticated in the session, carry on
-    res.locals.loggedIn = false
+    res.locals.loggedIn = false;
     if (req.isAuthenticated()) {
-        console.log("user has been Authenticated")
-        res.locals.loggedIn = true
+        console.log("user has been Authenticated");
+        res.locals.loggedIn = true;
         return next();
     } else {
-        console.log("user has not been authenticated...")
+        console.log("user has not been authenticated...");
         return next();
     }
 }

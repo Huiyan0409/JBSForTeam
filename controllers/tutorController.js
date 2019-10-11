@@ -1,11 +1,10 @@
 'use strict';
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const User = require('../models/User');
 const Appointment = require('../models/Appointment');
 
 
 exports.saveTutor = (req, res) => {
-    const goBackURL = '/tutorRegister'
     if (!res.locals.loggedIn) {
         return res.send("You must be logged in to become a tutorRegister.")
     }
@@ -13,27 +12,27 @@ exports.saveTutor = (req, res) => {
         .exec()
         .then((profile) => {
             console.log("user is found! " + profile);
-            profile.introduction = req.body.selfIntro
-            profile.status = "tutor"
-            profile.score = 0
-            profile.comments = []
-            profile.tutorClassCodes = req.body.chosen
-            profile.patient = 0
-            profile.excellentG = 0
-            profile.askGood = 0
-            profile.encouraging = 0
-            profile.helpful = 0
-            profile.abilityT = 0
-            profile.gEnergy = 0
-            profile.humility = 0
-            profile.passionate = 0
-            profile.onTime = 0
-            profile.gPaced = 0
-            profile.impatient = 0
-            profile.notgTeaching = 0
-            profile.late = 0
-            profile.notPrepared = 0
-            profile.notHelpful = 0
+            profile.introduction = req.body.selfIntro;
+            profile.status = "tutor";
+            profile.score = 0;
+            profile.comments = [];
+            profile.tutorClassCodes = req.body.chosen;
+            profile.patient = 0;
+            profile.excellentG = 0;
+            profile.askGood = 0;
+            profile.encouraging = 0;
+            profile.helpful = 0;
+            profile.abilityT = 0;
+            profile.gEnergy = 0;
+            profile.humility = 0;
+            profile.passionate = 0;
+            profile.onTime = 0;
+            profile.gPaced = 0;
+            profile.impatient = 0;
+            profile.notgTeaching = 0;
+            profile.late = 0;
+            profile.notPrepared = 0;
+            profile.notHelpful = 0;
             console.log("profile: " + profile);
             profile.save();
         })
@@ -67,7 +66,7 @@ exports.showMyTutorProfile = (req, res) => {
 
 //load profile of current user
 exports.showOldTutorProfile = (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     User.findOne({_id: id})
         .exec()
         .then((tutor) => {
@@ -83,7 +82,7 @@ exports.showOldTutorProfile = (req, res) => {
 
 //load profile of current user
 exports.showTutorRatingProfile = (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     User.findOne({_id: id})
         .exec()
         .then((tutor) => {
@@ -97,12 +96,12 @@ exports.showTutorRatingProfile = (req, res) => {
 
 //update personal profile
 exports.updateTutorProfile = (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     User.findOne({_id: id})
         .exec()
         .then((tutor) => {
-            tutor.introduction = req.body.introduction
-            tutor.tutorClassCodes = req.body.chosen
+            tutor.introduction = req.body.introduction;
+            tutor.tutorClassCodes = req.body.chosen;
             tutor.save()
         })
         .then(() => {
@@ -110,21 +109,21 @@ exports.updateTutorProfile = (req, res) => {
         })
         // handle error
         .catch(function (error) {
-            console.log("update failed!")
+            console.log("update failed!");
             console.log(error);
         })
 };
 
 exports.updateTutorRatingProfile = (req, res) => {
-    const goBackURL = '/tutorRatings/' + req.params.id
+    const goBackURL = '/tutorRatings/' + req.params.id;
     if (req.body.userName.length == 0) {
         console.log("empty params detected in profile");
         res.render('emptyError', {
             goBackURL: goBackURL
-        })
+        });
         return
     }
-    const id = req.params.id
+    const id = req.params.id;
     User.findOne({_id: id})
         .exec()
         .then((tutor) => {
@@ -135,7 +134,7 @@ exports.updateTutorRatingProfile = (req, res) => {
         })
         // handle error
         .catch(function (error) {
-            console.log("update failed!")
+            console.log("update failed!");
             console.log(error);
         })
 };
@@ -174,7 +173,7 @@ exports.getAllTutorRatingProfile = (req, res) => {
 exports.getOneTutorProfile = (req, res) => {
 
     //grab id from the URL, the red id is set by app.js where the URL is formed
-    const tutorId = req.params.tutorId
+    const tutorId = req.params.tutorId;
     // const userId = req.params.userId
 
     User.findOne({_id: tutorId})
@@ -230,7 +229,7 @@ exports.updateAppointment = (req, res, next) => {
             tuteeName: req.body.tuteeName,
             startAt: startAt,
             length: req.body.length,
-            price: req.body.price,
+            // price: req.body.price,
             classCode: req.body.classCode,
             status: "incomplete"
         }
@@ -267,20 +266,20 @@ exports.getAppointments = (req, res) => {
 exports.getOneAppointment = (req, res) => {
 
     //grab id from the URL, the red id is set by app.js where the URL is formed
-    const appointmentId = req.params.appointmentId
-    const tutorId = req.params.tutorId
+    const appointmentId = req.params.appointmentId;
+    const tutorId = req.params.tutorId;
     // const userId = req.params.userId
 
     Appointment.findOne({_id: appointmentId})
         .exec()
         .then((appointment) => {
-            appointment.status = "complete"
-            console.log("status changed")
-            console.log(appointment.status)
+            appointment.status = "complete";
+            console.log("status changed");
+            console.log(appointment.status);
             res.render('tutorRatings', {
                 appointment: appointment
             });
-            console.log("information find")
+            console.log("information find");
             console.log(appointment.tutorName);
             appointment.save()
         })
@@ -293,45 +292,45 @@ exports.getOneAppointment = (req, res) => {
 };
 
 exports.saveRating = (req, res) => {
-    const appointmentId = req.params.appointmentId
+    const appointmentId = req.params.appointmentId;
     console.log("appointmentId: " + appointmentId);
-    const tutorId = req.params.tutorId
+    const tutorId = req.params.tutorId;
     console.log("p:" + req.body.patient);
     User.findOne({_id: tutorId})
         .exec()
         .then((user) => {
-            console.log('about to update user ...')
-            console.dir(user)
-            console.log("body=")
-            console.dir(req.body)
-            user.comments.push(req.body.comment)
-            user.score = Number(user.score || 0) + Number(req.body.star)
-            user.score = Number(user.score) / Number(user.comments.length)
-            user.patient = Number(user.patient || 0) + Number(req.body.patient || 0)
-            user.excellentG = Number(user.excellentG || 0) + Number(req.body.excellentG || 0)
-            user.askGood = Number(user.askGood || 0) + Number(req.body.askGood || 0)
-            user.encouraging = Number(user.encouraging || 0) + Number(req.body.encouraging || 0)
-            user.helpful = Number(user.helpful || 0) + Number(req.body.helpful || 0)
-            user.abilityT = Number(user.abilityT || 0) + Number(req.body.abilityT || 0)
-            user.gEnergy = Number(user.gEnergy || 0) + Number(req.body.gEnergy || 0)
-            user.humility = Number(user.humility || 0) + Number(req.body.humility || 0)
-            user.passionate = Number(user.passionate || 0) + Number(req.body.passionate || 0)
-            user.onTime = Number(user.onTime || 0) + Number(req.body.onTime || 0)
-            user.gPaced = Number(user.gPaced || 0) + Number(req.body.gPaced || 0)
-            user.impatient = Number(user.impatient || 0) + Number(req.body.impatient || 0)
-            user.notgTeaching = Number(user.notgTeaching || 0) + Number(req.body.notgTeaching || 0)
-            user.late = Number(user.late || 0) + Number(req.body.late || 0)
-            user.notPrepared = Number(user.notPrepared || 0) + Number(req.body.notPrepared || 0)
-            user.notHelpful = Number(user.notHelpful || 0) + Number(req.body.notPrepared || 0)
-            console.log("data saved")
-            console.dir(user)
+            console.log('about to update user ...');
+            console.dir(user);
+            console.log("body=");
+            console.dir(req.body);
+            user.comments.push(req.body.comment);
+            user.score = Number(user.score || 0) + Number(req.body.star);
+            user.score = Number(user.score) / Number(user.comments.length);
+            user.patient = Number(user.patient || 0) + Number(req.body.patient || 0);
+            user.excellentG = Number(user.excellentG || 0) + Number(req.body.excellentG || 0);
+            user.askGood = Number(user.askGood || 0) + Number(req.body.askGood || 0);
+            user.encouraging = Number(user.encouraging || 0) + Number(req.body.encouraging || 0);
+            user.helpful = Number(user.helpful || 0) + Number(req.body.helpful || 0);
+            user.abilityT = Number(user.abilityT || 0) + Number(req.body.abilityT || 0);
+            user.gEnergy = Number(user.gEnergy || 0) + Number(req.body.gEnergy || 0);
+            user.humility = Number(user.humility || 0) + Number(req.body.humility || 0);
+            user.passionate = Number(user.passionate || 0) + Number(req.body.passionate || 0);
+            user.onTime = Number(user.onTime || 0) + Number(req.body.onTime || 0);
+            user.gPaced = Number(user.gPaced || 0) + Number(req.body.gPaced || 0);
+            user.impatient = Number(user.impatient || 0) + Number(req.body.impatient || 0);
+            user.notgTeaching = Number(user.notgTeaching || 0) + Number(req.body.notgTeaching || 0);
+            user.late = Number(user.late || 0) + Number(req.body.late || 0);
+            user.notPrepared = Number(user.notPrepared || 0) + Number(req.body.notPrepared || 0);
+            user.notHelpful = Number(user.notHelpful || 0) + Number(req.body.notPrepared || 0);
+            console.log("data saved");
+            console.dir(user);
             user.save()
         })
         .then(() => {
             res.redirect("/taskBoard")
         })
         .catch(function (error) {
-            console.log("Saving Ratings failed!")
+            console.log("Saving Ratings failed!");
             console.log(error);
         })
 };

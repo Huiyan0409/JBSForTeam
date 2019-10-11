@@ -24,7 +24,7 @@
                         <h5>Class Code: <%= appointments[i].classCode %></h5><br>
                         <h5>Start Time: <%= appointments[i].startAt %></h5><br>
                         <h5>Tutoring Time: <%= appointments[i].length %> hr </h5><br>
-                        <h5>Price: $ <%= appointments[i].price %></h5><br>
+<!--                        <h5>Price: $ <%= appointments[i].price %></h5><br>-->
                         <h5>Status: <%= appointments[i].status %></h5><br>
                         <% if (appointments[i].tuteeId.equals(user._id)) { %>
                             <% if (appointments[i].status == "incomplete") { %>

@@ -9,7 +9,7 @@ var appointmentSchema = Schema( {
   tuteeName: String,
   startAt: String,
   length: Number,
-  price: Number,
+  // price: Number,
   classCode: String,
   status: String
 } );
