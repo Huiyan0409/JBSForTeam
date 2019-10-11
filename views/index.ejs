@@ -91,7 +91,7 @@
                 <% } %>
                 <div class="intro__subtitle" style="color: black;">Welcome to Claster!</div>
                 <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help -all in one
-                    place.<br><br></div>
+                    place.<br></div>
                 <% if (loggedIn) { %>
                     <div class="form-demo">
                         <a href="/classes"><input type="submit" name="submit" class="form-demo__submit1"
@@ -99,12 +99,12 @@
                         <br><br><br>
                     </div>
 
-                    <div class="intro__form form-demo">
-                        <form action="/<%= user._id %>/enroll" method="post">
-                            <input type="text" class="form-demo__input" name="classCode" placeholder="Class code"/>
-                            <input type="submit" name="submit" class="form-demo__submit" value="ENROLL"/>
-                        </form>
-                    </div>
+                    <!--                    <div class="intro__form form-demo">-->
+                    <!--                        <form action="/<%= user._id %>/enroll" method="post">-->
+                    <!--                            <input type="text" class="form-demo__input" name="classCode" placeholder="Class code"/>-->
+                    <!--                            <input type="submit" name="submit" class="form-demo__submit" value="ENROLL"/>-->
+                    <!--                        </form>-->
+                    <!--                    </div>-->
 
                 <% } else { %>
                     <b><h3>PLEASE LOG IN TO ENABLE ALL FEATURES.</h3></b>
@@ -170,30 +170,30 @@
     <div class="section__content section__content--fluid-width section__content--padding">
         <br>
         <h3 class="section__title section__title--centered">Forum</h3>
-            <div class="partners">
-                <div class="partners__content swiper-wrapper">
-                    <div class="partners__slide swiper-slide">
-                        <% if (loggedIn) { %>
-                            <% for (i = 0; i < user.classCodes.length; i++){ %>
-                                <div class="partners__text">
-                                    <br>
-                                    <a href="/showQuestions/<%= user.classCodes[i] %>"><input
-                                                class="btn btn-outline-dark"
-                                                type="button"
-                                                value="Go to Forum for <%= user.classCodes[i] %>"></a>
-                                </div>
-                            <% } %>
-                        <% } else { %>
+        <div class="partners">
+            <div class="partners__content swiper-wrapper">
+                <div class="partners__slide swiper-slide">
+                    <% if (loggedIn) { %>
+                        <% for (i = 0; i < user.classCodes.length; i++){ %>
                             <div class="partners__text">
-                                Please login to view the forum
+                                <br>
+                                <a href="/showQuestions/<%= user.classCodes[i] %>"><input
+                                            class="btn btn-outline-dark"
+                                            type="button"
+                                            value="Go to Forum for <%= user.classCodes[i] %>"></a>
                             </div>
                         <% } %>
-                    </div>
+                    <% } else { %>
+                        <div class="partners__text">
+                            Please login to view the forum
+                        </div>
+                    <% } %>
                 </div>
-                <div class="partners__pagination swiper-pagination"></div>
             </div>
+            <div class="partners__pagination swiper-pagination"></div>
+        </div>
 
-            <div class="clear"></div>
+        <div class="clear"></div>
     </div>
 </section>
 
@@ -208,7 +208,7 @@
 
             <div class="grid__item">
                 <h3 class="grid__title"><span>Ready to get started with tutors?</span></h3>
-                    <h3>Find a peer tutor that meets your need!</h3>
+                <h3>Find a peer tutor that meets your need!</h3>
             </div>
 
             <div class="grid__item">

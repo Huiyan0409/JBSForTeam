@@ -26,7 +26,6 @@
                 <input class="btn btn-outline-primary" type="button" id="search" name="button" value="SEARCH">
             </div>
 
-            <br><br><br>
             <div class="w-100"></div>
             <div class="col-md-3 col-sm-12">
                 <h4>All existing classes</h4>
@@ -35,9 +34,9 @@
             <div class="col-md-3 col-sm-12">
                 <ul class="list-group" id="classList">
                     <% for (i = 0; i < classes.length; i++){ %>
-                    <li class="list-group-item">
-                        Class code: <%= classes[i].classCode %>
-                    </li>
+                        <li class="list-group-item">
+                            Class code: <%= classes[i].classCode %>
+                        </li>
                     <% } %>
                 </ul>
             </div>
@@ -82,62 +81,64 @@
         <h4>Classes you enrolled</h4>
         <% for (i = 0; i < user.classCodes.length; i++) { %>
 
-        <div class="row text-center">
-            <div class="col-md-3 col-sm-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Class code</span>
-                    <input disabled type="text" class="form-control" value="<%= user.classCodes[i] %>">
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Class code</span>
+                        <input disabled type="text" class="form-control" value="<%= user.classCodes[i] %>">
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-12">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                            data-target="#dropModal<%= i %>">
+                        DROP
+                    </button>
                 </div>
             </div>
-            <div class="col-md-1 col-sm-12">
-                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                        data-target="#dropModal<%= i %>">
-                    DROP
-                </button>
-            </div>
-        </div>
-        <br>
-        <!-- Modal -->
-        <div class="modal fade" id="dropModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Drop a class</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="/dropClass" method="post">
-                        <div class="container text-center">
-                            <div class="modal-body">
+            <br>
+            <!-- Modal -->
+            <div class="modal fade" id="dropModal<%= i %>" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Drop a class</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/dropClass" method="post">
+                            <div class="container text-center">
+                                <div class="modal-body">
 
-                                <div class="row text-center">
-                                    <div class="col-md-12 col-sm-12">
-                                        <h4>Are you sure you want to drop:</h4>
+                                    <div class="row text-center">
+                                        <div class="col-md-12 col-sm-12">
+                                            <h4>Are you sure you want to drop:</h4>
 
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Course code</span>
-                                            <input type="text" class="form-control" name="classCode"
-                                                   value="<%= user.classCodes[i] %>">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Course code</span>
+                                                <input type="text" class="form-control" name="classCode"
+                                                       value="<%= user.classCodes[i] %>">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <br><br>
-                                    Please notice that once you drop this course, you can no longer be a tutor of this
-                                    course
+                                        <br><br>
+                                        Please notice that once you drop this course, you can no longer be a tutor of
+                                        this
+                                        course
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="classCodesDelete" value="<%= user.classCodes[i] %>">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-outline-primary" value="DROP">
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <input type="hidden" name="classCodesDelete" value="<%= user.classCodes[i] %>">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-outline-primary" value="DROP">
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
         <% } %>
 
     </div>
