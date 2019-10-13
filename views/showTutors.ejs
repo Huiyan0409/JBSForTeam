@@ -24,153 +24,155 @@
         </div>
         <ul class="list-group" id="myList">
             <% for (var i = 0; i < tutors.length; i++){ %>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-1 col-sm-1 align-self-center">
-                            <img src="<%= tutors[i].profilePicURL %>" width="100%" alt="profile picture">
-                        </div>
-                        <div class="col-md-2 col-sm-2">
-                            <a href="/showProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
+                <% if (tutors.status === "tutor") { %>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-1 col-sm-1 align-self-center">
+                                <img src="<%= tutors[i].profilePicURL %>" width="100%" alt="profile picture">
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <a href="/showProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
+                                <br>
+                                <div class="rating justify-content-center" style="text-align: center;">
+                                    <% if(tutors[i].score == 0){ %>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    <% } %>
+                                    <% if(tutors[i].score > 0 && tutors[i].score <= 1){ %>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                    <% } %>
+                                    <% if(tutors[i].score > 1 && tutors[i].score <= 2){ %>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                    <% } %>
+                                    <% if(tutors[i].score > 2 && tutors[i].score <= 3){ %>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star "></span>
+                                        <span class="fa fa-star "></span>
+                                    <% } %>
+                                    <% if(tutors[i].score > 3 && tutors[i].score <= 4){ %>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star "></span>
+                                    <% } %>
+                                    <% if(tutors[i].score > 4 && tutors[i].score <= 5){ %>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                        <span class="fa fa-star checkedStar"></span>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 align-self-center">
+                                <b>Introduction:</b> <br> <%= tutors[i].introduction %>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 align-self-center" style="border-right: 1px solid grey;">
+                                <b>Tutor classes:</b><br>
+                                <% for (j = 0; j < tutors[i].tutorClassCodes.length; j++) { %>
+                                    <%= tutors[i].tutorClassCodes[j] %>
+                                <% } %>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3">
+                                <% if(tutors[i].patient > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Patient <span
+                                                class="badge badge-light"><%= tutors[i].patient %></span></button>
+                                <% } %>
+                                <% if(tutors[i].excellentG > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Excellent Grade <span
+                                                class="badge badge-light"><%= tutors[i].excellentG %></span>
+                                    </button>
+                                <% } %>
+                                <% if(tutors[i].askGood > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Ask Good Questions <span
+                                                class="badge badge-light"><%= tutors[i].askGood %></span></button>
+                                <% } %>
+                                <% if(tutors[i].encouraging > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Encouraging <span
+                                                class="badge badge-light"><%= tutors[i].encouraging %></span>
+                                    </button>
+                                <% } %>
+                                <% if(tutors[i].helpful > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Helpful <span
+                                                class="badge badge-light"><%= tutors[i].helpful %></span></button>
+                                <% } %>
+                                <% if(tutors[i].abilityT > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Great Teaching <span
+                                                class="badge badge-light"><%= tutors[i].abilityT %></span></button>
+                                <% } %>
+                                <% if(!tutors[i].gEnergy > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Energetic <span
+                                                class="badge badge-light"><%= tutors[i].gEnergy %></span></button>
+                                <% } %>
+                                <% if(tutors[i].humility > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Humility <span
+                                                class="badge badge-light"><%= tutors[i].humility %></span></button>
+                                <% } %>
+                                <% if(tutors[i].passionate > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Passionate <span
+                                                class="badge badge-light"><%= tutors[i].passionate %></span>
+                                    </button>
+                                <% } %>
+                                <% if(tutors[i].onTime > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> On Time <span
+                                                class="badge badge-light"><%= tutors[i].onTime %></span></button>
+                                <% } %>
+                                <% if(tutors[i].gPaced > 1){ %>
+                                    <button type="button" class="btn btn-primary btn-sm"> Good Paced <span
+                                                class="badge badge-light"><%= tutors[i].gPaced %></span></button>
+                                <% } %>
+                                <% if(tutors[i].impatient > 1){ %>
+                                    <button type="button" class="btn btn-dark btn-sm"> Impatient <span
+                                                class="badge badge-dark"><%= tutors[i].impatient %></span></button>
+                                <% } %>
+                                <% if(tutors[i].notgTeaching > 1){ %>
+                                    <button type="button" class="btn btn-dark btn-sm"> Bad Teaching <span
+                                                class="badge badge-dark"><%= tutors[i].notgTeaching %></span>
+                                    </button>
+                                <% } %>
+                                <% if(tutors[i].late > 1){ %>
+                                    <button type="button" class="btn btn-dark btn-sm"> Late <span
+                                                class="badge badge-dark"><%= tutors[i].late %></span></button>
+                                <% } %>
+                                <% if(tutors[i].notPrepared > 1){ %>
+                                    <button type="button" class="btn btn-dark btn-sm"> Not Prepared <span
+                                                class="badge badge-danger"><%= tutors[i].notPrepared %></span>
+                                    </button>
+                                <% } %>
+                                <% if(tutors[i].notHelpful > 1){ %>
+                                    <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span
+                                                class="badge badge-dark"><%= tutors[i].notHelpful %></span></button>
+                                <% } %>
+                            </div>
+                            <div class="w-100"></div>
                             <br>
-                            <div class="rating justify-content-center" style="text-align: center;">
-                                <% if(tutors[i].score == 0){ %>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                <% } %>
-                                <% if(tutors[i].score > 0 && tutors[i].score <= 1){ %>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star "></span>
-                                    <span class="fa fa-star "></span>
-                                    <span class="fa fa-star "></span>
-                                    <span class="fa fa-star "></span>
-                                <% } %>
-                                <% if(tutors[i].score > 1 && tutors[i].score <= 2){ %>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star "></span>
-                                    <span class="fa fa-star "></span>
-                                    <span class="fa fa-star "></span>
-                                <% } %>
-                                <% if(tutors[i].score > 2 && tutors[i].score <= 3){ %>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star "></span>
-                                    <span class="fa fa-star "></span>
-                                <% } %>
-                                <% if(tutors[i].score > 3 && tutors[i].score <= 4){ %>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star "></span>
-                                <% } %>
-                                <% if(tutors[i].score > 4 && tutors[i].score <= 5){ %>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
-                                    <span class="fa fa-star checkedStar"></span>
+                            <div class="col-md-1 col-sm-1 align-self-center">
+                                <% if (!user._id.equals(tutors[i]._id)) { %>
+                                    <a href="/communication/<%= user._id %>/<%= tutors[i]._id %>"><input
+                                                class="btn btn-sm btn-outline-primary" type="button"
+                                                value="CONTACT"></a>
                                 <% } %>
                             </div>
                         </div>
-
-                        <div class="col-md-3 col-sm-3 align-self-center">
-                            <b>Introduction:</b> <br> <%= tutors[i].introduction %>
-                        </div>
-
-                        <div class="col-md-3 col-sm-3 align-self-center" style="border-right: 1px solid grey;">
-                            <b>Tutor classes:</b><br>
-                            <% for (j = 0; j < tutors[i].tutorClassCodes.length; j++) { %>
-                                <%= tutors[i].tutorClassCodes[j] %>
-                            <% } %>
-                        </div>
-
-                        <div class="col-md-3 col-sm-3">
-                            <% if(tutors[i].patient > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Patient <span
-                                            class="badge badge-light"><%= tutors[i].patient %></span></button>
-                            <% } %>
-                            <% if(tutors[i].excellentG > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Excellent Grade <span
-                                            class="badge badge-light"><%= tutors[i].excellentG %></span>
-                                </button>
-                            <% } %>
-                            <% if(tutors[i].askGood > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Ask Good Questions <span
-                                            class="badge badge-light"><%= tutors[i].askGood %></span></button>
-                            <% } %>
-                            <% if(tutors[i].encouraging > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Encouraging <span
-                                            class="badge badge-light"><%= tutors[i].encouraging %></span>
-                                </button>
-                            <% } %>
-                            <% if(tutors[i].helpful > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Helpful <span
-                                            class="badge badge-light"><%= tutors[i].helpful %></span></button>
-                            <% } %>
-                            <% if(tutors[i].abilityT > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Great Teaching <span
-                                            class="badge badge-light"><%= tutors[i].abilityT %></span></button>
-                            <% } %>
-                            <% if(!tutors[i].gEnergy > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Energetic <span
-                                            class="badge badge-light"><%= tutors[i].gEnergy %></span></button>
-                            <% } %>
-                            <% if(tutors[i].humility > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Humility <span
-                                            class="badge badge-light"><%= tutors[i].humility %></span></button>
-                            <% } %>
-                            <% if(tutors[i].passionate > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Passionate <span
-                                            class="badge badge-light"><%= tutors[i].passionate %></span>
-                                </button>
-                            <% } %>
-                            <% if(tutors[i].onTime > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> On Time <span
-                                            class="badge badge-light"><%= tutors[i].onTime %></span></button>
-                            <% } %>
-                            <% if(tutors[i].gPaced > 1){ %>
-                                <button type="button" class="btn btn-primary btn-sm"> Good Paced <span
-                                            class="badge badge-light"><%= tutors[i].gPaced %></span></button>
-                            <% } %>
-                            <% if(tutors[i].impatient > 1){ %>
-                                <button type="button" class="btn btn-dark btn-sm"> Impatient <span
-                                            class="badge badge-dark"><%= tutors[i].impatient %></span></button>
-                            <% } %>
-                            <% if(tutors[i].notgTeaching > 1){ %>
-                                <button type="button" class="btn btn-dark btn-sm"> Bad Teaching <span
-                                            class="badge badge-dark"><%= tutors[i].notgTeaching %></span>
-                                </button>
-                            <% } %>
-                            <% if(tutors[i].late > 1){ %>
-                                <button type="button" class="btn btn-dark btn-sm"> Late <span
-                                            class="badge badge-dark"><%= tutors[i].late %></span></button>
-                            <% } %>
-                            <% if(tutors[i].notPrepared > 1){ %>
-                                <button type="button" class="btn btn-dark btn-sm"> Not Prepared <span
-                                            class="badge badge-danger"><%= tutors[i].notPrepared %></span>
-                                </button>
-                            <% } %>
-                            <% if(tutors[i].notHelpful > 1){ %>
-                                <button type="button" class="btn btn-dark btn-sm"> Not Helpful <span
-                                            class="badge badge-dark"><%= tutors[i].notHelpful %></span></button>
-                            <% } %>
-                        </div>
-                        <div class="w-100"></div>
-                        <br>
-                        <div class="col-md-1 col-sm-1 align-self-center">
-                            <% if (!user._id.equals(tutors[i]._id)) { %>
-                                <a href="/communication/<%= user._id %>/<%= tutors[i]._id %>"><input
-                                            class="btn btn-sm btn-outline-primary" type="button"
-                                            value="CONTACT"></a>
-                            <% } %>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                <% } %>
             <% } %>
         </ul>
     </div>
