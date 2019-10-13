@@ -57,7 +57,7 @@ exports.addClass = (req, res) => {
         req.user.classCodes.push(req.session.classV.classCode);
         req.user.save()
             .then(() => {
-                res.redirect('back')
+                res.redirect('/showQuestions/' + req.session.classV.classCode)
             })
             .catch(error => {
                 res.send(error);

@@ -50,15 +50,15 @@
                             <li>
                                 <a class="header-link" href="/myProfile/<%= user._id %>">VIEW MY PROFILE</a>
                             </li>
-                            <li>
-                                <a class="header-link" href="/editMyProfile/<%= user._id %>">EDIT MY PROFILE</a>
-                            </li>
-                            <% if (user.status == "tutor") { %>
-                                <li>
-                                    <a class="header-link" href="/editMyTutorProfile/<%= user._id %>">EDIT TUTOR
-                                        PROFILE</a>
-                                </li>
-                            <% } %>
+<!--                            <li>-->
+<!--                                <a class="header-link" href="/editMyProfile/<%= user._id %>">EDIT MY PROFILE</a>-->
+<!--                            </li>-->
+<!--                            <% if (user.status == "tutor") { %>-->
+<!--                                <li>-->
+<!--                                    <a class="header-link" href="/editMyTutorProfile/<%= user._id %>">EDIT TUTOR-->
+<!--                                        PROFILE</a>-->
+<!--                                </li>-->
+<!--                            <% } %>-->
                             <li>
                                 <a class="header-link" href="/showProfiles">ALL PROFILES</a>
                             </li>
@@ -98,14 +98,6 @@
                                                   value="VIEW AND SEARCH CLASSES"></a>
                         <br><br><br>
                     </div>
-
-                    <!--                    <div class="intro__form form-demo">-->
-                    <!--                        <form action="/<%= user._id %>/enroll" method="post">-->
-                    <!--                            <input type="text" class="form-demo__input" name="classCode" placeholder="Class code"/>-->
-                    <!--                            <input type="submit" name="submit" class="form-demo__submit" value="ENROLL"/>-->
-                    <!--                        </form>-->
-                    <!--                    </div>-->
-
                 <% } else { %>
                     <b><h3>PLEASE LOG IN TO ENABLE ALL FEATURES.</h3></b>
                     <a href="/auth/google"><input type="submit" name="submit" class="form-demo__submit1"
@@ -283,8 +275,8 @@
                         </div>
 
                         <div class="partners__text">
-                            <a href="/editMyProfile/<%= user._id %>"><input class="btn btn-outline-dark" type="button"
-                                                                            value="Edit my profile"></a>
+                            <a href="/myProfile/<%= user._id %>"><input class="btn btn-outline-dark" type="button"
+                                                                            value="View full profile"></a>
                         </div>
                         <hr>
                         <div class="partners__text">

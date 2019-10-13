@@ -8,11 +8,8 @@
                 Welcome, <%= user.userName %>!
             </div>
             <h3>
-                <% if (user._id.equals(req.params.tutorId)){ %>
-                    Negotiate with your tutee here
-                <% } else { %>
-                    Negotiate with your tutor here
-                <% } %>
+                Try to find a time for appointment <br><br>
+                The TA should be submitting the appointment info as confirmation
             </h3>
         </div>
     </div>
@@ -24,21 +21,21 @@
         <div class="row">
             <div class="col">
                 <% for (i = 0; i < communications.length; i++) { %>
-                <div class="media mb-3" id="description">
-                    <a href="/showProfile/<%= communications[i].userId %>"><img class="d-flex mr-3 rounded-circle"
-                                                                                id="profilePic"
-                                                                                src="<%= communications[i].profilePicURL %>"
-                                                                                width="40px" height="40px"
-                                                                                alt="user profile pic"></a>
-                    <div class="media-body">
-                        <% if (communications[i].userId.equals(req.params.tutorId)){ %>
-                            <h5><%= communications[i].tutorName %>(tutor)</h5>
-                        <% } else { %>
-                            <h5><%= communications[i].tuteeName %>(tutee)</h5>
-                        <% } %>
-                        <h6><%= communications[i].comment %></h6>
+                    <div class="media mb-3" id="description">
+                        <a href="/showProfile/<%= communications[i].userId %>"><img class="d-flex mr-3 rounded-circle"
+                                                                                    id="profilePic"
+                                                                                    src="<%= communications[i].profilePicURL %>"
+                                                                                    width="40px" height="40px"
+                                                                                    alt="user profile pic"></a>
+                        <div class="media-body">
+                            <% if (communications[i].userId.equals(req.params.tutorId)){ %>
+                                <h5><%= communications[i].tutorName %>(tutor)</h5>
+                            <% } else { %>
+                                <h5><%= communications[i].tuteeName %>(tutee)</h5>
+                            <% } %>
+                            <h6><%= communications[i].comment %></h6>
+                        </div>
                     </div>
-                </div>
                 <% } %>
             </div>
         </div>
@@ -64,7 +61,7 @@
                                 <textarea style="resize: none" class="form-control" name="comment" rows="3"></textarea>
                             </div>
                             <% if (loggedIn) { %>
-                                <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                <button type="submit" class="btn btn-outline-primary">Send</button>
                             <% } else { %>
                                 Please login to submit.
                             <% } %>
@@ -78,103 +75,95 @@
 </section>
 
 <% if (user._id.equals(req.params.tutorId)) { %>
+    <section class="section section--grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
 
-<section class="section section--grey">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-12">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+                        SAVE TUTOR SESSION DETAILS
+                    </button>
 
-                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
-                    SAVE TUTOR SESSION DETAILS
-                </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Save tutor session details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="/updateAppointment/<%= req.params.tuteeId %>/<%= req.params.tutorId %>"
+                                      method="post">
+                                    <div class="modal-body">
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Save tutor session details</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="/updateAppointment/<%= req.params.tuteeId %>/<%= req.params.tutorId %>"
-                                  method="post">
-                                <div class="modal-body">
+                                        <div class="row text-center">
 
-                                    <div class="row text-center">
-
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Date</span>
-                                                <input type="date" class="form-control" name="appointmentDate">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Date</span>
+                                                    <input type="date" class="form-control" name="appointmentDate">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <br><br>
+                                            <br><br>
 
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Time</span>
-                                                <input type="time" class="form-control" name="appointmentTime">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Time</span>
+                                                    <input type="time" class="form-control" name="appointmentTime">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <br><br>
+                                            <br><br>
 
 
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Length in hours</span>
-                                                <input type="text" class="form-control" name="length">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Length in hours</span>
+                                                    <input type="text" class="form-control" name="length">
+                                                </div>
                                             </div>
-                                        </div>
-<!--                                        <br><br>-->
-<!--                                        <div class="col-md-12 col-sm-12">-->
-<!--                                            <div class="input-group-prepend">-->
-<!--                                                <span class="input-group-text">price $</span>-->
-<!--                                                <input type="text" class="form-control" name="price" value=15>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-                                        <br><br>
+                                            <br><br>
 
 
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Class code</span>
-                                                <select class="form-control" name="classCode">
-                                                    <option disabled value="Choose a category">Choose a class</option>
-                                                    <% for (i = 0; i < tutor.tutorClassCodes.length; i++) { %>
-                                                    <option value="<%= tutor.tutorClassCodes[i] %>"><%= tutor.tutorClassCodes[i] %></option>
-                                                    <% } %>
-                                                </select>
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Class code</span>
+                                                    <select class="form-control" name="classCode">
+                                                        <option disabled value="Choose a category">Choose a class
+                                                        </option>
+                                                        <% for (i = 0; i < tutor.tutorClassCodes.length; i++) { %>
+                                                            <option value="<%= tutor.tutorClassCodes[i] %>"><%= tutor.tutorClassCodes[i] %></option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="hidden" name="tuteeName" value="<%= tuteeName %>">
-                                    <input type="hidden" name="tutorName" value="<%= tutorName %>">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <input type="submit" class="btn btn-outline-primary" value="CREATE">
-                                </div>
-                            </form>
+                                    <div class="modal-footer">
+                                        <input type="hidden" name="tuteeName" value="<%= tuteeName %>">
+                                        <input type="hidden" name="tutorName" value="<%= tutorName %>">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <input type="submit" class="btn btn-outline-primary" value="CREATE">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</section>
+    </section>
 <% } %>
 
 <section class="section section--grey">
     <div class="container">
         <a href="/communicationBoard"><input class="btn btn-outline-dark" type="button" value="RETURN TO MESSAGE BOARD"></a>
-
     </div>
 </section>
 

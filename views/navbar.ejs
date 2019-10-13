@@ -14,8 +14,8 @@
                         <a class="header-link" id="header-link" href="/#forum">FORUM</a>
                         <ul class="sub-menu">
                             <% for (i = 0; i < user.classCodes.length; i++) { %>
-                            <li><a href="/showQuestions/<%= user.classCodes[i] %>"
-                                   class="header-link"><%= user.classCodes[i] %></a></li>
+                                <li><a href="/showQuestions/<%= user.classCodes[i] %>"
+                                       class="header-link"><%= user.classCodes[i] %></a></li>
                             <% } %>
                         </ul>
                     </li>
@@ -54,20 +54,20 @@
                         </li>
                         <li>
                             <% if (loggedIn) { %>
-                            <a class="header-link" href="/myProfile/<%= user._id %>">VIEW MY PROFILE</a>
+                                <a class="header-link" href="/myProfile/<%= user._id %>">VIEW MY PROFILE</a>
                             <% } %>
                         </li>
-                        <li>
-                            <% if (loggedIn) { %>
-                            <a class="header-link" href="/editMyProfile/<%= user._id %>">EDIT MY PROFILE</a>
-                            <% } %>
-                        </li>
+<!--                        <li>-->
+<!--                            <% if (loggedIn) { %>-->
+<!--                                <a class="header-link" href="/editMyProfile/<%= user._id %>">EDIT MY PROFILE</a>-->
+<!--                            <% } %>-->
+<!--                        </li>-->
 
-                        <% if (loggedIn && user.status == "tutor") { %>
-                        <li>
-                            <a class="header-link" href="/editMyTutorProfile/<%= user._id %>">EDIT TUTOR PROFILE</a>
-                        </li>
-                        <% } %>
+<!--                        <% if (loggedIn && user.status == "tutor") { %>-->
+<!--                            <li>-->
+<!--                                <a class="header-link" href="/editMyTutorProfile/<%= user._id %>">EDIT TUTOR PROFILE</a>-->
+<!--                            </li>-->
+<!--                        <% } %>-->
 
                         <li>
                             <% if (loggedIn) { %>

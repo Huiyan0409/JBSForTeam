@@ -5,11 +5,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/classController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/classController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/classes.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/classes.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/communication.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/communication.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/editMyProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editMyProfile.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/myProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/myProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/navbar.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/showProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showQuestions.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showQuestions.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showTutors.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showTutors.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tutorRegister.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/tutorRegister.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

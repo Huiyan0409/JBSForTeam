@@ -16,31 +16,7 @@
 <section class="section section--grey">
     <div class="container">
         <br>
-        <h4>Enter your class that you did not enroll the forum:</h4>
-        <br>
-
-        <div class="row text-center">
-            <div class="col-md-4">
-                <% if (loggedIn) { %>
-                <form action="/<%= user._id %>/enroll" method="post">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Course code</span>
-                        <input type="text" class="form-control" name="classCode" placeholder="Example: COSI12B"/>
-                        &nbsp&nbsp&nbsp
-                        <input type="submit" name="submit" class="btn btn-outline-primary" id="submit" value="ENROLL"/>
-                    </div>
-                </form>
-                <% } else { %>
-                    <input disabled type="text" class="form-demo__input" name="classCode"
-                           placeholder="Please login to enroll"/>
-                <% } %>
-            </div>
-        </div>
-
-        <br>
-        (This will automatically enroll you to the forum of this class)
-        <br>
-        <h4>Choose the class from your enrolled forum:</h4>
+        <h4> <b>Choose the class you want to tutor:</b></h4>
         <br>
         <form method="post" action="/processTutorRegister">
 
@@ -69,13 +45,13 @@
             </div>
 
             <br>
-            <h4> Introduction of yourself:</h4>
+            <h4> <b>Introduction of yourself:</b></h4>
             <br>
 
             <div class="row text-center">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <textarea class="form-control" name="selfIntro" rows="6" cols="100"></textarea>
+                        <textarea class="form-control" style="resize: none;" name="selfIntro" rows="6" cols="100"><%=user.introduction%></textarea>
                     </div>
                     <br>
                 </div>
@@ -86,6 +62,5 @@
         </form>
     </div>
 </section>
-
 
 <%- include('footer'); -%>

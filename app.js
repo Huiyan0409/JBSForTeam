@@ -38,9 +38,9 @@ configPassport(passport);
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-// const MONGODB_URI = process.env.MONGODB_URI;
-const MONGODB_URI = 'mongodb://localhost/iclaster';
-console.log("MONGODB_URI: " + process.env.MONGODB_URI);
+const MONGODB_URI = process.env.MONGODB_URI;
+// const MONGODB_URI = 'mongodb://localhost/iclaster';
+// console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');
 
@@ -107,8 +107,8 @@ app.use((req, res, next) => {
     if (req.isAuthenticated()) {
         if (req.user.googleemail.endsWith("edu") ||
             req.user.googleemail.endsWith("@gmail.com")) {
-            res.locals.user = req.user
-            res.locals.loggedIn = true
+            res.locals.user = req.user;
+            res.locals.loggedIn = true;
             console.log("user has been Authenticated")
         } else {
             res.locals.loggedIn = false
@@ -116,10 +116,10 @@ app.use((req, res, next) => {
         if (req.user) {
             if (approvedLogins.includes(req.user.googleemail)) {
                 // for permission control
-                console.log("admin has logged in")
+                console.log("admin has logged in");
                 res.locals.status = 'admin'
             } else {
-                console.log('user has logged in')
+                console.log('user has logged in');
                 res.locals.status = 'user'
             }
         }
@@ -135,14 +135,14 @@ app.use((req, res, next) => {
 
 app.get('/loginerror', function (req, res) {
     res.render('loginerror', {})
-})
+});
 
 // route for logging out
 app.get('/logout', function (req, res) {
     req.session.destroy((error) => {
         console.log("Error in destroying session: " + error)
     });
-    console.log("session has been destroyed")
+    console.log("session has been destroyed");
     req.logout();
     res.redirect('/');
 });
@@ -191,7 +191,7 @@ function isLoggedIn(req, res, next) {
 // =====================================
 
 //we can use this or the index router to handle req
-app.get('/', function (req, res, next) {
+app.get('/', function (req, res) {
     if (req.user && !req.user.userName) {
         console.log("first time user!");
         res.redirect('/editMyProfile/' + req.user._id)
@@ -200,46 +200,76 @@ app.get('/', function (req, res, next) {
             req: req
         })
     }
-})
+});
 
 
 // =====================================
 // Class ===============================
 // =====================================
 
-app.post('/:userId/enroll', isLoggedIn, classController.lookupClass, classController.addClass);
+app.post('/:userId/enroll',
+    isLoggedIn,
+    classController.lookupClass,
+    classController.addClass
+);
 
 //create new classes
-app.get('/classes', isLoggedIn, classController.getAllClasses)
+app.get('/classes',
+    isLoggedIn,
+    classController.getAllClasses
+);
 
 //process the form
-app.post('/createClass', isLoggedIn, classController.checkUnique, classController.saveClass);
+app.post('/createClass',
+    isLoggedIn,
+    classController.checkUnique,
+    classController.saveClass
+);
 
 //error handle
-app.get('/classNotFound', isLoggedIn, function (req, res, next) {
+app.get('/classNotFound', isLoggedIn, function (req, res) {
     res.render('classNotFound')
-})
+});
 
-app.post('/dropClass', isLoggedIn, classController.lookupClass, classController.dropClass);
+app.post('/dropClass',
+    isLoggedIn,
+    classController.lookupClass,
+    classController.dropClass
+);
 
 // =====================================
 // Profile =============================
 // =====================================
 
 //show all profiles from all users
-app.get('/myProfile/:id', isLoggedIn, profileController.showMyProfile)
+app.get('/myProfile/:id',
+    isLoggedIn,
+    profileController.showMyProfile
+);
 
 // we require them to be logged in to edit their profile
-app.get('/editMyProfile/:id', isLoggedIn, profileController.showOldProfile)
+app.get('/editMyProfile/:id',
+    isLoggedIn,
+    profileController.showOldProfile
+);
 
 //update personal profile
-app.post('/updateProfile/:id', isLoggedIn, profileController.updateProfile)
+app.post('/updateProfile/:id',
+    isLoggedIn,
+    profileController.updateProfile
+);
 
 //show all profiles from all users
-app.get('/showProfiles', isLoggedIn, profileController.getAllProfiles)
+app.get('/showProfiles',
+    isLoggedIn,
+    profileController.getAllProfiles
+);
 
 //show personal profile
-app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
+app.get('/showProfile/:id',
+    isLoggedIn,
+    profileController.getOneProfile
+);
 
 /*
 * Respond to GET requests to /signAWS.
@@ -278,14 +308,14 @@ app.get('/sign-s3', (req, res) => {
 * a way that suits your application.
 */
 app.post('/save-details', (req, res) => {
-    const imageURL = req.body.imageURL
+    const imageURL = req.body.imageURL;
     //find the user using user_id
     User.findOne(res.locals.user._id)
         .exec()
         .then((profile) => {
-            profile.profilePicURL = imageURL
+            profile.profilePicURL = imageURL;
             profile.save();
-        })
+        });
     Answer.updateMany({userId: req.user._id}, {profilePicURL: req.body.imageURL}, {multi: true})
         .exec()
         .then(() => {
@@ -293,7 +323,7 @@ app.post('/save-details', (req, res) => {
         })
         // handle error
         .catch(function (error) {
-            console.log("read file failed")
+            console.log("read file failed");
             console.log(error);
         })
 });
@@ -315,31 +345,58 @@ app.post('/save-details', (req, res) => {
 
 
 //post question page
-app.get('/postQuestion/:classCode', function (req, res, next) {
-    res.render('postQuestion', {
-        req: req
-    })
-})
+app.get('/postQuestion/:classCode',
+    function (req, res) {
+        res.render('postQuestion', {
+            req: req
+        })
+    }
+);
 
-app.get('/showQuestions/:classCode', isLoggedIn, qAndaController.getAllQuestions, qAndaController.displayAllQuestions)
+app.get('/showQuestions/:classCode',
+    isLoggedIn,
+    qAndaController.getAllQuestions,
+    qAndaController.displayAllQuestions
+);
 
-app.post('/processQuestionPost/:classCode', isLoggedIn, qAndaController.saveQuestionPost)
+app.post('/processQuestionPost/:classCode',
+    isLoggedIn,
+    qAndaController.saveQuestionPost
+);
 
-app.get('/showQuestion/:classCode/:id', isLoggedIn, qAndaController.attachAllAnswers, qAndaController.showOneQuestion)
+app.get('/showQuestion/:classCode/:id',
+    isLoggedIn,
+    qAndaController.attachAllAnswers,
+    qAndaController.showOneQuestion
+);
 
 //to edit an existing question
-app.get('/showQuestion/:classCode/:id/editQuestion', isLoggedIn, qAndaController.showPreviousQ, qAndaController.editQuestion)
+app.get('/showQuestion/:classCode/:id/editQuestion',
+    isLoggedIn,
+    qAndaController.showPreviousQ,
+    qAndaController.editQuestion
+);
 
-app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost', isLoggedIn, qAndaController.editQuestion)
+app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost',
+    isLoggedIn,
+    qAndaController.editQuestion
+);
 
 //to save a new answer post
-app.post('/showQuestion/:classCode/:id/processAnswerPost', isLoggedIn, qAndaController.saveAnswer)
+app.post('/showQuestion/:classCode/:id/processAnswerPost',
+    isLoggedIn,
+    qAndaController.saveAnswer
+);
 
 //to delete an existing answers
-app.post('/showQuestion/:id/answerDelete', qAndaController.deleteAnswer)
+app.post('/showQuestion/:id/answerDelete',
+    qAndaController.deleteAnswer
+);
 
 //add thumbs up to answers
-app.post('/showQuestion/:id/answerLikes', qAndaController.likesAdded)
+app.post('/showQuestion/:id/answerLikes',
+    qAndaController.likesAdded
+);
 
 
 // =====================================
@@ -349,40 +406,80 @@ app.post('/showQuestion/:id/answerLikes', qAndaController.likesAdded)
 
 //tutor profile related
 // we require them to be logged in to edit their profile
-app.get('/editMyTutorProfile/:id', isLoggedIn, tutorController.showOldTutorProfile)
+app.get('/editMyTutorProfile/:id',
+    isLoggedIn,
+    function (req, res) {
+        res.redirect('/tutorRegister')
+    }
+);
 
 //update personal profile
-app.post('/updateTutorProfile/:id', isLoggedIn, tutorController.updateTutorProfile)
+app.post('/updateTutorProfile/:id',
+    isLoggedIn,
+    tutorController.updateTutorProfile
+);
 
 //tutor rating
-app.get('/tutorRatings/:appointmentId/:tutorId', isLoggedIn, tutorController.getOneAppointment)
+app.get('/tutorRatings/:appointmentId/:tutorId',
+    isLoggedIn,
+    tutorController.getOneAppointment
+);
 
-app.post('/processTutorRating/:appointmentId/:tutorId', isLoggedIn, tutorController.saveRating)
+app.post('/processTutorRating/:appointmentId/:tutorId',
+    isLoggedIn,
+    tutorController.saveRating
+);
 
 //tutor rating
-app.post('/updateTutorRatings', isLoggedIn, tutorController.updateTutorRatingProfile)
+app.post('/updateTutorRatings',
+    isLoggedIn,
+    tutorController.updateTutorRatingProfile
+);
 
 //tutor tutorRegister
-app.get('/tutorRegister', function (req, res, next) {
+app.get('/tutorRegister', function (req, res) {
     res.render('tutorRegister')
-})
+});
 
-app.post('/processTutorRegister', isLoggedIn, tutorController.saveTutor)
+app.post('/processTutorRegister',
+    isLoggedIn,
+    tutorController.saveTutor
+);
 
-app.get('/showTutors', isLoggedIn, tutorController.getAllTutorProfile)
+app.get('/showTutors',
+    isLoggedIn,
+    tutorController.getAllTutorProfile
+);
 
 //task board related
-app.get('/taskBoard', isLoggedIn, tutorController.getAppointments)
+app.get('/taskBoard',
+    isLoggedIn,
+    tutorController.getAppointments
+);
 
-app.get('/communication/:tuteeId/:tutorId', isLoggedIn, tutorController.getName, communicationController.getCommunication, tutorController.getOneTutorProfile)
+app.get('/communication/:tuteeId/:tutorId',
+    isLoggedIn,
+    tutorController.getName,
+    communicationController.getCommunication,
+    tutorController.getOneTutorProfile
+);
 
 // app.post('/contactTutor/:userId/:tutorId', isLoggedIn, tutorController.setupGroup)
 
-app.post('/updateAppointment/:tuteeId/:tutorId', isLoggedIn, tutorController.updateAppointment)
+app.post('/updateAppointment/:tuteeId/:tutorId',
+    isLoggedIn,
+    tutorController.updateAppointment
+);
 
-app.post('/saveCommunication/:tuteeId/:tutorId', isLoggedIn, communicationController.saveCommunication)
+app.post('/saveCommunication/:tuteeId/:tutorId',
+    isLoggedIn,
+    communicationController.saveCommunication
+);
 
-app.get('/communicationBoard', isLoggedIn, communicationController.getCommunicationBoard)
+app.get('/communicationBoard',
+    isLoggedIn,
+    communicationController.getCommunicationBoard
+);
 
 
 // =====================================
@@ -393,17 +490,17 @@ app.get('/communicationBoard', isLoggedIn, communicationController.getCommunicat
 //about page
 app.get('/about', function (req, res) {
     res.render('about')
-})
+});
 
 //empty error page
 app.get('/emptyError', function (req, res) {
     res.render('emptyError')
-})
+});
 
 //FAQ page
 app.get('/FAQ', function (req, res) {
     res.render('FAQ')
-})
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -411,7 +508,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
