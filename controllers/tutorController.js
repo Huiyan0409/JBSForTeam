@@ -38,7 +38,7 @@ exports.saveTutor = (req, res) => {
         })
         .then(() => {
             console.log("update success");
-            res.redirect('/tutorRegister');
+            res.redirect('/showTutors');
         })
         .catch(error => {
             console.log("update failed");
