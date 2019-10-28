@@ -40,7 +40,7 @@ exports.saveQuestionPost = (req, res) => {
 };
 
 exports.getAllQuestions = (req, res, next) => {
-    const classCode = req.params.classCode
+    const classCode = req.params.classCode;
     Question.find({classCode: classCode}).sort({createdAt: '-1'})
         .exec()
         .then((questions) => {
@@ -63,6 +63,7 @@ exports.getAllQuestions = (req, res, next) => {
                         console.log("count now is:  " + count);
                         counts = count;
                         console.log("countsssssss: " + counts);
+                        // determine whether a question is answered or not
                         questions[i].answerNum = counts;
                         questions[i].save();
                         asyncKiller++;

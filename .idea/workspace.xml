@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/controllers/tutorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tutorController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/qAndaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/qAndaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/editMyProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editMyProfile.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +60,9 @@
       <workItem from="1570751247332" duration="20000" />
       <workItem from="1570810006737" duration="652000" />
       <workItem from="1570810809569" duration="4065000" />
+      <workItem from="1571107153381" duration="756000" />
+      <workItem from="1572233382332" duration="32000" />
+      <workItem from="1572233426582" duration="66000" />
     </task>
     <servers />
   </component>
