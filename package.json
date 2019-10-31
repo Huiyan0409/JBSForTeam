@@ -6,8 +6,10 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "aws-sdk": "^2.494.0",
     "axios": "^0.19.0",
+    "body-parser": "latest",
     "bootstrap": "^4.3.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.4",
@@ -23,8 +25,7 @@
     "passport-google-oauth": "^2.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.15.0",
-    "sitemap": "^3.2.2",
-    "body-parser": "latest",
-    "sendgrid": "^4.2.0"
+    "sendgrid": "^4.2.0",
+    "sitemap": "^3.2.2"
   }
 }

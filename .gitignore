@@ -65,3 +65,4 @@ typings/
 .next
 config/apikey.js
 config/auth.js
+sendgrid.env
