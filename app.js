@@ -468,7 +468,8 @@ app.get('/communication/:tuteeId/:tutorId',
 
 app.post('/updateAppointment/:tuteeId/:tutorId',
     isLoggedIn,
-    tutorController.updateAppointment
+    tutorController.updateAppointment,
+    send_email()
 );
 
 app.post('/saveCommunication/:tuteeId/:tutorId',
@@ -478,8 +479,9 @@ app.post('/saveCommunication/:tuteeId/:tutorId',
 
 app.get('/communicationBoard',
     isLoggedIn,
-    communicationController.getCommunicationBoard
+    communicationController.getCommunicationBoard,
 );
+
 
 
 // =====================================

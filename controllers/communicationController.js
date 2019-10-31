@@ -3,8 +3,8 @@ const Communication = require('../models/Communication');
 
 
 exports.getCommunication = (req, res, next) => {
-    const tuteeId = req.params.tuteeId
-    const tutorId = req.params.tutorId
+    const tuteeId = req.params.tuteeId;
+    const tutorId = req.params.tutorId;
     Communication.find({
         $or: [
             {$and: [{userId: tuteeId}, {tuteeId: tuteeId}, {tutorId: tutorId}]},
@@ -35,7 +35,7 @@ exports.saveCommunication = (req, res) => {
             comment: req.body.comment,
             profilePicURL: req.user.profilePicURL
         }
-    )
+    );
     newCommunication.save()
         .then(() => {
             res.redirect('back');
@@ -61,3 +61,4 @@ exports.getCommunicationBoard = (req, res) => {
             return [];
         })
 };
+

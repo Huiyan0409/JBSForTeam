@@ -233,10 +233,11 @@ exports.updateAppointment = (req, res, next) => {
             classCode: req.body.classCode,
             status: "incomplete"
         }
-    )
+    );
 
     newAppointment.save()
         .then(() => {
+            send_email();
             //redirect to dashboard
             res.redirect('/taskBoard');
         })
@@ -244,6 +245,20 @@ exports.updateAppointment = (req, res, next) => {
             res.send(error);
         });
 };
+
+function send_email() {
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+        to: 'bbdhy96@gmail.com',
+        from: 'supremeethan@brandeis.com',
+        subject: 'Sending with Twilio SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg);
+}
+
 
 exports.getAppointments = (req, res) => {
     //find all users from database
