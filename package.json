@@ -24,6 +24,7 @@
     "path": "^0.12.7",
     "popper.js": "^1.15.0",
     "sitemap": "^3.2.2",
-    "body-parser": "latest"
+    "body-parser": "latest",
+    "sendgrid": "^4.2.0"
   }
 }
