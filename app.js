@@ -469,7 +469,6 @@ app.get('/communication/:tuteeId/:tutorId',
 app.post('/updateAppointment/:tuteeId/:tutorId',
     isLoggedIn,
     tutorController.updateAppointment,
-    send_email()
 );
 
 app.post('/saveCommunication/:tuteeId/:tutorId',
