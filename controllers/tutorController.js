@@ -235,7 +235,7 @@ exports.updateAppointment = (req, res, next) => {
             classCode: req.body.classCode,
             status: "incomplete"
         }
-    );
+    )
     newAppointment.save()
         .then(() => {
             send_email(req, res);
