@@ -244,6 +244,7 @@ exports.updateAppointment = (req, res, next) => {
             res.redirect('/taskBoard');
         })
         .catch(error => {
+            console.log("error");
             res.send(error);
         });
 };
