@@ -265,24 +265,26 @@ function send_email() {
     const messageToTutee = {
         to: tuteeEmail,
         from: tutorEmail,
-        subject: 'iClaster: appointment with <strong>' + tuteeName + '</strong> is set',
+        subject: 'iClaster: appointment with ' + tuteeName + ' is set',
         text: 'Hi, your appointment is set',
         html: 'Hi, ' + '<br><br>' + 'Your appointment with TA: <strong> ' + tutorName + '</strong> is set' +
             '<br>' + 'Class: ' + classCode +
             '<br>' + 'Time: ' + startTime +
             '<br>' + 'Length: ' + length +
+            '<br>' + 'Please add this event to your calendar' +
             '<br><br>' + 'iClaster support team',
     };
     sgMail.send(messageToTutee);
     const messageToTutor = {
         to: tutorEmail,
         from: tuteeEmail,
-        subject: 'iClaster: appointment with <strong>' + tutorName + '</strong> is set',
+        subject: 'iClaster: appointment with' + tutorName + ' is set',
         text: 'Hi, your appointment is set',
         html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tuteeName + '</strong> is set' +
             '<br>' + 'Class: ' + classCode +
             '<br>' + 'Time: ' + startTime +
             '<br>' + 'Length: ' + length +
+            '<br>' + 'Please add this event to your calendar' +
             '<br><br>' + 'iClaster support team',
     };
     sgMail.send(messageToTutor);
@@ -299,7 +301,6 @@ exports.getAppointments = (req, res) => {
             res.render('taskBoard', {
                 appointments: appointments
             });
-            // console.log("123123121" + appointments);
         })
 
         .catch((error) => {
