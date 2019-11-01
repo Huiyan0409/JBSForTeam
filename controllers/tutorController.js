@@ -194,6 +194,8 @@ exports.getOneTutorProfile = (req, res) => {
 
 let tuteeEmail;
 let tutorEmail;
+let tuteeName;
+let tutorName;
 exports.getName = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
@@ -216,13 +218,16 @@ exports.getName = (req, res, next) => {
         })
 };
 
+let startTime;
+let length;
 exports.updateAppointment = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
     var date = req.body.appointmentDate;
     var time = req.body.appointmentTime;
     var startAt = date.concat("  ", time);
-
+    startTime = startAt;
+    length = req.body.length;
     // console.log("userName is: " + userName);
 
     let newAppointment = new Appointment(
@@ -241,7 +246,7 @@ exports.updateAppointment = (req, res, next) => {
 
     newAppointment.save()
         .then(() => {
-            send_email(req, res);
+            send_email();
             //redirect to dashboard
             res.redirect('/taskBoard');
         })
@@ -250,15 +255,16 @@ exports.updateAppointment = (req, res, next) => {
         });
 };
 
-function send_email(req, res) {
+function send_email() {
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-        to: '' + tuteeEmail,
-        from: '' + tutorEmail,
-        subject: 'Your iClaster tutor appointment is set',
-        text: 'Hi, your appointment with ' + req.body.tuteeName,
-        html: 'Hi, your appointment with student is set',
+        to: tuteeEmail,
+        from: tutorEmail,
+        subject: 'iClaster: appointment with <strong>' + tuteeName + '</strong> is set',
+        text: 'Hi, your appointment is set',
+        html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tuteeName + '</strong> is set' +
+            '<br>' + 'Time: ' + startTime + '<br>' + 'Length: ' + length,
     };
     console.log(tuteeEmail);
     console.log(tutorEmail);
