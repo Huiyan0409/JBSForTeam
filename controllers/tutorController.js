@@ -199,14 +199,14 @@ exports.getName = (req, res, next) => {
         .exec()
         .then((tutee) => {
             res.locals.tuteeName = tutee.userName;
-            res.locals.tuteeEmail = tutee.googleemail;
+            res.locals.tutee = tutee;
             next()
         });
     User.findOne({_id: tutorId})
         .exec()
         .then((tutor) => {
             res.locals.tutorName = tutor.userName;
-            res.locals.tutorEmail = tutor.googleemail;
+            res.locals.tutor = tutor;
         })
         .catch((error) => {
             console.log(error.message);
@@ -252,13 +252,13 @@ function send_email(req, res) {
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-        to: '' + res.locals.tuteeEmail,
+        to: '' + res.locals.tutee.googleemail,
         from: '' + res.locals.user.googleemail,
         subject: 'Your iClaster tutor appointment is set',
         text: 'Hi, your appointment with ' + req.body.tuteeName,
         html: 'Hi, your appointment with student is set',
     };
-    console.log(res.locals.tuteeEmail);
+    console.log(res.locals.tutee.googleemail);
     console.log(res.locals.user.googleemail);
     sgMail.send(msg);
 }
