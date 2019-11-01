@@ -28,7 +28,10 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-1 col-sm-1 align-self-center">
-                                <img src="<%= tutors[i].profilePicURL %>" width="100%" alt="profile picture">
+                                <img class="d-flex mr-3 rounded-circle"
+                                     src="<%= tutors[i].profilePicURL %>"
+                                     width="100px" height="100px"
+                                     alt="profile picture">
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <a href="/showProfile/<%= tutors[i]._id %>"><%= tutors[i].userName %></a>
