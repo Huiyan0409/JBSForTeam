@@ -220,7 +220,6 @@ exports.updateAppointment = (req, res, next) => {
     var date = req.body.appointmentDate;
     var time = req.body.appointmentTime;
     var startAt = date.concat("  ", time);
-    res.locals.startAt = startAt;
 
     // console.log("userName is: " + userName);
 
@@ -258,8 +257,8 @@ function send_email(req, res) {
         text: 'Hi, your appointment with ' + req.locals.tutorName + ' is set',
         html: 'Hi, your appointment with tutor: ' +
             req.locals.tutorName + ' ' +
-            req.locals.tutorEmail +
-            ' is set on' + res.locals.startAt,
+            req.locals.tutorEmail + '.'
+            // ' is set on' + res.locals.startAt,
     };
     sgMail.send(msgToTutee);
 
@@ -270,8 +269,8 @@ function send_email(req, res) {
         text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
         html: 'Hi, your appointment with student: ' +
             req.locals.tuteeName + ' ' +
-            req.locals.tuteeEmail +
-            ' is set on' + res.locals.startAt,
+            req.locals.tuteeEmail + '.'
+            // ' is set on' + res.locals.startAt,
     };
     sgMail.send(msgToTutor);
 }
