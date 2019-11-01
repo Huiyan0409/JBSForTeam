@@ -255,42 +255,41 @@ function send_email(req, res) {
         to: res.locals.user.googleemail,
         from: 'iclaster support team',
         subject: 'Your iClaster tutor appointment is set',
-        text: 'Hi, your appointment with ' + req.body.tuteeName + ' is set on '
-            + req.body.startAt,
+        text: 'Hi, your appointment with ' + req.body.tuteeName,
         html: '<strong>and easy to do anywhere, even with Node.js</strong>',
     };
     sgMail.send(msg);
 }
-
-function send_email(req, res) {
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const msgToTutee = {
-        to: res.locals.tuteeEmail,
-        from: res.locals.tutorEmail,
-        subject: 'Your iClaster tutor appointment is set',
-        text: 'Hi, your appointment with ' + req.locals.tutorName + ' is set',
-        html: 'Hi, your appointment with tutor: '
-            // req.locals.tutorName + ' ' +
-            // req.locals.tutorEmail + '.'
-            // ' is set on' + res.locals.startAt,
-    };
-    console.log(res.locals.tuteeEmail);
-    console.log(res.locals.tutorEmail);
-    sgMail.send(msgToTutee);
-
-    // const msgToTutor = {
-    //     to: res.locals.tutorEmail,
-    //     from: res.locals.tuteeEmail,
-    //     subject: 'Your iClaster tutor appointment is set',
-    //     text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
-    //     html: 'Hi, your appointment with student: ' +
-    //         req.locals.tuteeName + ' ' +
-    //         req.locals.tuteeEmail + '.'
-    //         // ' is set on' + res.locals.startAt,
-    // };
-    // sgMail.send(msgToTutor);
-}
+//
+// function send_email(req, res) {
+//     const sgMail = require('@sendgrid/mail');
+//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//     const msgToTutee = {
+//         to: res.locals.tuteeEmail,
+//         from: res.locals.tutorEmail,
+//         subject: 'Your iClaster tutor appointment is set',
+//         text: 'Hi, your appointment with ' + req.locals.tutorName + ' is set',
+//         html: 'Hi, your appointment with tutor: '
+//             // req.locals.tutorName + ' ' +
+//             // req.locals.tutorEmail + '.'
+//             // ' is set on' + res.locals.startAt,
+//     };
+//     console.log(res.locals.tuteeEmail);
+//     console.log(res.locals.tutorEmail);
+//     sgMail.send(msgToTutee);
+//
+//     // const msgToTutor = {
+//     //     to: res.locals.tutorEmail,
+//     //     from: res.locals.tuteeEmail,
+//     //     subject: 'Your iClaster tutor appointment is set',
+//     //     text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
+//     //     html: 'Hi, your appointment with student: ' +
+//     //         req.locals.tuteeName + ' ' +
+//     //         req.locals.tuteeEmail + '.'
+//     //         // ' is set on' + res.locals.startAt,
+//     // };
+//     // sgMail.send(msgToTutor);
+// }
 
 
 exports.getAppointments = (req, res) => {
