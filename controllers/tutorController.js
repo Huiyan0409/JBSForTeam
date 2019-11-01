@@ -222,6 +222,7 @@ exports.getName = (req, res, next) => {
 
 let startTime;
 let length;
+let classCode;
 exports.updateAppointment = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
@@ -230,6 +231,7 @@ exports.updateAppointment = (req, res, next) => {
     var startAt = date.concat("  ", time);
     startTime = startAt;
     length = req.body.length;
+    classCode = req.body.classCode;
     // console.log("userName is: " + userName);
 
     let newAppointment = new Appointment(
@@ -265,8 +267,10 @@ function send_email() {
         from: tutorEmail,
         subject: 'iClaster: appointment with <strong>' + tuteeName + '</strong> is set',
         text: 'Hi, your appointment is set',
-        html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tuteeName + '</strong> is set' +
-            '<br>' + 'Time: ' + startTime + '<br>' + 'Length: ' + length +
+        html: 'Hi, ' + '<br><br>' + 'Your appointment with TA: <strong> ' + tuteeName + '</strong> is set' +
+            '<br>' + 'Class: ' + classCode +
+            '<br>' + 'Time: ' + startTime +
+            '<br>' + 'Length: ' + length +
             '<br><br>' + 'iClaster support team',
     };
     sgMail.send(messageToTutee);
@@ -275,43 +279,15 @@ function send_email() {
         from: tuteeEmail,
         subject: 'iClaster: appointment with <strong>' + tutorName + '</strong> is set',
         text: 'Hi, your appointment is set',
-        html: 'Hi, ' + '<br><br>' + 'Your appointment with TA: <strong> ' + tutorName + '</strong> is set' +
-            '<br>' + 'Time: ' + startTime + '<br>' + 'Length: ' + length +
+        html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tutorName + '</strong> is set' +
+            '<br>' + 'Time: ' + startTime +
+            '<br>' + 'Class: ' + classCode +
+            '<br>' + 'Length: ' + length +
             '<br><br>' + 'iClaster support team',
     };
     sgMail.send(messageToTutor);
 
 }
-
-// function send_email(req, res) {
-//     const sgMail = require('@sendgrid/mail');
-//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-//     const msgToTutee = {
-//         to: res.locals.tuteeEmail,
-//         from: res.locals.tutorEmail,
-//         subject: 'Your iClaster tutor appointment is set',
-//         text: 'Hi, your appointment with ' + req.locals.tutorName + ' is set',
-//         html: 'Hi, your appointment with tutor: '
-//             // req.locals.tutorName + ' ' +
-//             // req.locals.tutorEmail + '.'
-//             // ' is set on' + res.locals.startAt,
-//     };
-//     console.log(res.locals.tuteeEmail);
-//     console.log(res.locals.tutorEmail);
-//     sgMail.send(msgToTutee);
-//
-//     // const msgToTutor = {
-//     //     to: res.locals.tutorEmail,
-//     //     from: res.locals.tuteeEmail,
-//     //     subject: 'Your iClaster tutor appointment is set',
-//     //     text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
-//     //     html: 'Hi, your appointment with student: ' +
-//     //         req.locals.tuteeName + ' ' +
-//     //         req.locals.tuteeEmail + '.'
-//     //         // ' is set on' + res.locals.startAt,
-//     // };
-//     // sgMail.send(msgToTutor);
-// }
 
 
 exports.getAppointments = (req, res) => {
