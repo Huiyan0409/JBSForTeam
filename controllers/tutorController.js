@@ -217,9 +217,9 @@ exports.getName = (req, res, next) => {
 exports.updateAppointment = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
-    var date = req.body.appointmentDate;
-    var time = req.body.appointmentTime;
-    var startAt = date.concat("  ", time);
+    const date = req.body.appointmentDate;
+    const time = req.body.appointmentTime;
+    const startAt = date.concat("  ", time);
 
     // console.log("userName is: " + userName);
 
@@ -255,24 +255,26 @@ function send_email(req, res) {
         from: res.locals.tutorEmail,
         subject: 'Your iClaster tutor appointment is set',
         text: 'Hi, your appointment with ' + req.locals.tutorName + ' is set',
-        html: 'Hi, your appointment with tutor: ' +
-            req.locals.tutorName + ' ' +
-            req.locals.tutorEmail + '.'
+        html: 'Hi, your appointment with tutor: '
+            // req.locals.tutorName + ' ' +
+            // req.locals.tutorEmail + '.'
             // ' is set on' + res.locals.startAt,
     };
+    console.log(res.locals.tuteeEmail);
+    console.log(res.locals.tutorEmail);
     sgMail.send(msgToTutee);
 
-    const msgToTutor = {
-        to: res.locals.tutorEmail,
-        from: res.locals.tuteeEmail,
-        subject: 'Your iClaster tutor appointment is set',
-        text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
-        html: 'Hi, your appointment with student: ' +
-            req.locals.tuteeName + ' ' +
-            req.locals.tuteeEmail + '.'
-            // ' is set on' + res.locals.startAt,
-    };
-    sgMail.send(msgToTutor);
+    // const msgToTutor = {
+    //     to: res.locals.tutorEmail,
+    //     from: res.locals.tuteeEmail,
+    //     subject: 'Your iClaster tutor appointment is set',
+    //     text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
+    //     html: 'Hi, your appointment with student: ' +
+    //         req.locals.tuteeName + ' ' +
+    //         req.locals.tuteeEmail + '.'
+    //         // ' is set on' + res.locals.startAt,
+    // };
+    // sgMail.send(msgToTutor);
 }
 
 
