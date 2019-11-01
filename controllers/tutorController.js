@@ -199,18 +199,20 @@ exports.getName = (req, res, next) => {
         .exec()
         .then((tutee) => {
             res.locals.tuteeName = tutee.userName;
+            res.locals.tuteeEmail = tutee.googleemail;
             next()
-        })
+        });
     User.findOne({_id: tutorId})
         .exec()
         .then((tutor) => {
             res.locals.tutorName = tutor.userName;
+            res.locals.tutorEmail = tutor.googleemail;
         })
         .catch((error) => {
             console.log(error.message);
             return [];
         })
-}
+};
 
 exports.updateAppointment = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
@@ -218,6 +220,7 @@ exports.updateAppointment = (req, res, next) => {
     var date = req.body.appointmentDate;
     var time = req.body.appointmentTime;
     var startAt = date.concat("  ", time);
+    res.locals.startAt = startAt;
 
     // console.log("userName is: " + userName);
 
@@ -248,14 +251,29 @@ exports.updateAppointment = (req, res, next) => {
 function send_email(req, res) {
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const msg = {
-        to: res.locals.user.googleemail,
-        from: 'bbdhy96@gmail.com',
+    const msgToTutee = {
+        to: res.locals.tuteeEmail,
+        from: res.locals.tutorEmail,
         subject: 'Your iClaster tutor appointment is set',
-        text: 'Hi, your appointment with ' + req.body.tuteeName + ' is set',
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        text: 'Hi, your appointment with ' + req.locals.tutorName + ' is set',
+        html: 'Hi, your appointment with tutor: ' +
+            req.locals.tutorName + ' ' +
+            req.locals.tutorEmail +
+            ' is set on' + res.locals.startAt,
     };
-    sgMail.send(msg);
+    sgMail.send(msgToTutee);
+
+    const msgToTutor = {
+        to: res.locals.tutorEmail,
+        from: res.locals.tuteeEmail,
+        subject: 'Your iClaster tutor appointment is set',
+        text: 'Hi, your appointment with ' + req.locals.tuteeName + ' is set',
+        html: 'Hi, your appointment with student: ' +
+            req.locals.tuteeName + ' ' +
+            req.locals.tuteeEmail +
+            ' is set on' + res.locals.startAt,
+    };
+    sgMail.send(msgToTutor);
 }
 
 
