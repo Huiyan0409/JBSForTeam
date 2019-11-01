@@ -217,9 +217,9 @@ exports.getName = (req, res, next) => {
 exports.updateAppointment = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
-    const date = req.body.appointmentDate;
-    const time = req.body.appointmentTime;
-    const startAt = date.concat("  ", time);
+    var date = req.body.appointmentDate;
+    var time = req.body.appointmentTime;
+    var startAt = date.concat("  ", time);
 
     // console.log("userName is: " + userName);
 
@@ -235,19 +235,32 @@ exports.updateAppointment = (req, res, next) => {
             classCode: req.body.classCode,
             status: "incomplete"
         }
-    )
+    );
+
     newAppointment.save()
         .then(() => {
             send_email(req, res);
             //redirect to dashboard
-            console.log("success");
             res.redirect('/taskBoard');
         })
         .catch(error => {
-            console.log("error");
             res.send(error);
         });
 };
+
+function send_email(req, res) {
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+        to: res.locals.user.googleemail,
+        from: 'iclaster support team',
+        subject: 'Your iClaster tutor appointment is set',
+        text: 'Hi, your appointment with ' + req.body.tuteeName + ' is set on '
+            + req.body.startAt,
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg);
+}
 
 function send_email(req, res) {
     const sgMail = require('@sendgrid/mail');
