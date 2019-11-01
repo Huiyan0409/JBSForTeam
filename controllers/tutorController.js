@@ -250,13 +250,16 @@ function send_email(req, res) {
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-        to: res.locals.user.googleemail,
+        to: '' + res.locals.user.googleemail,
         from: 'iclaster support team',
         subject: 'Your iClaster tutor appointment is set',
         text: 'Hi, your appointment with ' + req.body.tuteeName + ' is set on '
         + req.body.startAt,
         html: '<strong>and easy to do anywhere, even with Node.js</strong>',
     };
+    console.log(res.locals.user.googleemail);
+    console.log(req.body.tuteeName);
+    console.log(req.body.startAt);
     sgMail.send(msg);
 }
 
