@@ -267,7 +267,7 @@ function send_email() {
         from: tutorEmail,
         subject: 'iClaster: appointment with <strong>' + tuteeName + '</strong> is set',
         text: 'Hi, your appointment is set',
-        html: 'Hi, ' + '<br><br>' + 'Your appointment with TA: <strong> ' + tuteeName + '</strong> is set' +
+        html: 'Hi, ' + '<br><br>' + 'Your appointment with TA: <strong> ' + tutorName + '</strong> is set' +
             '<br>' + 'Class: ' + classCode +
             '<br>' + 'Time: ' + startTime +
             '<br>' + 'Length: ' + length +
@@ -279,9 +279,9 @@ function send_email() {
         from: tuteeEmail,
         subject: 'iClaster: appointment with <strong>' + tutorName + '</strong> is set',
         text: 'Hi, your appointment is set',
-        html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tutorName + '</strong> is set' +
-            '<br>' + 'Time: ' + startTime +
+        html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tuteeName + '</strong> is set' +
             '<br>' + 'Class: ' + classCode +
+            '<br>' + 'Time: ' + startTime +
             '<br>' + 'Length: ' + length +
             '<br><br>' + 'iClaster support team',
     };
