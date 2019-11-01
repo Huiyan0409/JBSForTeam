@@ -199,14 +199,14 @@ exports.getName = (req, res, next) => {
         .exec()
         .then((tutee) => {
             res.locals.tuteeName = tutee.userName;
-            res.locals.tuteeEmail = tutee.googleemail;
+            // res.locals.tuteeEmail = tutee.googleemail;
             next()
         });
     User.findOne({_id: tutorId})
         .exec()
         .then((tutor) => {
             res.locals.tutorName = tutor.userName;
-            res.locals.tutorEmail = tutor.googleemail;
+            // res.locals.tutorEmail = tutor.googleemail;
         })
         .catch((error) => {
             console.log(error.message);
@@ -240,6 +240,7 @@ exports.updateAppointment = (req, res, next) => {
         .then(() => {
             send_email(req, res);
             //redirect to dashboard
+            console.log("success");
             res.redirect('/taskBoard');
         })
         .catch(error => {
