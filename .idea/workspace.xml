@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="" />
+    <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +32,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.0" />
     <property name="jsx.switch.disabled" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -65,6 +68,9 @@
       <workItem from="1572554184566" duration="4621000" />
       <workItem from="1572623646614" duration="187000" />
       <workItem from="1572631427016" duration="1233000" />
+      <workItem from="1572828646891" duration="245000" />
+      <workItem from="1573682655782" duration="435000" />
+      <workItem from="1573686803680" duration="63000" />
     </task>
     <servers />
   </component>
