@@ -14,12 +14,12 @@ const User = require('../models/User');
 
 
 // load the auth variables	// load the auth variables
-const clientID = process.env.clientID;
-// const clientID = "960287962764-sfv4q5pbgngotppbedbkgsqf0u790kam.apps.googleusercontent.com";
-const clientSecret = process.env.clientSecret;
-// const clientSecret = "grrRchAdcbf2st9eBXUgVBQO";
-const callbackURL = process.env.callbackURL;
-// const callbackURL = "http://127.0.0.1:5500/login/authorized";
+// const clientID = process.env.clientID;
+const clientID = "960287962764-sfv4q5pbgngotppbedbkgsqf0u790kam.apps.googleusercontent.com";
+// const clientSecret = process.env.clientSecret;
+const clientSecret = "grrRchAdcbf2st9eBXUgVBQO";
+// const callbackURL = process.env.callbackURL;
+const callbackURL = "http://127.0.0.1:5500/login/authorized";
 
 
 module.exports = function(passport) {
