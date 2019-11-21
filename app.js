@@ -38,9 +38,9 @@ configPassport(passport);
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-// const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI;
 // const MONGODB_URI = 'mongodb://localhost/iclaster';
-console.log("MONGODB_URI: " + process.env.MONGODB_URI);
+// console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');
 
@@ -96,9 +96,7 @@ app.use(passport.initialize(1));
 app.use(passport.session(1));
 app.use(bodyParser.urlencoded({extended: false}));
 
-
-const approvedLogins = ["supremeethan@brandeis.edu", "yhao@brandeis.edu", "nicolezhang@brandeis.edu"];
-// const approvedLogins = process.env.approvedLogins;
+const approvedLogins = process.env.approvedLogins;
 
 // here is where we check on their logged in status
 app.use((req, res, next) => {
