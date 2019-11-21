@@ -38,9 +38,9 @@ configPassport(passport);
 
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
-const MONGODB_URI = process.env.MONGODB_URI;
+// const MONGODB_URI = process.env.MONGODB_URI;
 // const MONGODB_URI = 'mongodb://localhost/iclaster';
-// console.log("MONGODB_URI: " + process.env.MONGODB_URI);
+console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');
 
@@ -194,7 +194,7 @@ function isLoggedIn(req, res, next) {
 app.get('/', function (req, res) {
     if (req.user && !req.user.userName) {
         console.log("first time user!");
-        res.redirect('/editMyProfile/' + req.user._id)
+        res.redirect('/editMyProfileFirstTime/' + req.user._id)
     } else {
         res.render('index', {
             req: req
@@ -251,6 +251,16 @@ app.get('/myProfile/:id',
 app.get('/editMyProfile/:id',
     isLoggedIn,
     profileController.showOldProfile
+);
+
+// we require them to be logged in to edit their profile
+app.get('/editMyProfileFirstTime/:id',
+    isLoggedIn,
+    function (req, res) {
+        res.render('editMyProfileFirstTime', {
+            req: req
+        })
+    }
 );
 
 //update personal profile
@@ -480,7 +490,6 @@ app.get('/communicationBoard',
     isLoggedIn,
     communicationController.getCommunicationBoard,
 );
-
 
 
 // =====================================

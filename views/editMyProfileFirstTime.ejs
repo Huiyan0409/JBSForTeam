@@ -1,0 +1,60 @@
+<%- include('header'); -%>
+<%- include('navbar'); -%>
+
+
+<section class="section section--grey">
+    <div class="section__content section__content--full-width">
+        <div class="jumbotron masthead text-center">
+            <div class="section__title section__title--centered">
+                Welcome to Claster, please complete your profile first.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12"></div>
+            <div class="col-md-4 col-sm-12">
+                <!-- form: update personal info -->
+                <form action="/updateProfile/<%= user._id %>" method="post">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Username</span>
+                        <input type="text" class="form-control" name="userName" value="<%= user.userName %>">
+                    </div>
+                    <br>
+                    <% if (user.status == "tutor") { %>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Status</span>
+                            <select class="form-control" name="status">
+                                <option disabled value="Choose a role">Role</option>
+                                <option value="tutor">Tutor</option>
+                                <option value="student">Student</option>
+                            </select>
+                        </div>
+                    <% } else { %>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Status</span>
+                            <select class="form-control" name="status">
+                                <option disabled value="Choose a role">Role</option>
+                                <option value="student">Student</option>
+                                <option value="tutor">Tutor</option>
+                            </select>
+                        </div>
+
+                    <% } %>
+                    <br>
+                    <input type="submit" class="btn btn-outline-primary" value="Save">
+
+                </form>
+                <br>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<%- include('footer'); -%>

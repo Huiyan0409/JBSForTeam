@@ -2,8 +2,8 @@
 <%- include('navbar'); -%>
 
 <section class="section section--grey">
-    <div class="section__content section__content--fixed-width">
-        <div class="jumbotron masthead diagonal-gradient text-center" id="whiteFont">
+    <div class="section__content section__content--full-width">
+        <div class="jumbotron masthead text-center">
             <div class="section__title section__title--centered">
                 <%= user.userName %>'s profile
             </div>
@@ -15,7 +15,8 @@
 <section class="section section--grey">
     <div class="container">
 
-        <div class="row justify-content-md-center">
+        <div class="row">
+            <div class="col-md-4 col-sm-12"></div>
             <div class="col-md-4 col-sm-12">
                 <h3><b>User Profile:</b></h3>
                 <hr>
@@ -39,8 +40,11 @@
                 </div>
 
                 <br>
-
-                <img src="<%= profile.profilePicURL %>" width="100%" alt="profile picture">
+                <% if (profile.profilePicURL) { %>
+                    <img src="<%= profile.profilePicURL %>" width="100%" alt="profile picture">
+                <% } else { %>
+                    No profile image
+                <% } %>
 
                 <br>
                 <br>

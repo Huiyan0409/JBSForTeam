@@ -61,9 +61,9 @@
 
                 <li class="header__btn header__btn--login">
                     <% if (!loggedIn) { %>
-                        <a class="nav-link" href="/auth/google">Login with Google</a>
+                        <a class="btn btn-outline-dark" href="/auth/google">Login with Google</a>
                     <% } else { %>
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <a class="btn btn-outline-dark" href="/logout">Logout</a>
                     <% } %>
                 </li>
 
@@ -74,222 +74,251 @@
 
 <!-- Section intro -->
 <section class="section section--intro section--grey" id="home">
-    <div class="section__content section__content--fluid-width section__content--intro">
+
+    <div class="section__content section__content--full-width">
         <div class="intro">
             <div class="intro__content">
                 <% if (loggedIn) { %>
                     <div class="intro__subtitle" style="color: black;">Hi, <%= user.userName %>!</div>
                 <% } %>
                 <div class="intro__subtitle" style="color: black;">Welcome to Claster!</div>
-                <div class="intro__title">Integrated <br> <span>peer-to-peer</span> study help -all in one
-                    place.<br></div>
+                <div class="intro__title">Integrated <br><span>peer-to-peer</span> study help -all in one place.<br>
+                </div>
+                <br>
                 <% if (loggedIn) { %>
                     <div class="form-demo">
                         <a href="/classes"><input type="submit" name="submit" class="form-demo__submit1"
                                                   value="ENROLL/DROP"></a>
-                        <br><br><br>
                     </div>
+                    <br>
+                    <% for (var i = 0; i < user.classCodes.length; i++){ %>
+                        <div class="form-demo">
+                            <a href="/showQuestions/<%= user.classCodes[i] %>"><input
+                                        class="form-demo__forumEntry"
+                                        type="button"
+                                        value="<%= user.classCodes[i] %>"></a>
+                        </div>
+                    <% } %>
                 <% } else { %>
-                    <b><h3>PLEASE LOG IN TO ENABLE ALL FEATURES.</h3></b>
+                    <h3><b>PLEASE LOG IN TO ENABLE ALL FEATURES.</b></h3>
                     <a href="/auth/google"><input type="submit" name="submit" class="form-demo__submit1"
                                                   value="LOGIN IN"></a>
                 <% } %>
             </div>
-        </div>
-    </div>
-
-    <!-- <div class="intro-animation">
-      <img src="./images/homepage.png" width="90%" alt="" title=""/>
-    </div> -->
-
-    <!-- background image on the intro part -->
-    <svg class="svg-intro-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95" preserveAspectRatio="none">
-        <defs>
-            <linearGradient id="linear" x1="0" y1="0%" x2="100%" y2="50%" spreadMethod="pad">
-                <stop offset="0%" stop-color="#0a52c7"/>
-                <stop offset="100%" stop-color="black"/>
-            </linearGradient>
-        </defs>
-        <path d="M30,0 L56,80 Q57.5,84.4 60,82 L100,40 100,0 Z" fill="url(#linear)" fill-opacity="1"/>
-    </svg>
-
-</section>
-
-<!-- Section features -->
-<section class="section section--features">
-    <br><br><br>
-    <div class="section__content section__content--fluid-width">
-        <div class="grid grid--3col">
-
-            <div class="grid__item">
-                <h3 class="grid__title"><span>DISCUSS</span></h3>
-                <p class="grid__text">Communicate with your peers using our smooth, clean, and effective platform to get
-                    response quickly without redundant email notifications and duplicate questions. More fluent
-                    communication than forum, more organized than messaging apps. </p>
-            </div>
-
-
-            <div class="grid__item">
-                <h3 class="grid__title"><span>TUTOR</span></h3>
-                <p class="grid__text">Get matched with a tutor today to get some extra academic help! Our tutor are
-                    verified college students who have taken your class and familiar with the specific topic you are
-                    confused about. Or go and become a tutor today! </p>
-            </div>
-
-            <div class="grid__item">
-                <h3 class="grid__title"><span>MEET (Coming Soon)</span></h3>
-                <p class="grid__text">Work better in person? Check out our location sharing function to see who else
-                    from your class is near by and ready to study! You can form a study group meeting by deciding a
-                    location to meet and share the meeting with the entire class. </p>
-            </div>
 
         </div>
+
     </div>
 </section>
 
-<!-- Section -->
-<section class="section section&#45;&#45;grey" id="forum">
-    <div class="section__content section__content--fluid-width section__content--padding">
-        <br>
-        <h3 class="section__title section__title--centered">Forum</h3>
-        <div class="partners">
-            <div class="partners__content swiper-wrapper">
-                <div class="partners__slide swiper-slide">
-                    <% if (loggedIn) { %>
-                        <% for (i = 0; i < user.classCodes.length; i++){ %>
-                            <div class="partners__text">
-                                <br>
-                                <a href="/showQuestions/<%= user.classCodes[i] %>"><input
-                                            class="btn btn-outline-dark"
-                                            type="button"
-                                            value="Go to Forum for <%= user.classCodes[i] %>"></a>
-                            </div>
-                        <% } %>
-                    <% } else { %>
-                        <div class="partners__text">
-                            Please login to view the forum
-                        </div>
-                    <% } %>
-                </div>
-            </div>
-            <div class="partners__pagination swiper-pagination"></div>
-        </div>
+<!--&lt;!&ndash; Section &ndash;&gt;-->
+<!--<section class="section section&#45;&#45;grey" id="forum">-->
+<!--    <div class="section__content section__content&#45;&#45;fluid-width section__content&#45;&#45;padding">-->
+<!--        <br>-->
+<!--        <h3 class="section__title section__title&#45;&#45;centered">Forum</h3>-->
+<!--        <div class="partners">-->
+<!--            <div class="partners__content swiper-wrapper">-->
+<!--                <div class="partners__slide swiper-slide">-->
+<!--                    <% if (loggedIn) { %>-->
+<!--                        <% for (i = 0; i < user.classCodes.length; i++){ %>-->
+<!--                            <div class="partners__text">-->
+<!--                                <br>-->
+<!--                                <a href="/showQuestions/<%= user.classCodes[i] %>"><input-->
+<!--                                            class="btn btn-outline-dark"-->
+<!--                                            type="button"-->
+<!--                                            value="Go to Forum for <%= user.classCodes[i] %>"></a>-->
+<!--                            </div>-->
+<!--                        <% } %>-->
+<!--                    <% } else { %>-->
+<!--                        <div class="partners__text">-->
+<!--                            Please login to view the forum-->
+<!--                        </div>-->
+<!--                    <% } %>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="partners__pagination swiper-pagination"></div>-->
+<!--        </div>-->
 
-        <div class="clear"></div>
-    </div>
-</section>
+<!--        <div class="clear"></div>-->
+<!--    </div>-->
+<!--</section>-->
 
 
-<!-- Section -->
-<section class="section" id="tutor">
-    <div class="section__content section__content--fluid-width section__content--padding">
-        <h3 class="section__title section__title--centered">Tutor</h3>
+<!--&lt;!&ndash; Section features &ndash;&gt;-->
+<!--<section class="section section&#45;&#45;features">-->
+<!--    <br><br><br>-->
+<!--    <div class="section__content section__content&#45;&#45;fluid-width">-->
+<!--        <div class="grid grid&#45;&#45;3col">-->
 
-        <br><br><br>
-        <div class="grid grid--3col">
+<!--            <div class="grid__item">-->
+<!--                <h3 class="grid__title"><span>DISCUSS</span></h3>-->
+<!--                <p class="grid__text">Communicate with your peers using our smooth, clean, and effective platform to get-->
+<!--                    response quickly without redundant email notifications and duplicate questions. More fluent-->
+<!--                    communication than forum, more organized than messaging apps. </p>-->
+<!--            </div>-->
 
-            <div class="grid__item">
-                <h3 class="grid__title"><span>Ready to get started with tutors?</span></h3>
-                <h3>Find a peer tutor that meets your need!</h3>
-            </div>
 
-            <div class="grid__item">
-                <h3 class="grid__title"><span>Find a tutor</span></h3>
-                <p class="grid__text">
-                    Find a good tutor at an unbeatable price. Our tutors are students who have taken the same class
-                    before. They have been trained online by Claster to ensure not only understanding of material,
-                    but also tutoring abilities. You can search by subject, class, or topic to find the tutor you
-                    are looking for!
-                    <br><br>
-                    <% if (loggedIn) { %>
-                        <a href="/showTutors" class="btn btn-outline-dark">Find a tutor</a>
-                    <% } else { %>
-                        Please login to find tutors at your school
-                    <% } %>
-                </p>
-            </div>
+<!--            <div class="grid__item">-->
+<!--                <h3 class="grid__title"><span>TUTOR</span></h3>-->
+<!--                <p class="grid__text">Get matched with a tutor today to get some extra academic help! Our tutor are-->
+<!--                    verified college students who have taken your class and familiar with the specific topic you are-->
+<!--                    confused about. Or go and become a tutor today! </p>-->
+<!--            </div>-->
 
-            <div class="grid__item">
-                <h3 class="grid__title"><span>Become a tutor</span></h3>
-                <p class="grid__text">
-                    If you have gotten a grade above A- in a class, and want to make some extra money while
-                    refreshing your knowledge about a course, we strongly encourage you to become a tutor! After
-                    completing a quick training, you will be added to the forum discussion of that class. Click
-                    become a tutor to find out more! <br><br>
-                    <% if (loggedIn) { %>
-                        <a href="/tutorRegister" class="btn btn-outline-dark">Become a tutor</a>
-                    <% } else { %>
-                        Please login to become a tutor
-                    <% } %>
-                </p>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-</section>
+<!--            <div class="grid__item">-->
+<!--                <h3 class="grid__title"><span>MEET (Coming Soon)</span></h3>-->
+<!--                <p class="grid__text">Work better in person? Check out our location sharing function to see who else-->
+<!--                    from your class is near by and ready to study! You can form a study group meeting by deciding a-->
+<!--                    location to meet and share the meeting with the entire class. </p>-->
+<!--            </div>-->
 
-<section class="section section--grey" id="profile">
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 
-    <div class="section__content section__content--fluid-width section__content--padding">
-        <h2 class="section__title section__title--centered" id="grey">User</h2>
-        <div class="partners">
-            <div class="partners__content swiper-wrapper">
-                <div class="partners__slide swiper-slide">
-                    <% if (loggedIn) { %>
-                        <div class="container">
+<!--&lt;!&ndash; Section &ndash;&gt;-->
+<!--<section class="section section&#45;&#45;grey" id="forum">-->
+<!--    <div class="section__content section__content&#45;&#45;fluid-width section__content&#45;&#45;padding">-->
+<!--        <br>-->
+<!--        <h3 class="section__title section__title&#45;&#45;centered">Forum</h3>-->
+<!--        <div class="partners">-->
+<!--            <div class="partners__content swiper-wrapper">-->
+<!--                <div class="partners__slide swiper-slide">-->
+<!--                    <% if (loggedIn) { %>-->
+<!--                        <% for (i = 0; i < user.classCodes.length; i++){ %>-->
+<!--                            <div class="partners__text">-->
+<!--                                <br>-->
+<!--                                <a href="/showQuestions/<%= user.classCodes[i] %>"><input-->
+<!--                                            class="btn btn-outline-dark"-->
+<!--                                            type="button"-->
+<!--                                            value="Go to Forum for <%= user.classCodes[i] %>"></a>-->
+<!--                            </div>-->
+<!--                        <% } %>-->
+<!--                    <% } else { %>-->
+<!--                        <div class="partners__text">-->
+<!--                            Please login to view the forum-->
+<!--                        </div>-->
+<!--                    <% } %>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="partners__pagination swiper-pagination"></div>-->
+<!--        </div>-->
 
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Username</span>
-                                        <input disabled type="text" class="form-control" value="<%= user.userName %>">
-                                    </div>
-                                </div>
+<!--        <div class="clear"></div>-->
+<!--    </div>-->
+<!--</section>-->
 
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Email</span>
-                                        <input disabled type="text" class="form-control"
-                                               value="<%= user.googleemail %>">
-                                    </div>
-                                </div>
 
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Status</span>
-                                        <input disabled type="text" class="form-control" value="<%= user.status %>">
-                                    </div>
-                                </div>
+<!--&lt;!&ndash; Section &ndash;&gt;-->
+<!--<section class="section" id="tutor">-->
+<!--    <div class="section__content section__content&#45;&#45;fluid-width section__content&#45;&#45;padding">-->
+<!--        <h3 class="section__title section__title&#45;&#45;centered">Tutor</h3>-->
 
-                            </div>
-                        </div>
+<!--        <br><br><br>-->
+<!--        <div class="grid grid&#45;&#45;3col">-->
 
-                        <div class="partners__text">
-                            <a href="/myProfile/<%= user._id %>"><input class="btn btn-outline-dark" type="button"
-                                                                            value="View full profile"></a>
-                        </div>
-                        <hr>
-                        <div class="partners__text">
-                            <a href="/taskBoard"><input type="button" class="btn btn-outline-dark"
-                                                        value="Go to task board"></a>
-                        </div>
-                        <br>
-                        <div class="partners__text">
-                            <a href="/communicationBoard"><input type="button" class="btn btn-outline-dark"
-                                                                 value="Go to message board"></a>
-                        </div>
-                    <% } else { %>
-                        Please log in to view and edit your profile
-                    <% } %>
-                </div>
-            </div>
+<!--            <div class="grid__item">-->
+<!--                <h3 class="grid__title"><span>Ready to get started with tutors?</span></h3>-->
+<!--                <h3>Find a peer tutor that meets your need!</h3>-->
+<!--            </div>-->
 
-            <div class="partners__pagination swiper-pagination"></div>
+<!--            <div class="grid__item">-->
+<!--                <h3 class="grid__title"><span>Find a tutor</span></h3>-->
+<!--                <p class="grid__text">-->
+<!--                    Find a good tutor at an unbeatable price. Our tutors are students who have taken the same class-->
+<!--                    before. They have been trained online by Claster to ensure not only understanding of material,-->
+<!--                    but also tutoring abilities. You can search by subject, class, or topic to find the tutor you-->
+<!--                    are looking for!-->
+<!--                    <br><br>-->
+<!--                    <% if (loggedIn) { %>-->
+<!--                        <a href="/showTutors" class="btn btn-outline-dark">Find a tutor</a>-->
+<!--                    <% } else { %>-->
+<!--                        Please login to find tutors at your school-->
+<!--                    <% } %>-->
+<!--                </p>-->
+<!--            </div>-->
 
-        </div>
-        <br><br><br>
-        <div class="clear"></div>
-    </div>
-</section>
+<!--            <div class="grid__item">-->
+<!--                <h3 class="grid__title"><span>Become a tutor</span></h3>-->
+<!--                <p class="grid__text">-->
+<!--                    If you have gotten a grade above A- in a class, and want to make some extra money while-->
+<!--                    refreshing your knowledge about a course, we strongly encourage you to become a tutor! After-->
+<!--                    completing a quick training, you will be added to the forum discussion of that class. Click-->
+<!--                    become a tutor to find out more! <br><br>-->
+<!--                    <% if (loggedIn) { %>-->
+<!--                        <a href="/tutorRegister" class="btn btn-outline-dark">Become a tutor</a>-->
+<!--                    <% } else { %>-->
+<!--                        Please login to become a tutor-->
+<!--                    <% } %>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="clear"></div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<section class="section section&#45;&#45;grey" id="profile">-->
+
+<!--    <div class="section__content section__content&#45;&#45;fluid-width section__content&#45;&#45;padding">-->
+<!--        <h2 class="section__title section__title&#45;&#45;centered" id="grey">User</h2>-->
+<!--        <div class="partners">-->
+<!--            <div class="partners__content swiper-wrapper">-->
+<!--                <div class="partners__slide swiper-slide">-->
+<!--                    <% if (loggedIn) { %>-->
+<!--                        <div class="container">-->
+
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4 col-sm-12">-->
+<!--                                    <div class="input-group-prepend">-->
+<!--                                        <span class="input-group-text">Username</span>-->
+<!--                                        <input disabled type="text" class="form-control" value="<%= user.userName %>">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="col-md-4 col-sm-12">-->
+<!--                                    <div class="input-group-prepend">-->
+<!--                                        <span class="input-group-text">Email</span>-->
+<!--                                        <input disabled type="text" class="form-control"-->
+<!--                                               value="<%= user.googleemail %>">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="col-md-4 col-sm-12">-->
+<!--                                    <div class="input-group-prepend">-->
+<!--                                        <span class="input-group-text">Status</span>-->
+<!--                                        <input disabled type="text" class="form-control" value="<%= user.status %>">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="partners__text">-->
+<!--                            <a href="/myProfile/<%= user._id %>"><input class="btn btn-outline-dark" type="button"-->
+<!--                                                                        value="View full profile"></a>-->
+<!--                        </div>-->
+<!--                        <hr>-->
+<!--                        <div class="partners__text">-->
+<!--                            <a href="/taskBoard"><input type="button" class="btn btn-outline-dark"-->
+<!--                                                        value="Go to task board"></a>-->
+<!--                        </div>-->
+<!--                        <br>-->
+<!--                        <div class="partners__text">-->
+<!--                            <a href="/communicationBoard"><input type="button" class="btn btn-outline-dark"-->
+<!--                                                                 value="Go to message board"></a>-->
+<!--                        </div>-->
+<!--                    <% } else { %>-->
+<!--                        Please log in to view and edit your profile-->
+<!--                    <% } %>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="partners__pagination swiper-pagination"></div>-->
+
+<!--        </div>-->
+<!--        <br><br><br>-->
+<!--        <div class="clear"></div>-->
+<!--    </div>-->
+<!--</section>-->
 
 <%- include('footer'); -%>

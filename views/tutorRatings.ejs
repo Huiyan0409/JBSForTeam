@@ -2,9 +2,9 @@
 <%- include('navbar'); -%>
 
 <section class="section section--grey">
-    <div class="section__content section__content--fixed-width">
-        <div class="jumbotron masthead diagonal-gradient text-center">
-            <div class="section__title section__title--centered" id="whiteFont">
+    <div class="section__content section__content--full-width">
+        <div class="jumbotron masthead text-center">
+            <div class="section__title section__title--centered">
                 Please rate your tutor: <%= appointment.tutorName %>
             </div>
         </div>
@@ -13,7 +13,7 @@
 
 <form method="post" action="/processTutorRating/<%= appointment._id %>/<%= appointment.tutorId %>">
     <section class="section section--grey">
-        <div class="section__content section__content--fixed-width text-center">
+        <div class="section__content section__content--full-width text-center">
             <h3><label id="rate">How was it?</label></h3>
             <div class="container .grid__item--centering center">
                 <div class="rating">
@@ -91,7 +91,7 @@
     </section>
 
     <section class="section section--grey">
-        <div class="section__content section__content--fixed-width">
+        <div class="section__content section__content--full-width">
             <div class="container text-center">
                 <hr>
                 <br><h4>Click your tag!</h4><br><br>
@@ -196,7 +196,7 @@
     </section>
 
     <section class="section section--grey">
-        <div class="section__content section__content--fixed-width">
+        <div class="section__content section__content--full-width">
             <div class="container text-center">
                 <div class="form-group">
                     <br><br><br><br>

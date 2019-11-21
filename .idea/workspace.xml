@@ -2,7 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/images/download.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/editMyProfileFirstTime.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/FAQ.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/FAQ.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/about.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/about.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/classNotFound.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/classNotFound.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/classes.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/classes.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/communication.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/communication.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/communicationBoard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/communicationBoard.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/editMyProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editMyProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/editMyTutorProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editMyTutorProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/editQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/emptyError.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/emptyError.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/footer.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/myProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/myProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/postQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/postQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showProfiles.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showProfiles.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showQuestions.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showQuestions.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showTutors.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showTutors.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/taskBoard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/taskBoard.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tutorRatings.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/tutorRatings.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tutorRegister.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/tutorRegister.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,9 +60,14 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -71,6 +104,7 @@
       <workItem from="1572828646891" duration="245000" />
       <workItem from="1573682655782" duration="435000" />
       <workItem from="1573686803680" duration="63000" />
+      <workItem from="1574360587668" duration="10306000" />
     </task>
     <servers />
   </component>

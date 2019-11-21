@@ -76,8 +76,14 @@ body {
     padding: 10px;
 }
 
-.header__menu ul li a#header-link {
+.header__menu ul li a.header-link {
+    color: black;
     border: 0;
+}
+
+
+.header__menu ul li > a.header-link:hover {
+    color: #ff8d12;
 }
 
 .container {
@@ -126,14 +132,10 @@ body {
     color: white;
 }
 
-.header__menu ul li > a.header-link:hover {
-    color: #ff8d12;
-}
-
 .jumbotron.masthead {
     /* margin-top: -3%; */
     padding-top: 6.5%;
-    background-color: grey;
+    background-color: white;
 
     /* background-image: url("https://493w82rqkc542yagv4czh42m-wpengine.netdna-ssl.com/wp-content/uploads/2012/05/1_Campus_Center_Brandeis.jpg"); */
     /* background-color: black; */
@@ -395,6 +397,7 @@ h6 {
 /*===============================================*/
 /* BLOCK - header */
 .header {
+    /*background-color: white;*/
     width: 100%;
     height: 70px;
     -webkit-transition: all 0.5s;
@@ -408,7 +411,7 @@ h6 {
 
 /* MODIFIER - header */
 .header--sticky {
-    background-color: #fff;
+    background-color: white;
     box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.03);
     -moz-box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.03);
     -webkit-box-shadow: 0 4px 10px 0px rgba(0, 0, 0, 0.03);
@@ -434,7 +437,7 @@ h6 {
 }
 
 .header__logo-title {
-    color: #000;
+    color: black;
     font-size: 26px;
     letter-spacing: -1px;
     position: relative;
@@ -506,8 +509,8 @@ h6 {
     width: 28px;
     height: 6px;
     z-index: 999;
-    border-top: 1px double #fff;
-    border-bottom: 1px solid #fff;
+    border-top: 1px double #000000;
+    border-bottom: 1px solid #000000;
 }
 
 .header__menu > ul > li {
@@ -533,10 +536,11 @@ h6 {
 }
 
 .header--sticky .menu-button, .menu-open .menu-button {
-    border-bottom: 1px solid #000;
+    /*border-bottom: 1px solid #000;*/
 }
 
 .header--sticky .menu-button:before, .menu-open .menu-button:before {
+    color: black;
     border-bottom: 1px solid #000;
     border-top: 1px double #000;
 }
@@ -561,10 +565,11 @@ h6 {
 }
 
 .header__menu > ul > li.header__btn--login > a {
-    color: #fff;
+    /*background-color: black;*/
+    color: black;
     padding: 0 22px;
     margin: 19px 0 0 25px;
-    border: 1px #fff solid;
+    border: 1px black solid;
 }
 
 .header--sticky .header__menu > ul > li.header__btn--login > a, .menu-open .header__menu > ul > li.header__btn--login > a {
@@ -585,8 +590,8 @@ h6 {
 }
 
 .header__menu ul li.header__btn--login > a:hover {
-    background-color: #fff;
-    color: #272b26;
+    background: none;
+    border: 1px #ff8d12 solid;
 }
 
 .header--sticky .header__menu ul li.header__btn--login > a:hover {
@@ -694,7 +699,7 @@ h6 {
 .section {
     width: 100%;
     height: auto;
-    float: left;
+    /*float: none;*/
     clear: both;
 }
 
@@ -1206,16 +1211,16 @@ h6 {
 }
 
 .intro {
-    width: 40%;
-    float: left;
-    padding: 15% 0 0 0;
+    width: 100%;
+    /*float: ;*/
+    padding: 10% 0 0 0;
     position: relative;
     z-index: 777;
 }
 
 .intro__content {
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 .intro__title {
@@ -1333,10 +1338,10 @@ h6 {
 }
 
 .form-demo__submit1 {
-    width: 50%;
-    float: left;
-    background-color: #28a745;
-    border: 1px solid #28a745;
+    width: 25%;
+    /*float: left;*/
+    background-color: #000;
+    border: 1px solid #fff;
     height: 63px;
     line-height: 61px;
     font-size: 18px;
@@ -1353,8 +1358,34 @@ h6 {
 
 .form-demo__submit1:hover {
     background-color: #fff;
-    border: 1px solid #28a745;
-    color: #28a745;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.form-demo__forumEntry {
+    margin-bottom: 10px;
+    width: 12%;
+    /*float: left;*/
+    background-color: #ff8d12;
+    border: 1px solid #fff;
+    height: 42px;
+    line-height: 40px;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    color: #fff;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.form-demo__forumEntry:hover {
+    background-color: #fff;
+    border: 1px solid #ff8d12;
+    color: #ff8d12;
 }
 
 svg.svg-intro-bottom {
@@ -2649,7 +2680,7 @@ ul.grid__list--fmenu li a:hover {
     }
 
     .intro {
-        width: 50%;
+        width: 100%;
     }
 
     svg.svg-intro-bottom {
