@@ -1338,7 +1338,7 @@ h6 {
 }
 
 .form-demo__submit1 {
-    width: 25%;
+    width: 300px;
     /*float: left;*/
     background-color: #000;
     border: 1px solid #fff;
@@ -1364,7 +1364,7 @@ h6 {
 
 .form-demo__forumEntry {
     margin-bottom: 10px;
-    width: 12%;
+    width: 150px;
     /*float: left;*/
     background-color: #ff8d12;
     border: 1px solid #fff;
@@ -1596,7 +1596,7 @@ svg.svg-intro-bottom {
     overflow: hidden;
     position: relative;
     margin: 0;
-    padding: 40px 0 80px 0;
+    padding: 0px 0 100px 0;
 }
 
 .partners__slide {

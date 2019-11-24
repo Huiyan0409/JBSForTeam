@@ -1,0 +1,65 @@
+<%- include('header') -%>
+<%- include('navbar') -%>
+
+<section class="section section--grey">
+    <div class="section__content section__content--full-width">
+        <div class="jumbotron masthead text-center">
+            <div class="section__title section__title--centered">
+                User: <%=user.userName%>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--grey">
+    <div class="section__content section__content--fluid-width section__content--padding">
+        <div class="partners">
+            <div class="partners__content swiper-wrapper">
+                <div class="partners__slide swiper-slide">
+                    <% if (loggedIn) { %>
+                        <div class="partners__text">
+                            <br>
+                            <a href="/taskBoard"><input
+                                        class="btn btn-outline-dark"
+                                        type="button"
+                                        value="Taskboard"></a>
+                        </div>
+                        <div class="partners__text">
+                            <br>
+                            <a href="/communicationBoard"><input
+                                        class="btn btn-outline-dark"
+                                        type="button"
+                                        value="Notification center"></a>
+                        </div>
+                        <div class="partners__text">
+                            <br>
+                            <a href="/myProfile/<%= user._id %>"><input
+                                        class="btn btn-outline-dark"
+                                        type="button"
+                                        value="View my profile"></a>
+                        </div>
+                        <% if (user.status == "admin") { %>
+
+                            <div class="partners__text">
+                                <br>
+                                <a href="/showProfiles %>"><input
+                                            class="btn btn-outline-dark"
+                                            type="button"
+                                            value="Show all profiles"></a>
+                            </div>
+                        <% } %>
+
+                    <% } else { %>
+                        <div class="partners__text">
+                            Please login to view this page
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <div class="partners__pagination swiper-pagination"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</section>
+
+<%- include('footer') -%>

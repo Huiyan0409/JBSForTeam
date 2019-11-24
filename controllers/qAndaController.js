@@ -49,20 +49,14 @@ exports.getAllQuestions = (req, res, next) => {
             }
             let asyncKiller = 0;
             for (let i = 0; i < questions.length; i++) {
-                console.log("question length: " + questions.length);
-                console.log("i before is:  " + i);
-                console.log("questions[i].answerNum is: " + questions[i].answerNum);
                 let counts = 0;
                 Answer.find({questionId: questions[i]._id}).countDocuments()
                     .exec()
                     .then((count) => {
-                        console.log("count before is:  " + count);
                         if (count > 0) {
                             count = 1;
                         }
-                        console.log("count now is:  " + count);
                         counts = count;
-                        console.log("countsssssss: " + counts);
                         // determine whether a question is answered or not
                         questions[i].answerNum = counts;
                         questions[i].save();
@@ -85,7 +79,7 @@ exports.getAllQuestions = (req, res, next) => {
         })
 };
 
-exports.displayAllQuestions = (req, res, next) => {
+exports.displayAllQuestions = (req, res) => {
     const classCode = req.params.classCode;
     Question.find({classCode: classCode}).sort({createdAt: '-1'})
         .exec()
@@ -99,7 +93,7 @@ exports.displayAllQuestions = (req, res, next) => {
             console.log(error.message);
             return [];
         })
-}
+};
 
 // this displays all of the skills
 exports.showOneQuestion = (req, res) => {

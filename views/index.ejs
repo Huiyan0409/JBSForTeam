@@ -8,11 +8,11 @@
         <nav class="header__menu">
             <ul>
                 <li>
-                    <a class="header-link" id="header-link" href="#home">HOME</a>
+                    <a class="header-link" id="header-link" href="/">HOME</a>
                 </li>
 
                 <li>
-                    <a class="header-link" id="header-link" href="#forum">FORUM</a>
+                    <a class="header-link" href="/forumFunction" id="header-link">FORUM</a>
                     <% if (loggedIn) { %>
                         <ul class="sub-menu">
                             <% for (i = 0; i < user.classCodes.length; i++) { %>
@@ -25,7 +25,7 @@
                 </li>
 
                 <li>
-                    <a class="header-link" id="header-link" href="#tutor">TUTOR</a>
+                    <a class="header-link" href="/tutorFunction" id="header-link">TUTOR</a>
                     <% if (loggedIn) { %>
                         <ul class="sub-menu">
                             <li><a class="header-link" href="/tutorRegister">BECOME A TUTOR</a></li>
@@ -35,9 +35,8 @@
                 </li>
 
                 <li>
-                    <a class="header-link" id="header-link" href="#profile">USER</a>
+                    <a class="header-link" href="/userFunction" id="header-link">USER</a>
                     <% if (loggedIn) { %>
-
                         <ul class="sub-menu">
 
                             <li>
@@ -50,9 +49,11 @@
                             <li>
                                 <a class="header-link" href="/myProfile/<%= user._id %>">VIEW MY PROFILE</a>
                             </li>
-                            <li>
-                                <a class="header-link" href="/showProfiles">ALL PROFILES</a>
-                            </li>
+                            <% if (user.status == "admin") { %>
+                                <li>
+                                    <a class="header-link" href="/showProfiles">ALL PROFILES</a>
+                                </li>
+                            <% } %>
                         </ul>
                     <% } %>
 
@@ -74,17 +75,18 @@
 
 <!-- Section intro -->
 <section class="section section--intro section--grey" id="home">
-
     <div class="section__content section__content--full-width">
         <div class="intro">
             <div class="intro__content">
                 <% if (loggedIn) { %>
-                    <div class="intro__subtitle" style="color: black;">Hi, <%= user.userName %>!</div>
+                    <div class="intro__subtitle" style="color: black;">Hi, <b><%= user.userName %>!</b></div>
                 <% } %>
                 <div class="intro__subtitle" style="color: black;">Welcome to Claster!</div>
-                <div class="intro__title">Integrated <br><span>peer-to-peer</span> study help -all in one place.<br>
+                <div class="intro__subtitle" style="color: black;">Integrated <span>peer-to-peer</span> study help -all
+                    in one place.<br></div>
+
+                <div class="intro__title" style="color: black;"><span>Start by signing up for your classes</span><br><span> &#8595;</span>
                 </div>
-                <br>
                 <% if (loggedIn) { %>
                     <div class="form-demo">
                         <a href="/classes"><input type="submit" name="submit" class="form-demo__submit1"

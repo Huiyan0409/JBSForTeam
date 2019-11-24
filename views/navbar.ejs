@@ -11,7 +11,7 @@
 
                 <% if (loggedIn) { %>
                     <li>
-                        <a class="header-link" id="header-link" href="/#forum">FORUM</a>
+                        <a class="header-link" id="header-link" href="/forumFunction">FORUM</a>
                         <ul class="sub-menu">
                             <% for (i = 0; i < user.classCodes.length; i++) { %>
                                 <li><a href="/showQuestions/<%= user.classCodes[i] %>"
@@ -29,7 +29,7 @@
 
                 <li>
                     <% if (loggedIn) { %>
-                        <a class="header-link" id="header-link" href="/#tutor">TUTOR</a>
+                        <a class="header-link" id="header-link" href="/tutorFunction">TUTOR</a>
                         <ul class="sub-menu">
                             <li><a href="/tutorRegister" class="header-link">BECOME A TUTOR</a></li>
                             <li><a href="/showTutors" class="header-link">FIND A TUTOR</a></li>
@@ -38,7 +38,7 @@
                 </li>
 
                 <li>
-                    <a class="header-link" id="header-link" href="/#profile">USER</a>
+                    <a class="header-link" id="header-link" href="/userFunction">USER</a>
                     <ul class="sub-menu">
 
                         <li>

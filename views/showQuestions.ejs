@@ -19,23 +19,59 @@
         <div class="row">
             <div class="col">
                 <% for (var i = 0; i < questions.length; i++){ %>
-                    <div class="card">
-                        <div class="card-body">
-                            <a class="lead"
-                               href="/showQuestion/<%= req.params.classCode %>/<%= questions[i]._id %>"><%= questions[i].question %></a>
-                            <br><br>
-                            <h6>By <%= questions[i].userName %></h6>
-                            <h6><%= questions[i].createdAt %></h6>
-                            <% if (questions[i].answerNum == 0) { %>
-                                <h3><b>Not answered yet</b></h3>
-                            <% } %>
+                    <% if (i < 5) { %>
+                        <div class="card blogBox moreBox" style="border: none">
+                            <div class="card-body">
+                                <a class="lead"
+                                   href="/showQuestion/<%= req.params.classCode %>/<%= questions[i]._id %>"><%= questions[i].question %></a>
+                                <br><br>
+                                <h6>By <%= questions[i].userName %></h6>
+                                <h6><%= questions[i].createdAt %></h6>
+                                <% if (questions[i].answerNum == 0) { %>
+                                    <h3><b>Not answered yet</b></h3>
+                                <% } %>
+                            </div>
                         </div>
-                    </div>
-                <br>
+                        <br>
+                    <% } else { %>
+                        <div class="card blogBox moreBox" style="display: none; border: none">
+                            <div class="card-body">
+                                <a class="lead"
+                                   href="/showQuestion/<%= req.params.classCode %>/<%= questions[i]._id %>"><%= questions[i].question %></a>
+                                <br><br>
+                                <h6>By <%= questions[i].userName %></h6>
+                                <h6><%= questions[i].createdAt %></h6>
+                                <% if (questions[i].answerNum == 0) { %>
+                                    <h3><b>Not answered yet</b></h3>
+                                <% } %>
+                            </div>
+                        </div>
+                        <br>
+                    <% } %>
                 <% } %>
+                <div id="loadMore">
+                    <a href="#">Load More...</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function () {
+        let end = 5
+        $(".moreBox").slice(0, end).show();
+        if ($(".blogBox:hidden").length !== 0) {
+            $("#loadMore").show();
+        }
+        $("#loadMore").on('click', function (e) {
+            e.preventDefault();
+            $(".moreBox:hidden").slice(0, end).slideDown();
+            if ($(".moreBox:hidden").length === 0) {
+                $("#loadMore").fadeOut('slow');
+            }
+        });
+    });
+</script>
 
 <%- include('footer') -%>

@@ -22,14 +22,14 @@ exports.getAllClasses = (req, res) => {
 };
 
 exports.lookupClass = (req, res, next) => {
-    var classCode = req.body.classCode
-    classCode = classCode.toUpperCase()
+    let classCode = req.body.classCode;
+    classCode = classCode.toUpperCase();
     Class.findOne({classCode: classCode})
         .exec()
         .then((classV) => {
             if (classV) {
-                console.log('found a class:' + classV.classCode + " " + classV)
-                req.session.classV = classV
+                console.log('found a class:' + classV.classCode + " " + classV);
+                req.session.classV = classV;
                 next()
             } else {
                 console.log("class not found");

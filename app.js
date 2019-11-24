@@ -97,6 +97,7 @@ app.use(passport.session(1));
 app.use(bodyParser.urlencoded({extended: false}));
 
 const approvedLogins = process.env.approvedLogins;
+// const approvedLogins = ["supremeethan@brandeis.edu"];
 
 // here is where we check on their logged in status
 app.use((req, res, next) => {
@@ -239,6 +240,15 @@ app.post('/dropClass',
 // Profile =============================
 // =====================================
 
+
+app.get('/userFunction',
+    isLoggedIn,
+    function (req, res) {
+        res.render('userFunction')
+    }
+);
+
+
 //show all profiles from all users
 app.get('/myProfile/:id',
     isLoggedIn,
@@ -367,6 +377,13 @@ app.get('/showQuestions/:classCode',
     qAndaController.displayAllQuestions
 );
 
+app.get('/forumFunction',
+    isLoggedIn,
+    function (req, res) {
+        res.render('forumFunction')
+    }
+);
+
 app.post('/processQuestionPost/:classCode',
     isLoggedIn,
     qAndaController.saveQuestionPost
@@ -410,6 +427,13 @@ app.post('/showQuestion/:id/answerLikes',
 // =====================================
 // TUTOR ===============================
 // =====================================
+
+app.get('/tutorFunction',
+    isLoggedIn,
+    function (req, res) {
+        res.render('tutorFunction')
+    }
+);
 
 
 //tutor profile related
