@@ -33,12 +33,9 @@
                         </ul>
                     <% } %>
                 </li>
-
-                <li>
-                    <a class="header-link" href="/userFunction" id="header-link">USER</a>
-                    <% if (loggedIn) { %>
+                <% if (loggedIn) { %>
+                    <li>
                         <ul class="sub-menu">
-
                             <li>
                                 <a class="header-link" href="/taskBoard">TASK BOARD</a>
                             </li>
@@ -55,10 +52,8 @@
                                 </li>
                             <% } %>
                         </ul>
-                    <% } %>
-
-                </li>
-
+                    </li>
+                <% } %>
 
                 <li class="header__btn header__btn--login">
                     <% if (!loggedIn) { %>
@@ -85,7 +80,8 @@
                 <div class="intro__subtitle" style="color: black;">Integrated <span>peer-to-peer</span> study help -all
                     in one place.<br></div>
 
-                <div class="intro__title" style="color: black;"><span>Start by signing up for your classes</span><br><span> &#8595;</span>
+                <div class="intro__title" style="color: black;">
+                    <span>Start by signing up for your classes</span><br><span> &#8595;</span>
                 </div>
                 <% if (loggedIn) { %>
                     <div class="form-demo">
