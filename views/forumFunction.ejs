@@ -5,8 +5,9 @@
     <div class="section__content section__content--full-width">
         <div class="jumbotron masthead text-center">
             <div class="section__title section__title--centered">
-                All your classes are here
+                    For which class?
             </div>
+            <h3><b>NOTICE</b>: You have to <a href = "/classes"><b>ENROLL</b></a> in a class to post questions</h3>
         </div>
     </div>
 </section>
@@ -20,10 +21,10 @@
                         <% for (i = 0; i < user.classCodes.length; i++){ %>
                             <div class="partners__text">
                                 <br>
-                                <a href="/showQuestions/<%= user.classCodes[i] %>"><input
+                                <a href="/postQuestion/<%= user.classCodes[i] %>"><input
                                             class="btn btn-outline-dark"
                                             type="button"
-                                            value="Go to Forum for <%= user.classCodes[i] %>"></a>
+                                            value="Ask questions in: <%= user.classCodes[i] %>"></a>
                             </div>
                         <% } %>
                     <% } else { %>

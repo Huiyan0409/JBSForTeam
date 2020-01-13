@@ -1362,6 +1362,57 @@ h6 {
     color: #000;
 }
 
+.form-demo__submit3 {
+    width: 300px;
+    /*float: left;*/
+    background-color: #8c4e0b;
+    border: 1px solid #8c4e0b;
+    height: 63px;
+    line-height: 61px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    color: #fff;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.form-demo__submit3:hover {
+    background-color: #fff;
+    border: 1px solid #8c4e0b;
+    color: #8c4e0b;
+}
+
+.form-demo__submit2 {
+    width: 300px;
+    /*float: left;*/
+    background-color: #ff8d12;
+    border: 1px solid #fff;
+    height: 63px;
+    line-height: 61px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    color: #fff;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.form-demo__submit2:hover {
+    background-color: #fff;
+    border: 1px solid #ff8d12;
+    color: #ff8d12;
+}
+
+
 .form-demo__forumEntry {
     margin-bottom: 10px;
     width: 150px;
