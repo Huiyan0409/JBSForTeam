@@ -226,9 +226,9 @@ let classCode;
 exports.updateAppointment = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
-    var date = req.body.appointmentDate;
-    var time = req.body.appointmentTime;
-    var startAt = date.concat("  ", time);
+    const date = req.body.appointmentDate;
+    const time = req.body.appointmentTime;
+    const startAt = date.concat("  ", time);
     startTime = startAt;
     length = req.body.length;
     classCode = req.body.classCode;
@@ -288,8 +288,8 @@ function send_email() {
             '<br><br>' + 'iClaster support team',
     };
     sgMail.send(messageToTutor);
-
 }
+
 
 
 exports.getAppointments = (req, res) => {

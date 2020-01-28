@@ -492,6 +492,7 @@ app.get('/taskBoard',
 app.get('/communication/:tuteeId/:tutorId',
     isLoggedIn,
     tutorController.getName,
+    communicationController.getName,
     communicationController.getCommunication,
     tutorController.getOneTutorProfile
 );
