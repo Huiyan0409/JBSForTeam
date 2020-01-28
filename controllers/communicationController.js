@@ -85,7 +85,7 @@ function send_notification(res) {
         from: tutorEmail,
         subject: 'iClaster: a new message from ' + tutorEmail,
         text: 'Hi, you\'ve got a new message from ' + tutorName,
-        html: 'Hi, you\'ve got a new message from ' + tuteeName + '\n'
+        html: 'Hi, you\'ve got a new message from a student: ' + tuteeName + '<br>'
             + message +
             '<br><br>' + 'iClaster support team',
     };
@@ -101,7 +101,7 @@ function send_notification(res) {
         from: tuteeEmail,
         subject: 'iClaster: a new message from ' + tuteeEmail,
         text: 'Hi, you\'ve got a new message from ' + tuteeName,
-        html: 'Hi, you\'ve got a new message from ' + tuteeName + '\n'
+        html: 'Hi, you\'ve got a new message from a TA' + tuteeName + '<br>'
             + message +
             '<br><br>' + 'iClaster support team',
     };
