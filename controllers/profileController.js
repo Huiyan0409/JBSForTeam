@@ -47,23 +47,23 @@ exports.showOldProfile = (req, res) => {
 
 //update personal profile
 exports.updateProfile = (req, res, next) => {
-    const goBackURL = '/editMyProfile/' + req.params.id
+    const goBackURL = '/editMyProfile/' + req.params.id;
     if (req.body.userName.length === 0 || req.body.status.length === 0) {
         console.log("empty params detected in profile");
         res.render('emptyError', {
             goBackURL: goBackURL
-        })
+        });
         return
     }
-    const id = req.params.id
+    const id = req.params.id;
     User.findOne({_id: id})
         .exec()
         .then((profile) => {
-            profile.userName = req.body.userName
+            profile.userName = req.body.userName;
             console.log("status is: " + req.body.status);
-            profile.status = req.body.status
+            profile.status = req.body.status;
             profile.save()
-        })
+        });
 
     // console.log("in update question")
     // console.log("req.body.imageURL: " + req.body.imageURL);
