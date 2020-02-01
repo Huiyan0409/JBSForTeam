@@ -52,14 +52,17 @@
 
                 <br>
                 <br>
-                <h3><b>Become a tutor?</b></h3>
-                <hr>
-                <a href="/tutorRegister"><input type="button" id='editBtn' value="Become a tutor"
-                                                                class="btn btn-outline-primary"></a>
+                <% if (profile.status != "tutor") { %>
+                    <h3><b>Become a tutor?</b></h3>
+                    <hr>
+                    <a href="/tutorRegister"><input type="button" id='editBtn' value="Become a tutor"
+                                                    class="btn btn-outline-primary"></a>
+                <% } %>
 
             </div>
             <div class="col-md-4"></div>
             <% if (profile.status == "tutor") { %>
+            <br><br>
                 <div class="col-md-4"></div>
                 <div class="col-md-4 col-sm-12">
                     <h3><b>Tutor Profile:</b></h3>
