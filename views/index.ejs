@@ -28,10 +28,38 @@
                     <a class="header-link" href="/tutorFunction" id="header-link">Find/become a tutor</a>
                     <% if (loggedIn) { %>
                         <ul class="sub-menu">
-                            <li><a class="header-link" href="/tutorRegister">Become a tutor</a></li>
                             <li><a class="header-link" href="/showTutors">Find a tutor</a></li>
+                            <li><a class="header-link" href="/tutorRegister">Become a tutor</a></li>
                         </ul>
                     <% } %>
+                </li>
+
+                <li>
+                    <a class="header-link" id="header-link" href="/userFunction">Notifications & Settings</a>
+                    <ul class="sub-menu">
+                        <li>
+                            <% if (loggedIn) { %>
+                                <a href="/taskBoard" class="header-link">Appointments</a>
+                            <% } %>
+                        </li>
+
+                        <li>
+                            <% if (loggedIn) { %>
+                                <a class="header-link" href="/communicationBoard">Messages</a>
+                            <% } %>
+                        </li>
+                        <li>
+                            <% if (loggedIn) { %>
+                                <a class="header-link" href="/myProfile/<%= user._id %>">View/edit profile</a>
+                            <% } %>
+                        </li>
+
+                        <li>
+                            <% if (loggedIn && user.status === "admin") { %>
+                                <a class="header-link" href="/showProfiles">All PROFILES</a>
+                            <% } %>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="header__btn header__btn--login">
