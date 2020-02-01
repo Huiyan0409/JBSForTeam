@@ -29,9 +29,6 @@ exports.saveTutor = (req, res) => {
         .then((profile) => {
             console.log("user is found! " + profile);
             profile.introduction = req.body.selfIntro;
-            profile.status = "tutor";
-            profile.score = 0;
-            profile.comments = [];
             profile.tutorClassCodes = req.body.chosen;
             // automatically subscript to the classes the user chooses to tutor for
             for (let i = 0; i < req.body.chosen.length; i++) {
@@ -39,22 +36,61 @@ exports.saveTutor = (req, res) => {
                      profile.classCodes.push(req.body.chosen[i]);
                 }
             }
-            profile.patient = 0;
-            profile.excellentG = 0;
-            profile.askGood = 0;
-            profile.encouraging = 0;
-            profile.helpful = 0;
-            profile.abilityT = 0;
-            profile.gEnergy = 0;
-            profile.humility = 0;
-            profile.passionate = 0;
-            profile.onTime = 0;
-            profile.gPaced = 0;
-            profile.impatient = 0;
-            profile.notgTeaching = 0;
-            profile.late = 0;
-            profile.notPrepared = 0;
-            profile.notHelpful = 0;
+            profile.status = "tutor";
+            if (profile.score == null) {
+                profile.score = 0;
+            }
+            if (profile.comments == null) {
+                profile.comments = [];
+            }
+            if (profile.patient == null) {
+                profile.patient = 0;
+            }
+            if (profile.excellentG == null) {
+                profile.excellentG = 0;
+            }
+            if (profile.askGood == null) {
+                profile.askGood = 0;
+            }
+            if (profile.encouraging == null) {
+                profile.encouraging = 0;
+            }
+            if (profile.helpful == null) {
+                profile.helpful = 0;
+            }
+            if (profile.abilityT == null) {
+                profile.abilityT = 0;
+            }
+            if (profile.gEnergy == null) {
+                profile.gEnergy = 0;
+            }
+            if (profile.humility == null) {
+                profile.humility = 0;
+            }
+            if (profile.passionate == null) {
+                profile.passionate = 0;
+            }
+            if (profile.onTime == null) {
+                profile.onTime = 0;
+            }
+            if (profile.gPaced == null) {
+                profile.gPaced = 0;
+            }
+            if (profile.impatient == null) {
+                profile.impatient = 0;
+            }
+            if (profile.notgTeaching == null) {
+                profile.notgTeaching = 0;
+            }
+            if (profile.late == null) {
+                profile.late = 0;
+            }
+            if (profile.notPrepared == null) {
+                profile.notPrepared = 0;
+            }
+            if (profile.notHelpful == null) {
+                profile.notHelpful = 0;
+            }
             console.log("profile: " + profile);
             profile.save();
         })
