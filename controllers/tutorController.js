@@ -2,7 +2,23 @@
 // const mongoose = require('mongoose');
 const User = require('../models/User');
 const Appointment = require('../models/Appointment');
+const Class = require('../models/Class');
 
+
+exports.getAllClasses = (req, res) => {
+    //find all users from database
+    Class.find()
+        .exec()
+        .then((classes) => {
+            res.render('tutorRegister', {
+                classes: classes
+            });
+        })
+        .catch((error) => {
+            console.log(error.message);
+            return [];
+        })
+};
 
 exports.saveTutor = (req, res) => {
     if (!res.locals.loggedIn) {
@@ -17,6 +33,10 @@ exports.saveTutor = (req, res) => {
             profile.score = 0;
             profile.comments = [];
             profile.tutorClassCodes = req.body.chosen;
+            console.log("here1");
+            // automatically subscript to the classes the user chooses to tutor for
+            profile.classCodes = [...new Set([...req.body.chosen, ...profile.classCodes])];
+            console.log("here2");
             profile.patient = 0;
             profile.excellentG = 0;
             profile.askGood = 0;

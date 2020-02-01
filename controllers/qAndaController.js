@@ -12,7 +12,7 @@ exports.saveQuestionPost = (req, res) => {
         return
     }
     const classCode = req.params.classCode;
-    console.log("classcodecode is " + classCode);
+    // console.log("classcodecode is " + classCode);
     if (!res.locals.loggedIn) {
         return res.send("You must be logged in to post to a question.")
     }
@@ -184,7 +184,7 @@ exports.saveAnswer = (req, res) => {
         likes: 0,
         agreeList: [],
         classCode: classCode
-    })
+    });
 
     newAnswer.save()
         .then(() => {

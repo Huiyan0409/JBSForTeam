@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/profileController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/editMyProfileFirstTime.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editMyProfileFirstTime.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/classController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/classController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/qAndaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/qAndaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tutorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tutorController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/myProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/myProfile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/tutorRegister.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/tutorRegister.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +99,10 @@
       <workItem from="1578877801169" duration="1440000" />
       <workItem from="1580164450680" duration="107000" />
       <workItem from="1580172305286" duration="4232000" />
-      <workItem from="1580420635287" duration="412000" />
+      <workItem from="1580420635287" duration="1325000" />
+      <workItem from="1580432740141" duration="27000" />
+      <workItem from="1580432779095" duration="154000" />
+      <workItem from="1580582206389" duration="2420000" />
     </task>
     <servers />
   </component>
@@ -115,11 +123,15 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1580420637717">
+    <state x="224" y="152" key="SettingsEditor" timestamp="1580432927033">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580420637717" />
-    <state x="637" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1580164450480" />
+    <state x="224" y="152" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1580432927033" />
+    <state x="637" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1580582206516">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580432778506" />
+    <state x="637" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1580582206516" />
     <state x="397" y="274" key="com.intellij.ide.util.TipDialog/0.23.1440.801@0.23.1440.801" timestamp="1576694465688" />
     <state x="378" y="212" width="683" height="486" key="find.popup" timestamp="1580420865772">
       <screen x="0" y="0" width="1440" height="900" />

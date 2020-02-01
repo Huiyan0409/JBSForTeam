@@ -37,8 +37,8 @@ exports.lookupClass = (req, res, next) => {
             }
         })
         .catch((error) => {
-            console.log("Error in lookupClass")
-            console.log(error.message)
+            console.log("Error in lookupClass");
+            console.log(error.message);
             return []
         })
         .then(() => {
@@ -63,7 +63,7 @@ exports.addClass = (req, res) => {
                 res.send(error);
             });
     } else {
-        var message = "You have already enrolled in this class"
+        var message = "You have already enrolled in this class";
         res.render("classNotFound", {
             errorMessage: message
         })
@@ -80,13 +80,12 @@ function containsString(list, elt) {
             console.log(JSON.stringify(e) + "!=" + JSON.stringify(elt));
             console.log("Class not found!");
         }
-    })
+    });
     return found
 }
 
 exports.saveClass = (req, res) => {
     const goBackURL = '/classes';
-    const response = "success!";
     if (req.body.subject.length === 0 || req.body.courseNum.length === 0) {
         console.log("empty params detected in add class!");
         res.render('emptyError', {

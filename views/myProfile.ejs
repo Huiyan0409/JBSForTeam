@@ -7,7 +7,6 @@
             <div class="section__title section__title--centered">
                 <%= user.userName %>'s profile
             </div>
-            <h3>Please edit your profile here</h3>
         </div>
     </div>
 </section>
@@ -54,8 +53,13 @@
 
                 <br>
                 <br>
+                <h3><b>Become a tutor?</b></h3>
+                <hr>
+                <a href="/tutorRegister"><input type="button" id='editBtn' value="Become a tutor"
+                                                                class="btn btn-outline-primary"></a>
+
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-4"></div>
             <% if (profile.status == "tutor") { %>
                 <div class="col-md-4 col-sm-12">
                     <h3><b>Tutor Profile:</b></h3>
