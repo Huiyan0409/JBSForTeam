@@ -33,10 +33,12 @@ exports.saveTutor = (req, res) => {
             profile.score = 0;
             profile.comments = [];
             profile.tutorClassCodes = req.body.chosen;
-            console.log("here1");
             // automatically subscript to the classes the user chooses to tutor for
-            profile.classCodes = [...new Set([...req.body.chosen, ...profile.classCodes])];
-            console.log("here2");
+            for (let i = 0; i < req.body.chosen.length; i++) {
+                if (!profile.classCodes.includes(req.body.chosen[i])){
+                     profile.classCodes.push(req.body.chosen[i]);
+                }
+            }
             profile.patient = 0;
             profile.excellentG = 0;
             profile.askGood = 0;
