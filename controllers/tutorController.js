@@ -27,13 +27,20 @@ exports.saveTutor = (req, res) => {
     User.findOne(res.locals.user._id)
         .exec()
         .then((profile) => {
-            console.log("user is found! " + profile);
+            // console.log("user is found! " + profile);
             profile.introduction = req.body.selfIntro;
             profile.tutorClassCodes = req.body.chosen;
             // automatically subscript to the classes the user chooses to tutor for
-            for (let i = 0; i < req.body.chosen.length; i++) {
-                if (!profile.classCodes.includes(req.body.chosen[i])){
-                     profile.classCodes.push(req.body.chosen[i]);
+            console.log("chosen len: " + req.body.chosen.length);
+            console.log(typeof req.body.chosen);
+            if (typeof req.body.chosen == "string" && !profile.classCodes.includes(req.body.chosen)) {
+                profile.classCodes.push(req.body.chosen);
+            }
+            if (typeof req.body.chosen == "object") {
+                for (let i = 0; i < req.body.chosen.length; i++) {
+                    if (!profile.classCodes.includes(req.body.chosen[i])){
+                        profile.classCodes.push(req.body.chosen[i]);
+                    }
                 }
             }
             profile.status = "tutor";
@@ -91,7 +98,7 @@ exports.saveTutor = (req, res) => {
             if (profile.notHelpful == null) {
                 profile.notHelpful = 0;
             }
-            console.log("profile: " + profile);
+            // console.log("profile: " + profile);
             profile.save();
         })
         .then(() => {
