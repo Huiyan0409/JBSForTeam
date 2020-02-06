@@ -39,7 +39,7 @@ configPassport(passport);
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
 const MONGODB_URI = process.env.MONGODB_URI;
-// const MONGODB_URI = 'mongodb://localhost/iclaster3';
+// const MONGODB_URI = 'mongodb://localhost/iclaster';
 // console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');

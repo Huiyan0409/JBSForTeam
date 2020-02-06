@@ -99,6 +99,18 @@
                         <a href="/tutorRegister"><input type="submit" name="submit" class="form-demo__submit2"
                                                         value="BECOME A PEER TUTOR"></a>
                     </div>
+                    <br>
+                    <hr>
+
+                    <div class="intro__subtitle" style="color: black;">Your classes</div>
+                    <% for (var i = 0; i < user.classCodes.length; i++) { %>
+                        <div class="form-demo">
+                            <a href="/showQuestions/<%= user.classCodes[i] %>">
+                                <input type="submit" name="submit" class="form-demo__classCode"
+                                       value=<%= user.classCodes[i] %>></a>
+                        </div>
+
+                    <% } %>
                 <% } else { %>
                     <h3><b>PLEASE LOG IN TO ENABLE ALL FEATURES.</b></h3>
                     <a href="/auth/google"><input type="submit" name="submit" class="form-demo__submit1"
