@@ -46,7 +46,7 @@ exports.showOldProfile = (req, res) => {
 };
 
 //update personal profile
-exports.updateProfile = (req, res, next) => {
+exports.updateProfile = (req, res) => {
     const goBackURL = '/editMyProfile/' + req.params.id;
     if (req.body.userName.length === 0 || req.body.status.length === 0) {
         console.log("empty params detected in profile");
@@ -73,6 +73,40 @@ exports.updateProfile = (req, res, next) => {
         .exec()
         .then(() => {
             res.redirect('/myProfile/' + id)
+        })
+        .catch((error) => {
+            res.send(error)
+        })
+};
+
+//update personal profile
+exports.updateProfileFirstTime = (req, res) => {
+    const goBackURL = '/editMyProfile/' + req.params.id;
+    if (req.body.userName.length === 0 || req.body.status.length === 0) {
+        console.log("empty params detected in profile");
+        res.render('emptyError', {
+            goBackURL: goBackURL
+        });
+        return
+    }
+    const id = req.params.id;
+    User.findOne({_id: id})
+        .exec()
+        .then((profile) => {
+            profile.userName = req.body.userName;
+            console.log("status is: " + req.body.status);
+            profile.status = req.body.status;
+            profile.save()
+        });
+
+    // console.log("in update question")
+    // console.log("req.body.imageURL: " + req.body.imageURL);
+    Question.updateMany({userId: req.user._id}, {userName: req.body.userName}, {multi: true})
+        .exec()
+    Answer.updateMany({userId: req.user._id}, {userName: req.body.userName}, {multi: true})
+        .exec()
+        .then(() => {
+            res.redirect('/')
         })
         .catch((error) => {
             res.send(error)

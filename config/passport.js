@@ -26,7 +26,7 @@ module.exports = function(passport) {
 
   // used to serialize the user for the session
   passport.serializeUser(function(user, done) {
-    console.log('in serializeUser '+user)
+    console.log('in serializeUser '+user);
     done(null, user.id);
   });
 
@@ -66,12 +66,12 @@ module.exports = function(passport) {
         return done(err);
 
         if (user) {
-          console.log(`the user was found ${user}`)
+          console.log(`the user was found ${user}`);
           // if a user is found, log them in
           return done(null, user);
         } else {
-          console.log(`we need to create a new user`)
-          console.dir(profile)
+          console.log(`we need to create a new user`);
+          console.dir(profile);
           // if the user isnt in our database, create a new user
           var newUser
           = new User(
@@ -91,7 +91,7 @@ module.exports = function(passport) {
             */
             // save the user
             newUser.save(function(err) {
-              console.log("saving the new user")
+              console.log("saving the new user");
               if (err)
               throw err;
               return done(null, newUser);

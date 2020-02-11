@@ -39,7 +39,7 @@ configPassport(passport);
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
 const MONGODB_URI = process.env.MONGODB_URI;
-// const MONGODB_URI = 'mongodb://localhost/iclaster';
+// const MONGODB_URI = 'mongodb://localhost/iclaster4';
 // console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');
@@ -275,6 +275,12 @@ app.get('/editMyProfileFirstTime/:id',
 app.post('/updateProfile/:id',
     isLoggedIn,
     profileController.updateProfile
+);
+
+//update personal profile for the first time
+app.post('/updateProfileFirstTime/:id',
+    isLoggedIn,
+    profileController.updateProfileFirstTime
 );
 
 //show all profiles from all users
