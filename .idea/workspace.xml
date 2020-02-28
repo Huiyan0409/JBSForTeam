@@ -5,8 +5,22 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/classController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/classController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/communicationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/communicationController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/profileController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/qAndaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/qAndaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/tutorController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/tutorController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Appointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Appointment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Class.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Class.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Communication.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Communication.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/editMyProfileFirstTime.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/editMyProfileFirstTime.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showQuestion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showQuestion.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showTutors.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showTutors.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +50,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
@@ -105,6 +120,9 @@
       <workItem from="1580667864722" duration="1000" />
       <workItem from="1581021793778" duration="1032000" />
       <workItem from="1581389347866" duration="366000" />
+      <workItem from="1581446886522" duration="285000" />
+      <workItem from="1581833782541" duration="118000" />
+      <workItem from="1582914852121" duration="5766000" />
     </task>
     <servers />
   </component>
@@ -129,18 +147,18 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="224" y="152" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1580432927033" />
-    <state x="637" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1581389347803">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1581446886446">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1580432778506" />
-    <state x="637" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1581389347803" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1581446886446" />
+    <state x="637" y="372" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1581389722707" />
     <state x="397" y="274" key="com.intellij.ide.util.TipDialog/0.23.1440.801@0.23.1440.801" timestamp="1576694465688" />
     <state x="478" y="299" key="com.intellij.ide.util.TipDialog/0.23.1440.803@0.23.1440.803" timestamp="1580667864150" />
     <state x="478" y="300" key="com.intellij.ide.util.TipDialog/0.23.1440.805@0.23.1440.805" timestamp="1580665911380" />
-    <state x="378" y="212" width="683" height="486" key="find.popup" timestamp="1580420865772">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="440" y="253" width="1085" height="707" key="find.popup" timestamp="1582929193594">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="378" y="212" width="683" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1580420865772" />
-    <state x="504" y="254" width="911" height="572" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1580189804651" />
+    <state x="440" y="253" width="1085" height="707" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1582929193594" />
   </component>
 </project>

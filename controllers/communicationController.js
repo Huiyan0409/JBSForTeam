@@ -1,7 +1,6 @@
 'use strict';
 const Communication = require('../models/Communication');
 
-
 exports.getCommunication = (req, res, next) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
@@ -82,35 +81,29 @@ function send_notification(res) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const messageToTutee = {
         to: tuteeEmail,
-        from: tutorEmail,
-        subject: 'iClaster: a new message from ' + tutorEmail,
+        from: "iclasterteam@gmail.com",
+        subject: 'iClaster: a new message from ' + tutorName,
         text: 'Hi, you\'ve got a new message from ' + tutorName,
-        html: 'Hi, you\'ve got a new message from a student: ' + tuteeName + '<br>'
+        html: 'Hi, you\'ve got a new message from a tutor: ' + tutorName + '<br>'
             + message +
             '<br><br>' + 'iClaster support team',
     };
-    console.log("localName: " + res.locals.user.userName);
-    console.log("tutorName: " + tutorName);
-    console.log(res.locals.user.userName === tutorName);
-    if (res.locals.user.userName === tutorName) {
-        console.log("i am tutor");
-        sgMail.send(messageToTutee);
-    }
     const messageToTutor = {
         to: tutorEmail,
-        from: tuteeEmail,
-        subject: 'iClaster: a new message from ' + tuteeEmail,
+        from: "iclasterteam@gmail.com",
+        subject: 'iClaster: a new message from ' + tuteeName,
         text: 'Hi, you\'ve got a new message from ' + tuteeName,
-        html: 'Hi, you\'ve got a new message from a TA' + tuteeName + '<br>'
+        html: 'Hi, you\'ve got a new message from a tutee: ' + tuteeName + '<br>'
             + message +
             '<br><br>' + 'iClaster support team',
     };
     if (res.locals.user.userName === tuteeName) {
-        console.log("I am tutee");
         sgMail.send(messageToTutor);
     }
+    if (res.locals.user.userName === tutorName) {
+        sgMail.send(messageToTutee);
+    }
 }
-
 
 exports.getCommunicationBoard = (req, res) => {
     //find all users from database

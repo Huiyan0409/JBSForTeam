@@ -1,6 +1,8 @@
 'use strict';
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
+const User = require('../models/User');
+
 
 exports.saveQuestionPost = (req, res) => {
     const goBackURL = '/postQuestion/' + req.params.classCode;
@@ -12,7 +14,6 @@ exports.saveQuestionPost = (req, res) => {
         return
     }
     const classCode = req.params.classCode;
-    // console.log("classcodecode is " + classCode);
     if (!res.locals.loggedIn) {
         return res.send("You must be logged in to post to a question.")
     }
@@ -31,13 +32,39 @@ exports.saveQuestionPost = (req, res) => {
     );
     newQuestion.save()
         .then(() => {
-            console.log("CLASSCODE IS: " + req.params.classCode);
+            let tutorEmailList = [];
+            User.find()
+                .exec()
+                .then((users) => {
+                    users.forEach(user => {
+                        if (user.tutorClassCodes.includes(classCode) && user.receiveUpdate) {
+                            tutorEmailList.push(user.googleemail);
+                        }
+                    })
+                });
+            send_notification(tutorEmailList, classCode, req.body.question);
             res.redirect('/showQuestions/' + classCode);
         })
         .catch(error => {
             res.send(error);
         });
 };
+
+function send_notification(tutorEmailList, classCode, question) {
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    tutorEmailList.forEach(tutorEmail => {
+        let messageToTutor = {
+            to: tutorEmail,
+            from: "iclasterteam@gmail.com",
+            subject: 'iClaster: a new question is posted in class: ' + classCode,
+            text: 'iClaster: a new question is posted in class: ' + classCode,
+            html: 'Hi, here is the new question: ' + '<br>'+ question + '<br>' +
+                '<br><br>' + 'iClaster support team',
+        };
+        sgMail.send(messageToTutor);
+    })
+}
 
 exports.getAllQuestions = (req, res, next) => {
     const classCode = req.params.classCode;
@@ -169,11 +196,8 @@ exports.saveAnswer = (req, res) => {
         });
         return
     }
-
     const questionId = req.params.id;
     const classCode = req.params.classCode;
-    console.log("questionId is: " + questionId);
-
     let newAnswer = new Answer({
         userId: req.user._id,
         questionId: questionId,
@@ -185,20 +209,20 @@ exports.saveAnswer = (req, res) => {
         agreeList: [],
         classCode: classCode
     });
-
     newAnswer.save()
         .then(() => {
+
             res.redirect('/showQuestion/' + classCode + '/' + questionId);
         })
         .catch(error => {
             res.send(error);
         });
-}
+};
+
 
 exports.likesAdded = (req, res) => {
     let answerId = req.body.likes;
     let userId = req.body.user;
-    console.log("userId: " + userId);
     Answer.findOne({_id: answerId})
         .exec()
         .then((answer) => {

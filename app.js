@@ -39,7 +39,7 @@ configPassport(passport);
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
 const MONGODB_URI = process.env.MONGODB_URI;
-// const MONGODB_URI = 'mongodb://localhost/iclaster4';
+// const MONGODB_URI = 'mongodb://localhost/iclaster5';
 // console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');
@@ -88,16 +88,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 
 app.use(flash());
 app.use(passport.initialize(1));
 app.use(passport.session(1));
 app.use(bodyParser.urlencoded({extended: false}));
-
-const approvedLogins = process.env.approvedLogins;
-// const approvedLogins = ["supremeethan@brandeis.edu"];
 
 // here is where we check on their logged in status
 app.use((req, res, next) => {
@@ -111,16 +108,6 @@ app.use((req, res, next) => {
             console.log("user has been Authenticated")
         } else {
             res.locals.loggedIn = false
-        }
-        if (req.user) {
-            if (approvedLogins.includes(req.user.googleemail)) {
-                // for permission control
-                console.log("admin has logged in");
-                res.locals.status = 'admin'
-            } else {
-                console.log('user has logged in');
-                res.locals.status = 'user'
-            }
         }
     }
     next()

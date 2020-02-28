@@ -22,8 +22,7 @@ exports.getAllClasses = (req, res) => {
 };
 
 exports.lookupClass = (req, res, next) => {
-    let classCode = req.body.classCode;
-    classCode = classCode.toUpperCase();
+    let classCode = req.body.classCode.toString().toUpperCase();
     Class.findOne({classCode: classCode})
         .exec()
         .then((classV) => {
@@ -72,9 +71,8 @@ exports.addClass = (req, res) => {
 
 function containsString(list, elt) {
     let found = false;
-    list.forEach(function (e) {
+    list.forEach(e => {
         if (JSON.stringify(e) === JSON.stringify(elt)) {
-            // console.log(JSON.stringify(e)+ "=="+ JSON.stringify(elt))
             found = true
         } else {
             console.log(JSON.stringify(e) + "!=" + JSON.stringify(elt));

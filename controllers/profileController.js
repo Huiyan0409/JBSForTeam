@@ -3,11 +3,7 @@ const User = require('../models/User');
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 
-
-//import axios
-// const axios = require('axios');
-// const apikey = require('../config/apikey');
-var path = require('path');
+const path = require('path');
 
 
 //get personal profile from admin permission, view them individually
@@ -60,7 +56,6 @@ exports.updateProfile = (req, res) => {
         .exec()
         .then((profile) => {
             profile.userName = req.body.userName;
-            console.log("status is: " + req.body.status);
             profile.status = req.body.status;
             profile.save()
         });
@@ -82,6 +77,10 @@ exports.updateProfile = (req, res) => {
 //update personal profile
 exports.updateProfileFirstTime = (req, res) => {
     const goBackURL = '/editMyProfile/' + req.params.id;
+    console.log("checked? " + req.body.receiveUpdate);
+    console.log("type: " + typeof req.body.receiveUpdate);
+    let checked = false;
+    checked = req.body.receiveUpdate === "on";
     if (req.body.userName.length === 0 || req.body.status.length === 0) {
         console.log("empty params detected in profile");
         res.render('emptyError', {
@@ -94,15 +93,12 @@ exports.updateProfileFirstTime = (req, res) => {
         .exec()
         .then((profile) => {
             profile.userName = req.body.userName;
-            console.log("status is: " + req.body.status);
             profile.status = req.body.status;
+            profile.receiveUpdate = checked;
             profile.save()
         });
-
-    // console.log("in update question")
-    // console.log("req.body.imageURL: " + req.body.imageURL);
     Question.updateMany({userId: req.user._id}, {userName: req.body.userName}, {multi: true})
-        .exec()
+        .exec();
     Answer.updateMany({userId: req.user._id}, {userName: req.body.userName}, {multi: true})
         .exec()
         .then(() => {
@@ -133,7 +129,7 @@ exports.getAllProfiles = (req, res) => {
 exports.getOneProfile = (req, res) => {
 
     //grab id from the URL, the red id is set by app.js where the URL is formed
-    const id = req.params.id
+    const id = req.params.id;
     User.findOne({_id: id})
         .exec()
         .then((profile) => {

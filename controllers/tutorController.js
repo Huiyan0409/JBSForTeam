@@ -38,7 +38,7 @@ exports.saveTutor = (req, res) => {
             }
             if (typeof req.body.chosen == "object") {
                 for (let i = 0; i < req.body.chosen.length; i++) {
-                    if (!profile.classCodes.includes(req.body.chosen[i])){
+                    if (!profile.classCodes.includes(req.body.chosen[i])) {
                         profile.classCodes.push(req.body.chosen[i]);
                     }
                 }
@@ -288,7 +288,7 @@ exports.getName = (req, res, next) => {
 let startTime;
 let length;
 let classCode;
-exports.updateAppointment = (req, res, next) => {
+exports.updateAppointment = (req, res) => {
     const tuteeId = req.params.tuteeId;
     const tutorId = req.params.tutorId;
     const date = req.body.appointmentDate;
@@ -297,8 +297,6 @@ exports.updateAppointment = (req, res, next) => {
     startTime = startAt;
     length = req.body.length;
     classCode = req.body.classCode;
-    // console.log("userName is: " + userName);
-
     let newAppointment = new Appointment(
         {
             tutorId: tutorId,
@@ -312,7 +310,6 @@ exports.updateAppointment = (req, res, next) => {
             status: "incomplete"
         }
     );
-
     newAppointment.save()
         .then(() => {
             send_email();
@@ -329,10 +326,10 @@ function send_email() {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const messageToTutee = {
         to: tuteeEmail,
-        from: tutorEmail,
+        from: "iclasterteam@gmail.com",
         subject: 'iClaster: appointment with ' + tuteeName + ' is set',
         text: 'Hi, your appointment is set',
-        html: 'Hi, ' + '<br><br>' + 'Your appointment with TA: <strong> ' + tutorName + '</strong> is set' +
+        html: 'Hi, ' + '<br><br>' + 'Your appointment with tutor: <strong> ' + tutorName + '</strong> is set' +
             '<br>' + 'Class: ' + classCode +
             '<br>' + 'Time: ' + startTime +
             '<br>' + 'Length: ' + length +
@@ -342,7 +339,7 @@ function send_email() {
     sgMail.send(messageToTutee);
     const messageToTutor = {
         to: tutorEmail,
-        from: tuteeEmail,
+        from: "iclasterteam@gmail.com",
         subject: 'iClaster: appointment with' + tutorName + ' is set',
         text: 'Hi, your appointment is set',
         html: 'Hi, ' + '<br><br>' + 'Your appointment with student: <strong> ' + tuteeName + '</strong> is set' +
@@ -354,8 +351,6 @@ function send_email() {
     };
     sgMail.send(messageToTutor);
 }
-
-
 
 exports.getAppointments = (req, res) => {
     //find all users from database
