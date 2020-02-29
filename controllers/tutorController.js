@@ -326,7 +326,7 @@ function send_email() {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const messageToTutee = {
         to: tuteeEmail,
-        from: "iclasterteam@gmail.com",
+        from: 'iclasterteam@gmail.com',
         subject: 'iClaster: appointment with ' + tuteeName + ' is set',
         text: 'Hi, your appointment is set',
         html: 'Hi, ' + '<br><br>' + 'Your appointment with tutor: <strong> ' + tutorName + '</strong> is set' +

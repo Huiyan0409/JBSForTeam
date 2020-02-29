@@ -37,30 +37,38 @@ exports.saveQuestionPost = (req, res) => {
                 .exec()
                 .then((users) => {
                     users.forEach(user => {
+                        // console.log("tutor class codes: " + user.tutorClassCodes.toString());
+                        // console.log("class code: " + classCode);
                         if (user.tutorClassCodes.includes(classCode) && user.receiveUpdate) {
                             tutorEmailList.push(user.googleemail);
                         }
                     })
+                })
+                .then(() => {
+                    console.log("tutor list: " + tutorEmailList.toString());
+                    send_notification(tutorEmailList, classCode, req.body.question, req.body.haveDone, req.body.helpWith);
+                    res.redirect('/showQuestions/' + classCode);
                 });
-            send_notification(tutorEmailList, classCode, req.body.question);
-            res.redirect('/showQuestions/' + classCode);
         })
         .catch(error => {
             res.send(error);
         });
 };
 
-function send_notification(tutorEmailList, classCode, question) {
+function send_notification(tutorEmailList, classCode, question, haveDone, helpWith) {
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     tutorEmailList.forEach(tutorEmail => {
         let messageToTutor = {
-            to: tutorEmail,
-            from: "iclasterteam@gmail.com",
+            to: 'supremeethan@brandeis.edu',
+            from: 'iclasterteam@gmail.com',
             subject: 'iClaster: a new question is posted in class: ' + classCode,
             text: 'iClaster: a new question is posted in class: ' + classCode,
-            html: 'Hi, here is the new question: ' + '<br>'+ question + '<br>' +
-                '<br><br>' + 'iClaster support team',
+            html: 'Hi, here is the new question post in class: ' + classCode + '<br><br>'
+                + '     title: ' + question + '<br>'
+                + '     the student is working on: ' + haveDone + '<br>'
+                + '     the student needs help with: ' + helpWith
+                + '<br><br>' + 'iClaster support team',
         };
         sgMail.send(messageToTutor);
     })
@@ -88,9 +96,7 @@ exports.getAllQuestions = (req, res, next) => {
                         questions[i].answerNum = counts;
                         questions[i].save();
                         asyncKiller++;
-                        console.log("asyncKiller: " + asyncKiller);
                         if (asyncKiller === questions.length) {
-                            console.log("TIME TO GO TO NEXT");
                             next()
                         }
                     })
@@ -124,7 +130,6 @@ exports.displayAllQuestions = (req, res) => {
 
 // this displays all of the skills
 exports.showOneQuestion = (req, res) => {
-    //gconsle.log('in getAllSkills')
     const id = req.params.id;
     console.log('the id is ' + id);
     Question.findOne({_id: id})
@@ -187,6 +192,10 @@ exports.editQuestion = (req, res) => {
         })
 };
 
+let replyName;
+let userId;
+let userEmail;
+let questionTitle;
 exports.saveAnswer = (req, res) => {
     const goBackURL = '/showQuestion/' + req.params.classCode + '/' + req.params.id
     if (req.body.answer.length === 0) {
@@ -211,13 +220,46 @@ exports.saveAnswer = (req, res) => {
     });
     newAnswer.save()
         .then(() => {
-
-            res.redirect('/showQuestion/' + classCode + '/' + questionId);
+            Question.findOne({_id: questionId})
+                .exec()
+                .then((question) => {
+                    userId = question.userId;
+                    questionTitle = question.question;
+                    User.findOne({_id: userId})
+                        .exec()
+                        .then((user) => {
+                            console.log("user: " + user.toString());
+                            userEmail = user.googleemail;
+                            replyName = user.userName;
+                            console.log("userEmail: " + userEmail);
+                            send_to_student(userEmail, req.body.answer, replyName, questionTitle, classCode)
+                            res.redirect('/showQuestion/' + classCode + '/' + questionId)
+                        })
+                })
+                .catch(error => {
+                    res.send(error);
+                });
         })
         .catch(error => {
             res.send(error);
         });
 };
+
+function send_to_student(userEmail, answer, replyName, question, classCode) {
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    let messageToStudent = {
+        to: userEmail,
+        from: 'iclasterteam@gmail.com',
+        subject: 'iClaster: your question in class: ' + classCode + ' is answered',
+        text: 'iClaster: your question in class: ' + classCode + ' is answered',
+        html: 'Hi, ' + replyName + ' has answered your question in class: ' + classCode + '<br><br>'
+            + '     question title: ' + question + '<br>'
+            + '     answer: ' + answer + '<br>'
+            + '<br><br>' + 'iClaster support team',
+    };
+    sgMail.send(messageToStudent);
+}
 
 
 exports.likesAdded = (req, res) => {

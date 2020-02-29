@@ -47,6 +47,16 @@
                 <br>
                 <br>
 
+                <input disabled type="checkbox" id="vehicle3" name="receiveUpdate"
+                <% if (profile.receiveUpdate) { %>
+                       checked
+                        <% } %>
+                >
+                <label for="vehicle3"> Receive forum updates via email</label>
+                <br>
+
+                <br>
+
                 <a href="/editMyProfile/<%= user._id %>"><input type="button" id='editBtn' value="Edit"
                                                                 class="btn btn-outline-primary"></a>
 

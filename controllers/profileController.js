@@ -44,6 +44,7 @@ exports.showOldProfile = (req, res) => {
 //update personal profile
 exports.updateProfile = (req, res) => {
     const goBackURL = '/editMyProfile/' + req.params.id;
+    let checked = req.body.receiveUpdate === "on";
     if (req.body.userName.length === 0 || req.body.status.length === 0) {
         console.log("empty params detected in profile");
         res.render('emptyError', {
@@ -57,11 +58,10 @@ exports.updateProfile = (req, res) => {
         .then((profile) => {
             profile.userName = req.body.userName;
             profile.status = req.body.status;
+            profile.receiveUpdate = checked;
             profile.save()
         });
 
-    // console.log("in update question")
-    // console.log("req.body.imageURL: " + req.body.imageURL);
     Question.updateMany({userId: req.user._id}, {userName: req.body.userName}, {multi: true})
         .exec()
     Answer.updateMany({userId: req.user._id}, {userName: req.body.userName}, {multi: true})
@@ -77,10 +77,7 @@ exports.updateProfile = (req, res) => {
 //update personal profile
 exports.updateProfileFirstTime = (req, res) => {
     const goBackURL = '/editMyProfile/' + req.params.id;
-    console.log("checked? " + req.body.receiveUpdate);
-    console.log("type: " + typeof req.body.receiveUpdate);
-    let checked = false;
-    checked = req.body.receiveUpdate === "on";
+    let checked = req.body.receiveUpdate === "on";
     if (req.body.userName.length === 0 || req.body.status.length === 0) {
         console.log("empty params detected in profile");
         res.render('emptyError', {

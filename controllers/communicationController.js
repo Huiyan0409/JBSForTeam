@@ -81,11 +81,11 @@ function send_notification(res) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const messageToTutee = {
         to: tuteeEmail,
-        from: "iclasterteam@gmail.com",
+        from: 'iclasterteam@gmail.com',
         subject: 'iClaster: a new message from ' + tutorName,
         text: 'Hi, you\'ve got a new message from ' + tutorName,
-        html: 'Hi, you\'ve got a new message from a tutor: ' + tutorName + '<br>'
-            + message +
+        html: 'Hi, you\'ve got a new message from a tutor: ' + tutorName + '<br><br>'
+            + '     message: ' + message +
             '<br><br>' + 'iClaster support team',
     };
     const messageToTutor = {
@@ -93,8 +93,8 @@ function send_notification(res) {
         from: "iclasterteam@gmail.com",
         subject: 'iClaster: a new message from ' + tuteeName,
         text: 'Hi, you\'ve got a new message from ' + tuteeName,
-        html: 'Hi, you\'ve got a new message from a tutee: ' + tuteeName + '<br>'
-            + message +
+        html: 'Hi, you\'ve got a new message from a tutee: ' + tuteeName + '<br><br>'
+            + '     message: ' + message +
             '<br><br>' + 'iClaster support team',
     };
     if (res.locals.user.userName === tuteeName) {

@@ -39,7 +39,7 @@ configPassport(passport);
 // Created mongolab-cylindrical-33366 as MONGODB_URI
 //connect to mongoose database
 const MONGODB_URI = process.env.MONGODB_URI;
-// const MONGODB_URI = 'mongodb://localhost/iclaster5';
+// const MONGODB_URI = 'mongodb://localhost/iclaster6';
 // console.log("MONGODB_URI: " + process.env.MONGODB_URI);
 
 const mongoose = require('mongoose');
@@ -403,7 +403,7 @@ app.post('/showQuestion/:classCode/:id/editQuestion/processQuestionPost',
 //to save a new answer post
 app.post('/showQuestion/:classCode/:id/processAnswerPost',
     isLoggedIn,
-    qAndaController.saveAnswer
+    qAndaController.saveAnswer,
 );
 
 //to delete an existing answers
