@@ -68,7 +68,7 @@ function send_notification(tutorEmailList, classCode, question, haveDone, helpWi
                 + '     title: ' + question + '<br>'
                 + '     the student is working on: ' + haveDone + '<br>'
                 + '     the student needs help with: ' + helpWith
-                + '<br><br>' + 'iClaster support team',
+                + '<br><br>' + 'You can unsubscribe email notifications by [Notifications & Settings => View/edit profile => edit => uncheck Receive forum updates via email]' + '<br><br>' + 'iClaster support team',
         };
         sgMail.send(messageToTutor);
     })
@@ -256,7 +256,7 @@ function send_to_student(userEmail, answer, replyName, question, classCode) {
         html: 'Hi, ' + replyName + ' has answered your question in class: ' + classCode + '<br><br>'
             + '     question title: ' + question + '<br>'
             + '     answer: ' + answer + '<br>'
-            + '<br><br>' + 'iClaster support team',
+            + '<br><br>' + 'You can unsubscribe email notifications by [Notifications & Settings => View/edit profile => edit => uncheck Receive forum updates via email]' + '<br><br>' + 'iClaster support team',
     };
     sgMail.send(messageToStudent);
 }
