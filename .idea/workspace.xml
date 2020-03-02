@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="" />
+    <list default="true" id="ff8f8071-d3b3-4d3b-9bbc-ea8eb09d0915" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/showTutors.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/showTutors.ejs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +107,8 @@
       <workItem from="1581389347866" duration="366000" />
       <workItem from="1581446886522" duration="285000" />
       <workItem from="1581833782541" duration="118000" />
-      <workItem from="1582914852121" duration="11857000" />
+      <workItem from="1582914852121" duration="12045000" />
+      <workItem from="1583110070465" duration="235000" />
     </task>
     <servers />
   </component>
@@ -140,5 +146,9 @@
     </state>
     <state x="378" y="212" width="683" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1580420865772" />
     <state x="440" y="253" width="1085" height="707" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1582938397130" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1582952830915">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1582952830915" />
   </component>
 </project>
