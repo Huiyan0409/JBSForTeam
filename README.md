@@ -4,7 +4,7 @@ Welcome to Claster, an education technology App using Node.js, Express.js, and M
 It is a student-centric learning platform which provides students an integrated learning experience with peer-to-peer help.
 Please feel free to reach out to us if you are interested!
 
-# To run this app locally you need to
+# Local environment setup
 
 - clone a copy (or download it)
 - create a google developer account and get oauth credentials
