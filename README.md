@@ -1,10 +1,13 @@
 # Claster
-Welcome to Claster.
-It is built on Node.js Express. We might re-build the project using React in the future. 
+Welcome to Claster, an education technology App using Node.js, Express.js, and MongoDB
 
 It is a student-centric learning platform which provides students an integrated learning experience with peer-to-peer help.
 Please feel free to reach out to us if you are interested!
 
-Please run 
-% npm install
-to install all the dependencies before started.
+# To run this app locally you need to
+
+- clone a copy (or download it)
+- create a google developer account and get oauth credentials
+- put those credentials in a file in config/auth.js in the format shown below:
+- startup a mongodb server
+- start the server with %npm start
