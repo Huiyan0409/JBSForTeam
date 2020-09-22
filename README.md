@@ -1,7 +1,8 @@
 # Claster Peer-to-peer study platform
 
-For full description of this award-winning project, visit here[Brandeis Spark Competition](https://www.brandeis.edu/innovation/grant-programs/spark/current-projects.html)
 Welcome to Claster, an education technology App built with Node.js, Express.js and MongoDB
+
+For full description of this award-winning project, visit here [Brandeis Spark Competition](https://www.brandeis.edu/innovation/grant-programs/spark/current-projects.html)
 
 It is a student-centric learning platform which provides students with an integrated learning experience with peer-to-peer help including class-based QA forum, direct messaging, location sharing, tutor searching and appointment scheduling, etc.
 
